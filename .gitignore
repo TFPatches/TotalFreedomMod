@@ -32,10 +32,3 @@ manifest.mf
 .Trashes
 ehthumbs.db
 Thumbs.db
-src/main/java/me/totalfreedom/totalfreedommod/command/Command_blockcmd.java
-src/main/java/me/totalfreedom/totalfreedommod/command/Command_blockcmd.java
-src/main/java/me/totalfreedom/totalfreedommod/command/Command_blockedit.java
-src/main/java/me/totalfreedom/totalfreedommod/command/Command_blockpvp.java
-src/main/java/me/totalfreedom/totalfreedommod/command/Command_cage.java
-src/main/java/me/totalfreedom/totalfreedommod/command/Command_disguisetoggle.java
-src/main/java/me/totalfreedom/totalfreedommod/command/Command_pvpspy.java
