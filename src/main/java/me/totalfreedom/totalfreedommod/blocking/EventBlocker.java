@@ -4,8 +4,7 @@ import me.totalfreedom.totalfreedommod.FreedomService;
 import me.totalfreedom.totalfreedommod.TotalFreedomMod;
 import me.totalfreedom.totalfreedommod.config.ConfigEntry;
 import org.bukkit.entity.Entity;
-import org.bukkit.entity.EntityType;
-import org.bukkit.entity.Projectile;
+import org.bukkit.entity.FallingBlock;
 import org.bukkit.entity.Tameable;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
@@ -16,14 +15,15 @@ import org.bukkit.event.block.BlockPistonExtendEvent;
 import org.bukkit.event.block.BlockPistonRetractEvent;
 import org.bukkit.event.block.BlockRedstoneEvent;
 import org.bukkit.event.block.LeavesDecayEvent;
+import org.bukkit.event.entity.CreatureSpawnEvent;
 import org.bukkit.event.entity.EntityCombustEvent;
 import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.event.entity.EntityDeathEvent;
 import org.bukkit.event.entity.EntityExplodeEvent;
 import org.bukkit.event.entity.ExplosionPrimeEvent;
 import org.bukkit.event.entity.FireworkExplodeEvent;
-import org.bukkit.event.entity.ProjectileHitEvent;
 import org.bukkit.event.player.PlayerDropItemEvent;
+
 
 public class EventBlocker extends FreedomService
 {
@@ -58,6 +58,21 @@ public class EventBlocker extends FreedomService
         if (!ConfigEntry.ALLOW_FIRE_PLACE.getBoolean())
         {
             event.setCancelled(true);
+        }
+    }
+
+    @EventHandler(priority = EventPriority.HIGH)
+    public void CreatureSpawnEvent(CreatureSpawnEvent event)
+    {
+        final CreatureSpawnEvent.SpawnReason spawnReason = event.getSpawnReason();
+        final Entity entity = event.getEntity();
+        if (!ConfigEntry.ALLOW_MOBSPAWNER.getBoolean())
+        {
+            if(spawnReason == CreatureSpawnEvent.SpawnReason.SPAWNER) {
+                if(event.getEntity() instanceof FallingBlock){
+                    event.setCancelled(true);
+                }
+            }
         }
     }
 
@@ -160,8 +175,7 @@ public class EventBlocker extends FreedomService
     }
 
     @EventHandler(priority = EventPriority.NORMAL)
-    public void onPlayerDropItem(PlayerDropItemEvent event
-    )
+    public void onPlayerDropItem(PlayerDropItemEvent event)
     {
         if (!ConfigEntry.AUTO_ENTITY_WIPE.getBoolean())
         {

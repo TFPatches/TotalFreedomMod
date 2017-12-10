@@ -53,6 +53,7 @@ allow:
   fire_place: false
   fire_spread: false
   fluid_spread: false
+  mobspawner: false
   lava_place: false
   lava_damage: false
   water_place: false

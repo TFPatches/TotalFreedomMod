@@ -53,6 +53,14 @@ public class FUtil
             ChatColor.DARK_BLUE,
             ChatColor.DARK_PURPLE,
             ChatColor.LIGHT_PURPLE);
+    private static final ChatColor[] BLOCKED = new ChatColor[]
+            {
+                    ChatColor.MAGIC,
+                    ChatColor.STRIKETHROUGH,
+                    ChatColor.ITALIC,
+                    ChatColor.UNDERLINE,
+                    ChatColor.BLACK
+            };
     private static Iterator<ChatColor> CHAT_COLOR_ITERATOR;
 
     static
@@ -62,6 +70,9 @@ public class FUtil
             CHAT_COLOR_NAMES.put(chatColor.name().toLowerCase().replace("_", ""), chatColor);
         }
     }
+
+
+    private static final Pattern REGEX = Pattern.compile(ChatColor.COLOR_CHAR + "[" + StringUtils.join(BLOCKED, "") + "]", Pattern.CASE_INSENSITIVE);
 
     private FUtil()
     {
@@ -161,12 +172,12 @@ public class FUtil
     {
         Pattern timePattern = Pattern.compile(
                 "(?:([0-9]+)\\s*y[a-z]*[,\\s]*)?"
-                + "(?:([0-9]+)\\s*mo[a-z]*[,\\s]*)?"
-                + "(?:([0-9]+)\\s*w[a-z]*[,\\s]*)?"
-                + "(?:([0-9]+)\\s*d[a-z]*[,\\s]*)?"
-                + "(?:([0-9]+)\\s*h[a-z]*[,\\s]*)?"
-                + "(?:([0-9]+)\\s*m[a-z]*[,\\s]*)?"
-                + "(?:([0-9]+)\\s*(?:s[a-z]*)?)?", Pattern.CASE_INSENSITIVE);
+                        + "(?:([0-9]+)\\s*mo[a-z]*[,\\s]*)?"
+                        + "(?:([0-9]+)\\s*w[a-z]*[,\\s]*)?"
+                        + "(?:([0-9]+)\\s*d[a-z]*[,\\s]*)?"
+                        + "(?:([0-9]+)\\s*h[a-z]*[,\\s]*)?"
+                        + "(?:([0-9]+)\\s*m[a-z]*[,\\s]*)?"
+                        + "(?:([0-9]+)\\s*(?:s[a-z]*)?)?", Pattern.CASE_INSENSITIVE);
         Matcher m = timePattern.matcher(time);
         int years = 0;
         int months = 0;
@@ -366,18 +377,35 @@ public class FUtil
         return null;
     }
 
+
+    public static String StrictColorize(String string)
+    {
+        String string2 = ChatColor.translateAlternateColorCodes('&', string);
+        final Matcher matcher = REGEX.matcher(string2);
+        if (matcher.find())
+        {
+            final String filteredcolorize = matcher.replaceAll("&");
+            return filteredcolorize;
+        }
+        else
+        {
+            return string2;
+        }
+    }
+
+
     public static ChatColor randomChatColor()
     {
         return CHAT_COLOR_POOL.get(RANDOM.nextInt(CHAT_COLOR_POOL.size()));
     }
-    
+
     public static String rainbowify(String string)
     {
         CHAT_COLOR_ITERATOR = CHAT_COLOR_POOL.iterator();
-        
+
         final StringBuilder newString = new StringBuilder();
         final char[] chars = string.toCharArray();
-        
+
         for (char c : chars)
         {
             if (!CHAT_COLOR_ITERATOR.hasNext())
@@ -386,7 +414,7 @@ public class FUtil
             }
             newString.append(CHAT_COLOR_ITERATOR.next()).append(c);
         }
-        
+
         return newString.toString();
     }
 
