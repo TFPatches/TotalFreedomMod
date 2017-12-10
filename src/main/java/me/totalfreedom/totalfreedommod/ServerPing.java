@@ -55,8 +55,7 @@ public class ServerPing extends FreedomService
             return;
         }
 
-//        String baseMotd = ConfigEntry.SERVER_MOTD.getString().replace("%mcversion%", plugin.si.getVersion());
-        String baseMotd = ConfigEntry.SERVER_MOTD.getString();
+     String baseMotd = ConfigEntry.SERVER_MOTD.getString().replace("%mcversion%", plugin.si.getVersion());
         baseMotd = baseMotd.replace("\\n", "\n");
         baseMotd = FUtil.colorize(baseMotd);
 

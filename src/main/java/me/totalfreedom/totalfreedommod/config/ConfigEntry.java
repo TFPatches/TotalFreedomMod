@@ -14,6 +14,7 @@ public enum ConfigEntry
     ALLOW_FIRE_PLACE(Boolean.class, "allow.fire_place"),
     ALLOW_FIRE_SPREAD(Boolean.class, "allow.fire_spread"),
     ALLOW_FLUID_SPREAD(Boolean.class, "allow.fluid_spread"),
+    ALLOW_MOBSPAWNER(Boolean.class, "allow.mobspawner"),
     ALLOW_LAVA_DAMAGE(Boolean.class, "allow.lava_damage"),
     ALLOW_LAVA_PLACE(Boolean.class, "allow.lava_place"),
     ALLOW_TNT_MINECARTS(Boolean.class, "allow.tnt_minecarts"),

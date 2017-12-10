@@ -16,6 +16,7 @@ import org.bukkit.entity.Arrow;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
+import org.bukkit.plugin.Plugin;
 import org.bukkit.scheduler.BukkitRunnable;
 import org.bukkit.scheduler.BukkitTask;
 
@@ -48,6 +49,9 @@ public class FPlayer
     private final CageData cageData = new CageData(this);
     private boolean isOrbiting = false;
     private double orbitStrength = 10.0;
+    private BukkitTask UnlockRedstoneTask;
+    private BukkitTask unblockEditTask;
+    private BukkitTask isPVPBlocked;
     private boolean mobThrowerEnabled = false;
     private EntityType mobThrowerEntity = EntityType.PIG;
     private double mobThrowerSpeed = 4.0;
@@ -59,13 +63,25 @@ public class FPlayer
     private String lastMessage = "";
     private boolean inAdminchat = false;
     private boolean allCommandsBlocked = false;
+    private boolean isInvsee;
+    @Getter
+    @Setter
+    private boolean isBlockEditsBlocked = false;
+    @Getter
+    @Setter
+    private boolean setPvpBlocked = false;
     @Getter
     @Setter
     private boolean superadminIdVerified = false;
     private String lastCommand = "";
     private boolean cmdspyEnabled = false;
+    private boolean potionMonitorEnabled = false;
+    private boolean ChestMonitorEnabled = false;
+    private boolean DropMonitorEnabled = false;
+    private boolean PvpSpyEnabled = false;
     private String tag = null;
     private int warningCount = 0;
+
 
     public FPlayer(TotalFreedomMod plugin, Player player)
     {
@@ -77,6 +93,31 @@ public class FPlayer
         this.plugin = plugin;
         this.name = name;
         this.ip = ip;
+        this.fuckoffRadius = 0.0;
+        this.messageCount = 0;
+        this.totalBlockDestroy = 0;
+        this.totalBlockPlace = 0;
+        this.freecamDestroyCount = 0;
+        this.freecamPlaceCount = 0;
+        this.isOrbiting = false;
+        this.orbitStrength = 10.0;
+        this.mp44ScheduleTask = null;
+        this.mp44Armed = false;
+        this.mp44Firing = false;
+        this.lockupScheduleTask = null;
+        this.lastMessage = "";
+        this.inAdminchat = false;
+        this.allCommandsBlocked = false;
+        this.isInvsee = false;
+        this.superadminIdVerified = false;
+        this.lastCommand = "";
+        this.cmdspyEnabled = false;
+        this.DropMonitorEnabled = false;
+        this.PvpSpyEnabled = false;
+        this.potionMonitorEnabled = false;
+        this.ChestMonitorEnabled = false;
+        this.tag = null;
+        this.warningCount = 0;
     }
 
     public Player getPlayer()
@@ -122,14 +163,44 @@ public class FPlayer
         return orbitStrength;
     }
 
+    public double getFuckoffRadius()
+    {
+        return this.fuckoffRadius;
+    }
+
     public boolean isFuckOff()
     {
         return fuckoffRadius > 0;
     }
 
+    public void setSuperadminIdVerified(final boolean superadminIdVerified)
+    {
+        this.superadminIdVerified = superadminIdVerified;
+    }
+
+    public boolean isInvsee()
+    {
+        return this.isInvsee;
+    }
+
+    public void setInvsee(final boolean invsee)
+    {
+        this.isInvsee = invsee;
+    }
+
     public void setFuckoff(double radius)
     {
         this.fuckoffRadius = radius;
+    }
+
+    public String getName()
+    {
+        return this.name;
+    }
+
+    public TotalFreedomMod getPlugin()
+    {
+        return this.plugin;
     }
 
     public void disableFuckoff()
@@ -214,6 +285,11 @@ public class FPlayer
         return this.mobThrowerEnabled;
     }
 
+    public CageData getCageData()
+    {
+        return this.cageData;
+    }
+
     public void enqueueMob(LivingEntity mob)
     {
         mobThrowerQueue.add(mob);
@@ -242,6 +318,63 @@ public class FPlayer
             this.mp44ScheduleTask = null;
         }
         this.mp44Firing = false;
+    }
+
+    public boolean isEditBlock()
+    {
+        return this.unblockEditTask != null;
+    }
+
+    public void setEditBlocked(final boolean editmuted)
+    {
+        FUtil.cancel(this.unblockEditTask);
+        this.unblockEditTask = null;
+        if (!editmuted)
+        {
+            return;
+        }
+        if (this.getPlayer() == null)
+        {
+            return;
+        }
+        this.unblockEditTask = new BukkitRunnable()
+        {
+            public void run()
+            {
+                if (!FPlayer.this.plugin.al.isAdminImpostor(FPlayer.this.player))
+                {
+                    FUtil.adminAction("TotalFreedom", "Unblocking block edits for " + FPlayer.this.getPlayer().getName(), false);
+                    FPlayer.this.setEditBlocked(false);
+                }
+            }
+        }.runTaskLater((Plugin) this.plugin, 6000L);
+    }
+
+    public boolean isPVPBlock()
+    {
+        return this.isPVPBlocked != null;
+    }
+
+    public void setPVPBlock(final boolean pvpblocked)
+    {
+        FUtil.cancel(this.isPVPBlocked);
+        this.isPVPBlocked = null;
+        if (!pvpblocked)
+        {
+            return;
+        }
+        if (this.getPlayer() == null)
+        {
+            return;
+        }
+        this.isPVPBlocked = new BukkitRunnable()
+        {
+            public void run()
+            {
+                FUtil.adminAction("TotalFreedom", "Enabling PVP mode for " + FPlayer.this.getPlayer().getName(), false);
+                FPlayer.this.setPVPBlock(false);
+            }
+        }.runTaskLater((Plugin) this.plugin, 6000L);
     }
 
     public void armMP44()
@@ -327,6 +460,11 @@ public class FPlayer
         return this.inAdminchat;
     }
 
+    public FreezeData getFreezeData()
+    {
+        return this.freezeData;
+    }
+
     public boolean allCommandsBlocked()
     {
         return this.allCommandsBlocked;
@@ -355,6 +493,46 @@ public class FPlayer
     public boolean cmdspyEnabled()
     {
         return cmdspyEnabled;
+    }
+
+    public void setPotionMonitor(boolean enabled)
+    {
+        this.potionMonitorEnabled = enabled;
+    }
+
+    public boolean PotionMonitorEnabled()
+    {
+        return potionMonitorEnabled;
+    }
+
+    public void setChestMonitor(boolean enabled)
+    {
+        this.ChestMonitorEnabled = enabled;
+    }
+
+    public boolean ChestMonitorEnabled()
+    {
+        return ChestMonitorEnabled;
+    }
+
+    public void setDropMonitor(boolean enabled)
+    {
+        this.DropMonitorEnabled = enabled;
+    }
+
+    public void setPvpSpy(boolean enabled)
+    {
+        this.PvpSpyEnabled = enabled;
+    }
+
+    public boolean DropMonitorEnabled()
+    {
+        return DropMonitorEnabled;
+    }
+
+    public boolean PvpSpyEnabled()
+    {
+        return PvpSpyEnabled;
     }
 
     public void setTag(String tag)
@@ -386,7 +564,7 @@ public class FPlayer
         if (this.warningCount % 2 == 0)
         {
             Player p = getPlayer();
-            p.getWorld().strikeLightning(p.getLocation());
+            p.getWorld().strikeLightningEffect(p.getLocation());
             FUtil.playerMsg(p, ChatColor.RED + "You have been warned at least twice now, make sure to read the rules at " + ConfigEntry.SERVER_BAN_URL.getString());
         }
     }
