@@ -21,12 +21,12 @@ public class CommandBlockerEntry
     @Getter
     private final String message;
     
-    public CommandBlockerEntry(final CommandBlockerRank rank, final CommandBlockerAction action, final String command, final String message)
+    public CommandBlockerEntry(CommandBlockerRank rank, CommandBlockerAction action, String command, String message)
     {
         this(rank, action, command, null, message);
     }
     
-    public CommandBlockerEntry(final CommandBlockerRank rank, final CommandBlockerAction action, final String command, final String subCommand, final String message)
+    public CommandBlockerEntry(CommandBlockerRank rank, CommandBlockerAction action, String command, String subCommand, String message)
     {
         this.rank = rank;
         this.action = action;
@@ -35,15 +35,15 @@ public class CommandBlockerEntry
         this.message = ((message == null || message.equals("_")) ? "That command is blocked." : message);
     }
     
-    public void doActions(final CommandSender sender)
+    public void doActions(CommandSender sender)
     {
-        if (this.action == CommandBlockerAction.BLOCK_AND_EJECT && sender instanceof Player)
+        if (action == CommandBlockerAction.BLOCK_AND_EJECT && sender instanceof Player)
         {
             TotalFreedomMod.plugin().ae.autoEject((Player)sender, "You used a prohibited command: " + command);
             FUtil.bcastMsg(sender.getName() + " was automatically kicked for using harmful commands.", ChatColor.RED);
             return;
         }
-        if (this.action == CommandBlockerAction.BLOCK_UNKNOWN)
+        if (action == CommandBlockerAction.BLOCK_UNKNOWN)
         {
             FUtil.playerMsg(sender, "Unknown command. Type \"/help\" for help.", ChatColor.RESET);
             return;
