@@ -15,13 +15,14 @@ import org.bukkit.entity.Player;
 @CommandParameters(description = "Place a cage around someone.", usage = "/<command> <purge | off | <partialname> [skull | block] [blockname | skullname]")
 public class Command_cage extends FreedomCommand
 {
-    public static String playerSkullName = null;
     
-    public boolean run(final CommandSender sender, final Player playerSender, final Command cmd, final String commandLabel, final String[] args, final boolean senderIsConsole) {
+    public boolean run(final CommandSender sender, final Player playerSender, final Command cmd, final String commandLabel, final String[] args, final boolean senderIsConsole)
+    {
         if (args.length == 0)
         {
             return false;
         }
+        String skullName = null;
         if ("off".equals(args[0]) && sender instanceof Player)
         {
             FUtil.adminAction(sender.getName(), "Uncaging " + sender.getName(), true);
@@ -62,7 +63,10 @@ public class Command_cage extends FreedomCommand
                 case "skull":
                 {
                     outerMaterial = Material.SKULL;
-                    playerSkullName = args[2];
+                    if (args.length >= 3)
+                    {
+                        skullName = args[2];
+                    }
                     break;
                 }
                 case "block":
@@ -88,16 +92,23 @@ public class Command_cage extends FreedomCommand
                 innerMaterial = Material.STATIONARY_LAVA;
             }
         }
-        final Location location = player.getLocation().clone().add(0.0, 1.0, 0.0);
-        fPlayer.getCageData().cage(location, outerMaterial, innerMaterial);
-        player.setGameMode(GameMode.SURVIVAL);
-        if (outerMaterial != Material.SKULL)
+        Location location = player.getLocation().clone().add(0.0, 1.0, 0.0);
+        if (skullName != null)
         {
-            FUtil.adminAction(sender.getName(), "Caging " + player.getName(), true);
+            fPlayer.getCageData().cage(location, outerMaterial, innerMaterial, skullName);
         }
         else
         {
-            FUtil.adminAction(sender.getName(), "Caging " + player.getName() + " in " + playerSkullName, true);
+            fPlayer.getCageData().cage(location, outerMaterial, innerMaterial);
+        }
+        player.setGameMode(GameMode.SURVIVAL);
+        if (outerMaterial == Material.SKULL && skullName != null)
+        {
+            FUtil.adminAction(sender.getName(), "Caging " + player.getName() + " in " + skullName, true);
+        }
+        else
+        {
+            FUtil.adminAction(sender.getName(), "Caging " + player.getName(), true);
         }
         return true;
     }
