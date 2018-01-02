@@ -109,7 +109,6 @@ public class Command_list extends FreedomCommand
         String playerType = (listFilter == null) ? "players" : listFilter.toString().toLowerCase().replace('_', ' ');
         onlineUsers.append("Connected ")
                 .append(playerType + ": ")
-                .append(playerType + ": ")
                 .append(StringUtils.join((Iterable)n, ChatColor.WHITE + ", "));
         if (senderIsConsole)
         {
