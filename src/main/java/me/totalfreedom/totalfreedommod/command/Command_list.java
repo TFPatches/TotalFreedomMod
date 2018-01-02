@@ -79,7 +79,7 @@ public class Command_list extends FreedomCommand
         List<String> n = new ArrayList<String>();
         for (Player p : server.getOnlinePlayers())
         {
-            if (listFilter == ListFilter.ADMINS && plugin.al.isAdmin(p))
+            if (listFilter == ListFilter.ADMINS && !plugin.al.isAdmin(p))
             {
                 continue;
             }
