@@ -75,6 +75,7 @@ public class Command_list extends FreedomCommand
                 .append(" out of a maximum ")
                 .append(ChatColor.RED)
                 .append(server.getMaxPlayers())
+                .append(ChatColor.BLUE)
                 .append(" players online.");
         List<String> n = new ArrayList<String>();
         for (Player p : server.getOnlinePlayers())
