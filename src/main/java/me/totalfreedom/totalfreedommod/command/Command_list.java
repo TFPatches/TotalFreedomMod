@@ -1,17 +1,16 @@
 package me.totalfreedom.totalfreedommod.command;
 
 import me.totalfreedom.totalfreedommod.rank.Displayable;
-import java.util.List;
+import me.totalfreedom.totalfreedommod.rank.Rank;
 import me.totalfreedom.totalfreedommod.config.ConfigEntry;
-import me.totalfreedom.totalfreedommod.TotalFreedomMod;
+import me.totalfreedom.totalfreedommod.util.FUtil;
+import java.util.List;
 import org.bukkit.ChatColor;
 import org.apache.commons.lang3.StringUtils;
 import java.util.ArrayList;
-import me.totalfreedom.totalfreedommod.util.FUtil;
 import org.bukkit.command.Command;
 import org.bukkit.entity.Player;
 import org.bukkit.command.CommandSender;
-import me.totalfreedom.totalfreedommod.rank.Rank;
 
 @CommandPermissions(level = Rank.IMPOSTOR, source = SourceType.BOTH)
 @CommandParameters(description = "Lists the real names of all online players.", usage = "/<command> [-a | -i | -f]", aliases = "who")
