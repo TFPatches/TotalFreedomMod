@@ -92,7 +92,7 @@ public class Command_list extends FreedomCommand
             {
                 continue;
             }
-            if (listFilter == ListFilter.IMPOSTORS && !((TotalFreedomMod)this.plugin).al.isAdminImpostor(p))
+            if (listFilter == ListFilter.IMPOSTORS && plugin.al.isAdminImpostor(p))
             {
                 continue;
             }
