@@ -83,6 +83,7 @@
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
             <version>1.16.20</version>
+            <scope>system</scope>
             <systemPath>${project.basedir}/lib/lombok-1.16.20.jar</systemPath>
         </dependency>
 
