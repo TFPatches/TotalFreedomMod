@@ -13,7 +13,7 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
 @CommandPermissions(level = Rank.SUPER_ADMIN, source = SourceType.BOTH)
-@CommandParameters(description = "Temporarily ban someone.", usage = "/<command> [playername] [duration] [reason]")
+@CommandParameters(description = "Temporarily ban someone.", usage = "/<command> [playername] [duration] [reason]",  aliases = "noob,tempban")
 public class Command_tempban extends FreedomCommand
 {
 
