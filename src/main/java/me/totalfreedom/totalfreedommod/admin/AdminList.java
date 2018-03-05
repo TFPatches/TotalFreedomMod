@@ -167,7 +167,7 @@ public class AdminList extends FreedomService
         String ip = Ips.getIp(player);
         Admin admin = getEntryByName(player.getName());
 
-        if (admin != null && admin.getName().equalsIgnoreCase(player.getName()))
+        if (admin != null)
         {
             if (Bukkit.getOnlineMode() || admin.getIps().contains(ip))
             {
