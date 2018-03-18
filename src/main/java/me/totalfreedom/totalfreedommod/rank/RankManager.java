@@ -144,17 +144,7 @@ public class RankManager extends FreedomService
         boolean isAdmin = plugin.al.isAdmin(player);
         if (isAdmin)
         {
-            // Verify strict IP match
-            if (!plugin.al.isIdentityMatched(player))
-            {
-                FUtil.bcastMsg("Warning: " + player.getName() + " is an admin, but is using an account not registered to one of their ip-list.", ChatColor.RED);
-                fPlayer.setSuperadminIdVerified(false);
-            }
-            else
-            {
-                fPlayer.setSuperadminIdVerified(true);
-                plugin.al.updateLastLogin(player);
-            }
+            plugin.al.updateLastLogin(player);
         }
 
         // Handle impostors

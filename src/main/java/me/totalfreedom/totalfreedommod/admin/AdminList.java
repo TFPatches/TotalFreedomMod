@@ -167,36 +167,19 @@ public class AdminList extends FreedomService
         String ip = Ips.getIp(player);
         Admin admin = getEntryByName(player.getName());
 
-        // Admin by name
         if (admin != null)
         {
-            // Check if we're in online mode,
-            // Or the players IP is in the admin entry
             if (Bukkit.getOnlineMode() || admin.getIps().contains(ip))
             {
                 if (!admin.getIps().contains(ip))
                 {
-                    // Add the new IP if we have to
                     admin.addIp(ip);
                     save();
                     updateTables();
                 }
                 return admin;
             }
-
-            // Impostor
         }
-
-        // Admin by ip
-        admin = getEntryByIp(ip);
-        if (admin != null)
-        {
-            // Set the new username
-            admin.setName(player.getName());
-            save();
-            updateTables();
-        }
-
         return null;
     }
 
