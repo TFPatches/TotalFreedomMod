@@ -16,6 +16,7 @@
         <tfm.build.author>${buildAuthor}</tfm.build.author>
         <tfm.build.head>${buildHead}</tfm.build.head>
         <jar.finalName>${project.name}</jar.finalName>
+
         <maven.build.timestamp.format>dd/MM/yyyy hh:mm aa</maven.build.timestamp.format>
     </properties>
 
@@ -53,10 +54,6 @@
         <repository>
             <id>spigot-repo</id>
             <url>https://hub.spigotmc.org/nexus/content/repositories/snapshots/</url>
-        </repository>
-        <repository>
-            <id>sk89q-repo</id>
-            <url>http://maven.sk89q.com/repo/</url>
         </repository>
         <repository>
             <id>sk89q-snapshots</id>
@@ -175,7 +172,6 @@
             </resource>
         </resources>
 
-
         <plugins>
             <!-- Compiler -->
             <plugin>
@@ -200,7 +196,7 @@
                         <phase>initialize</phase>
                         <configuration>
                             <target>
-                                <propertyfile file="src/main/resources/build.properties" comment="Build information. Edit this to your liking.">
+                                <propertyfile file="${basedir}/src/main/resources/build.properties" comment="Build information. Edit this to your liking.">
                                     <entry key="buildAuthor" default="unknown" />
                                     <entry key="buildNumber" default="0" />
                                     <entry key="buildCodeName" default="${tfm.build.codename}" />
@@ -215,7 +211,6 @@
                 </executions>
 
             </plugin>
-
 
             <!-- Properties -->
             <plugin>
@@ -326,10 +321,38 @@
                     </items>
                 </configuration>
             </plugin>
+
+            <!-- Maven jar -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+                <version>2.3.1</version>
+                <configuration>
+                    <outputDirectory>target/generated-sources</outputDirectory>
+                </configuration>
+            </plugin>
+
+            <!-- Maven shade -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-shade-plugin</artifactId>
+                <version>1.4</version>
+                <executions>
+                    <execution>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>shade</goal>
+                        </goals>
+                        <configuration>
+                            <outputFile>target/${project.name}.jar</outputFile>
+                            <createDependencyReducedPom>false</createDependencyReducedPom>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
         </plugins>
     </build>
-
-
+    
     <reporting>
         <!-- Checkstyle -->
         <plugins>
