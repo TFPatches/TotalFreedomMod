@@ -3,6 +3,7 @@ package me.totalfreedom.totalfreedommod.command;
 import me.totalfreedom.totalfreedommod.rank.Rank;
 import me.totalfreedom.totalfreedommod.util.DepreciationAggregator;
 import me.totalfreedom.totalfreedommod.util.FUtil;
+import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.command.Command;
@@ -36,7 +37,7 @@ public class Command_op extends FreedomCommand
                 player = onlinePlayer;
             }
         }
-
+        Player target = Bukkit.getPlayer(args[0]);
         // if the player is not online
         if (player == null)
         {
@@ -54,6 +55,7 @@ public class Command_op extends FreedomCommand
 
         FUtil.adminAction(sender.getName(), "Opping " + player.getName(), false);
         player.setOp(true);
+        target.sendMessage(YOU_ARE_OP);
 
         return true;
     }
