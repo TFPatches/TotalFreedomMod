@@ -36,11 +36,11 @@ public class Command_links extends FreedomCommand
         }
         if (lines.size() == 0)
         {
-            lines.add(ChatColor.GOLD + "- There are no links currently added in the config.");
+            sender.sendMessage(ChatColor.GOLD + "- There are no links currently added in the configuration file.");
             return true;
         }
 
-        lines.add(ChatColor.AQUA + "TotalFreedom Social Media Links:");
+        sender.sendMessage(ChatColor.AQUA + "TotalFreedom Social Media Links:");
         sender.sendMessage(lines.toArray(new String[0]));
 
         return true;
