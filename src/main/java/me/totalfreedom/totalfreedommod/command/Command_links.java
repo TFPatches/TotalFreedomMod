@@ -18,7 +18,7 @@ public class Command_links extends FreedomCommand
     @Override
     protected boolean run(CommandSender sender, Player playerSender, Command cmd, String commandLabel, String[] args, boolean senderIsConsole)
     {
-            ConfigurationSection section = plugin.getConfig().getConfigurationSection("social_links");
+        ConfigurationSection section = plugin.getConfig().getConfigurationSection("social_links");
         if (section != null) { 
         Map<String, Object> values = section.getValues(false);
 
