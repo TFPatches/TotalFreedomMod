@@ -18,32 +18,29 @@ public class Command_links extends FreedomCommand
     @Override
     protected boolean run(CommandSender sender, Player playerSender, Command cmd, String commandLabel, String[] args, boolean senderIsConsole)
     {
-    ConfigurationSection section = plugin.getConfig().getConfigurationSection("social_links");
-        if (section != null)
+            ConfigurationSection section = plugin.getConfig().getConfigurationSection("social_links");
+        if (section != null) { 
+        Map<String, Object> values = section.getValues(false);
+
+        List<String> lines = new ArrayList<>();
+
+        for (String key : values.keySet())
         {
-            Map<String, Object> values = section.getValues(false);
-
-            List<String> lines = new ArrayList<>();
-
-            for (String key : values.keySet())
+            if (!(values.get(key) instanceof String))
             {
-                if (!(values.get(key) instanceof String))
-                {
-                    continue;
-                }
-
-                String link = (String) values.get(key);
-
-                lines.add(ChatColor.GOLD + "- " + key + ": " + ChatColor.AQUA + link);
+                continue;
             }
-
-            sender.sendMessage(ChatColor.AQUA + "Social Media Links:");
-            sender.sendMessage(lines.toArray(new String[0]));
-            return true;
-        } else
-        {
-            sender.sendMessage(ChatColor.RED + "There are no links added in the configuration file.");
+            String link = (String) values.get(key);
+            lines.add(ChatColor.GOLD + "- " + key + ": " + ChatColor.AQUA + link); 
         }
-        return true;
+
+        sender.sendMessage(ChatColor.AQUA + "Social Media Links:");
+        sender.sendMessage(lines.toArray(new String[0]));
+        return true; 
+        } else 
+            { 
+                sender.sendMessage(ChatColor.RED + "There are no links added in the configuration file."); 
+            }
+            return true;
     }
 }
