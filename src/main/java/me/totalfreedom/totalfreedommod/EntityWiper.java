@@ -6,9 +6,12 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+
+import lombok.Getter;
 import me.totalfreedom.totalfreedommod.config.ConfigEntry;
 import me.totalfreedom.totalfreedommod.util.FUtil;
 import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
 import org.bukkit.Chunk;
 import org.bukkit.World;
 import org.bukkit.entity.AreaEffectCloud;
@@ -32,12 +35,15 @@ import org.bukkit.entity.EnderPearl;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.entity.ItemSpawnEvent;
+import org.bukkit.event.player.PlayerDropItemEvent;
 import org.bukkit.scheduler.BukkitRunnable;
 import org.bukkit.scheduler.BukkitTask;
 
 public class EntityWiper extends FreedomService
 {
 
+    @Getter
+    private boolean enabled;
     public static final long ENTITY_WIPE_RATE = 5 * 20L;
     public static final long ITEM_DESPAWN_RATE = 20L * 20L;
     public static final int CHUNK_ENTITY_MAX = 20;
@@ -196,4 +202,13 @@ public class EntityWiper extends FreedomService
 
     }
 
+    @EventHandler
+    public void onDrop(PlayerDropItemEvent event)
+    {
+        enabled = ConfigEntry.AUTO_ENTITY_WIPE.getBoolean();
+        if (enabled)
+        {
+            event.setCancelled(true);
+        }
+    }
 }
