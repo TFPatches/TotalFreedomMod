@@ -296,10 +296,10 @@ public class TotalFreedomMod extends AeroPlugin<TotalFreedomMod>
                 number = props.getProperty("buildNumber", "1");
                 date = props.getProperty("buildDate", "unknown");
             }
-            catch (Exception exception)
+            catch (Exception ex)
             {
                 FLog.severe("Could not load build properties! Did you compile with NetBeans/Maven?");
-                FLog.severe(exception);
+                FLog.severe(ex);
             }
             try
             {
@@ -313,10 +313,10 @@ public class TotalFreedomMod extends AeroPlugin<TotalFreedomMod>
 
                 head = gitprops.getProperty("git.commit.id.abbrev", "unknown");
             }
-            catch (Exception exception)
+            catch (Exception ex)
             {
                 FLog.severe("Could not load Git properties! Did you compile with NetBeans/Maven?");
-                FLog.severe(exception);
+                FLog.severe(ex);
             }
         }
 
