@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>me.totalfreedom</groupId>
@@ -16,7 +17,8 @@
         <tfm.build.author>${buildAuthor}</tfm.build.author>
         <tfm.build.head>${buildHead}</tfm.build.head>
         <jar.finalName>${project.name}</jar.finalName>
-        <maven.build.timestamp.format>dd/MM/yyyy hh:mm aa</maven.build.timestamp.format>
+        <timestamp>${maven.build.timestamp}</timestamp>
+        <maven.build.timestamp.format>MM/dd/yyyy HH:mm</maven.build.timestamp.format>
     </properties>
 
     <name>TotalFreedomMod</name>
@@ -175,13 +177,12 @@
             </resource>
         </resources>
 
-
         <plugins>
             <!-- Compiler -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.3</version>
+                <version>3.7.0</version>
                 <configuration>
                     <outputFileName>TotalFreedomMod.jar</outputFileName>
                     <compilerVersion>1.8</compilerVersion>
@@ -200,11 +201,13 @@
                         <phase>initialize</phase>
                         <configuration>
                             <target>
-                                <propertyfile file="src/main/resources/build.properties" comment="Build information. Edit this to your liking.">
-                                    <entry key="buildAuthor" default="unknown" />
-                                    <entry key="buildNumber" default="0" />
-                                    <entry key="buildCodeName" default="${tfm.build.codename}" />
-                                    <entry key="buildVersion" default="${project.version}" />
+                                <propertyfile file="src/main/resources/build.properties"
+                                              comment="Build information. Edit this to your liking.">
+                                    <entry key="buildAuthor" default="unknown"/>
+                                    <entry key="buildNumber" default="0"/>
+                                    <entry key="buildCodeName" default="${tfm.build.codename}"/>
+                                    <entry key="buildVersion" default="${project.version}"/>
+                                    <entry key="buildDate" default="${timestamp}"/>
                                 </propertyfile>
                             </target>
                         </configuration>
@@ -213,7 +216,6 @@
                         </goals>
                     </execution>
                 </executions>
-
             </plugin>
 
 
@@ -284,7 +286,8 @@
                     <dateFormat>yyyy-MM-dd HH:mm:ss</dateFormat>
                     <verbose>false</verbose>
                     <generateGitPropertiesFile>true</generateGitPropertiesFile>
-                    <generateGitPropertiesFilename>${basedir}/src/main/resources/git.properties</generateGitPropertiesFilename>
+                    <generateGitPropertiesFilename>${basedir}/src/main/resources/git.properties
+                    </generateGitPropertiesFilename>
                     <format>properties</format>
                     <failOnNoGitDirectory>false</failOnNoGitDirectory>
                     <failOnUnableToExtractRepoInfo>false</failOnUnableToExtractRepoInfo>
@@ -319,7 +322,8 @@
 
                 <configuration>
                     <buildNumberPropertyName>maven.buildnumber</buildNumberPropertyName>
-                    <buildNumberPropertiesFileLocation>${basedir}/src/main/resources/build.properties</buildNumberPropertiesFileLocation>
+                    <buildNumberPropertiesFileLocation>${basedir}/src/main/resources/build.properties
+                    </buildNumberPropertiesFileLocation>
                     <format>{0,number,#}</format>
                     <items>
                         <item>buildNumber</item>
