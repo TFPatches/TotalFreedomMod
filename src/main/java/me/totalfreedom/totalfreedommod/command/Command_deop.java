@@ -3,6 +3,7 @@ package me.totalfreedom.totalfreedommod.command;
 import me.totalfreedom.totalfreedommod.rank.Rank;
 import me.totalfreedom.totalfreedommod.util.DepreciationAggregator;
 import me.totalfreedom.totalfreedommod.util.FUtil;
+import org.bukkit.Bukkit;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
@@ -30,16 +31,17 @@ public class Command_deop extends FreedomCommand
                 player = onlinePlayer;
             }
         }
-
+        Player target = Bukkit.getPlayer(args[0]);
         // if the player is not online
         if (player == null)
         {
             player = DepreciationAggregator.getOfflinePlayer(server, args[0]);
         }
 
-        FUtil.adminAction(sender.getName(), "De-opping " + player.getName(), false);
+        FUtil.adminAction(sender.getName(), "De-opping " + player.getName(), true);
 
         player.setOp(false);
+        target.sendMessage(YOU_ARE_NOT_OP);
 
         return true;
     }
