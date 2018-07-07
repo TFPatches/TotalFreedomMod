@@ -16,7 +16,8 @@
         <tfm.build.author>${buildAuthor}</tfm.build.author>
         <tfm.build.head>${buildHead}</tfm.build.head>
         <jar.finalName>${project.name}</jar.finalName>
-        <maven.build.timestamp.format>dd/MM/yyyy hh:mm aa</maven.build.timestamp.format>
+        <timestamp>${maven.build.timestamp}</timestamp>
+        <maven.build.timestamp.format>MM/dd/yyyy HH:mm</maven.build.timestamp.format>
     </properties>
 
     <name>TotalFreedomMod</name>
@@ -42,10 +43,6 @@
     </scm>
 
     <repositories>
-        <repository>
-            <id>ess-repo</id>
-            <url>http://repo.ess3.net</url>
-        </repository>
         <repository>
             <id>jitpack.io</id>
             <url>https://jitpack.io</url>
@@ -111,9 +108,10 @@
 
         <dependency>
             <groupId>net.ess3</groupId>
-            <artifactId>Essentials</artifactId>
-            <version>2.13.1</version>
-            <scope>provided</scope>
+            <artifactId>TF-EssentialsX</artifactId>
+            <version>2.15.0.1</version>
+            <scope>system</scope>
+            <systemPath>${project.basedir}/lib/TF-EssentialsX.jar</systemPath>
         </dependency>
 
         <dependency>
@@ -175,13 +173,12 @@
             </resource>
         </resources>
 
-
         <plugins>
             <!-- Compiler -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.3</version>
+                <version>3.7.0</version>
                 <configuration>
                     <outputFileName>TotalFreedomMod.jar</outputFileName>
                     <compilerVersion>1.8</compilerVersion>
@@ -201,10 +198,11 @@
                         <configuration>
                             <target>
                                 <propertyfile file="src/main/resources/build.properties" comment="Build information. Edit this to your liking.">
-                                    <entry key="buildAuthor" default="unknown" />
-                                    <entry key="buildNumber" default="0" />
-                                    <entry key="buildCodeName" default="${tfm.build.codename}" />
-                                    <entry key="buildVersion" default="${project.version}" />
+                                    <entry key="buildAuthor" default="unknown"/>
+                                    <entry key="buildNumber" default="0"/>
+                                    <entry key="buildCodeName" default="${tfm.build.codename}"/>
+                                    <entry key="buildVersion" default="${project.version}"/>
+                                    <entry key="buildDate" default="${timestamp}"/>
                                 </propertyfile>
                             </target>
                         </configuration>
@@ -213,7 +211,6 @@
                         </goals>
                     </execution>
                 </executions>
-
             </plugin>
 
 

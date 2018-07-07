@@ -199,8 +199,8 @@ public class TotalFreedomMod extends AeroPlugin<TotalFreedomMod>
         ak = services.registerService(AutoKick.class);
         ae = services.registerService(AutoEject.class);
         mo = services.registerService(Monitors.class);
-        
-        
+
+
         mv = services.registerService(MovementValidator.class);
         ew = services.registerService(EntityWiper.class);
         fd = services.registerService(FrontDoor.class);
@@ -283,28 +283,39 @@ public class TotalFreedomMod extends AeroPlugin<TotalFreedomMod>
             try
             {
                 final Properties props;
-                final Properties gitprops;
+
                 try (InputStream in = plugin.getResource("build.properties"))
                 {
                     props = new Properties();
                     props.load(in);
-                }
-                try (InputStream in = plugin.getResource("git.properties"))
-                {
-                    gitprops = new Properties();
-                    gitprops.load(in);
                 }
 
                 author = props.getProperty("buildAuthor", "unknown");
                 codename = props.getProperty("buildCodeName", "unknown");
                 version = props.getProperty("buildVersion", pluginVersion);
                 number = props.getProperty("buildNumber", "1");
-                date = gitprops.getProperty("git.build.time", "unknown");
+                date = props.getProperty("buildDate", "unknown");
+            }
+            catch (Exception ex)
+            {
+                FLog.severe("Could not load build properties! Did you compile with NetBeans/Maven?");
+                FLog.severe(ex);
+            }
+            try
+            {
+                final Properties gitprops;
+
+                try (InputStream in = plugin.getResource("git.properties"))
+                {
+                    gitprops = new Properties();
+                    gitprops.load(in);
+                }
+
                 head = gitprops.getProperty("git.commit.id.abbrev", "unknown");
             }
             catch (Exception ex)
             {
-                FLog.severe("Could not load build properties! Did you compile with Netbeans/Maven?");
+                FLog.severe("Could not load Git properties! Did you compile with NetBeans/Maven?");
                 FLog.severe(ex);
             }
         }
