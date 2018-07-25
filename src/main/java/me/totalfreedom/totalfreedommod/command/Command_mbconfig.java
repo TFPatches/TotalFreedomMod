@@ -13,7 +13,7 @@ import org.bukkit.entity.Player;
 
 import java.util.Date;
 
-@CommandPermissions(level = Rank.OP, source = SourceType.BOTH, blockHostConsole = true)
+@CommandPermissions(level = Rank.OP, source = SourceType.BOTH)
 @CommandParameters(description = "Manage master builders.", usage = "/<command> <list | reload | | <add | remove | info> <username>>")
 public class Command_mbconfig extends FreedomCommand
 {

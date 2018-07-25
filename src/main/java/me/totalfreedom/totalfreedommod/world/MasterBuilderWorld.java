@@ -24,10 +24,11 @@ import org.bukkit.event.player.PlayerMoveEvent;
 public final class MasterBuilderWorld extends CustomWorld
 {
 
-    private static final String GENERATION_PARAMETERS = ConfigEntry.FLATLANDS_GENERATE_PARAMS.getString();;
+    private static final String GENERATION_PARAMETERS = ConfigEntry.FLATLANDS_GENERATE_PARAMS.getString();
     //
     private WorldWeather weather = WorldWeather.OFF;
     private WorldTime time = WorldTime.INHERIT;
+    String WORLD_NAME = "masterbuilderworld";
 
     public MasterBuilderWorld()
     {
@@ -43,7 +44,7 @@ public final class MasterBuilderWorld extends CustomWorld
     @Override
     protected World generateWorld()
     {
-        final WorldCreator worldCreator = new WorldCreator(getName());
+        final WorldCreator worldCreator = new WorldCreator(WORLD_NAME);
         worldCreator.generateStructures(false);
         worldCreator.type(WorldType.NORMAL);
         worldCreator.environment(World.Environment.NORMAL);

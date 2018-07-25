@@ -36,70 +36,70 @@ public class Command_toggle extends FreedomCommand
             return false;
         }
 
-        if (args[0].equalsIgnoreCase("waterplace"))
+        if (args[0].equals("waterplace")) 
         {
             toggle("Water placement is", ConfigEntry.ALLOW_WATER_PLACE);
             return true;
         }
-        else if (args[0].equalsIgnoreCase("frostwalk"))
+        else if (args[0].equals("frostwalk"))
         {
             toggle("Frost walker enchantment is ", ConfigEntry.ALLOW_FROSTWALKER);
             return true;
         }
-        else if (args[0].equalsIgnoreCase("fireplace"))
+        else if (args[0].equals("fireplace"))
         {
             toggle("Fire placement is", ConfigEntry.ALLOW_FIRE_PLACE);
             return true;
         }
-        else if (args[0].equalsIgnoreCase("lavaplace"))
+        else if (args[0].equals("lavaplace"))
         {
             toggle("Lava placement is", ConfigEntry.ALLOW_LAVA_PLACE);
             return true;
         } 
-        else if (args[0].equalsIgnoreCase("fluidspread"))
+        else if (args[0].equals("fluidspread"))
         {
             toggle("Fluid spread is", ConfigEntry.ALLOW_FLUID_SPREAD);
             return true;
         }
-        else if (args[0].equalsIgnoreCase("lavadmg"))
+        else if (args[0].equals("lavadmg"))
         {
             toggle("Lava damage is", ConfigEntry.ALLOW_LAVA_DAMAGE);
             return true;
         }
-        else if (args[0].equalsIgnoreCase("firespread"))
+        else if (args[0].equals("firespread"))
         {
             toggle("Fire spread is", ConfigEntry.ALLOW_FIRE_SPREAD);
             plugin.gr.setGameRule(GameRuleHandler.GameRule.DO_FIRE_TICK, ConfigEntry.ALLOW_FIRE_SPREAD.getBoolean());
             return true;
         }
-        else if (args[0].equalsIgnoreCase("prelog"))
+        else if (args[0].equals("prelog"))
         {
             toggle("Command prelogging is", ConfigEntry.ENABLE_PREPROCESS_LOG);
             return true;
         }
-        else if (args[0].equalsIgnoreCase("lockdown"))
+        else if (args[0].equals("lockdown"))
         {
             boolean active = !plugin.lp.isLockdownEnabled();
             plugin.lp.setLockdownEnabled(active);
             FUtil.adminAction(sender.getName(), (active ? "A" : "De-a") + "ctivating server lockdown", true);
             return true;
         }
-        else if (args[0].equalsIgnoreCase("petprotect"))
+        else if (args[0].equals("petprotect"))
         {
             toggle("Tamed pet protection is", ConfigEntry.ENABLE_PET_PROTECT);
             return true;
         }
-        else if (args[0].equalsIgnoreCase("entitywipe"))
+        else if (args[0].equals("entitywipe"))
         {
             toggle("Automatic entity wiping is", ConfigEntry.AUTO_ENTITY_WIPE);
             return true;
         }
-        else if (args[0].equalsIgnoreCase("firework"))
+        else if (args[0].equals("firework"))
         {
             toggle("Firework explosion is", ConfigEntry.ALLOW_FIREWORK_EXPLOSION);
             return true;
         }
-        else if (args[0].equalsIgnoreCase("nonuke"))
+        else if (args[0].equals("nonuke"))
         {
             if (args.length >= 2)
             {
@@ -129,7 +129,7 @@ public class Command_toggle extends FreedomCommand
             }
             return true;
         }
-        else if (args[0].equalsIgnoreCase("explosives"))
+        else if (args[0].equals("explosives"))
         {
             if (args.length == 2)
             {

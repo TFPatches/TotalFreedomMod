@@ -74,4 +74,8 @@ public class Freezer extends FreedomService
         event.setTo(loc);
     }
 
+    public boolean isGlobalFreeze()
+    {
+        return this.globalFreeze;
+    }
 }
