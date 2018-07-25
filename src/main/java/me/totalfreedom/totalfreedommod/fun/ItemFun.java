@@ -56,16 +56,9 @@ public class ItemFun extends FreedomService
 
         switch (event.getMaterial())
         {
-            case LEGACY_RAW_FISH:
             {
                 final int RADIUS_HIT = 5;
                 final int STRENGTH = 4;
-
-                // Clownfish
-                if (DepreciationAggregator.getData_MaterialData(event.getItem().getData()) != 2)
-                {
-                    break;
-                }
 
                 if (!plugin.al.isSeniorAdmin(player))
                 {

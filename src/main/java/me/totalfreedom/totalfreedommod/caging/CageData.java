@@ -208,7 +208,7 @@ public class CageData
                         if (input != null)
                         {
                             Skull skull = (Skull) block.getState();
-                            skull.setSkullType(SkullType.PLAYER);
+                            // This may or may not work in future versions of spigot
                             skull.setOwner(input);
                             skull.update();
                         }
