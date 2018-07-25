@@ -18,6 +18,7 @@ public class Flatlands extends CustomWorld
 {
 
     private static final String GENERATION_PARAMETERS = ConfigEntry.FLATLANDS_GENERATE_PARAMS.getString();
+    String WORLD_NAME = "flatlands";
 
     public Flatlands()
     {
@@ -34,11 +35,11 @@ public class Flatlands extends CustomWorld
 
         wipeFlatlandsIfFlagged();
 
-        final WorldCreator worldCreator = new WorldCreator(getName());
+        final WorldCreator worldCreator = new WorldCreator(WORLD_NAME);
         worldCreator.generateStructures(false);
         worldCreator.type(WorldType.NORMAL);
         worldCreator.environment(World.Environment.NORMAL);
-        worldCreator.generator(new CleanroomChunkGenerator(GENERATION_PARAMETERS));
+        worldCreator.generator(new CleanroomChunkGenerator("64,stone"));
 
         final World world = Bukkit.getServer().createWorld(worldCreator);
 

@@ -1,14 +1,14 @@
 package me.totalfreedom.totalfreedommod.caging;
 
-import java.util.ArrayList;
-import java.util.List;
 import lombok.Getter;
 import me.totalfreedom.totalfreedommod.player.FPlayer;
 import org.bukkit.Location;
 import org.bukkit.Material;
-import org.bukkit.SkullType;
 import org.bukkit.block.Block;
 import org.bukkit.block.Skull;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class CageData
 {
@@ -64,7 +64,7 @@ public class CageData
         buildHistory(location, 2, fPlayer);
         regenerate();
     }
-    
+
     public void cage(Location location, Material outer, Material inner, String input)
     {
         if (isCaged())
@@ -216,6 +216,26 @@ public class CageData
                 }
             }
         }
+    }
+
+    public boolean isCaged()
+    {
+        return this.caged;
+    }
+
+    public Location getLocation()
+    {
+        return this.location;
+    }
+
+    public Material getOuterMaterial()
+    {
+        return this.outerMaterial;
+    }
+
+    public Material getInnerMaterial()
+    {
+        return this.innerMaterial;
     }
 
     private static class BlockData
