@@ -1,9 +1,11 @@
 package me.totalfreedom.totalfreedommod.command;
 
+import me.totalfreedom.libsdisguise.DisallowedDisguises;
 import me.totalfreedom.totalfreedommod.GameRuleHandler;
 import me.totalfreedom.totalfreedommod.config.ConfigEntry;
 import me.totalfreedom.totalfreedommod.rank.Rank;
 import me.totalfreedom.totalfreedommod.util.FUtil;
+import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
@@ -18,7 +20,7 @@ public class Command_toggle extends FreedomCommand
     {
         if (args.length == 0)
         {
-            msg("Available toggles: ");
+            msg("Available toggles:");
             msg("- waterplace");
             msg("- fireplace");
             msg("- lavaplace");
@@ -36,7 +38,7 @@ public class Command_toggle extends FreedomCommand
             return false;
         }
 
-        if (args[0].equals("waterplace")) 
+        if (args[0].equals("waterplace"))
         {
             toggle("Water placement is", ConfigEntry.ALLOW_WATER_PLACE);
             return true;
@@ -55,7 +57,7 @@ public class Command_toggle extends FreedomCommand
         {
             toggle("Lava placement is", ConfigEntry.ALLOW_LAVA_PLACE);
             return true;
-        } 
+        }
         else if (args[0].equals("fluidspread"))
         {
             toggle("Fluid spread is", ConfigEntry.ALLOW_FLUID_SPREAD);
@@ -155,7 +157,7 @@ public class Command_toggle extends FreedomCommand
             return false;
         }
     }
-    
+
     private void toggle(final String name, final ConfigEntry entry)
     {
         msg(name + " now " + (entry.setBoolean(!entry.getBoolean()) ? "enabled." : "disabled."));

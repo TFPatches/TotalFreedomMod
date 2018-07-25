@@ -207,4 +207,14 @@ public class LoginProcess extends FreedomService
         }.runTaskLater(plugin, 20L * 1L);
     }
 
+    public static boolean isLockdownEnabled()
+    {
+        return lockdownEnabled;
+    }
+
+    public boolean setLockdownEnabled(boolean toggle)
+    {
+        return this.lockdownEnabled = toggle;
+    }
+
 }
