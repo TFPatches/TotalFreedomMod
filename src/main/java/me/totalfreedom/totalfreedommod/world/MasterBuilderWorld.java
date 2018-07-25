@@ -28,6 +28,7 @@ public final class MasterBuilderWorld extends CustomWorld
     //
     private WorldWeather weather = WorldWeather.OFF;
     private WorldTime time = WorldTime.INHERIT;
+    private static final String WORLD_NAME = "masterbuilderworld";
 
     public MasterBuilderWorld()
     {
@@ -43,7 +44,7 @@ public final class MasterBuilderWorld extends CustomWorld
     @Override
     protected World generateWorld()
     {
-        final WorldCreator worldCreator = new WorldCreator(getName());
+        final WorldCreator worldCreator = new WorldCreator(WORLD_NAME);
         worldCreator.generateStructures(false);
         worldCreator.type(WorldType.NORMAL);
         worldCreator.environment(World.Environment.NORMAL);
@@ -55,7 +56,7 @@ public final class MasterBuilderWorld extends CustomWorld
         world.setSpawnLocation(0, 50, 0);
 
         final Block welcomeSignBlock = world.getBlockAt(0, 50, 0);
-        welcomeSignBlock.setType(Material.SIGN_POST);
+        welcomeSignBlock.setType(Material.SIGN);
         org.bukkit.block.Sign welcomeSign = (org.bukkit.block.Sign) welcomeSignBlock.getState();
 
         org.bukkit.material.Sign signData = (org.bukkit.material.Sign) welcomeSign.getData();

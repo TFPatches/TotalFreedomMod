@@ -62,7 +62,7 @@ public class Command_cage extends FreedomCommand
                 }
                 case "skull":
                 {
-                    outerMaterial = Material.SKULL;
+                    outerMaterial = Material.PLAYER_HEAD;
                     if (args.length >= 3)
                     {
                         skullName = args[2];
@@ -85,11 +85,11 @@ public class Command_cage extends FreedomCommand
         {
             if (args[2].equalsIgnoreCase("water"))
             {
-                innerMaterial = Material.STATIONARY_WATER;
+                innerMaterial = Material.LEGACY_STATIONARY_WATER;
             }
             else if (args[2].equalsIgnoreCase("lava"))
             {
-                innerMaterial = Material.STATIONARY_LAVA;
+                innerMaterial = Material.LEGACY_STATIONARY_LAVA;
             }
         }
         Location location = player.getLocation().clone().add(0.0, 1.0, 0.0);
@@ -102,7 +102,7 @@ public class Command_cage extends FreedomCommand
             fPlayer.getCageData().cage(location, outerMaterial, innerMaterial);
         }
         player.setGameMode(GameMode.SURVIVAL);
-        if (outerMaterial == Material.SKULL && skullName != null)
+        if (outerMaterial == Material.PLAYER_HEAD && skullName != null)
         {
             FUtil.adminAction(sender.getName(), "Caging " + player.getName() + " in " + skullName, true);
         }

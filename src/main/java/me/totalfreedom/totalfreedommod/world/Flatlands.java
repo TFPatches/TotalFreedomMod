@@ -23,6 +23,7 @@ public class Flatlands extends CustomWorld
     {
         super("flatlands");
     }
+    private static final String WORLD_NAME = "flatlands";
 
     @Override
     protected World generateWorld()
@@ -46,7 +47,7 @@ public class Flatlands extends CustomWorld
         world.setSpawnLocation(0, 50, 0);
 
         final Block welcomeSignBlock = world.getBlockAt(0, 50, 0);
-        welcomeSignBlock.setType(Material.SIGN_POST);
+        welcomeSignBlock.setType(Material.SIGN);
         org.bukkit.block.Sign welcomeSign = (org.bukkit.block.Sign) welcomeSignBlock.getState();
 
         org.bukkit.material.Sign signData = (org.bukkit.material.Sign) welcomeSign.getData();
@@ -89,4 +90,8 @@ public class Flatlands extends CustomWorld
         }
     }
 
+    public String getName()
+    {
+        return this.WORLD_NAME;
+    }
 }
