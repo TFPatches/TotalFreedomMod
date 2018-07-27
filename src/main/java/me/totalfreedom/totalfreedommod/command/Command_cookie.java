@@ -9,6 +9,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 
 @CommandPermissions(level = Rank.SUPER_ADMIN, source = SourceType.BOTH)
+@CommandParameters(description = "Whoever made this didn't get the reference...", usage = "/<command>")
 public class Command_cookie extends FreedomCommand
 {
     public static final String COOKIE_LYRICS = "But there's no sense crying over every mistake. You just keep on trying till you run out of cookies.";
