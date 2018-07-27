@@ -12,6 +12,7 @@ import org.bukkit.inventory.meta.ItemMeta;
 import java.util.Arrays;
 
 @CommandPermissions(level = Rank.SUPER_ADMIN, source = SourceType.BOTH)
+@CommandParameters(description = "Whoever made this didn't get the reference...", usage = "/<command>")
 public class Command_cookie extends FreedomCommand
 {
     public static final String COOKIE_LYRICS = "Imagine that you have zero cookies and you divide them evenly among zero friends. How many cookies does each person get? See, it doesn't " +
