@@ -237,11 +237,10 @@ public class TotalFreedomMod extends AeroPlugin<TotalFreedomMod>
         timer.update();
         FLog.info("Version " + pluginVersion + " for " + ServerInterface.COMPILE_NMS_VERSION + " enabled in " + timer.getTotal() + "ms");
 
-        // Metrics @ http://mcstats.org/plugin/TotalFreedomMod
+        // Metrics @ https://bstats.org/plugin/bukkit/TotalFreedomMod
         try
         {
-            final Metrics metrics = new Metrics(plugin);
-            metrics.start();
+            Metrics metrics = new Metrics(this);
         }
         catch (IOException ex)
         {
