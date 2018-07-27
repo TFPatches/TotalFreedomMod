@@ -84,5 +84,4 @@ public class Announcer extends FreedomService
     {
         FUtil.bcastMsg(prefix + message);
     }
-
 }
