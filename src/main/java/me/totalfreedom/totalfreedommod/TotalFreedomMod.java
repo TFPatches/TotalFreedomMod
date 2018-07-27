@@ -32,11 +32,9 @@ import org.bukkit.Bukkit;
 import org.bukkit.generator.ChunkGenerator;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.scheduler.BukkitRunnable;
-import org.mcstats.Metrics;
 import org.spigotmc.SpigotConfig;
 
 import java.io.File;
-import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;
 
@@ -202,8 +200,8 @@ public class TotalFreedomMod extends AeroPlugin<TotalFreedomMod>
         ak = services.registerService(AutoKick.class);
         ae = services.registerService(AutoEject.class);
         mo = services.registerService(Monitors.class);
-        
-        
+
+
         mv = services.registerService(MovementValidator.class);
         ew = services.registerService(EntityWiper.class);
         fd = services.registerService(FrontDoor.class);
@@ -238,14 +236,7 @@ public class TotalFreedomMod extends AeroPlugin<TotalFreedomMod>
         FLog.info("Version " + pluginVersion + " for " + ServerInterface.COMPILE_NMS_VERSION + " enabled in " + timer.getTotal() + "ms");
 
         // Metrics @ https://bstats.org/plugin/bukkit/TotalFreedomMod
-        try
-        {
-            Metrics metrics = new Metrics(this);
-        }
-        catch (IOException ex)
-        {
-            FLog.warning("Failed to submit metrics data: " + ex.getMessage());
-        }
+        Metrics metrics = new Metrics(this);
 
         // Add spawnpoints later - https://github.com/TotalFreedom/TotalFreedomMod/issues/438
         new BukkitRunnable()
