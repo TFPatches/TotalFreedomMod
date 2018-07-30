@@ -37,7 +37,7 @@ public class Command_tagnyan extends FreedomCommand
         }
 
         String tagStr = tag.toString();
-        for (String word : Command_tag.FORBIDDEN_WORDS)
+        for (String word : FUtil.FORBIDDEN_WORDS)
         {
             if (tagStr.contains(word))
             {

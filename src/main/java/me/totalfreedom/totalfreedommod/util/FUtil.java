@@ -54,6 +54,10 @@ public class FUtil
             ChatColor.DARK_BLUE,
             ChatColor.DARK_PURPLE,
             ChatColor.LIGHT_PURPLE);
+    public static final List<String> FORBIDDEN_WORDS = Arrays.asList(new String[]
+            {
+                    "admin", "owner", "moderator", "developer", "console", "SRA", "TCA", "SA"
+            });
     private static Iterator<ChatColor> CHAT_COLOR_ITERATOR;
 
     static
