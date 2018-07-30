@@ -58,10 +58,12 @@ public class Command_whitelist extends FreedomCommand
             return true;
         }
 
+        // Commands below are restricted to admins
+        checkRank(Rank.SUPER_ADMIN);
+
         // on
         if (args[0].equalsIgnoreCase("on"))
         {
-            checkRank(Rank.SUPER_ADMIN);
             FUtil.adminAction(sender.getName(), "Turning the whitelist on", true);
             server.setWhitelist(true);
             return true;
@@ -70,7 +72,6 @@ public class Command_whitelist extends FreedomCommand
         // off
         if (args[0].equalsIgnoreCase("off"))
         {
-            checkRank(Rank.SUPER_ADMIN);
             FUtil.adminAction(sender.getName(), "Turning the whitelist off", true);
             server.setWhitelist(false);
             return true;
@@ -79,8 +80,6 @@ public class Command_whitelist extends FreedomCommand
         // add
         if (args[0].equalsIgnoreCase("add"))
         {
-            checkRank(Rank.SUPER_ADMIN);
-
             if (args.length < 2)
             {
                 return false;
@@ -103,8 +102,6 @@ public class Command_whitelist extends FreedomCommand
         // remove
         if ("remove".equals(args[0]))
         {
-            checkRank(Rank.SUPER_ADMIN);
-
             if (args.length < 2)
             {
                 return false;
@@ -135,7 +132,6 @@ public class Command_whitelist extends FreedomCommand
         // addall
         if (args[0].equalsIgnoreCase("addall"))
         {
-            checkRank(Rank.SUPER_ADMIN);
             FUtil.adminAction(sender.getName(), "Adding all online players to the whitelist", false);
             int counter = 0;
             for (Player player : server.getOnlinePlayers())
@@ -151,11 +147,13 @@ public class Command_whitelist extends FreedomCommand
             return true;
         }
 
+        // Telnet only
+        checkConsole();
+        checkRank(Rank.TELNET_ADMIN);
+
         // purge
         if (args[0].equalsIgnoreCase("purge"))
         {
-            checkConsole();
-            checkRank(Rank.SENIOR_ADMIN);
             FUtil.adminAction(sender.getName(), "Removing all players from the whitelist", false);
             msg("Removed " + plugin.si.purgeWhitelist() + " players from the whitelist.");
             return true;
