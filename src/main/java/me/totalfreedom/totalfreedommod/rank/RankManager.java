@@ -5,6 +5,8 @@ import me.totalfreedom.totalfreedommod.TotalFreedomMod;
 import me.totalfreedom.totalfreedommod.admin.Admin;
 import me.totalfreedom.totalfreedommod.config.ConfigEntry;
 import me.totalfreedom.totalfreedommod.player.FPlayer;
+import me.totalfreedom.totalfreedommod.playerverification.VPlayer;
+import me.totalfreedom.totalfreedommod.util.FLog;
 import me.totalfreedom.totalfreedommod.util.FUtil;
 import net.pravian.aero.util.ChatUtils;
 import org.apache.commons.lang3.StringUtils;
@@ -228,6 +230,14 @@ public class RankManager extends FreedomService
             }
             catch (IllegalArgumentException ex)
             {
+            }
+        }
+        VPlayer target = plugin.pv.getVerificationPlayer(player);
+        if (!plugin.pv.isPlayerImpostor(player) && target.getDiscordEnabled())
+        {
+            if (target.getTag() != null)
+            {
+                plugin.pl.getPlayer(player).setTag(FUtil.colorize(target.getTag()));
             }
         }
     }
