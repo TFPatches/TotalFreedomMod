@@ -29,7 +29,7 @@ public class Command_rainbowtag extends FreedomCommand
             return true;
         }
 
-        for (String word : Command_tag.FORBIDDEN_WORDS)
+        for (String word : FUtil.FORBIDDEN_WORDS)
         {
             if (tag.contains(word))
             {

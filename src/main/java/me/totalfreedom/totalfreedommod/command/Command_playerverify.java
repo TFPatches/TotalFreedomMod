@@ -134,9 +134,36 @@ public class Command_playerverify extends FreedomCommand
 
             case "settag":
             {
-                String tag = StringUtils.join(args, " ", 1, args.length);
-                target.setTag(tag);
-                msg("Your default tag is now: " + FUtil.colorize(target.getTag()));
+                final String inputTag = StringUtils.join(args, " ", 1, args.length);
+                final String outputTag = FUtil.colorize(StringUtils.replaceEachRepeatedly(StringUtils.strip(inputTag),
+                        new String[]
+                                {
+                                        "" + ChatColor.COLOR_CHAR, "&k"
+                                },
+                        new String[]
+                                {
+                                        "", ""
+                                })) + ChatColor.RESET;
+
+                final String rawTag = ChatColor.stripColor(outputTag).toLowerCase();
+
+                if (rawTag.length() > 20)
+                {
+                    msg("That tag is too long (Max is 20 characters).");
+                    return true;
+                }
+
+                for (String word : FUtil.FORBIDDEN_WORDS)
+                {
+                    if (rawTag.contains(word))
+                    {
+                        msg("That tag contains a forbidden word.");
+                        return true;
+                    }
+                }
+
+                target.setTag(outputTag);
+                msg("Your default tag is now: " + outputTag);
                 plugin.pv.saveVerificationData(target);
                 return true;
             }
