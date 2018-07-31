@@ -23,6 +23,8 @@ public class Command_tag extends FreedomCommand
     public static final List<String> FORBIDDEN_WORDS = Arrays.asList(
             "admin", "owner", "moderator", "developer", "console", "dev", "staff", "mod", "sra", "tca", "sta", "sa");
 
+    public boolean save = false;
+
     @Override
     public boolean run(CommandSender sender, Player playerSender, Command cmd, String commandLabel, String[] args, boolean senderIsConsole)
     {
@@ -31,7 +33,6 @@ public class Command_tag extends FreedomCommand
             return false;
         }
 
-        boolean save = false;
         if (args[0].equals("-s") || args[0].equals("-save"))
         {
             if (!plugin.al.isAdmin(playerSender) && !plugin.mbl.isMasterBuilder(playerSender) && !plugin.pv.getVerificationPlayer(playerSender).getEnabled())
