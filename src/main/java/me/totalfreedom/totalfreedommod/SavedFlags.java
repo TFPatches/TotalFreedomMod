@@ -8,7 +8,6 @@ import java.io.ObjectOutputStream;
 import java.util.HashMap;
 import java.util.Map;
 import me.totalfreedom.totalfreedommod.util.FLog;
-import me.totalfreedom.totalfreedommod.util.FUtil;
 import static me.totalfreedom.totalfreedommod.util.FUtil.SAVED_FLAGS_FILENAME;
 
 public class SavedFlags extends FreedomService
@@ -41,7 +40,7 @@ public class SavedFlags extends FreedomService
             {
                 try (FileInputStream fis = new FileInputStream(input); ObjectInputStream ois = new ObjectInputStream(fis))
                 {
-                    flags = (HashMap<String, Boolean>) ois.readObject();
+                    flags = (HashMap<String, Boolean>)ois.readObject();
                 }
             }
             catch (Exception ex)

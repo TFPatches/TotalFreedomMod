@@ -74,7 +74,7 @@ public class BanManager extends FreedomService
 
         // Load unbannable usernames
         unbannableUsernames.clear();
-        unbannableUsernames.addAll((Collection<? extends String>) ConfigEntry.FAMOUS_PLAYERS.getList());
+        unbannableUsernames.addAll((Collection<? extends String>)ConfigEntry.FAMOUS_PLAYERS.getList());
         FLog.info("Loaded " + unbannableUsernames.size() + " unbannable usernames.");
     }
 

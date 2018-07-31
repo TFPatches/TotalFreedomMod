@@ -257,7 +257,7 @@ public class Module_file extends HTTPDModule
                             @Override
                             public int available() throws IOException
                             {
-                                return (int) dataLen;
+                                return (int)dataLen;
                             }
                         };
                         fis.skip(startFrom);

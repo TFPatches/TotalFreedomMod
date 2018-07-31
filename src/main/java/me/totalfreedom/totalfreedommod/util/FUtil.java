@@ -26,7 +26,6 @@ import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
 import org.bukkit.OfflinePlayer;
-import org.bukkit.Material;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.scheduler.BukkitTask;
@@ -356,7 +355,7 @@ public class FUtil
             {
                 Field field = checkClass.getDeclaredField(name);
                 field.setAccessible(true);
-                return (T) field.get(from);
+                return (T)field.get(from);
 
             }
             catch (NoSuchFieldException | IllegalAccessException ex)
@@ -427,7 +426,7 @@ public class FUtil
     public static int random(int min, int max)
     {
         int range = max - min + 1;
-        int value = (int) (Math.random() * range) + min;
+        int value = (int)(Math.random() * range) + min;
         return value;
     }
 }

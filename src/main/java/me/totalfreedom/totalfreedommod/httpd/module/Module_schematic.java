@@ -2,7 +2,6 @@ package me.totalfreedom.totalfreedommod.httpd.module;
 
 import java.io.File;
 import java.io.IOException;
-import java.net.InetAddress;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;

@@ -129,7 +129,7 @@ public class EventBlocker extends FreedomService
             Entity entity = event.getEntity();
             if (entity instanceof Tameable)
             {
-                if (((Tameable) entity).isTamed())
+                if (((Tameable)entity).isTamed())
                 {
                     event.setCancelled(true);
                 }
