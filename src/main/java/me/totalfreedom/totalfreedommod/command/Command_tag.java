@@ -1,7 +1,5 @@
 package me.totalfreedom.totalfreedommod.command;
 
-import java.util.Arrays;
-import java.util.List;
 import me.totalfreedom.totalfreedommod.admin.Admin;
 import me.totalfreedom.totalfreedommod.masterbuilder.MasterBuilder;
 import me.totalfreedom.totalfreedommod.player.FPlayer;
@@ -15,18 +13,27 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
+import java.util.Arrays;
+import java.util.List;
+
 @CommandPermissions(level = Rank.OP, source = SourceType.BOTH)
-@CommandParameters(description = "Sets yourself a prefix", usage = "/<command> [-s[ave]] <set <tag..> | off | clear <player> | clearall>")
+@CommandParameters(description = "Sets yourself a prefix", usage = "/<command> [-s[ave]] <set <tag..> | off | list | clear <player> | clearall>")
 public class Command_tag extends FreedomCommand
 {
 
     public static final List<String> FORBIDDEN_WORDS = Arrays.asList(
             "admin", "owner", "moderator", "developer", "console", "dev", "staff", "mod", "sra", "tca", "sta", "sa");
+    public boolean save = false;
+
 
     @Override
     public boolean run(CommandSender sender, Player playerSender, Command cmd, String commandLabel, String[] args, boolean senderIsConsole)
     {
-        boolean save = false;
+        if (args.length < 1)
+        {
+            return false;
+        }
+
         if (args[0].equals("-s") || args[0].equals("-save"))
         {
             save = true;
@@ -35,7 +42,6 @@ public class Command_tag extends FreedomCommand
 
         if (args.length == 1)
         {
-
             if ("list".equalsIgnoreCase(args[0]))
             {
                 msg("Tags for all online players:");
@@ -123,7 +129,6 @@ public class Command_tag extends FreedomCommand
                     save(player, null);
                 }
                 msg("Removed " + player.getName() + "'s tag." + (save ? " (Saved)" : ""));
-
                 return true;
             }
             else if ("set".equalsIgnoreCase(args[0]))
@@ -163,10 +168,9 @@ public class Command_tag extends FreedomCommand
                 plugin.pl.getPlayer(playerSender).setTag(outputTag);
                 if (save)
                 {
-                    save(playerSender, null);
+                    save(playerSender, outputTag);
                 }
                 msg("Tag set to '" + outputTag + ChatColor.GRAY + "'." + (save ? " (Saved)" : ""));
-
                 return true;
             }
             else
@@ -196,11 +200,16 @@ public class Command_tag extends FreedomCommand
             plugin.mbl.save();
             plugin.mbl.updateTables();
         }
-        else if (plugin.pv.getVerificationPlayer(player).getEnabled())
+        else if (plugin.pv.getVerificationPlayer(playerSender).getEnabled())
         {
             VPlayer vPlayer = plugin.pv.getVerificationPlayer(player);
             vPlayer.setTag(tag);
             plugin.pv.saveVerificationData(vPlayer);
+        }
+        else
+        {
+            msg("Sorry, but you cannot save your tag. You must be: an admin, a Master Builder, or have player verification enabled to use this feature.");
+            save = false;
         }
     }
 }

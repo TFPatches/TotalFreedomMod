@@ -1,7 +1,5 @@
 package me.totalfreedom.totalfreedommod.command;
 
-import java.util.Arrays;
-import java.util.List;
 import me.totalfreedom.totalfreedommod.player.FPlayer;
 import me.totalfreedom.totalfreedommod.rank.Rank;
 import me.totalfreedom.totalfreedommod.util.FUtil;
@@ -11,16 +9,12 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
+import static me.totalfreedom.totalfreedommod.command.Command_tag.FORBIDDEN_WORDS;
+
 @CommandPermissions(level = Rank.OP, source = SourceType.ONLY_IN_GAME)
 @CommandParameters(description = "Gives you a tag with random colors", usage = "/<command> <tag>", aliases = "tn")
 public class Command_tagnyan extends FreedomCommand
 {
-
-    public static final List<String> FORBIDDEN_WORDS = Arrays.asList(new String[]
-            {
-                    "admin", "owner", "moderator", "developer", "console", "SRA", "TCA", "SA"
-            });
-
     @Override
     public boolean run(CommandSender sender, Player playerSender, Command cmd, String commandLabel, String[] args, boolean senderIsConsole)
     {
@@ -37,7 +31,7 @@ public class Command_tagnyan extends FreedomCommand
         }
 
         String tagStr = tag.toString();
-        for (String word : Command_tag.FORBIDDEN_WORDS)
+        for (String word : FORBIDDEN_WORDS)
         {
             if (tagStr.contains(word))
             {
