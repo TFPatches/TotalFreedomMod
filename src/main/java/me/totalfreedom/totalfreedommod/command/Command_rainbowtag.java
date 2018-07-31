@@ -7,6 +7,7 @@ import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
+import static me.totalfreedom.totalfreedommod.command.Command_tag.FORBIDDEN_WORDS;
 
 @CommandPermissions(level = Rank.OP, source = SourceType.ONLY_IN_GAME)
 @CommandParameters(description = "Gives you a rainbow tag", usage = "/<command> <tag>")
@@ -29,7 +30,7 @@ public class Command_rainbowtag extends FreedomCommand
             return true;
         }
 
-        for (String word : Command_tag.FORBIDDEN_WORDS)
+        for (String word : FORBIDDEN_WORDS)
         {
             if (tag.contains(word))
             {
