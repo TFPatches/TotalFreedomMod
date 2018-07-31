@@ -173,7 +173,7 @@ public class Command_tag extends FreedomCommand
                 plugin.pl.getPlayer(playerSender).setTag(outputTag);
                 if (save)
                 {
-                    save(playerSender, null);
+                    save(playerSender, outputTag);
                 }
                 msg("Tag set to '" + outputTag + ChatColor.GRAY + "'." + (save ? " (Saved)" : ""));
 
@@ -192,14 +192,14 @@ public class Command_tag extends FreedomCommand
 
     public void save(Player player, String tag)
     {
-        if (plugin.al.isAdmin(playerSender))
+        if (plugin.al.isAdmin(player))
         {
             Admin admin = plugin.al.getAdmin(player);
             admin.setTag(tag);
             plugin.al.save();
             plugin.al.updateTables();
         }
-        else if (plugin.mbl.isMasterBuilder(playerSender))
+        else if (plugin.mbl.isMasterBuilder(player))
         {
             MasterBuilder masterBuilder = plugin.mbl.getMasterBuilder(player);
             masterBuilder.setTag(tag);
