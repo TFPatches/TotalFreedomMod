@@ -26,9 +26,19 @@ public class Command_tag extends FreedomCommand
     @Override
     public boolean run(CommandSender sender, Player playerSender, Command cmd, String commandLabel, String[] args, boolean senderIsConsole)
     {
+        if (args.length < 1)
+        {
+            return false;
+        }
+
         boolean save = false;
         if (args[0].equals("-s") || args[0].equals("-save"))
         {
+            if (!plugin.al.isAdmin(playerSender) && !plugin.mbl.isMasterBuilder(playerSender) && !plugin.pv.getVerificationPlayer(playerSender).getEnabled())
+            {
+                msg("Only admins, Master Builders, and players with verification enabled can save their tags.", ChatColor.RED);
+                return true;
+            }
             save = true;
             args = ArrayUtils.remove(args, 0);
         }
