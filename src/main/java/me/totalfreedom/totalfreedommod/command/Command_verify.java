@@ -42,7 +42,7 @@ public class Command_verify extends FreedomCommand
                 msg("That player is not an impostor.");
                 return true;
             }
-            FUtil.adminAction(sender.getName(), "Manually verifying player " + player.getName(), true);
+            FUtil.adminAction(sender.getName(), "Manually verifying player " + player.getName(), false);
             player.setOp(true);
             player.sendMessage(YOU_ARE_OP);
             if (plugin.pl.getPlayer(player).getFreezeData().isFrozen())
@@ -117,7 +117,7 @@ public class Command_verify extends FreedomCommand
                     Admin admin = plugin.al.getEntryByName(playerSender.getName());
                     Discord.VERIFY_CODES.remove(code);
                     FUtil.bcastMsg(playerSender.getName() + " has verified!", ChatColor.GOLD);
-                    FUtil.adminAction(ConfigEntry.SERVER_NAME.getString(), "Readding " + admin.getName() + " to the admin list", true);
+                    FUtil.adminAction(ConfigEntry.SERVER_NAME.getString(), "Re-adding " + admin.getName() + " to the admin list", true);
 
                     admin.setName(playerSender.getName());
                     admin.addIp(Ips.getIp(playerSender));
