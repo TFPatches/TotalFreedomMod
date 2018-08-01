@@ -48,7 +48,7 @@ public class Command_verify extends FreedomCommand
             if (plugin.pl.getPlayer(player).getFreezeData().isFrozen())
             {
                 plugin.pl.getPlayer(player).getFreezeData().setFrozen(false);
-                msg("You have been unfrozen.");
+                player.sendMessage("You have been unfrozen.");
             }
             plugin.pv.verifyPlayer(player);
             plugin.rm.updateDisplay(player);
