@@ -76,6 +76,7 @@ public class PlayerVerification extends FreedomService
 
     public void removeEntry(String name)
     {
+        name = name.toLowerCase(); // Configuration files are saved in lowercase
         if (getVerificationPlayer(name) != null)
         {
             getConfigFile(name).delete();
