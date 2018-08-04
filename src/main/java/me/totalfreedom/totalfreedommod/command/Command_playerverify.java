@@ -15,29 +15,6 @@ public class Command_playerverify extends FreedomCommand
     @Override
     protected boolean run(CommandSender sender, Player playerSender, Command cmd, String commandLabel, String[] args, boolean senderIsConsole)
     {
-        VPlayer target = plugin.pv.getVerificationPlayer(playerSender);
-
-        if (args.length == 1)
-        {
-            if (args[0].equalsIgnoreCase("clearips"))
-            {
-                int cleared = 0;
-                for (String ip : target.getIps())
-                {
-                    if (!ip.equals(Ips.getIp(playerSender)))
-                    {
-                        target.removeIp(ip);
-                        cleared++;
-                    }
-                }
-
-                msg("Cleared all IP's except your current IP \"" + Ips.getIp(playerSender) + "\"");
-                msg("Cleared " + cleared + " IP's.");
-                plugin.pv.saveVerificationData(target);
-                return true;
-            }
-        }
-
         if (args.length < 1)
         {
             return false;
@@ -48,6 +25,8 @@ public class Command_playerverify extends FreedomCommand
             msg("This command is only for OP's.", ChatColor.RED);
             return true;
         }
+
+        VPlayer target = plugin.pv.getVerificationPlayer(playerSender);
 
         VPlayer data = plugin.pv.getVerificationPlayer(playerSender);
 
@@ -93,6 +72,22 @@ public class Command_playerverify extends FreedomCommand
                 msg(ChatColor.GRAY + "Discord Verification Enabled: " + (enabled ? ChatColor.GREEN + "true" : ChatColor.RED + "false"));
                 msg(ChatColor.GRAY + "Discord ID: " + (specified ? ChatColor.GREEN + target.getDiscordId() : ChatColor.RED + "not set"));
                 return true;
+
+            case "clearips":
+                int cleared = 0;
+                for (String ip : target.getIps())
+                {
+                    if (!ip.equals(Ips.getIp(playerSender)))
+                    {
+                        target.removeIp(ip);
+                        cleared++;
+                    }
+                }
+                msg("Cleared all IP's except your current IP \"" + Ips.getIp(playerSender) + "\"");
+                msg("Cleared " + cleared + " IP's.");
+                plugin.pv.saveVerificationData(target);
+                return true;
+
             default:
                 return false;
         }

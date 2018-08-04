@@ -47,6 +47,7 @@ public class Command_doom extends FreedomCommand
         {
             FUtil.adminAction(sender.getName(), "Removing " + player.getName() + " from the admin list", true);
             admin.setActive(false);
+            admin.setDiscordID(null);
             plugin.al.save();
             plugin.al.updateTables();
         }
