@@ -43,12 +43,6 @@ public class Command_playerverify extends FreedomCommand
             return false;
         }
 
-        if (plugin.al.isAdmin(sender))
-        {
-            msg("This command is only for OP's.", ChatColor.RED);
-            return true;
-        }
-
         VPlayer data = plugin.pv.getVerificationPlayer(playerSender);
 
         switch (args[0].toLowerCase())

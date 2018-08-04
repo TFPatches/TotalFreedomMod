@@ -184,6 +184,7 @@ public class Command_saconfig extends FreedomCommand
                         msg("This player was labeled as a Master Builder impostor and is not an admin, therefore they can not be added to the admin list.", ChatColor.RED);
                         return true;
                     }
+
                     if (player == null)
                     {
                         msg(FreedomCommand.PLAYER_NOT_FOUND);
@@ -191,7 +192,10 @@ public class Command_saconfig extends FreedomCommand
                     }
 
                     FUtil.adminAction(sender.getName(), "Adding " + player.getName() + " to the admin list", true);
+
                     plugin.al.addAdmin(new Admin(player));
+                    plugin.pv.removeEntry(player.getName());
+
                     if (player != null)
                     {
                         plugin.rm.updateDisplay(player);
@@ -260,7 +264,6 @@ public class Command_saconfig extends FreedomCommand
                         player.setOp(true);
                         player.sendMessage(YOU_ARE_OP);
                     }
-                    plugin.pv.removeEntry(player.getName()); // admins can't have player verification entries
                 }
                 return true;
             }

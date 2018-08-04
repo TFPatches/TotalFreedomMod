@@ -76,10 +76,15 @@ public class PlayerVerification extends FreedomService
 
     public void removeEntry(String name)
     {
+        name = name.toLowerCase();
         if (getVerificationPlayer(name) != null)
         {
-            getConfigFile(name).delete();
-            dataMap.remove(name);
+            if (getConfigFile((name)).delete())
+            {
+                dataMap.remove(name);
+            } else {
+                FLog.severe("Problem deleting: " + getConfigFile(name));
+            }
         }
     }
 
@@ -107,7 +112,7 @@ public class PlayerVerification extends FreedomService
         vPlayer = getVerificationPlayer(player.getName());
 
         // Create new data if nonexistent
-        if (vPlayer == null)
+        if (vPlayer == null && !plugin.al.isAdmin(player))
         {
             FLog.info("Creating new player verification entry for " + player.getName());
 
