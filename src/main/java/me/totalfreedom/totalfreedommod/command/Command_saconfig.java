@@ -194,7 +194,11 @@ public class Command_saconfig extends FreedomCommand
                     FUtil.adminAction(sender.getName(), "Adding " + player.getName() + " to the admin list", true);
 
                     plugin.al.addAdmin(new Admin(player));
-                    plugin.pv.removeEntry(player.getName());
+
+                    if (plugin.pv.entryExists(player))
+                    {
+                        plugin.pv.removeEntry(player.getName());
+                    }
 
                     if (player != null)
                     {
@@ -209,6 +213,11 @@ public class Command_saconfig extends FreedomCommand
                     {
                         admin.setName(player.getName());
                         admin.addIp(Ips.getIp(player));
+                    }
+
+                    if (plugin.pv.entryExists(player))
+                    {
+                        plugin.pv.removeEntry(player.getName());
                     }
 
                     // Handle master builders
@@ -289,6 +298,7 @@ public class Command_saconfig extends FreedomCommand
 
                 FUtil.adminAction(sender.getName(), "Removing " + admin.getName() + " from the admin list", true);
                 admin.setActive(false);
+                admin.setDiscordID(null);
                 plugin.al.save();
                 plugin.al.updateTables();
                 if (player != null)

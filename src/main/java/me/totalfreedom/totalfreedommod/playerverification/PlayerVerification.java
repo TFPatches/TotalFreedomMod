@@ -74,6 +74,16 @@ public class PlayerVerification extends FreedomService
         dataMap.put(player.getName(), player);
     }
 
+    public boolean entryExists(Player player)
+    {
+        VPlayer vPlayer = dataMap.get(player.getName());
+        if (vPlayer == null)
+        {
+            return true;
+        }
+        return false;
+    }
+
     public void removeEntry(String name)
     {
         name = name.toLowerCase();
@@ -82,8 +92,11 @@ public class PlayerVerification extends FreedomService
             if (getConfigFile((name)).delete())
             {
                 dataMap.remove(name);
-            } else {
-                FLog.severe("Problem deleting: " + getConfigFile(name));
+                FLog.info("Removed verification entry: " + name);
+            }
+            else
+            {
+                FLog.severe("Error deleting file: " + getConfigFile(name));
             }
         }
     }
@@ -114,7 +127,7 @@ public class PlayerVerification extends FreedomService
         // Create new data if nonexistent
         if (vPlayer == null && !plugin.al.isAdmin(player))
         {
-            FLog.info("Creating new player verification entry for " + player.getName());
+            FLog.info("Creating new player verification entry for: " + player.getName());
 
             // Create new player
             vPlayer = new VPlayer(player);
@@ -128,7 +141,6 @@ public class PlayerVerification extends FreedomService
             vPlayer.saveTo(config);
             config.save();
         }
-
         return vPlayer;
     }
 
@@ -197,7 +209,6 @@ public class PlayerVerification extends FreedomService
                 FLog.warning("Failed to convert Player Verification entry for " + player.getName());
             }
         }
-
         return config;
     }
 }
