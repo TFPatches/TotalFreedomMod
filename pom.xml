@@ -215,6 +215,7 @@
                                     <entry key="buildCodeName" default="${tfm.build.codename}"/>
                                     <entry key="buildVersion" default="${project.version}"/>
                                     <entry key="buildDate" default="${timestamp}"/>
+                                    <entry key="buildHead" default="${tfm.build.head}"/>
                                 </propertyfile>
                             </target>
                         </configuration>
@@ -292,9 +293,6 @@
                     <prefix>git</prefix>
                     <dateFormat>yyyy-MM-dd HH:mm:ss</dateFormat>
                     <verbose>false</verbose>
-                    <generateGitPropertiesFile>true</generateGitPropertiesFile>
-                    <generateGitPropertiesFilename>${basedir}/src/main/resources/git.properties
-                    </generateGitPropertiesFilename>
                     <format>properties</format>
                     <failOnNoGitDirectory>false</failOnNoGitDirectory>
                     <failOnUnableToExtractRepoInfo>false</failOnUnableToExtractRepoInfo>
