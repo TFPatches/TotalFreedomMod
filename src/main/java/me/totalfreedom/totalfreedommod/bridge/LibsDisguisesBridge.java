@@ -41,7 +41,7 @@ public class LibsDisguisesBridge extends FreedomService
                 {
                     if (libsDisguises instanceof LibsDisguises)
                     {
-                        libsDisguisesPlugin = (LibsDisguises) libsDisguises;
+                        libsDisguisesPlugin = (LibsDisguises)libsDisguises;
                     }
                 }
             }
@@ -100,6 +100,11 @@ public class LibsDisguisesBridge extends FreedomService
         }
     }
 
+    public boolean isDisguisesEnabled()
+    {
+        return !DisallowedDisguises.disabled;
+    }
+
     public void setDisguisesEnabled(boolean state)
     {
         final LibsDisguises libsDisguises = getLibsDisguisesPlugin();
@@ -117,11 +122,6 @@ public class LibsDisguisesBridge extends FreedomService
         {
             TF_DisguiseAPI.disableDisguises();
         }
-    }
-
-    public boolean isDisguisesEnabled()
-    {
-        return !DisallowedDisguises.disabled;
     }
 
     public boolean isPluginEnabled()

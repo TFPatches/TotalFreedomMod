@@ -15,6 +15,7 @@ import org.bukkit.entity.Player;
 public class PlayerData implements ConfigLoadable, ConfigSavable, Validatable
 {
 
+    private final List<String> ips = Lists.newArrayList();
     @Getter
     @Setter
     private String username;
@@ -24,7 +25,6 @@ public class PlayerData implements ConfigLoadable, ConfigSavable, Validatable
     @Getter
     @Setter
     private long lastJoinUnix;
-    private final List<String> ips = Lists.newArrayList();
 
     public PlayerData(Player player)
     {

@@ -17,7 +17,6 @@
  */
 package me.totalfreedom.totalfreedommod.world;
 
-import static java.lang.System.arraycopy;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -29,6 +28,7 @@ import org.bukkit.Material;
 import org.bukkit.World;
 import org.bukkit.generator.BlockPopulator;
 import org.bukkit.generator.ChunkGenerator;
+import static java.lang.System.arraycopy;
 
 @SuppressWarnings("deprecation")
 public class CleanroomChunkGenerator extends ChunkGenerator
@@ -60,7 +60,7 @@ public class CleanroomChunkGenerator extends ChunkGenerator
                 }
                 else // Guess not, bedrock at layer0 it is then.
                 {
-                    layer[y++] = (short) Material.BEDROCK.getId();
+                    layer[y++] = (short)Material.BEDROCK.getId();
                 }
 
                 if (id.length() > 0)
@@ -135,7 +135,7 @@ public class CleanroomChunkGenerator extends ChunkGenerator
                             }
                         }
 
-                        Arrays.fill(layer, y, y + height, (short) mat.getId());
+                        Arrays.fill(layer, y, y + height, (short)mat.getId());
                         if (dataValue != 0)
                         {
                             if (layerDataValues == null)
@@ -168,16 +168,16 @@ public class CleanroomChunkGenerator extends ChunkGenerator
                 e.printStackTrace();
                 layerDataValues = null;
                 layer = new short[65];
-                layer[0] = (short) Material.BEDROCK.getId();
-                Arrays.fill(layer, 1, 65, (short) Material.STONE.getId());
+                layer[0] = (short)Material.BEDROCK.getId();
+                Arrays.fill(layer, 1, 65, (short)Material.STONE.getId());
             }
         }
         else
         {
             layerDataValues = null;
             layer = new short[65];
-            layer[0] = (short) Material.BEDROCK.getId();
-            Arrays.fill(layer, 1, 65, (short) Material.STONE.getId());
+            layer[0] = (short)Material.BEDROCK.getId();
+            Arrays.fill(layer, 1, 65, (short)Material.STONE.getId());
         }
     }
 
@@ -210,7 +210,7 @@ public class CleanroomChunkGenerator extends ChunkGenerator
     {
         if (layerDataValues != null)
         {
-            return Arrays.asList((BlockPopulator) new CleanroomBlockPopulator(layerDataValues));
+            return Arrays.asList((BlockPopulator)new CleanroomBlockPopulator(layerDataValues));
         }
         else
         {

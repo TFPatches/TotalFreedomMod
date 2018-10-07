@@ -25,10 +25,8 @@ import org.bukkit.scheduler.BukkitTask;
 
 public class CoreProtectBridge extends FreedomService
 {
-    private CoreProtectAPI coreProtectAPI = null;
-
     private final List<String> tables = Arrays.asList("co_sign", "co_session", "co_container", "co_block");
-
+    private CoreProtectAPI coreProtectAPI = null;
     private BukkitTask wiper;
 
     public CoreProtectBridge(TotalFreedomMod plugin)

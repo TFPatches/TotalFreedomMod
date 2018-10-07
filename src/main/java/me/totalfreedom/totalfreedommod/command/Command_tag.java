@@ -17,9 +17,9 @@ public class Command_tag extends FreedomCommand
 {
 
     public static final List<String> FORBIDDEN_WORDS = Arrays.asList(new String[]
-    {
-        "admin", "owner", "moderator", "developer", "console", "SRA", "TCA", "SA"
-    });
+            {
+                    "admin", "owner", "moderator", "developer", "console", "SRA", "TCA", "SA"
+            });
 
     @Override
     public boolean run(CommandSender sender, Player playerSender, Command cmd, String commandLabel, String[] args, boolean senderIsConsole)
@@ -113,13 +113,13 @@ public class Command_tag extends FreedomCommand
                 final String inputTag = StringUtils.join(args, " ", 1, args.length);
                 final String outputTag = FUtil.colorize(StringUtils.replaceEachRepeatedly(StringUtils.strip(inputTag),
                         new String[]
-                        {
-                            "" + ChatColor.COLOR_CHAR, "&k"
-                        },
+                                {
+                                        "" + ChatColor.COLOR_CHAR, "&k"
+                                },
                         new String[]
-                        {
-                            "", ""
-                        })) + ChatColor.RESET;
+                                {
+                                        "", ""
+                                })) + ChatColor.RESET;
 
                 if (!plugin.al.isAdmin(sender))
                 {

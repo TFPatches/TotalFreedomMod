@@ -1,7 +1,6 @@
 package me.totalfreedom.totalfreedommod.command;
 
 import java.util.Arrays;
-
 import me.totalfreedom.totalfreedommod.rank.Rank;
 import me.totalfreedom.totalfreedommod.util.FUtil;
 import org.bukkit.ChatColor;

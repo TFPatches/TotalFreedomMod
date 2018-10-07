@@ -2,14 +2,14 @@ package me.totalfreedom.totalfreedommod.amp;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
+import java.util.List;
 import lombok.Getter;
 import lombok.Setter;
-
-import java.util.List;
 
 public class LoginResult
 {
 
+    private final static long serialVersionUID = -523050232433919883L;
     @SerializedName("result")
     @Expose
     @Getter
@@ -45,6 +45,5 @@ public class LoginResult
     @Getter
     @Setter
     private String username;
-    private final static long serialVersionUID = -523050232433919883L;
 
 }

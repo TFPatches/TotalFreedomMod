@@ -6,7 +6,6 @@ import me.totalfreedom.totalfreedommod.player.FPlayer;
 import me.totalfreedom.totalfreedommod.rank.Displayable;
 import me.totalfreedom.totalfreedommod.util.FLog;
 import me.totalfreedom.totalfreedommod.util.FSync;
-import static me.totalfreedom.totalfreedommod.util.FUtil.playerMsg;
 import me.totalfreedom.totalfreedommod.util.FUtil;
 import org.bukkit.ChatColor;
 import org.bukkit.command.CommandSender;
@@ -14,6 +13,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.player.AsyncPlayerChatEvent;
+import static me.totalfreedom.totalfreedommod.util.FUtil.playerMsg;
 
 public class ChatManager extends FreedomService
 {
@@ -72,7 +72,7 @@ public class ChatManager extends FreedomService
                     caps++;
                 }
             }
-            if (((float) caps / (float) message.length()) > 0.65) //Compute a ratio so that longer sentences can have more caps.
+            if (((float)caps / (float)message.length()) > 0.65) //Compute a ratio so that longer sentences can have more caps.
             {
                 if (!plugin.al.isAdmin(player))
                 {
@@ -154,10 +154,10 @@ public class ChatManager extends FreedomService
                 Admin admin = plugin.al.getAdmin(player);
                 if (!Strings.isNullOrEmpty(admin.getAcFormat()))
                 {
-                   String format = admin.getAcFormat();
-                   ChatColor color = getColor(admin, display);
-                   String msg = format.replace("%name%", sender.getName()).replace("%rank%", display.getAbbr()).replace("%rankcolor%", color.toString()).replace("%msg%", message);
-                   player.sendMessage(FUtil.colorize(msg));
+                    String format = admin.getAcFormat();
+                    ChatColor color = getColor(admin, display);
+                    String msg = format.replace("%name%", sender.getName()).replace("%rank%", display.getAbbr()).replace("%rankcolor%", color.toString()).replace("%msg%", message);
+                    player.sendMessage(FUtil.colorize(msg));
                 }
                 else
                 {

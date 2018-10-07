@@ -69,9 +69,9 @@ public final class AdminWorld extends CustomWorld
 
         final Block welcomeSignBlock = world.getBlockAt(0, 50, 0);
         welcomeSignBlock.setType(Material.SIGN_POST);
-        org.bukkit.block.Sign welcomeSign = (org.bukkit.block.Sign) welcomeSignBlock.getState();
+        org.bukkit.block.Sign welcomeSign = (org.bukkit.block.Sign)welcomeSignBlock.getState();
 
-        org.bukkit.material.Sign signData = (org.bukkit.material.Sign) welcomeSign.getData();
+        org.bukkit.material.Sign signData = (org.bukkit.material.Sign)welcomeSign.getData();
         signData.setFacingDirection(BlockFace.NORTH);
 
         welcomeSign.setLine(0, ChatColor.GREEN + "AdminWorld");

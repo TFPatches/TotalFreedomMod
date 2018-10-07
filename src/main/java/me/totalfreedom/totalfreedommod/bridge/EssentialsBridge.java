@@ -1,26 +1,26 @@
 package me.totalfreedom.totalfreedommod.bridge;
 
-import org.bukkit.event.player.PlayerQuitEvent;
-import org.bukkit.event.inventory.InventoryCloseEvent;
-import org.bukkit.event.EventPriority;
-import org.bukkit.event.EventHandler;
-import me.totalfreedom.totalfreedommod.rank.Rank;
-import org.bukkit.inventory.InventoryHolder;
-import me.totalfreedom.totalfreedommod.player.FPlayer;
-import org.bukkit.inventory.Inventory;
-import org.bukkit.scheduler.BukkitRunnable;
-import org.bukkit.entity.HumanEntity;
-import org.bukkit.event.inventory.InventoryType;
-import org.bukkit.entity.Player;
-import org.bukkit.event.inventory.InventoryClickEvent;
-import me.totalfreedom.totalfreedommod.util.FUtil;
-import com.earth2me.essentials.User;
-import org.bukkit.plugin.Plugin;
-import me.totalfreedom.totalfreedommod.util.FLog;
-import me.totalfreedom.totalfreedommod.command.Command_vanish;
-import me.totalfreedom.totalfreedommod.TotalFreedomMod;
 import com.earth2me.essentials.Essentials;
+import com.earth2me.essentials.User;
 import me.totalfreedom.totalfreedommod.FreedomService;
+import me.totalfreedom.totalfreedommod.TotalFreedomMod;
+import me.totalfreedom.totalfreedommod.command.Command_vanish;
+import me.totalfreedom.totalfreedommod.player.FPlayer;
+import me.totalfreedom.totalfreedommod.rank.Rank;
+import me.totalfreedom.totalfreedommod.util.FLog;
+import me.totalfreedom.totalfreedommod.util.FUtil;
+import org.bukkit.entity.HumanEntity;
+import org.bukkit.entity.Player;
+import org.bukkit.event.EventHandler;
+import org.bukkit.event.EventPriority;
+import org.bukkit.event.inventory.InventoryClickEvent;
+import org.bukkit.event.inventory.InventoryCloseEvent;
+import org.bukkit.event.inventory.InventoryType;
+import org.bukkit.event.player.PlayerQuitEvent;
+import org.bukkit.inventory.Inventory;
+import org.bukkit.inventory.InventoryHolder;
+import org.bukkit.plugin.Plugin;
+import org.bukkit.scheduler.BukkitRunnable;
 
 public class EssentialsBridge extends FreedomService
 {
@@ -52,7 +52,7 @@ public class EssentialsBridge extends FreedomService
                 final Plugin essentials = server.getPluginManager().getPlugin("Essentials");
                 if (essentials != null && essentials instanceof Essentials)
                 {
-                    essentialsPlugin = (Essentials) essentials;
+                    essentialsPlugin = (Essentials)essentials;
                 }
             }
             catch (Exception ex)
@@ -153,14 +153,14 @@ public class EssentialsBridge extends FreedomService
         Player refreshPlayer = null;
         Inventory inventory = event.getView().getTopInventory();
         InventoryType inventoryType = inventory.getType();
-        Player player = (Player) event.getWhoClicked();
+        Player player = (Player)event.getWhoClicked();
         FPlayer fPlayer = plugin.pl.getPlayer(player);
         if (inventoryType == InventoryType.PLAYER && fPlayer.isInvSee())
         {
             final InventoryHolder inventoryHolder = inventory.getHolder();
             if (inventoryHolder != null && inventoryHolder instanceof HumanEntity)
             {
-                Player invOwner = (Player) inventoryHolder;
+                Player invOwner = (Player)inventoryHolder;
                 Rank recieverRank = plugin.rm.getRank(player);
                 Rank playerRank = plugin.rm.getRank(invOwner);
                 if (playerRank.ordinal() >= recieverRank.ordinal() || !invOwner.isOnline())
@@ -190,7 +190,7 @@ public class EssentialsBridge extends FreedomService
         Player refreshPlayer = null;
         Inventory inventory = event.getView().getTopInventory();
         InventoryType inventoryType = inventory.getType();
-        Player player = (Player) event.getPlayer();
+        Player player = (Player)event.getPlayer();
         FPlayer fPlayer = plugin.pl.getPlayer(player);
         if (inventoryType == InventoryType.PLAYER && fPlayer.isInvSee())
         {

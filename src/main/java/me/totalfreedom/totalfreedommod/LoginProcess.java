@@ -3,10 +3,10 @@ package me.totalfreedom.totalfreedommod;
 import java.util.regex.Pattern;
 import lombok.Getter;
 import lombok.Setter;
+import me.totalfreedom.totalfreedommod.command.Command_vanish;
 import me.totalfreedom.totalfreedommod.config.ConfigEntry;
 import me.totalfreedom.totalfreedommod.util.FSync;
 import me.totalfreedom.totalfreedommod.util.FUtil;
-import me.totalfreedom.totalfreedommod.command.Command_vanish;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -105,7 +105,7 @@ public class LoginProcess extends FreedomService
                 final int forceIpPort = ConfigEntry.FORCE_IP_PORT.getInteger();
                 event.disallow(PlayerLoginEvent.Result.KICK_OTHER,
                         ConfigEntry.FORCE_IP_KICKMSG.getString()
-                        .replace("%address%", ConfigEntry.SERVER_ADDRESS.getString() + (forceIpPort == DEFAULT_PORT ? "" : ":" + forceIpPort)));
+                                .replace("%address%", ConfigEntry.SERVER_ADDRESS.getString() + (forceIpPort == DEFAULT_PORT ? "" : ":" + forceIpPort)));
                 return;
             }
         }

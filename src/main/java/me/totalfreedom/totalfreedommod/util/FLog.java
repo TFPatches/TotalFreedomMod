@@ -73,16 +73,6 @@ public class FLog
         getLogger(false).log(level, null, throwable);
     }
 
-    public static void setServerLogger(Logger logger)
-    {
-        serverLogger = logger;
-    }
-
-    public static void setPluginLogger(Logger logger)
-    {
-        pluginLogger = logger;
-    }
-
     private static Logger getLogger(boolean raw)
     {
         if (raw || pluginLogger == null)
@@ -100,8 +90,18 @@ public class FLog
         return (pluginLogger != null ? pluginLogger : FALLBACK_LOGGER);
     }
 
+    public static void setPluginLogger(Logger logger)
+    {
+        pluginLogger = logger;
+    }
+
     public static Logger getServerLogger()
     {
         return (serverLogger != null ? serverLogger : FALLBACK_LOGGER);
+    }
+
+    public static void setServerLogger(Logger logger)
+    {
+        serverLogger = logger;
     }
 }

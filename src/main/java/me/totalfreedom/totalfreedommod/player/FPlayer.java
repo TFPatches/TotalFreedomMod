@@ -30,13 +30,16 @@ public class FPlayer
     private final String name;
     @Getter
     private final String ip;
+    @Getter
+    private final FreezeData freezeData = new FreezeData(this);
+    @Getter
+    private final CageData cageData = new CageData(this);
+    private final List<LivingEntity> mobThrowerQueue = new ArrayList<>();
     //
     @Setter
     private Player player;
     //
     private BukkitTask unmuteTask;
-    @Getter
-    private final FreezeData freezeData = new FreezeData(this);
     @Getter
     private double fuckoffRadius = 0;
     private int messageCount = 0;
@@ -44,14 +47,11 @@ public class FPlayer
     private int totalBlockPlace = 0;
     private int freecamDestroyCount = 0;
     private int freecamPlaceCount = 0;
-    @Getter
-    private final CageData cageData = new CageData(this);
     private boolean isOrbiting = false;
     private double orbitStrength = 10.0;
     private boolean mobThrowerEnabled = false;
     private EntityType mobThrowerEntity = EntityType.PIG;
     private double mobThrowerSpeed = 4.0;
-    private final List<LivingEntity> mobThrowerQueue = new ArrayList<>();
     private BukkitTask mp44ScheduleTask = null;
     private boolean mp44Armed = false;
     private boolean mp44Firing = false;
@@ -328,14 +328,14 @@ public class FPlayer
         this.lockupScheduleTask = id;
     }
 
-    public void setLastMessage(String message)
-    {
-        this.lastMessage = message;
-    }
-
     public String getLastMessage()
     {
         return lastMessage;
+    }
+
+    public void setLastMessage(String message)
+    {
+        this.lastMessage = message;
     }
 
     public void setAdminChat(boolean inAdminchat)
@@ -378,6 +378,11 @@ public class FPlayer
         return cmdspyEnabled;
     }
 
+    public String getTag()
+    {
+        return this.tag;
+    }
+
     public void setTag(String tag)
     {
         if (tag == null)
@@ -388,11 +393,6 @@ public class FPlayer
         {
             this.tag = FUtil.colorize(tag) + ChatColor.WHITE;
         }
-    }
-
-    public String getTag()
-    {
-        return this.tag;
     }
 
     public int getWarningCount()

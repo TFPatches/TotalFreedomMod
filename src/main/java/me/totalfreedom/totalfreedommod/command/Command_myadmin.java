@@ -179,7 +179,7 @@ public class Command_myadmin extends FreedomCommand
                 plugin.al.updateTables();
                 return true;
             }
-            case  "setacformat":
+            case "setacformat":
             {
                 String format = StringUtils.join(args, " ", 1, args.length);
                 target.setAcFormat(format);

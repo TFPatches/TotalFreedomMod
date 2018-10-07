@@ -26,12 +26,11 @@ import org.bukkit.event.player.PlayerLoginEvent;
 public class BanManager extends FreedomService
 {
 
+    public static final String CONFIG_FILENAME = "bans.yml";
     private final Set<Ban> bans = Sets.newHashSet();
     private final Map<String, Ban> ipBans = Maps.newHashMap();
     private final Map<String, Ban> nameBans = Maps.newHashMap();
     private final List<String> unbannableUsernames = Lists.newArrayList();
-    public static final String CONFIG_FILENAME = "bans.yml";
-
     //
     private final YamlConfig config;
 
@@ -74,7 +73,7 @@ public class BanManager extends FreedomService
 
         // Load unbannable usernames
         unbannableUsernames.clear();
-        unbannableUsernames.addAll((Collection<? extends String>) ConfigEntry.FAMOUS_PLAYERS.getList());
+        unbannableUsernames.addAll((Collection<? extends String>)ConfigEntry.FAMOUS_PLAYERS.getList());
         FLog.info("Loaded " + unbannableUsernames.size() + " unbannable usernames.");
     }
 
@@ -275,7 +274,7 @@ public class BanManager extends FreedomService
     private void updateViews()
     {
         // Remove expired bans
-        for (Iterator<Ban> it = bans.iterator(); it.hasNext();)
+        for (Iterator<Ban> it = bans.iterator(); it.hasNext(); )
         {
             if (it.next().isExpired())
             {

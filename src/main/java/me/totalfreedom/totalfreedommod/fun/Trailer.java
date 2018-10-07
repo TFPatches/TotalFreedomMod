@@ -1,5 +1,8 @@
 package me.totalfreedom.totalfreedommod.fun;
 
+import java.util.HashSet;
+import java.util.Random;
+import java.util.Set;
 import me.totalfreedom.totalfreedommod.FreedomService;
 import me.totalfreedom.totalfreedommod.TotalFreedomMod;
 import me.totalfreedom.totalfreedommod.util.DepreciationAggregator;
@@ -10,10 +13,6 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.player.PlayerMoveEvent;
-
-import java.util.HashSet;
-import java.util.Random;
-import java.util.Set;
 
 public class Trailer extends FreedomService
 {
@@ -67,7 +66,7 @@ public class Trailer extends FreedomService
 
         final Location location = fromBlock.getLocation();
         fromBlock.setType(Material.WOOL);
-        DepreciationAggregator.setData_Block(fromBlock, (byte) random.nextInt(16));
+        DepreciationAggregator.setData_Block(fromBlock, (byte)random.nextInt(16));
         byte data = DepreciationAggregator.getData_Block(fromBlock);
         Material material = Material.getMaterial(String.valueOf(fromBlock.getType()));
         for (int x = -1; x <= 1; x++)

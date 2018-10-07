@@ -172,16 +172,6 @@ public class Command_cbtool extends FreedomCommand
             this.executable = subCommandImpl;
         }
 
-        public SubCommandExecutable getExecutable()
-        {
-            return executable;
-        }
-
-        public String getName()
-        {
-            return name;
-        }
-
         public static SubCommand getByName(String needle) throws SubCommandFailureException
         {
             needle = needle.trim();
@@ -193,6 +183,16 @@ public class Command_cbtool extends FreedomCommand
                 }
             }
             throw new SubCommandFailureException("Invalid subcommand name.");
+        }
+
+        public SubCommandExecutable getExecutable()
+        {
+            return executable;
+        }
+
+        public String getName()
+        {
+            return name;
         }
     }
 

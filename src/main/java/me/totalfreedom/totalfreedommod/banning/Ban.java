@@ -25,12 +25,11 @@ public class Ban implements ConfigLoadable, ConfigSavable, Validatable
 {
 
     public static final SimpleDateFormat DATE_FORMAT = new SimpleDateFormat("yyyy-MM-dd \'at\' HH:mm:ss z");
-
+    @Getter
+    private final List<String> ips = Lists.newArrayList();
     @Getter
     @Setter
     private String username = null;
-    @Getter
-    private final List<String> ips = Lists.newArrayList();
     @Getter
     @Setter
     private String by = null;
@@ -49,9 +48,9 @@ public class Ban implements ConfigLoadable, ConfigSavable, Validatable
     {
         this(username,
                 new String[]
-                {
-                    ip
-                },
+                        {
+                                ip
+                        },
                 by,
                 expire,
                 reason);
@@ -80,9 +79,9 @@ public class Ban implements ConfigLoadable, ConfigSavable, Validatable
     public static Ban forPlayerIp(Player player, CommandSender by, Date expiry, String reason)
     {
         return new Ban(null, new String[]
-        {
-            Ips.getIp(player)
-        }, by.getName(), expiry, reason);
+                {
+                        Ips.getIp(player)
+                }, by.getName(), expiry, reason);
     }
 
     public static Ban forPlayerIp(String ip, CommandSender by, Date expiry, String reason)
@@ -100,7 +99,7 @@ public class Ban implements ConfigLoadable, ConfigSavable, Validatable
     public static Ban forPlayerName(String player, CommandSender by, Date expiry, String reason)
     {
         return new Ban(player,
-                (String[]) null,
+                (String[])null,
                 by.getName(),
                 expiry,
                 reason);
@@ -253,7 +252,7 @@ public class Ban implements ConfigLoadable, ConfigSavable, Validatable
             return false;
         }
 
-        final Ban ban = (Ban) object;
+        final Ban ban = (Ban)object;
         if (hasIps() != ban.hasIps()
                 || hasUsername() != ban.hasUsername())
         {

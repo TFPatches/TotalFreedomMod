@@ -39,6 +39,19 @@ public enum Rank implements Displayable
         this.color = color;
     }
 
+    public static Rank findRank(String string)
+    {
+        try
+        {
+            return Rank.valueOf(string.toUpperCase());
+        }
+        catch (Exception ignored)
+        {
+        }
+
+        return Rank.NON_OP;
+    }
+
     @Override
     public String getColoredName()
     {
@@ -105,19 +118,6 @@ public enum Rank implements Displayable
             default:
                 return null;
         }
-    }
-
-    public static Rank findRank(String string)
-    {
-        try
-        {
-            return Rank.valueOf(string.toUpperCase());
-        }
-        catch (Exception ignored)
-        {
-        }
-
-        return Rank.NON_OP;
     }
 
     public static enum Type

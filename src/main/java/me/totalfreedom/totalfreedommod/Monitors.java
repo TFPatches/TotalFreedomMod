@@ -6,9 +6,9 @@ import org.bukkit.ChatColor;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
-import org.bukkit.event.entity.LingeringPotionSplashEvent;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
+import org.bukkit.event.entity.LingeringPotionSplashEvent;
 import org.bukkit.event.entity.PotionSplashEvent;
 import org.bukkit.projectiles.ProjectileSource;
 
@@ -47,9 +47,9 @@ public class Monitors extends FreedomService
         {
             return;
         }
-        Player player = (Player) source;
+        Player player = (Player)source;
 
-        if (plugin.al.isAdmin((Player) event.getEntity().getShooter()))
+        if (plugin.al.isAdmin((Player)event.getEntity().getShooter()))
         {
             return;
         }
@@ -74,9 +74,9 @@ public class Monitors extends FreedomService
         {
             return;
         }
-        Player player = (Player) source;
+        Player player = (Player)source;
 
-        if (plugin.al.isAdmin((Player) event.getEntity().getShooter()))
+        if (plugin.al.isAdmin((Player)event.getEntity().getShooter()))
         {
             return;
         }

@@ -53,7 +53,7 @@ public class ProtectArea extends FreedomService
                 FileInputStream fis = new FileInputStream(input);
                 ObjectInputStream ois = new ObjectInputStream(fis);
                 areas.clear();
-                areas.putAll((HashMap<String, SerializableProtectedRegion>) ois.readObject());
+                areas.putAll((HashMap<String, SerializableProtectedRegion>)ois.readObject());
                 ois.close();
                 fis.close();
             }

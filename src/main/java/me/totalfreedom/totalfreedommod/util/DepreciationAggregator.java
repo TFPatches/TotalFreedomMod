@@ -1,7 +1,6 @@
 package me.totalfreedom.totalfreedommod.util;
 
 import java.util.HashSet;
-import java.util.UUID;
 import org.bukkit.Material;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.Server;

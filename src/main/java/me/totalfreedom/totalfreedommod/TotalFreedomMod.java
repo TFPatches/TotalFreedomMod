@@ -1,7 +1,6 @@
 package me.totalfreedom.totalfreedommod;
 
 import java.io.File;
-import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;
 import me.totalfreedom.totalfreedommod.admin.AdminList;
@@ -130,6 +129,18 @@ public class TotalFreedomMod extends AeroPlugin<TotalFreedomMod>
     public WorldEditBridge web;
     public WorldGuardBridge wgb;
     public AMP amp;
+
+    public static TotalFreedomMod plugin()
+    {
+        for (Plugin plugin : Bukkit.getPluginManager().getPlugins())
+        {
+            if (plugin.getName().equalsIgnoreCase(pluginName))
+            {
+                return (TotalFreedomMod)plugin;
+            }
+        }
+        return null;
+    }
 
     @Override
     public void load()
@@ -321,18 +332,6 @@ public class TotalFreedomMod extends AeroPlugin<TotalFreedomMod>
         {
             return pluginVersion + "." + number + " (" + head + ")";
         }
-    }
-
-    public static TotalFreedomMod plugin()
-    {
-        for (Plugin plugin : Bukkit.getPluginManager().getPlugins())
-        {
-            if (plugin.getName().equalsIgnoreCase(pluginName))
-            {
-                return (TotalFreedomMod)plugin;
-            }
-        }
-        return null;
     }
 
 }

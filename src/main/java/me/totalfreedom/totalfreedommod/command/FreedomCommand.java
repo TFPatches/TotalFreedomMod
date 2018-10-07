@@ -43,6 +43,18 @@ public abstract class FreedomCommand extends AbstractCommandBase<TotalFreedomMod
         }
     }
 
+    public static FreedomCommand getFrom(Command command)
+    {
+        try
+        {
+            return (FreedomCommand)((FreedomCommandExecutor)(((PluginCommand)command).getExecutor())).getCommandBase();
+        }
+        catch (Exception ex)
+        {
+            return null;
+        }
+    }
+
     @Override
     public final boolean runCommand(final CommandSender sender, final Command command, final String label, final String[] args)
     {
@@ -167,17 +179,5 @@ public abstract class FreedomCommand extends AbstractCommandBase<TotalFreedomMod
     public CommandPermissions getPerms()
     {
         return this.perms;
-    }
-
-    public static FreedomCommand getFrom(Command command)
-    {
-        try
-        {
-            return (FreedomCommand) ((FreedomCommandExecutor) (((PluginCommand) command).getExecutor())).getCommandBase();
-        }
-        catch (Exception ex)
-        {
-            return null;
-        }
     }
 }
