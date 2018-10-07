@@ -31,6 +31,7 @@ public class Command_unlinkdiscord extends FreedomCommand
                 return true;
             }
             admin.setDiscordID(null);
+            plugin.al.save();
             msg("Your minecraft account has been successfully unlinked from the discord account.", ChatColor.GREEN);
             return true;
         }
@@ -44,6 +45,7 @@ public class Command_unlinkdiscord extends FreedomCommand
             }
             data.setDiscordId(null);
             data.setDiscordEnabled(false);
+            plugin.pv.saveVerificationData(data);
             msg("Your minecraft account has been successfully unlinked from the discord account.", ChatColor.GREEN);
             return true;
         }

@@ -8,10 +8,9 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
 @CommandPermissions(level = Rank.SUPER_ADMIN, source = SourceType.BOTH)
-@CommandParameters(description = "Sets everyone's Worldedit block modification limit to the default limit or to a custom limit.", usage = "/<command> [limit]", aliases = "setl,swl")
+@CommandParameters(description = "Sets everyone's WorldEdit block modification limit to the default limit or to a custom limit.", usage = "/<command> [limit]", aliases = "setl,swl")
 public class Command_setlimit extends FreedomCommand
 {
-
     @Override
     public boolean run(CommandSender sender, Player playerSender, Command cmd, String commandLabel, String[] args, boolean senderIsConsole)
     {
@@ -28,10 +27,23 @@ public class Command_setlimit extends FreedomCommand
                 return true;
             }
         }
-        FUtil.adminAction(sender.getName(), "Setting everyone's Worldedit block modification limit to " + amount + ".", true);
+        boolean success = false;
         for (final Player player : server.getOnlinePlayers())
         {
-            plugin.web.setLimit(player, amount);
+            try
+            {
+                plugin.web.setLimit(player, amount);
+                success = true;
+            }
+            catch (NoClassDefFoundError | NullPointerException ex)
+            {
+                msg("WorldEdit is not enabled on this server.");
+                success = false;
+            }
+        }
+        if (success)
+        {
+            FUtil.adminAction(sender.getName(), "Setting everyone's WorldEdit block modification limit to " + amount + ".", true);
         }
         return true;
     }

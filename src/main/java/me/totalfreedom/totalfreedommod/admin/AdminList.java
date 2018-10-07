@@ -367,4 +367,15 @@ public class AdminList extends FreedomService
         save();
         updateTables();
     }
+
+    public void messageAllAdmins(String message)
+    {
+        for (Player player : server.getOnlinePlayers())
+        {
+            if (isAdmin(player))
+            {
+                player.sendMessage(message);
+            }
+        }
+    }
 }

@@ -1,12 +1,12 @@
 package me.totalfreedom.totalfreedommod.command;
 
+import me.totalfreedom.totalfreedommod.config.ConfigEntry;
 import me.totalfreedom.totalfreedommod.rank.Rank;
 import me.totalfreedom.totalfreedommod.util.FUtil;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
-import org.bukkit.scheduler.BukkitRunnable;
 
 @CommandPermissions(level = Rank.SENIOR_ADMIN, source = SourceType.ONLY_CONSOLE, blockHostConsole = true)
 @CommandParameters(description = "Wipe the flatlands map. Requires manual restart after command is used.", usage = "/<command>")
@@ -18,9 +18,18 @@ public class Command_wipeflatlands extends FreedomCommand
     {
         plugin.sf.setSavedFlag("do_wipe_flatlands", true);
 
+        if (!ConfigEntry.FLATLANDS_GENERATE.getBoolean())
+        {
+            msg("Flatlands generation is disabled, therefore it cannot be wiped.");
+            return true;
+        }
+
         FUtil.bcastMsg("Server is going offline for flatlands wipe.", ChatColor.GRAY);
 
-        plugin.wgb.wipeRegions(plugin.wm.flatlands.getWorld());
+        if (plugin.wgb.isPluginEnabled())
+        {
+            plugin.wgb.wipeRegions(plugin.wm.flatlands.getWorld());
+        }
 
         for (Player player : server.getOnlinePlayers())
         {

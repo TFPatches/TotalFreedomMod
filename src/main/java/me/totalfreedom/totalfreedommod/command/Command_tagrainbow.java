@@ -1,6 +1,5 @@
 package me.totalfreedom.totalfreedommod.command;
 
-import me.totalfreedom.totalfreedommod.player.FPlayer;
 import me.totalfreedom.totalfreedommod.rank.Rank;
 import me.totalfreedom.totalfreedommod.util.FUtil;
 import org.apache.commons.lang3.StringUtils;
@@ -10,8 +9,8 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
 @CommandPermissions(level = Rank.OP, source = SourceType.ONLY_IN_GAME)
-@CommandParameters(description = "Gives you a tag with random colors", usage = "/<command> <tag>", aliases = "tn")
-public class Command_tagnyan extends FreedomCommand
+@CommandParameters(description = "Gives you a rainbow tag", usage = "/<command> <tag>")
+public class Command_tagrainbow extends FreedomCommand
 {
 
     @Override
@@ -22,18 +21,11 @@ public class Command_tagnyan extends FreedomCommand
             return false;
         }
 
-        final StringBuilder tag = new StringBuilder();
-
-        for (char c : ChatColor.stripColor(FUtil.colorize(StringUtils.join(args, " "))).toCharArray())
-        {
-            tag.append(FUtil.randomChatColor()).append(c);
-        }
-
-        String tagStr = tag.toString();
+        final String tag = ChatColor.stripColor(FUtil.colorize(StringUtils.join(args, " ")));
 
         if (!plugin.al.isAdmin(sender))
         {
-            final String rawTag = ChatColor.stripColor(tagStr).toLowerCase();
+            final String rawTag = ChatColor.stripColor(tag).toLowerCase();
 
             if (rawTag.length() > 20)
             {
@@ -51,8 +43,7 @@ public class Command_tagnyan extends FreedomCommand
             }
         }
 
-        final FPlayer data = plugin.pl.getPlayer(playerSender);
-        data.setTag(tagStr);
+        plugin.pl.getPlayer(playerSender).setTag(FUtil.rainbowify(tag));
 
         msg("Set tag to " + tag);
 

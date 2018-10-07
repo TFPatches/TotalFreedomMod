@@ -76,7 +76,7 @@ public class Trailer extends FreedomService
             {
                 final Location trail_pos;
                 trail_pos = new Location(event.getPlayer().getWorld(), fromBlock.getX() + x, fromBlock.getY(), fromBlock.getZ() + z);
-                if (trailPlayers.contains(event.getPlayer().getName()))
+                if (trailPlayers.contains(event.getPlayer().getName()) && plugin.cpb.isEnabled())
                 {
                     plugin.cpb.getCoreProtectAPI().logPlacement(event.getPlayer().getName(), trail_pos, material, data);
                 }

@@ -14,7 +14,7 @@ public class WorldEditBridge extends FreedomService
 
     private final WorldEditListener listener;
     //
-    private WorldEditPlugin worldedit = null;
+    private WorldEditPlugin worldeditPlugin = null;
 
     public WorldEditBridge(TotalFreedomMod plugin)
     {
@@ -32,6 +32,30 @@ public class WorldEditBridge extends FreedomService
     protected void onStop()
     {
         listener.unregister();
+    }
+
+    private WorldEditPlugin getWorldEditPlugin()
+    {
+        if (worldeditPlugin == null)
+        {
+            try
+            {
+                Plugin we = server.getPluginManager().getPlugin("WorldEdit");
+                if (we != null)
+                {
+                    if (we instanceof WorldEditPlugin)
+                    {
+                        worldeditPlugin = (WorldEditPlugin)we;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                FLog.severe(ex);
+            }
+        }
+
+        return worldeditPlugin;
     }
 
     public void undo(Player player, int count)
@@ -57,28 +81,27 @@ public class WorldEditBridge extends FreedomService
         }
     }
 
-    private WorldEditPlugin getWorldEditPlugin()
+    public void redo(Player player, int count)
     {
-        if (worldedit == null)
+        try
         {
-            try
+            LocalSession session = getPlayerSession(player);
+            if (session != null)
             {
-                Plugin we = server.getPluginManager().getPlugin("WorldEdit");
-                if (we != null)
+                final BukkitPlayer bukkitPlayer = getBukkitPlayer(player);
+                if (bukkitPlayer != null)
                 {
-                    if (we instanceof WorldEditPlugin)
+                    for (int i = 0; i < count; i++)
                     {
-                        worldedit = (WorldEditPlugin) we;
+                        session.redo(session.getBlockBag(bukkitPlayer), bukkitPlayer);
                     }
                 }
             }
-            catch (Exception ex)
-            {
-                FLog.severe(ex);
-            }
         }
-
-        return worldedit;
+        catch (Exception ex)
+        {
+            FLog.severe(ex);
+        }
     }
 
     public void setLimit(Player player, int limit)

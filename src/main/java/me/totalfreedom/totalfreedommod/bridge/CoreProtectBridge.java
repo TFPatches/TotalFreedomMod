@@ -1,5 +1,13 @@
 package me.totalfreedom.totalfreedommod.bridge;
 
+import java.io.File;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.Arrays;
+import java.util.List;
 import me.totalfreedom.totalfreedommod.FreedomService;
 import me.totalfreedom.totalfreedommod.TotalFreedomMod;
 import me.totalfreedom.totalfreedommod.config.ConfigEntry;
@@ -15,17 +23,12 @@ import org.bukkit.plugin.PluginManager;
 import org.bukkit.scheduler.BukkitRunnable;
 import org.bukkit.scheduler.BukkitTask;
 
-import java.io.File;
-import java.sql.*;
-import java.util.Arrays;
-import java.util.List;
-
 public class CoreProtectBridge extends FreedomService
 {
     private CoreProtectAPI coreProtectAPI = null;
-    
+
     private final List<String> tables = Arrays.asList("co_sign", "co_session", "co_container", "co_block");
-    
+
     private BukkitTask wiper;
 
     public CoreProtectBridge(TotalFreedomMod plugin)
@@ -73,9 +76,9 @@ public class CoreProtectBridge extends FreedomService
             try
             {
                 final CoreProtect coreProtect = getCoreProtect();
-                
+
                 coreProtectAPI = coreProtect.getAPI();
-                
+
                 // Check if the plugin or api is not enabled, if so, return null
                 if (!coreProtect.isEnabled() || !coreProtectAPI.isEnabled())
                 {
@@ -90,7 +93,7 @@ public class CoreProtectBridge extends FreedomService
 
         return coreProtectAPI;
     }
-    
+
     public boolean isEnabled()
     {
         final CoreProtect coreProtect = getCoreProtect();
@@ -98,7 +101,7 @@ public class CoreProtectBridge extends FreedomService
         return coreProtect != null && coreProtect.isEnabled();
     }
 
-    // Rollback the specifed player's edits that were in the last 24 hours.
+    // Rollback the specified player's edits that were in the last 24 hours.
     public void rollback(final String name)
     {
         final CoreProtectAPI coreProtect = getCoreProtectAPI();
@@ -117,9 +120,9 @@ public class CoreProtectBridge extends FreedomService
             }
         }.runTaskAsynchronously(plugin);
     }
-    
-    // Reverts a rollback for the specifed player's edits that were in the last 24 hours.
-    public void undoRollback(final String name)
+
+    // Reverts a rollback for the specified player's edits that were in the last 24 hours.
+    public void restore(final String name)
     {
         final CoreProtectAPI coreProtect = getCoreProtectAPI();
 
@@ -137,7 +140,7 @@ public class CoreProtectBridge extends FreedomService
             }
         }.runTaskAsynchronously(plugin);
     }
-    
+
     public File getDatabase()
     {
         if (!isEnabled())
@@ -145,9 +148,9 @@ public class CoreProtectBridge extends FreedomService
             return null;
         }
 
-        return(new File(getCoreProtect().getDataFolder(), "database.db"));
+        return (new File(getCoreProtect().getDataFolder(), "database.db"));
     }
-    
+
     private void createAutomaticWiper()
     {
         final long interval = 10 * 20L;
@@ -165,15 +168,15 @@ public class CoreProtectBridge extends FreedomService
                     FUtil.bcastMsg("The CoreProtect log file has grown too big for the server to cope, the data is being wiped!", ChatColor.RED);
                     PluginManager pluginManager = server.getPluginManager();
                     pluginManager.disablePlugin(coreProtect);
-                    for(World world : Bukkit.getWorlds())
+                    for (World world : Bukkit.getWorlds())
                     {
-                        if(!world.equals(plugin.wm.adminworld.getWorld()))
+                        if (!world.equals(plugin.wm.adminworld.getWorld()))
                         {
                             clearDatabase(world);
                         }
                     }
                     //check if still too big, if so delete all data
-                    if(getDBSize() > ConfigEntry.COREPROTECT_FILE_LIMIT.getInteger())
+                    if (getDBSize() > ConfigEntry.COREPROTECT_FILE_LIMIT.getInteger())
                     {
                         FUtil.deleteFolder(databaseFile);
                     }
@@ -182,6 +185,7 @@ public class CoreProtectBridge extends FreedomService
             }
         }.runTaskTimer(plugin, interval, interval);
     }
+
     public double getDBSize()
     {
         double bytes = getDatabase().length();
@@ -189,6 +193,7 @@ public class CoreProtectBridge extends FreedomService
         double megabytes = (kilobytes / 1024);
         return (megabytes / 1024);
     }
+
     // Wipes DB for the specified world
     public void clearDatabase(World world)
     {
@@ -205,8 +210,8 @@ public class CoreProtectBridge extends FreedomService
             return;
         }
 
-        /* As CoreProtect doesn't have an api method for deleting all of the data for a specific world
-           we have to do this manually via sql */
+        /* As CoreProtect doesn't have an API method for deleting all of the data for a specific world
+           we have to do this manually via SQL */
         File databaseFile = getDatabase();
         Connection connection = null;
         try
@@ -214,7 +219,7 @@ public class CoreProtectBridge extends FreedomService
             connection = DriverManager.getConnection("jdbc:sqlite:" + databaseFile);
             final Statement statement = connection.createStatement();
             statement.setQueryTimeout(30);
-            
+
             // Obtain world ID from CoreProtect database
             ResultSet resultSet = statement.executeQuery("SELECT id FROM co_world WHERE world = '" + world.getName() + "'");
             String worldID = null;
@@ -250,7 +255,7 @@ public class CoreProtectBridge extends FreedomService
         // This exits for flatlands wipes
         if (shutdown)
         {
-            if(plugin.amp.enabled)
+            if (plugin.amp.enabled)
             {
                 plugin.amp.restartServer();
             }

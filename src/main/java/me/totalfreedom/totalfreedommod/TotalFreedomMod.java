@@ -1,18 +1,39 @@
 package me.totalfreedom.totalfreedommod;
 
+import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.Properties;
 import me.totalfreedom.totalfreedommod.admin.AdminList;
 import me.totalfreedom.totalfreedommod.amp.AMP;
 import me.totalfreedom.totalfreedommod.banning.BanManager;
 import me.totalfreedom.totalfreedommod.banning.PermbanList;
-import me.totalfreedom.totalfreedommod.blocking.*;
+import me.totalfreedom.totalfreedommod.blocking.BlockBlocker;
+import me.totalfreedom.totalfreedommod.blocking.EditBlocker;
+import me.totalfreedom.totalfreedommod.blocking.EventBlocker;
+import me.totalfreedom.totalfreedommod.blocking.InteractBlocker;
+import me.totalfreedom.totalfreedommod.blocking.MobBlocker;
+import me.totalfreedom.totalfreedommod.blocking.PVPBlocker;
+import me.totalfreedom.totalfreedommod.blocking.PotionBlocker;
+import me.totalfreedom.totalfreedommod.blocking.SignBlocker;
 import me.totalfreedom.totalfreedommod.blocking.command.CommandBlocker;
-import me.totalfreedom.totalfreedommod.bridge.*;
+import me.totalfreedom.totalfreedommod.bridge.BukkitTelnetBridge;
+import me.totalfreedom.totalfreedommod.bridge.CoreProtectBridge;
+import me.totalfreedom.totalfreedommod.bridge.EssentialsBridge;
+import me.totalfreedom.totalfreedommod.bridge.LibsDisguisesBridge;
+import me.totalfreedom.totalfreedommod.bridge.WorldEditBridge;
+import me.totalfreedom.totalfreedommod.bridge.WorldGuardBridge;
 import me.totalfreedom.totalfreedommod.caging.Cager;
 import me.totalfreedom.totalfreedommod.command.CommandLoader;
 import me.totalfreedom.totalfreedommod.config.MainConfig;
 import me.totalfreedom.totalfreedommod.discord.Discord;
 import me.totalfreedom.totalfreedommod.freeze.Freezer;
-import me.totalfreedom.totalfreedommod.fun.*;
+import me.totalfreedom.totalfreedommod.fun.ItemFun;
+import me.totalfreedom.totalfreedommod.fun.Jumppads;
+import me.totalfreedom.totalfreedommod.fun.Landminer;
+import me.totalfreedom.totalfreedommod.fun.MP44;
+import me.totalfreedom.totalfreedommod.fun.MobStacker;
+import me.totalfreedom.totalfreedommod.fun.Trailer;
 import me.totalfreedom.totalfreedommod.httpd.HTTPDaemon;
 import me.totalfreedom.totalfreedommod.masterbuilder.MasterBuilderList;
 import me.totalfreedom.totalfreedommod.masterbuilder.MasterBuilderWorldRestrictions;
@@ -27,16 +48,11 @@ import me.totalfreedom.totalfreedommod.util.MethodTimer;
 import me.totalfreedom.totalfreedommod.world.WorldManager;
 import net.pravian.aero.component.service.ServiceManager;
 import net.pravian.aero.plugin.AeroPlugin;
+import org.bstats.Metrics;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.scheduler.BukkitRunnable;
-import org.mcstats.Metrics;
 import org.spigotmc.SpigotConfig;
-
-import java.io.File;
-import java.io.IOException;
-import java.io.InputStream;
-import java.util.Properties;
 
 public class TotalFreedomMod extends AeroPlugin<TotalFreedomMod>
 {
@@ -151,6 +167,8 @@ public class TotalFreedomMod extends AeroPlugin<TotalFreedomMod>
         backups.createBackups(TotalFreedomMod.CONFIG_FILENAME, true);
         backups.createBackups(AdminList.CONFIG_FILENAME);
         backups.createBackups(PermbanList.CONFIG_FILENAME);
+        backups.createBackups(MasterBuilderList.CONFIG_FILENAME);
+        backups.createBackups(PunishmentList.CONFIG_FILENAME);
 
         config = new MainConfig(this);
         config.load();
@@ -200,8 +218,8 @@ public class TotalFreedomMod extends AeroPlugin<TotalFreedomMod>
         ak = services.registerService(AutoKick.class);
         ae = services.registerService(AutoEject.class);
         mo = services.registerService(Monitors.class);
-        
-        
+
+
         mv = services.registerService(MovementValidator.class);
         ew = services.registerService(EntityWiper.class);
         fd = services.registerService(FrontDoor.class);
@@ -234,16 +252,8 @@ public class TotalFreedomMod extends AeroPlugin<TotalFreedomMod>
         timer.update();
         FLog.info("Version " + pluginVersion + " for " + ServerInterface.COMPILE_NMS_VERSION + " enabled in " + timer.getTotal() + "ms");
 
-        // Metrics @ http://mcstats.org/plugin/TotalFreedomMod
-        try
-        {
-            final Metrics metrics = new Metrics(plugin);
-            metrics.start();
-        }
-        catch (IOException ex)
-        {
-            FLog.warning("Failed to submit metrics data: " + ex.getMessage());
-        }
+        // Metrics @ https://bstats.org/plugin/bukkit/TotalFreedomMod
+        new Metrics(this);
 
         // Add spawnpoints later - https://github.com/TotalFreedom/TotalFreedomMod/issues/438
         new BukkitRunnable()
@@ -285,28 +295,24 @@ public class TotalFreedomMod extends AeroPlugin<TotalFreedomMod>
             try
             {
                 final Properties props;
-                final Properties gitprops;
+
                 try (InputStream in = plugin.getResource("build.properties"))
                 {
                     props = new Properties();
                     props.load(in);
-                }
-                try (InputStream in = plugin.getResource("git.properties"))
-                {
-                    gitprops = new Properties();
-                    gitprops.load(in);
                 }
 
                 author = props.getProperty("buildAuthor", "unknown");
                 codename = props.getProperty("buildCodeName", "unknown");
                 version = props.getProperty("buildVersion", pluginVersion);
                 number = props.getProperty("buildNumber", "1");
-                date = gitprops.getProperty("git.build.time", "unknown");
-                head = gitprops.getProperty("git.commit.id.abbrev", "unknown");
+                date = props.getProperty("buildDate", "unknown");
+                // Need to do this or it will display ${git.commit.id.abbrev}
+                head = props.getProperty("buildHead", "unknown").replace("${git.commit.id.abbrev}", "unknown");
             }
             catch (Exception ex)
             {
-                FLog.severe("Could not load build properties! Did you compile with Netbeans/Maven?");
+                FLog.severe("Could not load build properties! Did you compile with NetBeans/Maven?");
                 FLog.severe(ex);
             }
         }
@@ -323,7 +329,7 @@ public class TotalFreedomMod extends AeroPlugin<TotalFreedomMod>
         {
             if (plugin.getName().equalsIgnoreCase(pluginName))
             {
-                return (TotalFreedomMod) plugin;
+                return (TotalFreedomMod)plugin;
             }
         }
         return null;

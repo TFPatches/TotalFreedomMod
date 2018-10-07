@@ -41,7 +41,7 @@ public class RankManager extends FreedomService
             return getRank(sender); // Consoles don't have display ranks
         }
 
-        final Player player = (Player) sender;
+        final Player player = (Player)sender;
 
         // Display impostors
         if (plugin.al.isAdminImpostor(player))
@@ -79,7 +79,7 @@ public class RankManager extends FreedomService
     {
         if (sender instanceof Player)
         {
-            return getRank((Player) sender);
+            return getRank((Player)sender);
         }
 
         // CONSOLE?
@@ -169,13 +169,22 @@ public class RankManager extends FreedomService
         }
 
         // Handle impostors
-        Boolean isImposter = plugin.al.isAdminImpostor(player) || plugin.pv.isPlayerImpostor(player) || plugin.mbl.isMasterBuilderImpostor(player);
-        if (isImposter)
+        Boolean isImpostor = plugin.al.isAdminImpostor(player) || plugin.pv.isPlayerImpostor(player) || plugin.mbl.isMasterBuilderImpostor(player);
+        if (isImpostor)
         {
             FUtil.bcastMsg(ChatColor.AQUA + player.getName() + " is " + Rank.IMPOSTOR.getColoredLoginMessage());
             if (plugin.al.isAdminImpostor(player))
             {
                 FUtil.bcastMsg("Warning: " + player.getName() + " has been flagged as an impostor and has been frozen!", ChatColor.RED);
+                FUtil.bcastMsg("Warning: " + player.getName() + " has been flagged as an admin impostor and has been frozen!", ChatColor.RED);
+            }
+            else if (plugin.mbl.isMasterBuilderImpostor(player))
+            {
+                FUtil.bcastMsg("Warning: " + player.getName() + " has been flagged as a Master Builder impostor and has been frozen!", ChatColor.RED);
+            }
+            else if (plugin.pv.isPlayerImpostor(player))
+            {
+                FUtil.bcastMsg("Warning: " + player.getName() + " has been flagged as a player impostor and has been frozen!", ChatColor.RED);
             }
             String displayName = Rank.IMPOSTOR.getColor() + player.getName();
             player.setPlayerListName(StringUtils.substring(displayName, 0, 16));
