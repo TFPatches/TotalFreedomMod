@@ -1,15 +1,12 @@
 package me.totalfreedom.totalfreedommod.command;
 
 import java.util.Collection;
-import java.util.List;
 import me.totalfreedom.totalfreedommod.admin.Admin;
 import me.totalfreedom.totalfreedommod.config.ConfigEntry;
-import me.totalfreedom.totalfreedommod.config.MainConfig;
 import me.totalfreedom.totalfreedommod.rank.Rank;
 import net.pravian.aero.util.Ips;
 import org.apache.commons.lang3.StringUtils;
 import org.bukkit.Bukkit;
-import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
@@ -28,7 +25,7 @@ public class Command_overlord extends FreedomCommand
             try
             {
                 Object ips = plugin.config.getDefaults().get(ConfigEntry.OVERLORD_IPS.getConfigName());
-                if (ips instanceof Collection && !((Collection) ips).contains(Ips.getIp(playerSender)))
+                if (ips instanceof Collection && !((Collection)ips).contains(Ips.getIp(playerSender)))
                 {
                     throw new Exception();
                 }

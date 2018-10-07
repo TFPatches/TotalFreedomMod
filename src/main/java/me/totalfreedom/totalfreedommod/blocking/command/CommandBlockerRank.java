@@ -23,16 +23,6 @@ public enum CommandBlockerRank
         this.token = token;
     }
 
-    public String getToken()
-    {
-        return this.token;
-    }
-
-    public boolean hasPermission(CommandSender sender)
-    {
-        return fromSender(sender).ordinal() >= ordinal();
-    }
-
     public static CommandBlockerRank fromSender(CommandSender sender)
     {
         if (!(sender instanceof Player))
@@ -69,5 +59,15 @@ public enum CommandBlockerRank
             }
         }
         return ANYONE;
+    }
+
+    public String getToken()
+    {
+        return this.token;
+    }
+
+    public boolean hasPermission(CommandSender sender)
+    {
+        return fromSender(sender).ordinal() >= ordinal();
     }
 }

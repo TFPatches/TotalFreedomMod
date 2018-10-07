@@ -200,7 +200,7 @@ public class RollbackManager extends FreedomService
     public List<RollbackEntry> getEntriesAtLocation(final Location location)
     {
         final int testX = location.getBlockX();
-        final short testY = (short) location.getBlockY();
+        final short testY = (short)location.getBlockY();
         final int testZ = location.getBlockZ();
         final String testWorldName = location.getWorld().getName();
 

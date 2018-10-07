@@ -2,7 +2,6 @@ package me.totalfreedom.totalfreedommod.command;
 
 import me.totalfreedom.totalfreedommod.rank.Rank;
 import me.totalfreedom.totalfreedommod.util.FUtil;
-import org.apache.commons.lang3.StringUtils;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
@@ -29,7 +28,7 @@ public class Command_rainbownick extends FreedomCommand
             msg("That nickname contains invalid characters.");
             return true;
         }
-        
+
         if (nickPlain.length() < 4 || nickPlain.length() > 30)
         {
             msg("Your nickname must be between 4 and 30 characters long.");
@@ -48,9 +47,9 @@ public class Command_rainbownick extends FreedomCommand
                 return true;
             }
         }
-        
+
         final String newNick = FUtil.rainbowify(ChatColor.stripColor(FUtil.colorize(nickPlain)));
-        
+
         plugin.esb.setNickname(sender.getName(), newNick);
 
         msg("Your nickname is now: " + newNick);

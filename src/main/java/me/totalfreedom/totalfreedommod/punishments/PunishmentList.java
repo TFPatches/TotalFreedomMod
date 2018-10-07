@@ -1,19 +1,19 @@
 package me.totalfreedom.totalfreedommod.punishments;
+
+import com.google.common.collect.Sets;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
-import java.util.ArrayList;
 import me.totalfreedom.totalfreedommod.FreedomService;
 import me.totalfreedom.totalfreedommod.TotalFreedomMod;
 import me.totalfreedom.totalfreedommod.util.FLog;
 import net.pravian.aero.config.YamlConfig;
-import com.google.common.collect.Sets;
 
 public class PunishmentList extends FreedomService
 {
 
-    private final Set<Punishment> punishments = Sets.newHashSet();
     public static final String CONFIG_FILENAME = "punishments.yml";
-
+    private final Set<Punishment> punishments = Sets.newHashSet();
     //
     private final YamlConfig config;
 

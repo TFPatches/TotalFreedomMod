@@ -15,11 +15,6 @@ import org.bukkit.entity.Player;
 public class Command_masterbuilderworld extends FreedomCommand
 {
 
-    private enum CommandMode
-    {
-        TELEPORT, TIME, WEATHER
-    }
-
     @Override
     public boolean run(CommandSender sender, Player playerSender, Command cmd, String commandLabel, String[] args, boolean senderIsConsole)
     {
@@ -153,6 +148,11 @@ public class Command_masterbuilderworld extends FreedomCommand
         {
             throw new PermissionDeniedException();
         }
+    }
+
+    private enum CommandMode
+    {
+        TELEPORT, TIME, WEATHER
     }
 
     private class PermissionDeniedException extends Exception

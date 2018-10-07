@@ -25,7 +25,6 @@ import org.apache.commons.lang3.StringUtils;
 public class Module_file extends HTTPDModule
 {
 
-    private final File rootDir = new File(ConfigEntry.HTTPD_PUBLIC_FOLDER.getString());
     public static final Map<String, String> MIME_TYPES = new HashMap<>();
 
     static
@@ -57,6 +56,8 @@ public class Module_file extends HTTPDModule
         MIME_TYPES.put("exe", "application/octet-stream");
         MIME_TYPES.put("class", "application/octet-stream");
     }
+
+    private final File rootDir = new File(ConfigEntry.HTTPD_PUBLIC_FOLDER.getString());
 
     public Module_file(TotalFreedomMod plugin, NanoHTTPD.HTTPSession session)
     {
@@ -257,7 +258,7 @@ public class Module_file extends HTTPDModule
                             @Override
                             public int available() throws IOException
                             {
-                                return (int) dataLen;
+                                return (int)dataLen;
                             }
                         };
                         fis.skip(startFrom);

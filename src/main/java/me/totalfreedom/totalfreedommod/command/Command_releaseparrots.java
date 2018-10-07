@@ -8,7 +8,7 @@ import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
 
 @CommandPermissions(level = Rank.OP, source = SourceType.ONLY_IN_GAME)
-@CommandParameters(description = "Release parrots from your shoulders.", usage = "/<command>", aliases="removeparrots")
+@CommandParameters(description = "Release parrots from your shoulders.", usage = "/<command>", aliases = "removeparrots")
 public class Command_releaseparrots extends FreedomCommand
 {
 

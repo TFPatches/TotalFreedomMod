@@ -13,11 +13,6 @@ public enum CommandBlockerAction
         this.token = token;
     }
 
-    public String getToken()
-    {
-        return this.token;
-    }
-
     public static CommandBlockerAction fromToken(String token)
     {
         for (CommandBlockerAction action : CommandBlockerAction.values())
@@ -28,5 +23,10 @@ public enum CommandBlockerAction
             }
         }
         return null;
+    }
+
+    public String getToken()
+    {
+        return this.token;
     }
 }

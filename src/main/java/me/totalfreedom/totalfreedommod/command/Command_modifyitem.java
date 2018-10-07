@@ -1,5 +1,7 @@
 package me.totalfreedom.totalfreedommod.command;
 
+import java.util.ArrayList;
+import java.util.List;
 import me.totalfreedom.totalfreedommod.rank.Rank;
 import me.totalfreedom.totalfreedommod.util.FUtil;
 import net.minecraft.server.v1_12_R1.NBTTagCompound;
@@ -17,8 +19,6 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.inventory.meta.PotionMeta;
 import org.bukkit.potion.PotionEffectType;
-import java.util.ArrayList;
-import java.util.List;
 
 @CommandPermissions(level = Rank.OP, source = SourceType.ONLY_IN_GAME)
 @CommandParameters(description = "Modify the current item in your hand", usage = "/<command> <name <message> | lore <message> | enchant <enchantment> <level> | potion <effect> <duration> <amplifier> | attribute <name> <amount> | clear>", aliases = "mi")
@@ -139,7 +139,7 @@ public class Command_modifyitem extends FreedomCommand
                     msg("The amplifier specified is not a valid integer.");
                     return true;
                 }
-                PotionMeta potionMeta = (PotionMeta) meta;
+                PotionMeta potionMeta = (PotionMeta)meta;
                 potionMeta.addCustomEffect(type.createEffect(duration, amplifier), true);
                 item.setItemMeta(potionMeta);
                 break;
@@ -227,17 +227,6 @@ public class Command_modifyitem extends FreedomCommand
             this.attribute = attribute;
         }
 
-        public String getAttribute()
-        {
-            return attribute;
-        }
-
-        @Override
-        public String toString()
-        {
-            return name;
-        }
-
         public static Attribute getByName(String name)
         {
             for (Attribute attr : Attribute.values())
@@ -248,6 +237,17 @@ public class Command_modifyitem extends FreedomCommand
                 }
             }
             return null;
+        }
+
+        public String getAttribute()
+        {
+            return attribute;
+        }
+
+        @Override
+        public String toString()
+        {
+            return name;
         }
     }
 }

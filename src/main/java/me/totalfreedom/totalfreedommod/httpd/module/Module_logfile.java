@@ -1,5 +1,11 @@
 package me.totalfreedom.totalfreedommod.httpd.module;
 
+import java.io.File;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.List;
 import me.totalfreedom.totalfreedommod.TotalFreedomMod;
 import me.totalfreedom.totalfreedommod.admin.Admin;
 import me.totalfreedom.totalfreedommod.httpd.HTMLGenerationTools;
@@ -8,12 +14,6 @@ import me.totalfreedom.totalfreedommod.httpd.HTTPDaemon;
 import me.totalfreedom.totalfreedommod.httpd.NanoHTTPD;
 import me.totalfreedom.totalfreedommod.httpd.NanoHTTPD.Response;
 import me.totalfreedom.totalfreedommod.util.FLog;
-import java.io.File;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.List;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.lang3.StringEscapeUtils;
 import org.apache.commons.lang3.StringUtils;
@@ -23,14 +23,20 @@ public class Module_logfile extends HTTPDModule
 
     private static final File LOG_FOLDER = new File("./logs/");
     private static final String[] LOG_FILTER = new String[]
-    {
-        "log",
-        "gz"
-    };
+            {
+                    "log",
+                    "gz"
+            };
 
     public Module_logfile(TotalFreedomMod plugin, NanoHTTPD.HTTPSession session)
     {
         super(plugin, session);
+    }
+
+    private static String getArg(String[] args, int index)
+    {
+        String out = (args.length == index + 1 ? args[index] : null);
+        return (out == null ? null : (out.trim().isEmpty() ? null : out.trim()));
     }
 
     @Override
@@ -162,6 +168,40 @@ public class Module_logfile extends HTTPDModule
         return entry != null && entry.isActive();
     }
 
+    private static enum ModuleMode
+    {
+
+        LIST("list"),
+        DOWNLOAD("download"),
+        INVALID(null);
+        //
+        private final String modeName;
+
+        private ModuleMode(String modeName)
+        {
+            this.modeName = modeName;
+        }
+
+        public static ModuleMode getMode(String needle)
+        {
+            for (ModuleMode mode : values())
+            {
+                final String haystack = mode.toString();
+                if (haystack != null && haystack.equalsIgnoreCase(needle))
+                {
+                    return mode;
+                }
+            }
+            return INVALID;
+        }
+
+        @Override
+        public String toString()
+        {
+            return this.modeName;
+        }
+    }
+
     private static class LogFileTransferException extends Exception
     {
 
@@ -188,46 +228,6 @@ public class Module_logfile extends HTTPDModule
         public Response getResponse()
         {
             return response;
-        }
-    }
-
-    private static String getArg(String[] args, int index)
-    {
-        String out = (args.length == index + 1 ? args[index] : null);
-        return (out == null ? null : (out.trim().isEmpty() ? null : out.trim()));
-    }
-
-    private static enum ModuleMode
-    {
-
-        LIST("list"),
-        DOWNLOAD("download"),
-        INVALID(null);
-        //
-        private final String modeName;
-
-        private ModuleMode(String modeName)
-        {
-            this.modeName = modeName;
-        }
-
-        @Override
-        public String toString()
-        {
-            return this.modeName;
-        }
-
-        public static ModuleMode getMode(String needle)
-        {
-            for (ModuleMode mode : values())
-            {
-                final String haystack = mode.toString();
-                if (haystack != null && haystack.equalsIgnoreCase(needle))
-                {
-                    return mode;
-                }
-            }
-            return INVALID;
         }
     }
 

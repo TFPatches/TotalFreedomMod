@@ -1,6 +1,10 @@
 package me.totalfreedom.totalfreedommod.discord;
 
 import com.google.common.base.Strings;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import javax.security.auth.login.LoginException;
 import me.totalfreedom.totalfreedommod.FreedomService;
 import me.totalfreedom.totalfreedommod.TotalFreedomMod;
 import me.totalfreedom.totalfreedommod.admin.Admin;
@@ -10,11 +14,6 @@ import me.totalfreedom.totalfreedommod.util.FLog;
 import net.dv8tion.jda.core.AccountType;
 import net.dv8tion.jda.core.JDA;
 import net.dv8tion.jda.core.JDABuilder;
-
-import javax.security.auth.login.LoginException;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
 
 public class Discord extends FreedomService
 {
@@ -27,6 +26,30 @@ public class Discord extends FreedomService
     public Discord(TotalFreedomMod plugin)
     {
         super(plugin);
+    }
+
+    public static String getCodeForAdmin(Admin admin)
+    {
+        for (String code : LINK_CODES.keySet())
+        {
+            if (LINK_CODES.get(code).equals(admin))
+            {
+                return code;
+            }
+        }
+        return null;
+    }
+
+    public static String getCodeForPlayer(VPlayer playerData)
+    {
+        for (String code : PLAYER_LINK_CODES.keySet())
+        {
+            if (PLAYER_LINK_CODES.get(code).equals(playerData))
+            {
+                return code;
+            }
+        }
+        return null;
     }
 
     public void startBot()
@@ -62,30 +85,6 @@ public class Discord extends FreedomService
     protected void onStart()
     {
         startBot();
-    }
-
-    public static String getCodeForAdmin(Admin admin)
-    {
-        for (String code : LINK_CODES.keySet())
-        {
-            if (LINK_CODES.get(code).equals(admin))
-            {
-                return code;
-            }
-        }
-        return null;
-    }
-
-    public static String getCodeForPlayer(VPlayer playerData)
-    {
-        for (String code : PLAYER_LINK_CODES.keySet())
-        {
-            if (PLAYER_LINK_CODES.get(code).equals(playerData))
-            {
-                return code;
-            }
-        }
-        return null;
     }
 
     @Override

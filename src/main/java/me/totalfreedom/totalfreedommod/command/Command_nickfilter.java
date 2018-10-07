@@ -20,6 +20,42 @@ import org.bukkit.entity.Player;
 public class Command_nickfilter extends FreedomCommand
 {
 
+    private static Player getPlayerByDisplayName(String needle)
+    {
+        needle = needle.toLowerCase().trim();
+
+        for (Player player : Bukkit.getOnlinePlayers())
+        {
+            if (player.getDisplayName().toLowerCase().trim().contains(needle))
+            {
+                return player;
+            }
+        }
+
+        return null;
+    }
+
+    private static Player getPlayerByDisplayNameAlt(String needle)
+    {
+        needle = needle.toLowerCase().trim();
+
+        Integer minEditDistance = null;
+        Player minEditMatch = null;
+
+        for (Player player : Bukkit.getOnlinePlayers())
+        {
+            String haystack = player.getDisplayName().toLowerCase().trim();
+            int editDistance = StringUtils.getLevenshteinDistance(needle, haystack.toLowerCase());
+            if (minEditDistance == null || minEditDistance.intValue() > editDistance)
+            {
+                minEditDistance = editDistance;
+                minEditMatch = player;
+            }
+        }
+
+        return minEditMatch;
+    }
+
     @Override
     public boolean run(CommandSender sender, Player playerSender, Command cmd, String commandLabel, String[] args, boolean senderIsConsole)
     {
@@ -83,41 +119,5 @@ public class Command_nickfilter extends FreedomCommand
         server.dispatchCommand(sender, newCommand);
 
         return true;
-    }
-
-    private static Player getPlayerByDisplayName(String needle)
-    {
-        needle = needle.toLowerCase().trim();
-
-        for (Player player : Bukkit.getOnlinePlayers())
-        {
-            if (player.getDisplayName().toLowerCase().trim().contains(needle))
-            {
-                return player;
-            }
-        }
-
-        return null;
-    }
-
-    private static Player getPlayerByDisplayNameAlt(String needle)
-    {
-        needle = needle.toLowerCase().trim();
-
-        Integer minEditDistance = null;
-        Player minEditMatch = null;
-
-        for (Player player : Bukkit.getOnlinePlayers())
-        {
-            String haystack = player.getDisplayName().toLowerCase().trim();
-            int editDistance = StringUtils.getLevenshteinDistance(needle, haystack.toLowerCase());
-            if (minEditDistance == null || minEditDistance.intValue() > editDistance)
-            {
-                minEditDistance = editDistance;
-                minEditMatch = player;
-            }
-        }
-
-        return minEditMatch;
     }
 }

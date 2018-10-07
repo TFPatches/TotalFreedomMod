@@ -21,12 +21,12 @@ public class CommandBlockerEntry
     private final String subCommand;
     @Getter
     private final String message;
-    
+
     public CommandBlockerEntry(CommandBlockerRank rank, CommandBlockerAction action, String command, String message)
     {
         this(rank, action, command, null, message);
     }
-    
+
     public CommandBlockerEntry(CommandBlockerRank rank, CommandBlockerAction action, String command, String subCommand, String message)
     {
         this.rank = rank;
@@ -35,7 +35,7 @@ public class CommandBlockerEntry
         this.subCommand = ((subCommand == null) ? null : subCommand.toLowerCase().trim());
         this.message = ((message == null || message.equals("_")) ? "That command is blocked." : message);
     }
-    
+
     public void doActions(CommandSender sender)
     {
         if (action == CommandBlockerAction.BLOCK_AND_EJECT && sender instanceof Player)
@@ -51,27 +51,27 @@ public class CommandBlockerEntry
         }
         FUtil.playerMsg(sender, FUtil.colorize(message));
     }
-    
+
     public CommandBlockerRank getRank()
     {
         return rank;
     }
-    
+
     public CommandBlockerAction getAction()
     {
         return action;
     }
-    
+
     public String getCommand()
     {
         return command;
     }
-    
+
     public String getSubCommand()
     {
         return subCommand;
     }
-    
+
     public String getMessage()
     {
         return message;

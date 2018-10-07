@@ -18,21 +18,20 @@ import org.bukkit.entity.Player;
 public class MasterBuilder implements ConfigLoadable, ConfigSavable, Validatable
 {
 
+    public static final String CONFIG_FILENAME = "masterbuilders.yml";
+    @Getter
+    private final List<String> ips = Lists.newArrayList();
     @Getter
     private String configKey;
     @Getter
     @Setter
     private String name;
     @Getter
-    private final List<String> ips = Lists.newArrayList();
-    @Getter
     @Setter
     private Date lastLogin = new Date();
     @Getter
     @Setter
     private String discordID = null;
-
-    public static final String CONFIG_FILENAME = "masterbuilders.yml";
 
     public MasterBuilder(Player player)
     {
@@ -54,7 +53,7 @@ public class MasterBuilder implements ConfigLoadable, ConfigSavable, Validatable
         output.append("MasterBuilder: ").append(name).append("\n")
                 .append("- IPs: ").append(StringUtils.join(ips, ", ")).append("\n")
                 .append("- Last Login: ").append(FUtil.dateToString(lastLogin)).append("\n");
-                //.append("- Discord ID: ").append(discordID).append("\n"); (Reserved for future usage)
+        //.append("- Discord ID: ").append(discordID).append("\n"); (Reserved for future usage)
 
         return output.toString();
     }

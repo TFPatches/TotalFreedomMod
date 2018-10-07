@@ -19,14 +19,6 @@ import org.bukkit.entity.Slime;
 public class Command_mobpurge extends FreedomCommand
 {
 
-    @Override
-    public boolean run(CommandSender sender, Player playerSender, Command cmd, String commandLabel, String[] args, boolean senderIsConsole)
-    {
-        FUtil.adminAction(sender.getName(), "Purging all mobs", true);
-        msg(purgeMobs() + " mobs removed.");
-        return true;
-    }
-
     public static int purgeMobs()
     {
         int removed = 0;
@@ -43,5 +35,13 @@ public class Command_mobpurge extends FreedomCommand
         }
 
         return removed;
+    }
+
+    @Override
+    public boolean run(CommandSender sender, Player playerSender, Command cmd, String commandLabel, String[] args, boolean senderIsConsole)
+    {
+        FUtil.adminAction(sender.getName(), "Purging all mobs", true);
+        msg(purgeMobs() + " mobs removed.");
+        return true;
     }
 }
