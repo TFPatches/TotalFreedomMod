@@ -29,7 +29,7 @@ public class Command_wiperegions extends FreedomCommand
         World world = server.getWorld(args[0]);
         if (world == null)
         {
-            msg("World : \"" + args[0] + "\" not found.");
+            msg("World: \"" + args[0] + "\" not found.");
             return true;
         }
         if (world.equals(plugin.wm.adminworld.getWorld()))
