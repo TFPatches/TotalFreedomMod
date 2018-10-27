@@ -44,7 +44,7 @@ adminlist:
   # Give the default CONSOLE senior admin privileges.
   # Handy in development environments.
   console_is_senior: true
-  
+
 # CoreProtect
 coreprotect:
   auto_wipe: false
@@ -287,6 +287,15 @@ admininfo:
     - ' &2- And apply on our forums at the link:'
     - '    &9www.totalfreedom.boards.net'
 
+# What to display in the masterbuilder info command.
+masterbuilderinfo:
+  - '&bHow to apply for Master Builder on the TotalFreedom Server:'
+  - ' &6- Do not ask for Master Builder in game'
+  - ' &2- Screenshot some of your previous builds'
+  - ' &6- Copy the template and create a thread on our forums'
+  - ' &2- Forum Link:'
+  - '    &9www.totalfreedom.boards.net'
+
 # Famous players - cannot be banned by username
 famous_players:
   - honeydew
@@ -367,7 +376,7 @@ overlord_ips:
   - 107.191.101.27
   - 178.62.117.94
   - 141.101.104.243
-  
+
 # Blocked Chat Codes - Use &code,&code2,&code3 (No spaces)
 blocked_chatcodes: '&0,&k,&m,&n'
 
