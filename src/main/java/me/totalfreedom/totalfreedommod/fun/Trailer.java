@@ -68,17 +68,11 @@ public class Trailer extends FreedomService
         fromBlock.setType(MaterialGroup.WOOL_COLORS.get(random.nextInt(MaterialGroup.WOOL_COLORS.size())));
         BlockData data = fromBlock.getBlockData();
         Material material = Material.getMaterial(String.valueOf(fromBlock.getType()));
-        for (int x = -1; x <= 1; x++)
+        final Location trail_pos;
+        trail_pos = new Location(event.getPlayer().getWorld(), fromBlock.getX(), fromBlock.getY(), fromBlock.getZ());
+        if (trailPlayers.contains(event.getPlayer().getName()) && plugin.cpb.isEnabled())
         {
-            for (int z = -1; z <= 1; z++)
-            {
-                final Location trail_pos;
-                trail_pos = new Location(event.getPlayer().getWorld(), fromBlock.getX() + x, fromBlock.getY(), fromBlock.getZ() + z);
-                if (trailPlayers.contains(event.getPlayer().getName()) && plugin.cpb.isEnabled())
-                {
-                    plugin.cpb.getCoreProtectAPI().logPlacement(event.getPlayer().getName(), trail_pos, material, data);
-                }
-            }
+            plugin.cpb.getCoreProtectAPI().logPlacement(event.getPlayer().getName(), trail_pos, material, data);
         }
     }
 
