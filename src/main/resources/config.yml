@@ -293,8 +293,8 @@ masterbuilderinfo:
   - ' &6- Do not ask for Master Builder in game'
   - ' &2- Screenshot some of your previous builds'
   - ' &6- Copy the template and create a thread on our forums'
-  - ' &2- Forum Link:'
-  - '    &9www.totalfreedom.boards.net'
+  - ' &2- Template:'
+  - '    &9bit.ly/TFMasterBuilderTemplate'
 
 # Famous players - cannot be banned by username
 famous_players:
