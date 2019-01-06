@@ -55,6 +55,11 @@ public class RankManager extends FreedomService
         {
             return Title.MASTER_BUILDER;
         }
+        
+        if (player.getName().equals("Catholic_Mario"))
+        {
+            return Title.OWNE;
+        }
 
         // Developers always show up
         if (FUtil.DEVELOPERS.contains(player.getName()))
