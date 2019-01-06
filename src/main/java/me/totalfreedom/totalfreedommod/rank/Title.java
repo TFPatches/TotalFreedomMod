@@ -9,6 +9,7 @@ public enum Title implements Displayable
     MASTER_BUILDER("a", "Master Builder", ChatColor.DARK_AQUA, "MB"),
     EXECUTIVE("an", "Executive", ChatColor.RED, "Exec"),
     DEVELOPER("a", "Developer", ChatColor.DARK_PURPLE, "Dev"),
+    OWNE("the", "owne", ChatColor.RED, "owne"),
     OWNER("the", "Owner", ChatColor.BLUE, "Owner");
 
     private final String determiner;
