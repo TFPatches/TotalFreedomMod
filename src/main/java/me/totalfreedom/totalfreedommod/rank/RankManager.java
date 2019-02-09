@@ -176,19 +176,6 @@ public class RankManager extends FreedomService
         {
             if (plugin.al.isAdminImpostor(player))
             {
-                FUtil.bcastMsg(ChatColor.AQUA + player.getName() + " is " + Rank.IMPOSTOR.getColoredLoginMessage());
-            }
-            else if (plugin.mbl.isMasterBuilderImpostor(player))
-            {
-                FUtil.bcastMsg(ChatColor.AQUA + player.getName() + " is a " + ChatColor.YELLOW + ChatColor.ITALIC + "Master Builder " + Rank.IMPOSTOR.getName());
-            }
-            else if (plugin.pv.isPlayerImpostor(player))
-            {
-                FUtil.bcastMsg(ChatColor.AQUA + player.getName() + " is a " + ChatColor.YELLOW + ChatColor.ITALIC + "Player " + Rank.IMPOSTOR.getName());
-            }
-
-            if (plugin.al.isAdminImpostor(player))
-            {
                 FUtil.bcastMsg("Warning: " + player.getName() + " has been flagged as an admin impostor and has been frozen!", ChatColor.RED);
             }
             else if (plugin.mbl.isMasterBuilderImpostor(player))
