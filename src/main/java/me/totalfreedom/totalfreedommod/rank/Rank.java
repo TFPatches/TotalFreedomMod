@@ -10,7 +10,7 @@ public enum Rank implements Displayable
     NON_OP("a", "Non-Op", Type.PLAYER, "", ChatColor.WHITE),
     OP("an", "Op", Type.PLAYER, "OP", ChatColor.GREEN),
     SUPER_ADMIN("a", "Super Admin", Type.ADMIN, "SA", ChatColor.AQUA),
-    TELNET_ADMIN("a", "Telnet Admin", Type.ADMIN, "STA", ChatColor.DARK_GREEN),
+    TELNET_ADMIN("a", "Telnet Admin", Type.ADMIN, "STA", ChatColor.GREEN),
     SENIOR_ADMIN("a", "Senior Admin", Type.ADMIN, "SrA", ChatColor.GOLD),
     TELNET_CONSOLE("the", "Console", Type.ADMIN_CONSOLE, "Console", ChatColor.DARK_PURPLE),
     SENIOR_CONSOLE("the", "Console", Type.ADMIN_CONSOLE, "Console", ChatColor.DARK_PURPLE);
