@@ -37,11 +37,6 @@ public class Command_wiperegions extends FreedomCommand
             return true;
         }
 
-        if (world.equals(plugin.wm.adminworld.getWorld()))
-        {
-            checkRank(Rank.SENIOR_ADMIN);
-        }
-
         if (plugin.wgb.wipeRegions(world))
         {
             FUtil.adminAction(sender.getName(), "Wiped all regions in " + world.getName(), true);
