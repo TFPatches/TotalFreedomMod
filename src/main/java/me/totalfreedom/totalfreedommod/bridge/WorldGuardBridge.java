@@ -1,8 +1,11 @@
 package me.totalfreedom.totalfreedommod.bridge;
 
+import com.sk89q.worldedit.bukkit.BukkitAdapter;
+import com.sk89q.worldguard.WorldGuard;
 import com.sk89q.worldguard.bukkit.WorldGuardPlugin;
 import com.sk89q.worldguard.protection.managers.RegionManager;
 import com.sk89q.worldguard.protection.regions.ProtectedRegion;
+import com.sk89q.worldguard.protection.regions.RegionContainer;
 import java.util.Map;
 import me.totalfreedom.totalfreedommod.FreedomService;
 import me.totalfreedom.totalfreedommod.TotalFreedomMod;
@@ -12,7 +15,6 @@ import org.bukkit.plugin.Plugin;
 
 public class WorldGuardBridge extends FreedomService
 {
-
     private WorldGuardPlugin worldGuardPlugin;
 
     public WorldGuardBridge(TotalFreedomMod plugin)
@@ -51,20 +53,25 @@ public class WorldGuardBridge extends FreedomService
         return worldGuardPlugin;
     }
 
-    public int wipeRegions(World world)
+    public Boolean wipeRegions(World world)
     {
-        int count = 0;
-        RegionManager regionManager = getWorldGuardPlugin().getRegionManager(world);
-        if (regionManager != null)
+        RegionContainer container = WorldGuard.getInstance().getPlatform().getRegionContainer();
+        com.sk89q.worldedit.world.World weWorld = BukkitAdapter.adapt(world);
+        RegionManager rm = container.get(weWorld);
+        if (rm != null)
         {
-            Map<String, ProtectedRegion> regions = regionManager.getRegions();
+            if (rm.getRegions().isEmpty())
+            {
+                return false;
+            }
+
+            Map<String, ProtectedRegion> regions = rm.getRegions();
             for (ProtectedRegion region : regions.values())
             {
-                regionManager.removeRegion(region.getId());
-                count++;
+                rm.removeRegion(region.getId());
             }
         }
-        return count;
+        return true;
     }
 
     public boolean isEnabled()

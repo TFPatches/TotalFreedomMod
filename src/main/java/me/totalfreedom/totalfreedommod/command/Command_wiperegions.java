@@ -30,18 +30,16 @@ public class Command_wiperegions extends FreedomCommand
         }
 
         World world = server.getWorld(args[0]);
+
         if (world == null)
         {
             msg("There is no world named \"" + args[0] + "\"", ChatColor.RED);
             return true;
         }
 
-        int regionsWiped = plugin.wgb.wipeRegions(world);
-
-        if (regionsWiped != 0)
+        if (plugin.wgb.wipeRegions(world))
         {
             FUtil.adminAction(sender.getName(), "Wiped all regions in " + world.getName(), true);
-            msg("Wiped " + regionsWiped + " regions in " + world.getName());
             return true;
         }
         else
@@ -68,7 +66,6 @@ public class Command_wiperegions extends FreedomCommand
         {
             return getAllWorldNames();
         }
-
         return Collections.emptyList();
     }
 }
