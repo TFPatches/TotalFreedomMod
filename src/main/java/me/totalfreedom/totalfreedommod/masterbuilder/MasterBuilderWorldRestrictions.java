@@ -20,7 +20,7 @@ public class MasterBuilderWorldRestrictions extends FreedomService
 {
 
     public final List<String> BLOCKED_WORLDEDIT_COMMANDS = Arrays.asList(
-            "green", "fixlava", "fixwater", "br", "brush", "tool", "mat", "range", "cs", "up", "fill", "setblock", "tree");
+            "green", "fixlava", "fixwater", "br", "brush", "tool", "mat", "range", "cs", "up", "fill", "setblock", "tree", "replacenear");
 
     public MasterBuilderWorldRestrictions(TotalFreedomMod plugin)
     {
@@ -39,7 +39,7 @@ public class MasterBuilderWorldRestrictions extends FreedomService
 
     public boolean doRestrict(Player player)
     {
-        if (!plugin.mbl.isMasterBuilder(player) && !FUtil.isExecutive(player.getName()) && player.getWorld().equals(plugin.wm.masterBuilderWorld.getWorld()))
+        if (!plugin.mbl.isMasterBuilder(player) && !FUtil.canManageMasterBuilders(player.getName()) && player.getWorld().equals(plugin.wm.masterBuilderWorld.getWorld()))
         {
             return true;
         }
