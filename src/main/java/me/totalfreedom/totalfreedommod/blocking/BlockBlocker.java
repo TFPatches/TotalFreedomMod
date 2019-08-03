@@ -5,14 +5,15 @@ import me.totalfreedom.totalfreedommod.TotalFreedomMod;
 import me.totalfreedom.totalfreedommod.config.ConfigEntry;
 import me.totalfreedom.totalfreedommod.util.FLog;
 import me.totalfreedom.totalfreedommod.util.FUtil;
-import me.totalfreedom.totalfreedommod.util.Groups;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
+import org.bukkit.entity.Egg;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.block.BlockPlaceEvent;
 import org.bukkit.inventory.ItemStack;
+import static net.minecraft.server.v1_14_R1.EnumMobSpawn.SPAWN_EGG;
 
 public class BlockBlocker extends FreedomService
 {
@@ -97,7 +98,14 @@ public class BlockBlocker extends FreedomService
                 event.setCancelled(true);
                 break;
             }
+            case JIGSAW:
+            {
+                player.sendMessage(ChatColor.GRAY + "Jigsaws are disabled.");
+                player.getInventory().setItem(player.getInventory().getHeldItemSlot(), new ItemStack(Material.COOKIE, 1));
+                event.setCancelled(true);
+                break;
+            }
+            //TODO: seth block eggs thanks
         }
     }
-
 }

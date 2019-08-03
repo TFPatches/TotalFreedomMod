@@ -6,13 +6,13 @@ import java.util.Collections;
 import java.util.List;
 import me.totalfreedom.totalfreedommod.rank.Rank;
 import me.totalfreedom.totalfreedommod.util.FUtil;
-import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang.StringUtils;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.potion.PotionEffectType;
 
-@CommandPermissions(level = Rank.SUPER_ADMIN, source = SourceType.BOTH)
+@CommandPermissions(level = Rank.OP, source = SourceType.BOTH)
 @CommandParameters(description = "Shows (optionally clears) invisible players", usage = "/<command> [clear]")
 public class Command_invis extends FreedomCommand
 {
@@ -25,13 +25,16 @@ public class Command_invis extends FreedomCommand
         {
             if (args[0].equalsIgnoreCase("clear"))
             {
-                FUtil.adminAction(sender.getName(), "Clearing all invisibility potion effects from all players", true);
-                clear = true;
+                if(!plugin.al.isAdmin(sender))
+                    return noPerms();
+                else 
+                {
+                    FUtil.adminAction(sender.getName(), "Clearing all invisibility potion effects from all players", true);
+                    clear = true;
+                }
             }
             else
-            {
                 return false;
-            }
         }
 
         List<String> players = new ArrayList<String>();
@@ -55,14 +58,12 @@ public class Command_invis extends FreedomCommand
             msg("There are no invisible players");
             return true;
         }
+        
         if (clear)
-        {
             msg("Cleared " + clears + " players");
-        }
         else
-        {
             msg("Invisible players (" + players.size() + "): " + StringUtils.join(players, ", "));
-        }
+            
         return true;
     }
 
@@ -70,9 +71,7 @@ public class Command_invis extends FreedomCommand
     public List<String> getTabCompleteOptions(CommandSender sender, Command command, String alias, String[] args)
     {
         if (args.length == 1 && plugin.al.isAdmin(sender))
-        {
             return Arrays.asList("clear");
-        }
 
         return Collections.emptyList();
     }

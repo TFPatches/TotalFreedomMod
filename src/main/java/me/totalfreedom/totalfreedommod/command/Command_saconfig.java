@@ -13,7 +13,7 @@ import me.totalfreedom.totalfreedommod.playerverification.VPlayer;
 import me.totalfreedom.totalfreedommod.rank.Rank;
 import me.totalfreedom.totalfreedommod.util.FUtil;
 import net.pravian.aero.util.Ips;
-import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang.StringUtils;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
@@ -220,9 +220,9 @@ public class Command_saconfig extends FreedomCommand
                         MasterBuilder masterBuilder = plugin.mbl.getMasterBuilder(player);
                         admin.setDiscordID(plugin.mbl.getMasterBuilder(player).getDiscordID());
                     }
-                    else if (plugin.pv.getVerificationPlayer(admin.getName()) != null)
+                    else if (plugin.pv.getVerificationPlayer(player.getName()) != null)
                     {
-                        VPlayer vPlayer = plugin.pv.getVerificationPlayer(admin.getName());
+                        VPlayer vPlayer = plugin.pv.getVerificationPlayer(player.getName());
                         if (vPlayer.getDiscordId() != null)
                         {
                             admin.setDiscordID(vPlayer.getDiscordId());

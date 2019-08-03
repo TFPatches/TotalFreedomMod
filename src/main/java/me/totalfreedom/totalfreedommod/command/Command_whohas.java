@@ -3,14 +3,14 @@ package me.totalfreedom.totalfreedommod.command;
 import java.util.ArrayList;
 import java.util.List;
 import me.totalfreedom.totalfreedommod.rank.Rank;
-import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang.StringUtils;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
-@CommandPermissions(level = Rank.SUPER_ADMIN, source = SourceType.BOTH)
+@CommandPermissions(level = Rank.OP, source = SourceType.BOTH)
 @CommandParameters(description = "See who has a block and optionally clears the item.", usage = "/<command> <item> clear", aliases = "wh")
 public class Command_whohas extends FreedomCommand
 {
@@ -35,6 +35,11 @@ public class Command_whohas extends FreedomCommand
         }
 
         final List<String> players = new ArrayList<>();
+
+        if (!plugin.al.isAdmin(playerSender))
+        {
+            return noPerms();
+        }
 
         for (final Player player : server.getOnlinePlayers())
         {

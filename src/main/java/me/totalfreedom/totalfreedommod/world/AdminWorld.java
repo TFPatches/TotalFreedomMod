@@ -8,7 +8,7 @@ import java.util.Map;
 import java.util.Map.Entry;
 import me.totalfreedom.totalfreedommod.config.ConfigEntry;
 import me.totalfreedom.totalfreedommod.util.FLog;
-import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang.StringUtils;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
@@ -67,7 +67,7 @@ public final class AdminWorld extends CustomWorld
         world.setSpawnLocation(0, 50, 0);
 
         final Block welcomeSignBlock = world.getBlockAt(0, 50, 0);
-        welcomeSignBlock.setType(Material.SIGN);
+        welcomeSignBlock.setType(Material.OAK_SIGN);
         org.bukkit.block.Sign welcomeSign = (org.bukkit.block.Sign)welcomeSignBlock.getState();
 
         org.bukkit.material.Sign signData = (org.bukkit.material.Sign)welcomeSign.getData();

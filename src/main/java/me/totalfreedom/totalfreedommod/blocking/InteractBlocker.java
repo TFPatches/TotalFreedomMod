@@ -51,14 +51,32 @@ public class InteractBlocker extends FreedomService
         }
     }
 
+    @EventHandler(priority = EventPriority.HIGH)
+    public void onRightClickBell(PlayerInteractEvent event)
+    {
+        if (event.getClickedBlock() != null)
+        {
+            if (event.getClickedBlock().getType().equals(Material.BELL))
+            {
+                if (!ConfigEntry.ALLOW_BELLS.getBoolean())
+                {
+                    event.setCancelled(true);
+                }
+            }
+        }
+    }
+
     private void handleRightClick(PlayerInteractEvent event)
     {
         final Player player = event.getPlayer();
 
-        if (event.getClickedBlock() != null && event.getClickedBlock().getType().equals(Material.STRUCTURE_BLOCK))
+        if (event.getClickedBlock() != null)
         {
-            event.setCancelled(true);
-            event.getPlayer().closeInventory();
+            if (event.getClickedBlock().getType().equals(Material.STRUCTURE_BLOCK) || event.getClickedBlock().getType().equals(Material.JIGSAW))
+            {
+                event.setCancelled(true);
+                event.getPlayer().closeInventory();
+            }
         }
 
         switch (event.getMaterial())

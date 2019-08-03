@@ -1,18 +1,22 @@
 package me.totalfreedom.totalfreedommod.command;
 
 import java.io.BufferedReader;
+import java.io.FileNotFoundException;
 import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLConnection;
+import java.io.IOException;
 import me.totalfreedom.totalfreedommod.rank.Rank;
 import me.totalfreedom.totalfreedommod.util.FLog;
+import me.totalfreedom.totalfreedommod.util.FSync;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.scheduler.BukkitRunnable;
 
-@CommandPermissions(level = Rank.SUPER_ADMIN, source = SourceType.BOTH)
+@CommandPermissions(level = Rank.OP, source = SourceType.BOTH)
 @CommandParameters(description = "Validates if a given account is premium.", usage = "/<command> <player>", aliases = "prem")
 public class Command_premium extends FreedomCommand
 {
@@ -21,21 +25,15 @@ public class Command_premium extends FreedomCommand
     public boolean run(CommandSender sender, Player playerSender, Command cmd, String commandLabel, String[] args, boolean senderIsConsole)
     {
         if (args.length != 1)
-        {
             return false;
-        }
 
         final Player player = getPlayer(args[0]);
         final String name;
 
         if (player != null)
-        {
             name = player.getName();
-        }
         else
-        {
             name = args[0];
-        }
 
         new BukkitRunnable()
         {
@@ -44,34 +42,32 @@ public class Command_premium extends FreedomCommand
             {
                 try
                 {
-                    final URL getUrl = new URL("http://axis.iaero.me/accstatus?username=" + name + "&format=plain");
-                    final URLConnection urlConnection = getUrl.openConnection();
-                    final String message;
-                    try ( // Read the response
-                          BufferedReader in = new BufferedReader(new InputStreamReader(urlConnection.getInputStream())))
+                    final URL getUrl = new URL("https://api.ashcon.app/mojang/v2/user/" + name);
+                    final HttpURLConnection urlConnection = (HttpURLConnection)getUrl.openConnection();
+                    urlConnection.setRequestProperty("User-Agent", "");
+                    String message = "";
+                    /*old code
+                    BufferedReader in = new BufferedReader(new InputStreamReader(urlConnection.getInputStream())))
+                    //message = (!"PREMIUM".equalsIgnoreCase(in.readLine()) ? ChatColor.RED + "No" : ChatColor.DARK_GREEN + "Yes");
+                    */
+                    try
                     {
-                        message = (!"PREMIUM".equalsIgnoreCase(in.readLine()) ? ChatColor.RED + "No" : ChatColor.DARK_GREEN + "Yes");
+                        if (urlConnection.getResponseCode() == 200)
+                            message = ChatColor.GREEN + "Yes";
+                        else
+                            message = ChatColor.RED + "No";                            
+                        FSync.playerMsg(sender, "Player " + name + " is premium: " + message);
                     }
-
-                    if (!plugin.isEnabled())
+                    catch (IOException e)
                     {
-                        return;
+                       FSync.playerMsg(sender, ChatColor.RED + "There was an error on trying to connect to the API server");
                     }
-
-                    new BukkitRunnable()
-                    {
-                        @Override
-                        public void run()
-                        {
-                            msg("Player " + name + " is premium: " + message);
-                        }
-                    }.runTask(plugin);
-
+                    
                 }
-                catch (Exception ex)
+                catch (IOException ex)
                 {
                     FLog.severe(ex);
-                    msg("There was an error querying the Mojang server.", ChatColor.RED);
+                    msg("There was an error querying the API server.", ChatColor.RED);
                 }
             }
         }.runTaskAsynchronously(plugin);
