@@ -142,9 +142,9 @@ public class Command_myadmin extends FreedomCommand
                 }
 
                 String msg = StringUtils.join(args, " ", 1, args.length);
-                if (!msg.contains("%rank%") && !msg.contains("%coloredrank%"))
+                if (!msg.contains("%rank%"))
                 {
-                    msg("Your login message must contain your rank. Use either %rank% or %coloredrank% to specify where you want the rank", ChatColor.RED);
+                    msg("Your login message must contain your rank. Use %rank% to specify where you want it.", ChatColor.RED);
                     return true;
                 }
                 FUtil.adminAction(sender.getName(), "Setting personal login message" + (init == null ? "" : " for " + targetPlayer.getName()), false);
