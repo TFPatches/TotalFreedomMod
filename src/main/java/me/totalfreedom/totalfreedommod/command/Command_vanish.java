@@ -41,11 +41,11 @@ public class Command_vanish extends FreedomCommand
             msg(ChatColor.GOLD + "You have been unvanished.");
             if (admin.hasLoginMessage())
             {
-                loginMsg = FUtil.colorize(admin.getLoginMessage());
+                loginMsg = FUtil.colorize(admin.getLoginMessage()).replace("%rank%", plugin.rm.getDisplay(admin).getName()).replace("%coloredrank%", plugin.rm.getDisplay(admin).getColoredName());
             }
             if (!silent)
             {
-                FUtil.bcastMsg(ChatColor.AQUA + (loginMsg.contains("%name%") ? "" : playerSender.getName() + " is ") + FUtil.colorize(loginMsg).replace("%name%", playerSender.getName()));
+                FUtil.bcastMsg(ChatColor.AQUA + sender.getName() + " is " + loginMsg);
                 FUtil.bcastMsg(playerSender.getName() + " joined the game", ChatColor.YELLOW);
             }
             if (admin.getTag() != null)
@@ -64,7 +64,6 @@ public class Command_vanish extends FreedomCommand
                 player.showPlayer(plugin, playerSender);
             }
             plugin.esb.setVanished(playerSender.getName(), false);
-            playerSender.removePotionEffect(PotionEffectType.INVISIBILITY);
             playerSender.setPlayerListName(StringUtils.substring(displayName, 0, 16));
             VANISHED.remove(playerSender);
         }
@@ -86,7 +85,6 @@ public class Command_vanish extends FreedomCommand
                 }
             }
             plugin.esb.setVanished(playerSender.getName(), true);
-            playerSender.addPotionEffect(new PotionEffect(PotionEffectType.INVISIBILITY, 1000000, 1, false, true));
             VANISHED.add(playerSender);
         }
         return true;
