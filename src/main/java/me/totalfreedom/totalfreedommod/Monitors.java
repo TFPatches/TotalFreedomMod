@@ -16,7 +16,6 @@ public class Monitors extends FreedomService
 {
 
     private final DecimalFormat decimalFormat = new DecimalFormat("#");
-    private String potionSpyPrefix = ChatColor.DARK_GRAY + "[" + ChatColor.YELLOW + "PotionSpy" + ChatColor.DARK_GRAY + "] ";
 
     public Monitors(TotalFreedomMod plugin)
     {
@@ -55,7 +54,7 @@ public class Monitors extends FreedomService
         {
             if (plugin.al.isAdmin(p) && plugin.al.getAdmin(p).getPotionSpy())
             {
-                FUtil.playerMsg(p, potionSpyPrefix + ChatColor.WHITE + player.getName() + " splashed " + event.getEntity().getItem().getAmount() + " " + droppedItem + " at X: " + decimalFormat.format(location.getX()) + ", Y: " + decimalFormat.format(location.getY()) + ", Z: " + decimalFormat.format(location.getZ()) + ", in the world '" + location.getWorld().getName() + "'.");
+                FUtil.playerMsg(p, ChatColor.GRAY + player.getName() + ": " + droppedItem + ", X: " + decimalFormat.format(location.getX()) + ", Y: " + decimalFormat.format(location.getY()) + ", Z: " + decimalFormat.format(location.getZ()) + ", World: " + location.getWorld().getName());
             }
         }
     }
@@ -82,7 +81,7 @@ public class Monitors extends FreedomService
         {
             if (plugin.al.isAdmin(p) && plugin.al.getAdmin(p).getPotionSpy())
             {
-                FUtil.playerMsg(p, potionSpyPrefix + ChatColor.WHITE + player.getName() + " splashed " + event.getEntity().getItem().getAmount() + " " + droppedItem + " at X: " + decimalFormat.format(location.getX()) + ", Y: " + decimalFormat.format(location.getY()) + ", Z: " + decimalFormat.format(location.getZ()) + ", in the world '" + location.getWorld().getName() + "'.");
+                FUtil.playerMsg(p, ChatColor.GRAY + player.getName() + ": " + droppedItem + ", X: " + decimalFormat.format(location.getX()) + ", Y: " + decimalFormat.format(location.getY()) + ", Z: " + decimalFormat.format(location.getZ()) + ", World: " + location.getWorld().getName());
             }
         }
     }
