@@ -2,10 +2,8 @@ package me.totalfreedom.totalfreedommod.blocking;
 
 import me.totalfreedom.totalfreedommod.FreedomService;
 import me.totalfreedom.totalfreedommod.TotalFreedomMod;
-import net.minecraft.server.v1_14_R1.NBTTagCompound;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
-import org.bukkit.craftbukkit.v1_14_R1.inventory.CraftItemStack;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
@@ -37,16 +35,9 @@ public class InventoryBlocker extends FreedomService
                         ItemStack item = inv.getItem(i);
                         if (item == null)
                             continue;
-                        if (!item.hasItemMeta())
-                            continue;
                         if (item.getType() == Material.JUKEBOX)
                         {
-                            if (!CraftItemStack.asNMSCopy(item).hasTag())
-                                continue;
-                            net.minecraft.server.v1_14_R1.ItemStack nmsItem = CraftItemStack.asNMSCopy(item);
-                            NBTTagCompound compound = nmsItem.getTag();
-                            compound.set("BlockEntityTag", null);
-                            inv.setItem(i, new ItemStack(CraftItemStack.asBukkitCopy(nmsItem)));
+                            inv.setItem(i, new ItemStack(Material.JUKEBOX));
                         }
                     }
                 }
