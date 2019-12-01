@@ -135,9 +135,11 @@ public class Discord extends FreedomService
 
     public void messageChatChannel(String message)
     {
-        message = message.replace("@everyone", "everyone");
-        message = message.replace("@here", "here");
         String chat_channel_id = ConfigEntry.DISCORD_CHAT_CHANNEL_ID.getString();
+        if (message.contains("@everyone") || message.contains("@here"))
+        {
+            message = StringUtils.remove(message, "@");
+        }
         if (enabled && !chat_channel_id.isEmpty())
         {
             bot.getTextChannelById(chat_channel_id).sendMessage(message).queue();
