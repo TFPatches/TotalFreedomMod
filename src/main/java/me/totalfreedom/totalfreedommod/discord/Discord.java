@@ -2,7 +2,6 @@ package me.totalfreedom.totalfreedommod.discord;
 
 import com.earth2me.essentials.User;
 import com.google.common.base.Strings;
-import com.sun.xml.internal.ws.util.StringUtils;
 import java.time.Instant;
 import java.time.ZonedDateTime;
 import java.util.ArrayList;
@@ -27,6 +26,7 @@ import net.dv8tion.jda.api.entities.Role;
 import net.dv8tion.jda.api.entities.TextChannel;
 import net.dv8tion.jda.api.events.ReadyEvent;
 import net.dv8tion.jda.api.hooks.ListenerAdapter;
+import net.pravian.aero.util.StringUtils;
 import org.apache.commons.lang.WordUtils;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
