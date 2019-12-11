@@ -13,6 +13,7 @@ import me.totalfreedom.totalfreedommod.util.FLog;
 import me.totalfreedom.totalfreedommod.util.FUtil;
 import net.pravian.aero.command.CommandReflection;
 import org.apache.commons.lang.StringUtils;
+import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandMap;
 import org.bukkit.command.CommandSender;
@@ -129,6 +130,12 @@ public class CommandBlocker extends FreedomService
             // CommandBlocker handles messages and broadcasts
             event.setCancelled(true);
         }
+
+        if (event.getMessage().contains("translation.test.invalid") || event.getMessage().contains("translation.test.invalid2"))
+        {
+            event.setCancelled(true);
+            FUtil.playerMsg(event.getPlayer(), ChatColor.RED + "No crishy crashy faggy");
+        }
     }
 
     public boolean isCommandBlocked(String command, CommandSender sender)
@@ -160,6 +167,11 @@ public class CommandBlocker extends FreedomService
 
         for (String part : commandParts)
         {
+            if (command.startsWith("/") && !plugin.al.isAdmin(sender) && (part.contains("#copy") || part.contains("#clipboard")))
+            {
+                FUtil.playerMsg(sender, "WorldEdit copy variables are disabled.");
+                return true;
+            }
             Matcher matcher = flagPattern.matcher(part);
             if (!matcher.matches())
             {

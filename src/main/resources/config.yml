@@ -24,6 +24,9 @@ server:
   # All players who show up as executive
   executives: []
 
+  # All players who show up as assistant executive
+  assistant_executives: []
+
   # All those who can manage the master builder list
   master_builder_management: []
 
@@ -47,14 +50,34 @@ discord:
   server_id: ''
   # Channel to send /report messages to
   report_channel_id: ''
+  # Channel for discord to minecraft and vice-versa
+  chat_channel_id: ''
   # Do you want roles to sync with the server?
   role_sync: false
+  # Master Admin role ID
+  master_builder_role_id: ''
   # Super Admin role ID
   super_role_id: ''
   # Telnet Admin role ID
   telnet_role_id: ''
   # Senior Admin role ID
   senior_role_id: ''
+  # Developer role ID
+  developer_role_id: ''
+  # Assistant Executive Admin role ID
+  assistant_executive_role_id: ''
+  # Executive Admin role ID
+  executive_role_id: ''
+  # Owner role ID
+  server_owner_role_id: ''
+  
+# The shop
+shop:
+  # Enable the shop
+  enabled: true
+  
+  # Shop prefix
+  prefix: '&7&l[&8&lTF Shop&7&l]'
 
 # Admin list
 adminlist:
@@ -90,8 +113,6 @@ social_links:
   Forum: 'https://totalfreedom.boards.net/'
   Website: 'https://totalfreedom.me/'
   Discord: 'https://discordapp.com/invite/XXjmAmV/'
-  Twitter: 'https://twitter.com/TotalFreedomMC'
-
 
 # Blocking certain events
 allow:
@@ -108,7 +129,15 @@ allow:
   frostwalker: false
   unsafe_enchantments: true
   bells: true
-  armorstands: false
+  armorstands: true
+  minecarts: false
+  clearonjoin: false
+  tpronjoin: false
+  structureblocks: false
+  jigsaws: false
+  grindstones: false
+  jukeboxes: false
+  spawners: false
 
 # Blocked commands:
 #
@@ -240,6 +269,7 @@ disable:
 landmines_enabled: false
 mp44_enabled: false
 tossmob_enabled: false
+4chan_enabled: false
 
 # Moblimiter
 moblimiter:
