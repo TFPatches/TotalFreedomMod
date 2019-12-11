@@ -5,7 +5,6 @@ import me.totalfreedom.totalfreedommod.TotalFreedomMod;
 import me.totalfreedom.totalfreedommod.admin.Admin;
 import me.totalfreedom.totalfreedommod.config.ConfigEntry;
 import me.totalfreedom.totalfreedommod.httpd.NanoHTTPD;
-import me.totalfreedom.totalfreedommod.util.FLog;
 import me.totalfreedom.totalfreedommod.util.FUtil;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
@@ -34,7 +33,9 @@ public class Module_list extends HTTPDModule
             final JSONArray telnetadmins = new JSONArray();
             final JSONArray senioradmins = new JSONArray();
             final JSONArray developers = new JSONArray();
+            final JSONArray assistant_executives = new JSONArray();
             final JSONArray executives = new JSONArray();
+            final JSONArray owners = new JSONArray();
 
             for (Player player : Bukkit.getOnlinePlayers())
             {
@@ -54,14 +55,23 @@ public class Module_list extends HTTPDModule
                     developers.add(player.getName());
                 }
 
+                if (ConfigEntry.SERVER_ASSISTANT_EXECUTIVES.getList().contains(player.getName()) && !FUtil.DEVELOPERS.contains(player.getName()))
+                {
+                    assistant_executives.add(player.getName());
+                }
+
                 if (ConfigEntry.SERVER_EXECUTIVES.getList().contains(player.getName()) && !FUtil.DEVELOPERS.contains(player.getName()))
                 {
                     executives.add(player.getName());
                 }
 
+                if (ConfigEntry.SERVER_OWNERS.getList().contains(player.getName()))
+                {
+                    owners.add(player.getName());
+                }
+
                 if (!plugin.al.isAdmin(player) && !hasSpecialTitle(player))
                 {
-                    FLog.info(player.getName() + " is an op");
                     operators.add(player.getName());
                 }
 
@@ -91,7 +101,11 @@ public class Module_list extends HTTPDModule
             responseObject.put("telnetadmins", telnetadmins);
             responseObject.put("senioradmins", senioradmins);
             responseObject.put("developers", developers);
+            responseObject.put("assistant_executives", assistant_executives);
             responseObject.put("executives", executives);
+            responseObject.put("owners", owners);
+            responseObject.put("online", server.getOnlinePlayers().size());
+            responseObject.put("max", server.getMaxPlayers());
 
             final NanoHTTPD.Response response = new NanoHTTPD.Response(NanoHTTPD.Response.Status.OK, NanoHTTPD.MIME_JSON, responseObject.toString());
             response.addHeader("Access-Control-Allow-Origin", "*");
@@ -132,7 +146,7 @@ public class Module_list extends HTTPDModule
 
     public boolean hasSpecialTitle(Player player)
     {
-        if (FUtil.DEVELOPERS.contains(player.getName()) || ConfigEntry.SERVER_EXECUTIVES.getList().contains(player.getName()) || ConfigEntry.SERVER_OWNERS.getList().contains(player.getName()))
+        if (FUtil.DEVELOPERS.contains(player.getName()) || ConfigEntry.SERVER_EXECUTIVES.getList().contains(player.getName()) || ConfigEntry.SERVER_ASSISTANT_EXECUTIVES.getList().contains(player.getName()) || ConfigEntry.SERVER_OWNERS.getList().contains(player.getName()))
         {
             return true;
         }

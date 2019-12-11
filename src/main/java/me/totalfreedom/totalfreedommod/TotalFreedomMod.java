@@ -39,12 +39,12 @@ import me.totalfreedom.totalfreedommod.httpd.HTTPDaemon;
 import me.totalfreedom.totalfreedommod.masterbuilder.MasterBuilder;
 import me.totalfreedom.totalfreedommod.masterbuilder.MasterBuilderList;
 import me.totalfreedom.totalfreedommod.masterbuilder.MasterBuilderWorldRestrictions;
-import me.totalfreedom.totalfreedommod.hub.HubWorldRestrictions;
 import me.totalfreedom.totalfreedommod.player.PlayerList;
 import me.totalfreedom.totalfreedommod.playerverification.PlayerVerification;
 import me.totalfreedom.totalfreedommod.punishments.PunishmentList;
 import me.totalfreedom.totalfreedommod.rank.RankManager;
 import me.totalfreedom.totalfreedommod.rollback.RollbackManager;
+import me.totalfreedom.totalfreedommod.shop.Shop;
 import me.totalfreedom.totalfreedommod.util.FLog;
 import me.totalfreedom.totalfreedommod.util.FUtil;
 import me.totalfreedom.totalfreedommod.util.MethodTimer;
@@ -91,6 +91,7 @@ public class TotalFreedomMod extends AeroPlugin<TotalFreedomMod>
     public AntiNuke nu;
     public AntiSpam as;
     public PlayerList pl;
+    public Shop sh;
     public Announcer an;
     public ChatManager cm;
     public Discord dc;
@@ -126,7 +127,7 @@ public class TotalFreedomMod extends AeroPlugin<TotalFreedomMod>
     public MasterBuilderWorldRestrictions mbwr;
     public SignBlocker snp;
     public PlayerVerification pv;
-    public HubWorldRestrictions hwr;
+    //public HubWorldRestrictions hwr;
     //
     // Bridges
     public ServiceManager<TotalFreedomMod> bridges;
@@ -167,9 +168,6 @@ public class TotalFreedomMod extends AeroPlugin<TotalFreedomMod>
         FUtil.deleteCoreDumps();
         FUtil.deleteFolder(new File("./_deleteme"));
 
-        // Convert old config files
-        new ConfigConverter(plugin).convert();
-
         BackupManager backups = new BackupManager(this);
         backups.createBackups(TotalFreedomMod.CONFIG_FILENAME, true);
         backups.createBackups(AdminList.CONFIG_FILENAME);
@@ -201,9 +199,9 @@ public class TotalFreedomMod extends AeroPlugin<TotalFreedomMod>
         as = services.registerService(AntiSpam.class);
         mbl = services.registerService(MasterBuilderList.class);
         mbwr = services.registerService(MasterBuilderWorldRestrictions.class);
-        hwr = services.registerService(HubWorldRestrictions.class);
-
+        //hwr = services.registerService(HubWorldRestrictions.class);
         pl = services.registerService(PlayerList.class);
+        sh = services.registerService(Shop.class);
         an = services.registerService(Announcer.class);
         cm = services.registerService(ChatManager.class);
         dc = services.registerService(Discord.class);
