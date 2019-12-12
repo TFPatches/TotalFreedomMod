@@ -18,7 +18,7 @@ public class Command_scare extends FreedomCommand
     @Override
     public boolean run(CommandSender sender, Player playerSender, Command cmd, String commandLabel, String[] args, boolean senderIsConsole)
     {
-        if (!FUtil.isPaper())
+        if (FUtil.isPaper())
         {
             msg("This command won't work on Paper!", ChatColor.RED);
             return true;
