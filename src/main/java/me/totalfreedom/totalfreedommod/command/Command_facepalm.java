@@ -27,8 +27,10 @@ public class Command_facepalm extends FreedomCommand
                 sender.sendMessage(FreedomCommand.PLAYER_NOT_FOUND);
                 return true;
             }
-            FUtil.bcastMsg(ChatColor.RED + sender.getName() + ChatColor.AQUA + " facepalms. ");
+            FUtil.bcastMsg(ChatColor.RED + sender.getName() + ChatColor.AQUA + " facepalms at " + ChatColor.RED + player.getName() + ChatColor.AQUA + ".");
             return true;
         }
+        FUtil.bcastMsg(ChatColor.RED + sender.getName() + ChatColor.AQUA + " facepalms.");
+        return true;
     }
 }
