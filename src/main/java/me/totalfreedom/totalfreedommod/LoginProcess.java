@@ -190,7 +190,11 @@ public class LoginProcess extends FreedomService
         final FPlayer fPlayer = plugin.pl.getPlayer(player);
         final VPlayer verificationPlayer = plugin.pv.getVerificationPlayer(player);
         
-        player.sendTitle(ChatColor.GRAY + "Welcome to " + ChatColor.GOLD + "TotalFreedom!", ChatColor.YELLOW + "Now in 1.15!", 20, 100, 60);
+        //player.sendTitle(ChatColor.GRAY + "Welcome to " + ChatColor.GOLD + "TotalFreedom!", ChatColor.YELLOW + "Now in 1.15!", 20, 100, 60);
+
+        //TODO: after christmas, announce 1.15 release for jan 4th
+        //player.sendTitle(ChatColor.GRAY + "Welcome to " + ChatColor.YELLOW + "TotalFreedom!", ChatColor.GREEN + "Celebrating 9 years!", 20, 100, 60);
+        player.sendTitle(ChatColor.RED + "Welcome to" + ChatColor.GREEN + "TotalFreedom!", ChatColor.WHITE + "We will be offline during Christmas! Dec 24 3pm EST - Dec 26 3am EST.", 20, 100, 60);
         player.setOp(true);
 
         if (ConfigEntry.ALLOW_TPR_ON_JOIN.getBoolean())
