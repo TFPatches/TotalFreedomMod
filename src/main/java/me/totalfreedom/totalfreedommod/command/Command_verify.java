@@ -9,7 +9,6 @@ import me.totalfreedom.totalfreedommod.masterbuilder.MasterBuilder;
 import me.totalfreedom.totalfreedommod.player.FPlayer;
 import me.totalfreedom.totalfreedommod.rank.Rank;
 import me.totalfreedom.totalfreedommod.util.FUtil;
-import net.pravian.aero.util.Ips;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
@@ -100,7 +99,7 @@ public class Command_verify extends FreedomCommand
                     code += random.nextInt(10);
                 }
                 Discord.VERIFY_CODES.add(code);
-                Discord.bot.getUserById(discordId).openPrivateChannel().complete().sendMessage("A user with the IP `" + Ips.getIp(playerSender) + "` has sent a verification request. Please run the following in-game command: `/verify " + code + "`").complete();
+                Discord.bot.getUserById(discordId).openPrivateChannel().complete().sendMessage("A user with the IP `" + FUtil.getIP(playerSender) + "` has sent a verification request. Please run the following in-game command: `/verify " + code + "`").complete();
                 msg("A verification code has been sent to your account, please copy the code and run /verify <code>", ChatColor.GREEN);
             }
             else
@@ -120,7 +119,7 @@ public class Command_verify extends FreedomCommand
                     FUtil.adminAction(ConfigEntry.SERVER_NAME.getString(), "Re-adding " + admin.getName() + " to the admin list", true);
 
                     admin.setName(playerSender.getName());
-                    admin.addIp(Ips.getIp(playerSender));
+                    admin.addIp(FUtil.getIP(playerSender));
 
                     if (!plugin.mbl.isMasterBuilder(playerSender))
                     {
@@ -137,7 +136,7 @@ public class Command_verify extends FreedomCommand
                         if (masterBuilder != null)
                         {
                             masterBuilder.setName(playerSender.getName());
-                            masterBuilder.addIp(Ips.getIp(playerSender));
+                            masterBuilder.addIp(FUtil.getIP(playerSender));
 
                             masterBuilder.setLastLogin(new Date());
 
