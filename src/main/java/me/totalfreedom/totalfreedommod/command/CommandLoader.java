@@ -9,19 +9,19 @@ import org.bukkit.ChatColor;
 
 public class CommandLoader extends FreedomService
 {
+    // TODO TODO FUCK THIS SHIT
+    //@Getter
+    //private final SimpleCommandHandler<TotalFreedomMod> handler;
 
-    @Getter
-    private final SimpleCommandHandler<TotalFreedomMod> handler;
-
-    public CommandLoader(TotalFreedomMod plugin)
+    public CommandLoader()
     {
-        super(plugin);
+        super();
 
-        handler = new SimpleCommandHandler<>(plugin);
+        //handler = new SimpleCommandHandler<>(plugin);
     }
 
     @Override
-    protected void onStart()
+    public void start()
     {
         handler.clearCommands();
         handler.setExecutorFactory(new FreedomCommandExecutor.FreedomExecutorFactory(plugin));
@@ -37,7 +37,7 @@ public class CommandLoader extends FreedomService
     }
 
     @Override
-    protected void onStop()
+    public void stop()
     {
         handler.clearCommands();
     }

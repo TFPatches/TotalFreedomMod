@@ -11,18 +11,16 @@ import java.util.Set;
 import java.util.concurrent.TimeUnit;
 import lombok.Getter;
 import me.totalfreedom.totalfreedommod.FreedomService;
-import me.totalfreedom.totalfreedommod.TotalFreedomMod;
 import me.totalfreedom.totalfreedommod.config.ConfigEntry;
+import me.totalfreedom.totalfreedommod.config.YamlConfig;
 import me.totalfreedom.totalfreedommod.rank.Rank;
 import me.totalfreedom.totalfreedommod.util.FLog;
 import me.totalfreedom.totalfreedommod.util.FUtil;
-import net.pravian.aero.config.YamlConfig;
 import net.pravian.aero.util.Ips;
 import org.bukkit.Bukkit;
 import org.bukkit.command.CommandSender;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.entity.Player;
-import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.ServicePriority;
 
 public class AdminList extends FreedomService
@@ -45,8 +43,7 @@ public class AdminList extends FreedomService
     public AdminList()
     {
         super();
-        // todo todo todogho riojfkbljidokblkfg
-        this.config = new YamlConfig((Plugin) plugin, CONFIG_FILENAME, true);
+        this.config = new YamlConfig(plugin, CONFIG_FILENAME);
     }
 
     @Override

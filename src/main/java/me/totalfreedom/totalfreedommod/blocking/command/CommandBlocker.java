@@ -29,19 +29,19 @@ public class CommandBlocker extends FreedomService
     private final Map<String, CommandBlockerEntry> entryList = Maps.newHashMap();
     private final List<String> unknownCommands = Lists.newArrayList();
 
-    public CommandBlocker(TotalFreedomMod plugin)
+    public CommandBlocker()
     {
-        super(plugin);
+        super();
     }
 
     @Override
-    protected void onStart()
+    public void start()
     {
         load();
     }
 
     @Override
-    protected void onStop()
+    public void stop()
     {
         entryList.clear();
     }

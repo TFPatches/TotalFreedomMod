@@ -4,9 +4,8 @@ import com.google.common.collect.Maps;
 import java.util.Map;
 import lombok.Getter;
 import me.totalfreedom.totalfreedommod.FreedomService;
-import me.totalfreedom.totalfreedommod.TotalFreedomMod;
 import me.totalfreedom.totalfreedommod.util.FLog;
-import net.pravian.aero.config.YamlConfig;
+import me.totalfreedom.totalfreedommod.config.YamlConfig;
 import net.pravian.aero.util.Ips;
 import org.bukkit.command.CommandSender;
 import org.bukkit.configuration.ConfigurationSection;
@@ -28,21 +27,20 @@ public class ActivityLog extends FreedomService
 
     private final YamlConfig config;
 
-    public ActivityLog(TotalFreedomMod plugin)
+    public ActivityLog()
     {
-        super(plugin);
-
-        this.config = new YamlConfig(plugin, FILENAME, true);
+        super();
+        this.config = new YamlConfig(plugin, FILENAME);
     }
 
     @Override
-    protected void onStart()
+    public void start()
     {
         load();
     }
 
     @Override
-    protected void onStop()
+    public void stop()
     {
         save();
     }
