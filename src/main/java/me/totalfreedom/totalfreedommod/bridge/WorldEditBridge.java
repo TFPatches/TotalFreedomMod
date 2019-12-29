@@ -16,20 +16,20 @@ public class WorldEditBridge extends FreedomService
     //
     private WorldEditPlugin worldeditPlugin = null;
 
-    public WorldEditBridge(TotalFreedomMod plugin)
+    public WorldEditBridge()
     {
-        super(plugin);
+        super();
         listener = new WorldEditListener(plugin);
     }
 
     @Override
-    protected void onStart()
+    public void start()
     {
         listener.register();
     }
 
     @Override
-    protected void onStop()
+    public void stop()
     {
         listener.unregister();
     }

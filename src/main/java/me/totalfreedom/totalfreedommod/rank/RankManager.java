@@ -20,18 +20,18 @@ import org.bukkit.event.player.PlayerJoinEvent;
 public class RankManager extends FreedomService
 {
 
-    public RankManager(TotalFreedomMod plugin)
+    public RankManager()
     {
-        super(plugin);
+        super();
     }
 
     @Override
-    protected void onStart()
+    public void start()
     {
     }
 
     @Override
-    protected void onStop()
+    public void stop()
     {
     }
 

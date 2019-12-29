@@ -22,6 +22,7 @@ import org.bukkit.Bukkit;
 import org.bukkit.command.CommandSender;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.entity.Player;
+import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.ServicePriority;
 
 public class AdminList extends FreedomService
@@ -41,15 +42,15 @@ public class AdminList extends FreedomService
     //
     private final YamlConfig config;
 
-    public AdminList(TotalFreedomMod plugin)
+    public AdminList()
     {
-        super(plugin);
-
-        this.config = new YamlConfig(plugin, CONFIG_FILENAME, true);
+        super();
+        // todo todo todogho riojfkbljidokblkfg
+        this.config = new YamlConfig((Plugin) plugin, CONFIG_FILENAME, true);
     }
 
     @Override
-    protected void onStart()
+    public void start()
     {
         load();
 
@@ -66,7 +67,7 @@ public class AdminList extends FreedomService
     }
 
     @Override
-    protected void onStop()
+    public void stop()
     {
         save();
     }

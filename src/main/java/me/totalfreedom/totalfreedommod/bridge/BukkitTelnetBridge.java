@@ -24,18 +24,18 @@ public class BukkitTelnetBridge extends FreedomService
 
     private BukkitTelnet bukkitTelnetPlugin = null;
 
-    public BukkitTelnetBridge(TotalFreedomMod plugin)
+    public BukkitTelnetBridge()
     {
-        super(plugin);
+        super();
     }
 
     @Override
-    protected void onStart()
+    public void start()
     {
     }
 
     @Override
-    protected void onStop()
+    public void stop()
     {
     }
 

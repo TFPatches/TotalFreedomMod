@@ -22,6 +22,7 @@ import me.totalfreedom.totalfreedommod.bridge.CoreProtectBridge;
 import me.totalfreedom.totalfreedommod.bridge.EssentialsBridge;
 import me.totalfreedom.totalfreedommod.bridge.LibsDisguisesBridge;
 import me.totalfreedom.totalfreedommod.bridge.WorldEditBridge;
+import me.totalfreedom.totalfreedommod.bridge.WorldEditListener;
 import me.totalfreedom.totalfreedommod.bridge.WorldGuardBridge;
 import me.totalfreedom.totalfreedommod.caging.Cager;
 import me.totalfreedom.totalfreedommod.command.CommandLoader;
@@ -50,17 +51,19 @@ import me.totalfreedom.totalfreedommod.util.FUtil;
 import me.totalfreedom.totalfreedommod.util.MethodTimer;
 import me.totalfreedom.totalfreedommod.world.CleanroomChunkGenerator;
 import me.totalfreedom.totalfreedommod.world.WorldManager;
-import net.pravian.aero.component.service.ServiceManager;
-import net.pravian.aero.plugin.AeroPlugin;
 import org.bstats.Metrics;
-import org.bukkit.Bukkit;
 import org.bukkit.generator.ChunkGenerator;
-import org.bukkit.plugin.Plugin;
+import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.scheduler.BukkitRunnable;
 import org.spigotmc.SpigotConfig;
 
-public class TotalFreedomMod extends AeroPlugin<TotalFreedomMod>
+public class TotalFreedomMod extends JavaPlugin
 {
+    private static TotalFreedomMod plugin;
+    public static TotalFreedomMod getPlugin()
+    {
+        return plugin;
+    }
 
     public static final String CONFIG_FILENAME = "config.yml";
     //
@@ -72,7 +75,6 @@ public class TotalFreedomMod extends AeroPlugin<TotalFreedomMod>
     public MainConfig config;
     //
     // Services
-    public ServiceManager<TotalFreedomMod> services;
     public ServerInterface si;
     public SavedFlags sf;
     public WorldManager wm;
@@ -129,30 +131,28 @@ public class TotalFreedomMod extends AeroPlugin<TotalFreedomMod>
     //public HubWorldRestrictions hwr;
     //
     // Bridges
-    public ServiceManager<TotalFreedomMod> bridges;
     public BukkitTelnetBridge btb;
     public EssentialsBridge esb;
     public LibsDisguisesBridge ldb;
     public CoreProtectBridge cpb;
     public WorldEditBridge web;
+    public WorldEditListener wel;
     public WorldGuardBridge wgb;
     public AMP amp;
 
     @Override
-    public void load()
+    public void onEnable()
     {
-        TotalFreedomMod.pluginName = plugin.getDescription().getName();
-        TotalFreedomMod.pluginVersion = plugin.getDescription().getVersion();
+        plugin = this;
 
-        FLog.setPluginLogger(plugin.getLogger());
-        FLog.setServerLogger(server.getLogger());
+        TotalFreedomMod.pluginName = getDescription().getName();
+        TotalFreedomMod.pluginVersion = getDescription().getVersion();
 
-        build.load(plugin);
-    }
+        FLog.setPluginLogger(getLogger());
+        FLog.setServerLogger(getServer().getLogger());
 
-    @Override
-    public void enable()
-    {
+        build.load(this);
+
         FLog.info("Created by Madgeek1450 and Prozza");
         FLog.info("Version " + build.version);
         FLog.info("Compiled " + build.date + " by " + build.author);
@@ -178,81 +178,78 @@ public class TotalFreedomMod extends AeroPlugin<TotalFreedomMod>
         config.load();
 
         // Start services
-        services = new ServiceManager<>(plugin);
-        si = services.registerService(ServerInterface.class);
-        sf = services.registerService(SavedFlags.class);
-        wm = services.registerService(WorldManager.class);
-        lv = services.registerService(LogViewer.class);
-        al = services.registerService(AdminList.class);
-        acl = services.registerService(ActivityLog.class);
-        rm = services.registerService(RankManager.class);
-        cl = services.registerService(CommandLoader.class);
-        cb = services.registerService(CommandBlocker.class);
-        eb = services.registerService(EventBlocker.class);
-        bb = services.registerService(BlockBlocker.class);
-        mb = services.registerService(MobBlocker.class);
-        ib = services.registerService(InteractBlocker.class);
-        pb = services.registerService(PotionBlocker.class);
-        lp = services.registerService(LoginProcess.class);
-        nu = services.registerService(AntiNuke.class);
-        as = services.registerService(AntiSpam.class);
-        mbl = services.registerService(MasterBuilderList.class);
-        mbwr = services.registerService(MasterBuilderWorldRestrictions.class);
-        //hwr = services.registerService(HubWorldRestrictions.class);
-        pl = services.registerService(PlayerList.class);
-        sh = services.registerService(Shop.class);
-        an = services.registerService(Announcer.class);
-        cm = services.registerService(ChatManager.class);
-        dc = services.registerService(Discord.class);
-        pul = services.registerService(PunishmentList.class);
-        bm = services.registerService(BanManager.class);
-        pm = services.registerService(PermbanList.class);
-        pa = services.registerService(ProtectArea.class);
-        gr = services.registerService(GameRuleHandler.class);
-        snp = services.registerService(SignBlocker.class);
+        si = new ServerInterface();
+        sf = new SavedFlags();
+        wm = new WorldManager();
+        lv = new LogViewer();
+        al = new AdminList();
+        acl = new ActivityLog();
+        rm = new RankManager();
+        cl = new CommandLoader();
+        cb = new CommandBlocker();
+        eb = new EventBlocker();
+        bb = new BlockBlocker();
+        mb = new MobBlocker();
+        ib = new InteractBlocker();
+        pb = new PotionBlocker();
+        lp = new LoginProcess();
+        nu = new AntiNuke();
+        as = new AntiSpam();
+        mbl = new MasterBuilderList();
+        mbwr = new MasterBuilderWorldRestrictions();
+        //hwr = new HubWorldRestrictions();
+        pl = new PlayerList();
+        sh = new Shop();
+        an = new Announcer();
+        cm = new ChatManager();
+        dc = new Discord();
+        pul = new PunishmentList();
+        bm = new BanManager();
+        pm = new PermbanList();
+        pa = new ProtectArea();
+        gr = new GameRuleHandler();
+        snp = new SignBlocker();
 
         // Single admin utils
-        rb = services.registerService(RollbackManager.class);
-        cs = services.registerService(CommandSpy.class);
-        ca = services.registerService(Cager.class);
-        fm = services.registerService(Freezer.class);
-        or = services.registerService(Orbiter.class);
-        mu = services.registerService(Muter.class);
-        ebl = services.registerService(EditBlocker.class);
-        pbl = services.registerService(PVPBlocker.class);
-        fo = services.registerService(Fuckoff.class);
-        ak = services.registerService(AutoKick.class);
-        ae = services.registerService(AutoEject.class);
-        mo = services.registerService(Monitors.class);
+        rb = new RollbackManager();
+        cs = new CommandSpy();
+        ca = new Cager();
+        fm = new Freezer();
+        or = new Orbiter();
+        mu = new Muter();
+        ebl = new EditBlocker();
+        pbl = new PVPBlocker();
+        fo = new Fuckoff();
+        ak = new AutoKick();
+        ae = new AutoEject();
+        mo = new Monitors();
 
 
-        mv = services.registerService(MovementValidator.class);
-        sp = services.registerService(ServerPing.class);
-        pv = services.registerService(PlayerVerification.class);
+        mv = new MovementValidator();
+        sp = new ServerPing();
+        pv = new PlayerVerification();
 
         // Fun
-        cul = services.registerService(CurseListener.class);
-        it = services.registerService(ItemFun.class);
-        lm = services.registerService(Landminer.class);
-        ms = services.registerService(MobStacker.class);
-        mp = services.registerService(MP44.class);
-        jp = services.registerService(Jumppads.class);
-        tr = services.registerService(Trailer.class);
+        cul = new CurseListener();
+        it = new ItemFun();
+        lm = new Landminer();
+        ms = new MobStacker();
+        mp = new MP44();
+        jp = new Jumppads();
+        tr = new Trailer();
 
         // HTTPD
-        hd = services.registerService(HTTPDaemon.class);
-        services.start();
+        hd = new HTTPDaemon();
 
         // Start bridges
-        bridges = new ServiceManager<>(plugin);
-        btb = bridges.registerService(BukkitTelnetBridge.class);
-        cpb = bridges.registerService(CoreProtectBridge.class);
-        esb = bridges.registerService(EssentialsBridge.class);
-        ldb = bridges.registerService(LibsDisguisesBridge.class);
-        web = bridges.registerService(WorldEditBridge.class);
-        wgb = bridges.registerService(WorldGuardBridge.class);
-        amp = bridges.registerService(AMP.class);
-        bridges.start();
+        btb = new BukkitTelnetBridge();
+        cpb = new CoreProtectBridge();
+        esb = new EssentialsBridge();
+        ldb = new LibsDisguisesBridge();
+        web = new WorldEditBridge();
+        wel = new WorldEditListener();
+        wgb = new WorldGuardBridge();
+        amp = new AMP();
 
         timer.update();
         FLog.info("Version " + pluginVersion + " for " + ServerInterface.COMPILE_NMS_VERSION + " enabled in " + timer.getTotal() + "ms");
@@ -274,13 +271,81 @@ public class TotalFreedomMod extends AeroPlugin<TotalFreedomMod>
     }
 
     @Override
-    public void disable()
+    public void onDisable()
     {
-        // Stop services and bridges
-        bridges.stop();
-        services.stop();
+        plugin = null;
 
-        server.getScheduler().cancelTasks(plugin);
+        // Stop services
+        si.stop();
+        sf.stop();
+        wm.stop();
+        lv.stop();
+        al.stop();
+        acl.stop();
+        rm.stop();
+        cl.stop();
+        cb.stop();
+        eb.stop();
+        bb.stop();
+        mb.stop();
+        ib.stop();
+        pb.stop();
+        lp.stop();
+        nu.stop();
+        as.stop();
+        mbl.stop();
+        mbwr.stop();
+        //hwr.stop();
+        pl.stop();
+        sh.stop();
+        an.stop();
+        cm.stop();
+        dc.stop();
+        pul.stop();
+        bm.stop();
+        pm.stop();
+        pa.stop();
+        gr.stop();
+        snp.stop();
+
+        rb.stop();
+        cs.stop();
+        ca.stop();
+        fm.stop();
+        or.stop();
+        mu.stop();
+        ebl.stop();
+        pbl.stop();
+        fo.stop();
+        ak.stop();
+        ae.stop();
+        mo.stop();
+
+
+        mv.stop();
+        sp.stop();
+        pv.stop();
+
+        cul.stop();
+        it.stop();
+        lm.stop();
+        ms.stop();
+        mp.stop();
+        jp.stop();
+        tr.stop();
+
+        hd.stop();
+
+        // Stop bridges
+        btb.stop();
+        cpb.stop();
+        esb.stop();
+        ldb.stop();
+        web.stop();
+        wel.stop();
+        wgb.stop();
+
+        getServer().getScheduler().cancelTasks(plugin);
 
         FLog.info("Plugin disabled");
     }
@@ -326,18 +391,6 @@ public class TotalFreedomMod extends AeroPlugin<TotalFreedomMod>
         {
             return pluginVersion + "." + number + " (" + head + ")";
         }
-    }
-
-    public static TotalFreedomMod plugin()
-    {
-        for (Plugin plugin : Bukkit.getPluginManager().getPlugins())
-        {
-            if (plugin.getName().equalsIgnoreCase(pluginName))
-            {
-                return (TotalFreedomMod)plugin;
-            }
-        }
-        return null;
     }
 
     @Override

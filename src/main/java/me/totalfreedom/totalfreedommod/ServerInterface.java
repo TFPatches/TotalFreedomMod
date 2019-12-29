@@ -14,18 +14,18 @@ public class ServerInterface extends FreedomService
 
     public static final String COMPILE_NMS_VERSION = "v1_15_R1";
 
-    public ServerInterface(TotalFreedomMod plugin)
+    public ServerInterface()
     {
-        super(plugin);
+        super();
     }
 
     @Override
-    protected void onStart()
+    public void start()
     {
     }
 
     @Override
-    protected void onStop()
+    public void stop()
     {
     }
 

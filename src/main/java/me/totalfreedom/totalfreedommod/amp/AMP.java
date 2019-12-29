@@ -10,13 +10,13 @@ public class AMP extends FreedomService
     public AMPManager ampManager;
     public Boolean enabled = false;
 
-    public AMP(TotalFreedomMod plugin)
+    public AMP()
     {
-        super(plugin);
+        super();
     }
 
     @Override
-    protected void onStart()
+    public void start()
     {
         if (!plugin.config.getBoolean(ConfigEntry.AMP_ENABLED))
         {
@@ -41,7 +41,7 @@ public class AMP extends FreedomService
     }
 
     @Override
-    protected void onStop()
+    public void stop()
     {
 
     }

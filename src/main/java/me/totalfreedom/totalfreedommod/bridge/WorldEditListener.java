@@ -1,5 +1,6 @@
 package me.totalfreedom.totalfreedommod.bridge;
 
+import me.totalfreedom.totalfreedommod.FreedomService;
 import me.totalfreedom.totalfreedommod.TotalFreedomMod;
 import me.totalfreedom.totalfreedommod.util.FUtil;
 import me.totalfreedom.worldedit.LimitChangedEvent;
@@ -9,12 +10,22 @@ import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 
-public class WorldEditListener extends PluginListener<TotalFreedomMod>
+public class WorldEditListener extends FreedomService
 {
 
-    public WorldEditListener(TotalFreedomMod plugin)
+    public WorldEditListener()
     {
-        super(plugin);
+        super();
+    }
+
+    @Override
+    public void start()
+    {
+    }
+
+    @Override
+    public void stop()
+    {
     }
 
     @EventHandler

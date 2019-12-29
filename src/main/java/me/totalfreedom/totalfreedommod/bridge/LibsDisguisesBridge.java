@@ -14,18 +14,18 @@ public class LibsDisguisesBridge extends FreedomService
 
     private LibsDisguises libsDisguisesPlugin = null;
 
-    public LibsDisguisesBridge(TotalFreedomMod plugin)
+    public LibsDisguisesBridge()
     {
-        super(plugin);
+        super();
     }
 
     @Override
-    protected void onStart()
+    public void start()
     {
     }
 
     @Override
-    protected void onStop()
+    public void stop()
     {
     }
 

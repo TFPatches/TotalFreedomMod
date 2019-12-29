@@ -9,18 +9,18 @@ import org.bukkit.event.player.PlayerMoveEvent;
 
 public class Fuckoff extends FreedomService
 {
-    public Fuckoff(TotalFreedomMod plugin)
+    public Fuckoff()
     {
-        super(plugin);
+        super();
     }
 
     @Override
-    protected void onStart()
+    public void start()
     {
     }
 
     @Override
-    protected void onStop()
+    public void stop()
     {
     }
 

@@ -13,18 +13,18 @@ import static me.totalfreedom.totalfreedommod.util.FUtil.SAVED_FLAGS_FILENAME;
 public class SavedFlags extends FreedomService
 {
 
-    public SavedFlags(TotalFreedomMod plugin)
+    public SavedFlags()
     {
-        super(plugin);
+        super();
     }
 
     @Override
-    protected void onStart()
+    public void start()
     {
     }
 
     @Override
-    protected void onStop()
+    public void stop()
     {
     }
 
@@ -33,7 +33,7 @@ public class SavedFlags extends FreedomService
     {
         Map<String, Boolean> flags = null;
 
-        File input = new File(TotalFreedomMod.plugin().getDataFolder(), SAVED_FLAGS_FILENAME);
+        File input = new File(plugin.getDataFolder(), SAVED_FLAGS_FILENAME);
         if (input.exists())
         {
             try

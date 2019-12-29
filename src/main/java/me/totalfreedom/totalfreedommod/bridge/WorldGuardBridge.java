@@ -15,18 +15,18 @@ public class WorldGuardBridge extends FreedomService
 
     private WorldGuardPlugin worldGuardPlugin;
 
-    public WorldGuardBridge(TotalFreedomMod plugin)
+    public WorldGuardBridge()
     {
-        super(plugin);
+        super();
     }
 
     @Override
-    protected void onStart()
+    public void start()
     {
     }
 
     @Override
-    protected void onStop()
+    public void stop()
     {
     }
 
