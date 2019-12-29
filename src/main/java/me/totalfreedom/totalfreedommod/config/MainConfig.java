@@ -6,14 +6,14 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.EnumMap;
 import java.util.List;
+import me.totalfreedom.totalfreedommod.FreedomService;
 import me.totalfreedom.totalfreedommod.TotalFreedomMod;
 import me.totalfreedom.totalfreedommod.util.FLog;
-import net.pravian.aero.component.PluginComponent;
 import org.apache.commons.io.FileUtils;
 import org.bukkit.configuration.InvalidConfigurationException;
 import org.bukkit.configuration.file.YamlConfiguration;
 
-public class MainConfig extends PluginComponent<TotalFreedomMod>
+public class MainConfig extends FreedomService
 {
 
     public static final String CONFIG_FILENAME = "config.yml";
@@ -22,9 +22,9 @@ public class MainConfig extends PluginComponent<TotalFreedomMod>
     private final ConfigDefaults defaults;
     public YamlConfiguration configuration;
 
-    public MainConfig(TotalFreedomMod plugin)
+    public MainConfig()
     {
-        super(plugin);
+        super();
 
         entries = new EnumMap<>(ConfigEntry.class);
 
@@ -57,6 +57,16 @@ public class MainConfig extends PluginComponent<TotalFreedomMod>
         }
 
         defaults = tempDefaults;
+    }
+
+    @Override
+    public void start()
+    {
+    }
+
+    @Override
+    public void stop()
+    {
     }
 
     public void load()

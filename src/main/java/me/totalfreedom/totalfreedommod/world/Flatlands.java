@@ -24,6 +24,16 @@ public class Flatlands extends CustomWorld
     }
 
     @Override
+    public void start()
+    {
+    }
+
+    @Override
+    public void stop()
+    {
+    }
+
+    @Override
     protected World generateWorld()
     {
         if (!ConfigEntry.FLATLANDS_GENERATE.getBoolean())

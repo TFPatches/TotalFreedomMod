@@ -24,6 +24,16 @@ public final class MasterBuilderWorld extends CustomWorld
     }
 
     @Override
+    public void start()
+    {
+    }
+
+    @Override
+    public void stop()
+    {
+    }
+
+    @Override
     public void sendToWorld(Player player)
     {
         super.sendToWorld(player);

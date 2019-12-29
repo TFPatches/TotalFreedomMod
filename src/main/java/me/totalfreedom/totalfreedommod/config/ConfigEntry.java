@@ -217,7 +217,7 @@ public enum ConfigEntry
 
     private MainConfig getConfig()
     {
-        return TotalFreedomMod.plugin().config;
+        return TotalFreedomMod.getPlugin().config;
     }
 
     public static ConfigEntry findConfigEntry(String name)

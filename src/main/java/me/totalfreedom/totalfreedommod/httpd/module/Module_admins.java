@@ -9,9 +9,19 @@ import me.totalfreedom.totalfreedommod.httpd.NanoHTTPD;
 public class Module_admins extends HTTPDModule
 {
 
-    public Module_admins(TotalFreedomMod plugin, NanoHTTPD.HTTPSession session)
+    public Module_admins(NanoHTTPD.HTTPSession session)
     {
-        super(plugin, session);
+        super(session);
+    }
+
+    @Override
+    public void start()
+    {
+    }
+
+    @Override
+    public void stop()
+    {
     }
 
     @Override

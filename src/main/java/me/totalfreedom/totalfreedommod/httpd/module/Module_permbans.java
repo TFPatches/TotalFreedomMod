@@ -10,9 +10,19 @@ import me.totalfreedom.totalfreedommod.httpd.NanoHTTPD;
 public class Module_permbans extends HTTPDModule
 {
 
-    public Module_permbans(TotalFreedomMod plugin, NanoHTTPD.HTTPSession session)
+    public Module_permbans(NanoHTTPD.HTTPSession session)
     {
-        super(plugin, session);
+        super(session);
+    }
+
+    @Override
+    public void start()
+    {
+    }
+
+    @Override
+    public void stop()
+    {
     }
 
     @Override

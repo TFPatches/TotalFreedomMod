@@ -9,7 +9,6 @@ import me.totalfreedom.totalfreedommod.punishments.PunishmentType;
 import me.totalfreedom.totalfreedommod.rank.Rank;
 import me.totalfreedom.totalfreedommod.util.FUtil;
 import static me.totalfreedom.totalfreedommod.util.FUtil.playerMsg;
-import net.pravian.aero.util.Ips;
 import org.apache.commons.lang.ArrayUtils;
 import org.apache.commons.lang.StringUtils;
 import org.bukkit.Bukkit;
@@ -154,7 +153,7 @@ public class Command_gtfo extends FreedomCommand
             player.kickPlayer(ban.bakeKickMessage());
             for (Player p : Bukkit.getOnlinePlayers())
             {
-                if (Ips.getIp(p).equals(Ips.getIp(player)))
+                if (FUtil.getIP(p).equals(FUtil.getIP(player)))
                 {
                     p.kickPlayer(ChatColor.RED + "You've been kicked because someone on your IP has been banned.");
                 }

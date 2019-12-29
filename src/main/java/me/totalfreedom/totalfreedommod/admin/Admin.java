@@ -7,19 +7,16 @@ import lombok.Getter;
 import lombok.Setter;
 import me.totalfreedom.totalfreedommod.LogViewer.LogsRegistrationMode;
 import me.totalfreedom.totalfreedommod.TotalFreedomMod;
+import me.totalfreedom.totalfreedommod.config.ConfigBase;
 import me.totalfreedom.totalfreedommod.rank.Rank;
 import me.totalfreedom.totalfreedommod.util.FUtil;
-import net.pravian.aero.base.ConfigLoadable;
-import net.pravian.aero.base.ConfigSavable;
-import net.pravian.aero.base.Validatable;
-import net.pravian.aero.util.Ips;
 import org.apache.commons.lang.StringUtils;
 import org.apache.commons.lang.Validate;
 import org.bukkit.ChatColor;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.entity.Player;
 
-public class Admin implements ConfigLoadable, ConfigSavable, Validatable
+public class Admin implements ConfigBase
 {
 
     @Getter
@@ -68,7 +65,7 @@ public class Admin implements ConfigLoadable, ConfigSavable, Validatable
     {
         this.configKey = player.getName().toLowerCase();
         this.name = player.getName();
-        this.ips.add(Ips.getIp(player));
+        this.ips.add(FUtil.getIP(player));
     }
 
     public Admin(String configKey)
@@ -102,7 +99,7 @@ public class Admin implements ConfigLoadable, ConfigSavable, Validatable
         configKey = player.getName().toLowerCase();
         name = player.getName();
         ips.clear();
-        ips.add(Ips.getIp(player));
+        ips.add(FUtil.getIP(player));
     }
 
     @Override
@@ -187,7 +184,7 @@ public class Admin implements ConfigLoadable, ConfigSavable, Validatable
     {
         this.active = active;
 
-        final TotalFreedomMod plugin = TotalFreedomMod.plugin();
+        final TotalFreedomMod plugin = TotalFreedomMod.getPlugin();
 
         if (!active)
         {

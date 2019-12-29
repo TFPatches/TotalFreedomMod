@@ -1,6 +1,7 @@
 package me.totalfreedom.totalfreedommod.freeze;
 
 import lombok.Getter;
+import me.totalfreedom.totalfreedommod.TotalFreedomMod;
 import me.totalfreedom.totalfreedommod.player.FPlayer;
 import me.totalfreedom.totalfreedommod.util.FLog;
 import me.totalfreedom.totalfreedommod.util.FUtil;
@@ -9,12 +10,12 @@ import org.bukkit.Location;
 import org.bukkit.entity.Player;
 import org.bukkit.scheduler.BukkitRunnable;
 import org.bukkit.scheduler.BukkitTask;
-import static me.totalfreedom.totalfreedommod.TotalFreedomMod.plugin;
 import static me.totalfreedom.totalfreedommod.player.FPlayer.AUTO_PURGE_TICKS;
 
 public class FreezeData
 {
 
+    private final TotalFreedomMod plugin = TotalFreedomMod.getPlugin();
     private final FPlayer fPlayer;
     //
     @Getter
@@ -62,14 +63,14 @@ public class FreezeData
             @Override
             public void run()
             {
-                if (!plugin().al.isAdminImpostor(player) && plugin().pv.isPlayerImpostor(player))
+                if (!plugin.al.isAdminImpostor(player) && plugin.pv.isPlayerImpostor(player))
                 {
                     FUtil.adminAction("TotalFreedom", "Unfreezing " + player.getName(), false);
                     setFrozen(false);
                 }
             }
 
-        }.runTaskLater(plugin(), AUTO_PURGE_TICKS);
+        }.runTaskLater(plugin, AUTO_PURGE_TICKS);
     }
 
 }

@@ -7,11 +7,10 @@ import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import me.totalfreedom.totalfreedommod.FreedomService;
-import me.totalfreedom.totalfreedommod.TotalFreedomMod;
+import me.totalfreedom.totalfreedommod.command.FreedomCommand;
 import me.totalfreedom.totalfreedommod.config.ConfigEntry;
 import me.totalfreedom.totalfreedommod.util.FLog;
 import me.totalfreedom.totalfreedommod.util.FUtil;
-import net.pravian.aero.command.CommandReflection;
 import org.apache.commons.lang.StringUtils;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
@@ -51,7 +50,7 @@ public class CommandBlocker extends FreedomService
         entryList.clear();
         unknownCommands.clear();
 
-        final CommandMap commandMap = CommandReflection.getCommandMap();
+        final CommandMap commandMap = FreedomCommand.getCommandMap();
         if (commandMap == null)
         {
             FLog.severe("Error loading commandMap.");

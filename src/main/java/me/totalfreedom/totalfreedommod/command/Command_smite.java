@@ -4,7 +4,6 @@ import me.totalfreedom.totalfreedommod.punishments.Punishment;
 import me.totalfreedom.totalfreedommod.punishments.PunishmentType;
 import me.totalfreedom.totalfreedommod.rank.Rank;
 import me.totalfreedom.totalfreedommod.util.FUtil;
-import net.pravian.aero.util.Ips;
 import org.apache.commons.lang.StringUtils;
 import org.bukkit.ChatColor;
 import org.bukkit.GameMode;
@@ -43,7 +42,7 @@ public class Command_smite extends FreedomCommand
 
         smite(sender, player, reason);
 
-        plugin.pul.logPunishment(new Punishment(player.getName(), Ips.getIp(player), sender.getName(), PunishmentType.SMITE, reason));
+        plugin.pul.logPunishment(new Punishment(player.getName(), FUtil.getIP(player), sender.getName(), PunishmentType.SMITE, reason));
 
         return true;
     }

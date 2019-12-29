@@ -137,7 +137,7 @@ public class BanManager extends FreedomService
                     continue;
                 }
 
-                if (Ips.fuzzyIpMatch(ip, loopIp, 4)) // todo what in hell does this do?
+                if (FUtil.fuzzyIpMatch(ip, loopIp, 4))
                 {
                     return loopBan;
                 }
@@ -234,7 +234,7 @@ public class BanManager extends FreedomService
     public void onPlayerLogin(PlayerLoginEvent event)
     {
         final String username = event.getPlayer().getName();
-        final String ip = FUtil.getIP(event);
+        final String ip = FUtil.getIP(event.getPlayer());
 
         // Regular ban
         Ban ban = getByUsername(username);

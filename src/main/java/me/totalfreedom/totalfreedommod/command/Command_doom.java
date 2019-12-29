@@ -8,8 +8,6 @@ import me.totalfreedom.totalfreedommod.punishments.PunishmentType;
 import me.totalfreedom.totalfreedommod.rank.Rank;
 import me.totalfreedom.totalfreedommod.util.FUtil;
 import static me.totalfreedom.totalfreedommod.util.FUtil.playerMsg;
-import net.pravian.aero.util.Ips;
-import org.apache.commons.lang.StringUtils;
 import org.bukkit.ChatColor;
 import org.bukkit.GameMode;
 import org.bukkit.command.Command;
@@ -90,7 +88,7 @@ public class Command_doom extends FreedomCommand
         player.setVelocity(player.getVelocity().clone().add(new Vector(0, 20, 0)));
 
         // Log doom
-        plugin.pul.logPunishment(new Punishment(player.getName(), Ips.getIp(player), sender.getName(), PunishmentType.DOOM, null));
+        plugin.pul.logPunishment(new Punishment(player.getName(), FUtil.getIP(player), sender.getName(), PunishmentType.DOOM, null));
 
         new BukkitRunnable()
         {

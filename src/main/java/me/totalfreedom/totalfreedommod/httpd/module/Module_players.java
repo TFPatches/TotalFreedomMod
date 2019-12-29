@@ -14,9 +14,19 @@ import org.json.simple.JSONObject;
 public class Module_players extends HTTPDModule
 {
 
-    public Module_players(TotalFreedomMod plugin, NanoHTTPD.HTTPSession session)
+    public Module_players(NanoHTTPD.HTTPSession session)
     {
-        super(plugin, session);
+        super(session);
+    }
+
+    @Override
+    public void start()
+    {
+    }
+
+    @Override
+    public void stop()
+    {
     }
 
     @Override

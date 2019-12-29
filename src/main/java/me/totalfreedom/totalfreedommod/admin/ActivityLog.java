@@ -6,7 +6,7 @@ import lombok.Getter;
 import me.totalfreedom.totalfreedommod.FreedomService;
 import me.totalfreedom.totalfreedommod.util.FLog;
 import me.totalfreedom.totalfreedommod.config.YamlConfig;
-import net.pravian.aero.util.Ips;
+import me.totalfreedom.totalfreedommod.util.FUtil;
 import org.bukkit.command.CommandSender;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.entity.Player;
@@ -108,7 +108,7 @@ public class ActivityLog extends FreedomService
         ActivityLogEntry activityLog = getEntryByName(player.getName());
         if (activityLog == null)
         {
-            String ip = Ips.getIp(player);
+            String ip = FUtil.getIP(player);
             activityLog = getEntryByIp(ip);
             if (activityLog != null)
             {
@@ -127,7 +127,7 @@ public class ActivityLog extends FreedomService
                 config.save();
             }
         }
-        String ip = Ips.getIp(player);
+        String ip = FUtil.getIP(player);
         if (!activityLog.getIps().contains(ip))
         {
             activityLog.addIp(ip);

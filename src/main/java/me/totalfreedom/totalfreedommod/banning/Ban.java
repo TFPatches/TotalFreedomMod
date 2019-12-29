@@ -1,7 +1,6 @@
 package me.totalfreedom.totalfreedommod.banning;
 
 import com.google.common.collect.Lists;
-import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.time.Instant;
 import java.util.Arrays;
@@ -12,18 +11,15 @@ import java.util.List;
 import java.util.Set;
 import lombok.Getter;
 import lombok.Setter;
+import me.totalfreedom.totalfreedommod.config.ConfigBase;
 import me.totalfreedom.totalfreedommod.config.ConfigEntry;
 import me.totalfreedom.totalfreedommod.util.FUtil;
-import net.pravian.aero.base.ConfigLoadable;
-import net.pravian.aero.base.ConfigSavable;
-import net.pravian.aero.base.Validatable;
-import net.pravian.aero.util.Ips;
 import org.bukkit.ChatColor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.entity.Player;
 
-public class Ban implements ConfigLoadable, ConfigSavable, Validatable
+public class Ban implements ConfigBase
 {
 
     public static final SimpleDateFormat DATE_FORMAT = new SimpleDateFormat("yyyy-MM-dd \'at\' HH:mm:ss z");
@@ -88,7 +84,7 @@ public class Ban implements ConfigLoadable, ConfigSavable, Validatable
     {
         return new Ban(null, new String[]
                 {
-                        Ips.getIp(player)
+                        FUtil.getIP(player)
                 }, by.getName(), Date.from(Instant.now()), expiry, reason);
     }
 
@@ -124,7 +120,7 @@ public class Ban implements ConfigLoadable, ConfigSavable, Validatable
     public static Ban forPlayer(Player player, CommandSender by, Date expiry, String reason)
     {
         return new Ban(player.getName(),
-                Ips.getIp(player),
+                FUtil.getIP(player),
                 by.getName(),
                 Date.from(Instant.now()),
                 expiry,
@@ -134,7 +130,7 @@ public class Ban implements ConfigLoadable, ConfigSavable, Validatable
     public static Ban forPlayerFuzzy(Player player, CommandSender by, Date expiry, String reason)
     {
         return new Ban(player.getName(),
-                FUtil.getFuzzyIp(Ips.getIp(player)),
+                FUtil.getFuzzyIp(FUtil.getIP(player)),
                 by.getName(),
                 Date.from(Instant.now()),
                 expiry,

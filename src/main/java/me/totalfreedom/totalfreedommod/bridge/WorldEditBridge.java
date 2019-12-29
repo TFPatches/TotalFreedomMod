@@ -19,19 +19,17 @@ public class WorldEditBridge extends FreedomService
     public WorldEditBridge()
     {
         super();
-        listener = new WorldEditListener(plugin);
+        listener = new WorldEditListener();
     }
 
     @Override
     public void start()
     {
-        listener.register();
     }
 
     @Override
     public void stop()
     {
-        listener.unregister();
     }
 
     public WorldEditPlugin getWorldEditPlugin()

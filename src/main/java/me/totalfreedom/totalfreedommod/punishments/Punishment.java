@@ -5,12 +5,10 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import lombok.Getter;
 import lombok.Setter;
-import net.pravian.aero.base.ConfigLoadable;
-import net.pravian.aero.base.ConfigSavable;
-import net.pravian.aero.base.Validatable;
+import me.totalfreedom.totalfreedommod.config.ConfigBase;
 import org.bukkit.configuration.ConfigurationSection;
 
-public class Punishment implements ConfigLoadable, ConfigSavable, Validatable
+public class Punishment implements ConfigBase
 {
 
     public static final SimpleDateFormat DATE_FORMAT = new SimpleDateFormat("yyyy-MM-dd \'at\' HH:mm:ss z");

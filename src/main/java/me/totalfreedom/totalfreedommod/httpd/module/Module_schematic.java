@@ -44,9 +44,19 @@ public class Module_schematic extends HTTPDModule
             + "<button type=\"submit\">Submit</button>\n"
             + "</form>";
 
-    public Module_schematic(TotalFreedomMod plugin, NanoHTTPD.HTTPSession session)
+    public Module_schematic(NanoHTTPD.HTTPSession session)
     {
-        super(plugin, session);
+        super(session);
+    }
+
+    @Override
+    public void start()
+    {
+    }
+
+    @Override
+    public void stop()
+    {
     }
 
     @Override

@@ -8,6 +8,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Timer;
 import java.util.TimerTask;
+import lombok.Getter;
 import me.totalfreedom.totalfreedommod.TotalFreedomMod;
 import me.totalfreedom.totalfreedommod.admin.Admin;
 import me.totalfreedom.totalfreedommod.config.ConfigEntry;
@@ -23,6 +24,7 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandMap;
 import org.bukkit.command.CommandSender;
 import org.bukkit.command.ConsoleCommandSender;
+import org.bukkit.command.PluginCommand;
 import org.bukkit.entity.Player;
 import org.bukkit.util.StringUtil;
 import org.spigotmc.SpigotConfig;
@@ -52,6 +54,7 @@ public abstract class FreedomCommand
     private final SourceType source;
 
     private final CommandParameters params;
+    @Getter
     private final CommandPermissions perms;
 
     // Command Variables
@@ -62,7 +65,7 @@ public abstract class FreedomCommand
 
     // Cooldown
     private Map<CommandSender, FCommand> commandCooldown = new HashMap<>();
-    private final Timer timer = new Timer();
+    public final Timer timer = new Timer();
 
     public FreedomCommand()
     {
@@ -86,7 +89,7 @@ public abstract class FreedomCommand
         cmd.setExecutor(this);
     }
 
-    final CommandMap getCommandMap()
+    public static final CommandMap getCommandMap()
     {
         if (cmap == null)
         {
@@ -324,5 +327,17 @@ public abstract class FreedomCommand
             return true;
         }
         return false;
+    }
+
+    public static FreedomCommand getFrom(Command command)
+    {
+        try
+        {
+            return (FreedomCommand) (((PluginCommand) command).getExecutor());
+        }
+        catch (Exception ex)
+        {
+            return null;
+        }
     }
 }

@@ -5,14 +5,12 @@ import java.util.Collections;
 import java.util.List;
 import lombok.Getter;
 import lombok.Setter;
-import net.pravian.aero.base.ConfigLoadable;
-import net.pravian.aero.base.ConfigSavable;
-import net.pravian.aero.base.Validatable;
+import me.totalfreedom.totalfreedommod.config.ConfigBase;
 import org.apache.commons.lang.Validate;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.entity.Player;
 
-public class VPlayer implements ConfigLoadable, ConfigSavable, Validatable
+public class VPlayer implements ConfigBase
 {
 
     private final List<String> ips = Lists.newArrayList();

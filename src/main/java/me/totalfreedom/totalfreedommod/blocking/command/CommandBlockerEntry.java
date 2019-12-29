@@ -40,7 +40,7 @@ public class CommandBlockerEntry
     {
         if (action == CommandBlockerAction.BLOCK_AND_EJECT && sender instanceof Player)
         {
-            TotalFreedomMod.plugin().ae.autoEject((Player)sender, "You used a prohibited command: " + command);
+            TotalFreedomMod.getPlugin().ae.autoEject((Player)sender, "You used a prohibited command: " + command);
             FUtil.bcastMsg(sender.getName() + " was automatically kicked for using harmful commands.", ChatColor.RED);
             return;
         }

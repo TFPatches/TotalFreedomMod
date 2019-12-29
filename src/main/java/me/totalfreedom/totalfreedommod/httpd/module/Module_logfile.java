@@ -28,9 +28,19 @@ public class Module_logfile extends HTTPDModule
                     "gz"
             };
 
-    public Module_logfile(TotalFreedomMod plugin, NanoHTTPD.HTTPSession session)
+    public Module_logfile(NanoHTTPD.HTTPSession session)
     {
-        super(plugin, session);
+        super(session);
+    }
+
+    @Override
+    public void start()
+    {
+    }
+
+    @Override
+    public void stop()
+    {
     }
 
     @Override

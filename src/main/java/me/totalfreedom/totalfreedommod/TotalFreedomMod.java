@@ -167,16 +167,102 @@ public class TotalFreedomMod extends JavaPlugin
         FUtil.deleteCoreDumps();
         FUtil.deleteFolder(new File("./_deleteme"));
 
-        BackupManager backups = new BackupManager(this);
+        BackupManager backups = new BackupManager();
         backups.createBackups(TotalFreedomMod.CONFIG_FILENAME, true);
         backups.createBackups(AdminList.CONFIG_FILENAME);
         backups.createBackups(PermbanList.CONFIG_FILENAME);
         backups.createBackups(MasterBuilder.CONFIG_FILENAME);
         backups.createBackups(PunishmentList.CONFIG_FILENAME);
 
-        config = new MainConfig(this);
+        config = new MainConfig();
         config.load();
 
+        // Start services
+        start();
+
+        timer.update();
+        FLog.info("Version " + pluginVersion + " for " + ServerInterface.COMPILE_NMS_VERSION + " enabled in " + timer.getTotal() + "ms");
+
+        // Metrics @ https://bstats.org/plugin/bukkit/TotalFreedomMod
+        new Metrics(this);
+
+        // Add spawnpoints later - https://github.com/TotalFreedom/TotalFreedomMod/issues/438
+        new BukkitRunnable()
+        {
+            @Override
+            public void run()
+            {
+                plugin.pa.autoAddSpawnpoints();
+            }
+        }.runTaskLater(plugin, 60L);
+        // little workaround to stop spigot from autorestarting - causing AMP to detach from process.
+        SpigotConfig.config.set("settings.restart-on-crash", false);
+    }
+
+    @Override
+    public void onDisable()
+    {
+        plugin = null;
+
+        // Stop services
+        stop();
+
+        getServer().getScheduler().cancelTasks(plugin);
+
+        FLog.info("Plugin disabled");
+    }
+
+    public static class BuildProperties
+    {
+
+        public String author;
+        public String codename;
+        public String version;
+        public String number;
+        public String date;
+        public String head;
+
+        public void load(TotalFreedomMod plugin)
+        {
+            try
+            {
+                final Properties props;
+
+                try (InputStream in = plugin.getResource("build.properties"))
+                {
+                    props = new Properties();
+                    props.load(in);
+                }
+
+                author = props.getProperty("buildAuthor", "unknown");
+                codename = props.getProperty("buildCodeName", "unknown");
+                version = props.getProperty("buildVersion", pluginVersion);
+                number = props.getProperty("buildNumber", "1");
+                date = props.getProperty("buildDate", "unknown");
+                // Need to do this or it will display ${git.commit.id.abbrev}
+                head = props.getProperty("buildHead", "unknown").replace("${git.commit.id.abbrev}", "unknown");
+            }
+            catch (Exception ex)
+            {
+                FLog.severe("Could not load build properties! Did you compile with NetBeans/Maven?");
+                FLog.severe(ex);
+            }
+        }
+
+        public String formattedVersion()
+        {
+            return pluginVersion + "." + number + " (" + head + ")";
+        }
+    }
+
+    @Override
+    public ChunkGenerator getDefaultWorldGenerator(String worldName, String id)
+    {
+        return new CleanroomChunkGenerator(id);
+    }
+
+    public void start()
+    {
         // Start services
         si = new ServerInterface();
         sf = new SavedFlags();
@@ -250,31 +336,10 @@ public class TotalFreedomMod extends JavaPlugin
         wel = new WorldEditListener();
         wgb = new WorldGuardBridge();
         amp = new AMP();
-
-        timer.update();
-        FLog.info("Version " + pluginVersion + " for " + ServerInterface.COMPILE_NMS_VERSION + " enabled in " + timer.getTotal() + "ms");
-
-        // Metrics @ https://bstats.org/plugin/bukkit/TotalFreedomMod
-        new Metrics(this);
-
-        // Add spawnpoints later - https://github.com/TotalFreedom/TotalFreedomMod/issues/438
-        new BukkitRunnable()
-        {
-            @Override
-            public void run()
-            {
-                plugin.pa.autoAddSpawnpoints();
-            }
-        }.runTaskLater(plugin, 60L);
-        // little workaround to stop spigot from autorestarting - causing AMP to detach from process.
-        SpigotConfig.config.set("settings.restart-on-crash", false);
     }
 
-    @Override
-    public void onDisable()
+    public void stop()
     {
-        plugin = null;
-
         // Stop services
         si.stop();
         sf.stop();
@@ -344,58 +409,5 @@ public class TotalFreedomMod extends JavaPlugin
         web.stop();
         wel.stop();
         wgb.stop();
-
-        getServer().getScheduler().cancelTasks(plugin);
-
-        FLog.info("Plugin disabled");
-    }
-
-    public static class BuildProperties
-    {
-
-        public String author;
-        public String codename;
-        public String version;
-        public String number;
-        public String date;
-        public String head;
-
-        public void load(TotalFreedomMod plugin)
-        {
-            try
-            {
-                final Properties props;
-
-                try (InputStream in = plugin.getResource("build.properties"))
-                {
-                    props = new Properties();
-                    props.load(in);
-                }
-
-                author = props.getProperty("buildAuthor", "unknown");
-                codename = props.getProperty("buildCodeName", "unknown");
-                version = props.getProperty("buildVersion", pluginVersion);
-                number = props.getProperty("buildNumber", "1");
-                date = props.getProperty("buildDate", "unknown");
-                // Need to do this or it will display ${git.commit.id.abbrev}
-                head = props.getProperty("buildHead", "unknown").replace("${git.commit.id.abbrev}", "unknown");
-            }
-            catch (Exception ex)
-            {
-                FLog.severe("Could not load build properties! Did you compile with NetBeans/Maven?");
-                FLog.severe(ex);
-            }
-        }
-
-        public String formattedVersion()
-        {
-            return pluginVersion + "." + number + " (" + head + ")";
-        }
-    }
-
-    @Override
-    public ChunkGenerator getDefaultWorldGenerator(String worldName, String id)
-    {
-        return new CleanroomChunkGenerator(id);
     }
 }

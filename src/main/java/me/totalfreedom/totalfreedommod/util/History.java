@@ -64,7 +64,7 @@ public class History
                     FSync.playerMsg(sender, ChatColor.RED + "Player not found!");
                 }
             }
-        }.runTaskAsynchronously(TotalFreedomMod.plugin());
+        }.runTaskAsynchronously(TotalFreedomMod.getPlugin());
     }
 
     private static void printHistory(CommandSender sender, FName[] oldNames)

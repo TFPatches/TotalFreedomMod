@@ -58,9 +58,19 @@ public class Module_file extends HTTPDModule
         MIME_TYPES.put("class", "application/octet-stream");
     }
 
-    public Module_file(TotalFreedomMod plugin, NanoHTTPD.HTTPSession session)
+    public Module_file(NanoHTTPD.HTTPSession session)
     {
-        super(plugin, session);
+        super(session);
+    }
+
+    @Override
+    public void start()
+    {
+    }
+
+    @Override
+    public void stop()
+    {
     }
 
     private File getRootDir()

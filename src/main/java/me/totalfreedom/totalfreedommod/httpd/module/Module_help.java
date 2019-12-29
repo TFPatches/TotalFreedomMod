@@ -9,9 +9,9 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import me.totalfreedom.totalfreedommod.TotalFreedomMod;
+import me.totalfreedom.totalfreedommod.command.FreedomCommand;
 import me.totalfreedom.totalfreedommod.httpd.NanoHTTPD;
 import me.totalfreedom.totalfreedommod.rank.Displayable;
-import net.pravian.aero.command.CommandReflection;
 import org.apache.commons.lang.StringUtils;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandMap;
@@ -24,15 +24,25 @@ import static org.apache.commons.lang3.StringEscapeUtils.escapeHtml4;
 public class Module_help extends HTTPDModule
 {
 
-    public Module_help(TotalFreedomMod plugin, NanoHTTPD.HTTPSession session)
+    public Module_help(NanoHTTPD.HTTPSession session)
     {
-        super(plugin, session);
+        super(session);
+    }
+
+    @Override
+    public void start()
+    {
+    }
+
+    @Override
+    public void stop()
+    {
     }
 
     @Override
     public String getBody()
     {
-        final CommandMap map = CommandReflection.getCommandMap();
+        final CommandMap map = FreedomCommand.getCommandMap();
         if (map == null || !(map instanceof SimpleCommandMap))
         {
             return paragraph("Error loading commands.");
@@ -132,7 +142,6 @@ public class Module_help extends HTTPDModule
 
     public static class CommandComparator implements Comparator<Command>
     {
-
         @Override
         public int compare(Command a, Command b)
         {

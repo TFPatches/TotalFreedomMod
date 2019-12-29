@@ -42,6 +42,16 @@ public final class AdminWorld extends CustomWorld
     }
 
     @Override
+    public void start()
+    {
+    }
+
+    @Override
+    public void stop()
+    {
+    }
+
+    @Override
     public void sendToWorld(Player player)
     {
         if (!canAccessWorld(player))

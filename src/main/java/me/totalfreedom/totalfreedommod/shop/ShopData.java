@@ -5,14 +5,12 @@ import java.util.Collections;
 import java.util.List;
 import lombok.Getter;
 import lombok.Setter;
-import net.pravian.aero.base.ConfigLoadable;
-import net.pravian.aero.base.ConfigSavable;
-import net.pravian.aero.base.Validatable;
+import me.totalfreedom.totalfreedommod.config.ConfigBase;
 import org.apache.commons.lang3.Validate;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.entity.Player;
 
-public class ShopData implements ConfigLoadable, ConfigSavable, Validatable
+public class ShopData implements ConfigBase
 {
 
     @Getter

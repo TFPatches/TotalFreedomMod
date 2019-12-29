@@ -29,7 +29,7 @@ public abstract class ModuleExecutable
             }
 
             // Sync to server thread
-            return Bukkit.getScheduler().callSyncMethod(TotalFreedomMod.plugin(), new Callable<NanoHTTPD.Response>()
+            return Bukkit.getScheduler().callSyncMethod(TotalFreedomMod.getPlugin(), new Callable<NanoHTTPD.Response>()
             {
                 @Override
                 public NanoHTTPD.Response call() throws Exception

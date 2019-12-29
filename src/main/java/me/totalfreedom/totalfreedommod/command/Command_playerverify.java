@@ -5,7 +5,7 @@ import java.util.Collections;
 import java.util.List;
 import me.totalfreedom.totalfreedommod.playerverification.VPlayer;
 import me.totalfreedom.totalfreedommod.rank.Rank;
-import net.pravian.aero.util.Ips;
+import me.totalfreedom.totalfreedommod.util.FUtil;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
@@ -27,14 +27,14 @@ public class Command_playerverify extends FreedomCommand
                 int cleared = 0;
                 for (String ip : target.getIps())
                 {
-                    if (!ip.equals(Ips.getIp(playerSender)))
+                    if (!ip.equals(FUtil.getIP(playerSender)))
                     {
                         target.removeIp(ip);
                         cleared++;
                     }
                 }
 
-                msg("Cleared all IP's except your current IP \"" + Ips.getIp(playerSender) + "\"");
+                msg("Cleared all IP's except your current IP \"" + FUtil.getIP(playerSender) + "\"");
                 msg("Cleared " + cleared + " IP's.");
                 plugin.pv.saveVerificationData(target);
                 return true;

@@ -10,9 +10,19 @@ import me.totalfreedom.totalfreedommod.punishments.PunishmentList;
 public class Module_punishments extends HTTPDModule
 {
 
-    public Module_punishments(TotalFreedomMod plugin, NanoHTTPD.HTTPSession session)
+    public Module_punishments(NanoHTTPD.HTTPSession session)
     {
-        super(plugin, session);
+        super(session);
+    }
+
+    @Override
+    public void start()
+    {
+    }
+
+    @Override
+    public void stop()
+    {
     }
 
     @Override

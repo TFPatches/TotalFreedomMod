@@ -16,7 +16,6 @@ import me.totalfreedom.totalfreedommod.config.YamlConfig;
 import me.totalfreedom.totalfreedommod.rank.Rank;
 import me.totalfreedom.totalfreedommod.util.FLog;
 import me.totalfreedom.totalfreedommod.util.FUtil;
-import net.pravian.aero.util.Ips;
 import org.bukkit.Bukkit;
 import org.bukkit.command.CommandSender;
 import org.bukkit.configuration.ConfigurationSection;
@@ -177,7 +176,7 @@ public class AdminList extends FreedomService
     public Admin getAdmin(Player player)
     {
         // Find admin
-        String ip = Ips.getIp(player);
+        String ip = FUtil.getIP(player);
         Admin admin = getEntryByName(player.getName());
 
         // Admin by name
@@ -260,7 +259,7 @@ public class AdminList extends FreedomService
 
     public boolean isVerifiedAdmin(Player player)
     {
-        return verifiedNoAdmins.contains(player.getName()) && verifiedNoAdminIps.get(player.getName()).contains(Ips.getIp(player));
+        return verifiedNoAdmins.contains(player.getName()) && verifiedNoAdminIps.get(player.getName()).contains(FUtil.getIP(player));
     }
 
     public boolean isIdentityMatched(Player player)

@@ -31,7 +31,7 @@ public class PrivateMessageListener extends ListenerAdapter
                     player.setDiscordId(event.getMessage().getAuthor().getId());
                     player.setEnabled(true);
 
-                    TotalFreedomMod.plugin().pv.saveVerificationData(player);
+                    TotalFreedomMod.getPlugin().pv.saveVerificationData(player);
                     Discord.PLAYER_LINK_CODES.remove(code);
                     event.getChannel().sendMessage("Link successful. Now this Discord account is linked with your Minecraft account `" + player.getName() + "`.\n"
                             + "Now when you are an impostor on the server, you may use `/verify` to verify.").complete();

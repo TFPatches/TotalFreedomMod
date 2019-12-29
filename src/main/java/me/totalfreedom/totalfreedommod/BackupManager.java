@@ -1,18 +1,27 @@
 package me.totalfreedom.totalfreedommod;
 
 import java.io.File;
+import me.totalfreedom.totalfreedommod.config.YamlConfig;
 import me.totalfreedom.totalfreedommod.util.FLog;
 import me.totalfreedom.totalfreedommod.util.FUtil;
-import net.pravian.aero.component.PluginComponent;
-import net.pravian.aero.config.YamlConfig;
 import org.bukkit.util.FileUtil;
 
-public class BackupManager extends PluginComponent<TotalFreedomMod>
+public class BackupManager extends FreedomService
 {
 
-    public BackupManager(TotalFreedomMod plugin)
+    public BackupManager()
     {
-        super(plugin);
+        super();
+    }
+
+    @Override
+    public void start()
+    {
+    }
+
+    @Override
+    public void stop()
+    {
     }
 
     public void createBackups(String file)
@@ -23,7 +32,7 @@ public class BackupManager extends PluginComponent<TotalFreedomMod>
     public void createBackups(String file, boolean onlyWeekly)
     {
         final String save = file.split("\\.")[0];
-        final YamlConfig config = new YamlConfig(plugin, "backup/backup.yml", false);
+        final YamlConfig config = new YamlConfig(plugin, "backup/backup.yml");
         config.load();
 
         // Weekly

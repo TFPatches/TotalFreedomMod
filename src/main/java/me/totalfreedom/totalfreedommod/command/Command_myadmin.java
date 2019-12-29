@@ -5,7 +5,6 @@ import me.totalfreedom.totalfreedommod.admin.Admin;
 import me.totalfreedom.totalfreedommod.config.ConfigEntry;
 import me.totalfreedom.totalfreedommod.rank.Rank;
 import me.totalfreedom.totalfreedommod.util.FUtil;
-import net.pravian.aero.util.Ips;
 import org.apache.commons.lang.StringUtils;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
@@ -59,7 +58,7 @@ public class Command_myadmin extends FreedomCommand
             }
         }
 
-        final String targetIp = Ips.getIp(targetPlayer);
+        final String targetIp = FUtil.getIP(targetPlayer);
 
         switch (args[0])
         {

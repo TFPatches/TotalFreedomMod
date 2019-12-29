@@ -9,7 +9,6 @@ import me.totalfreedom.totalfreedommod.masterbuilder.MasterBuilder;
 import me.totalfreedom.totalfreedommod.player.FPlayer;
 import me.totalfreedom.totalfreedommod.rank.Rank;
 import me.totalfreedom.totalfreedommod.util.FUtil;
-import net.pravian.aero.util.Ips;
 import org.apache.commons.lang.StringUtils;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
@@ -138,7 +137,7 @@ public class Command_mbconfig extends FreedomCommand
                     if (player != null)
                     {
                         masterBuilder.setName(player.getName());
-                        masterBuilder.addIp(Ips.getIp(player));
+                        masterBuilder.addIp(FUtil.getIP(player));
                     }
 
                     masterBuilder.setLastLogin(new Date());

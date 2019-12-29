@@ -3,15 +3,14 @@ package me.totalfreedom.totalfreedommod.httpd.module;
 import java.net.Socket;
 import java.util.HashMap;
 import java.util.Map;
-import me.totalfreedom.totalfreedommod.TotalFreedomMod;
+import me.totalfreedom.totalfreedommod.FreedomService;
 import me.totalfreedom.totalfreedommod.httpd.HTTPDPageBuilder;
 import me.totalfreedom.totalfreedommod.httpd.NanoHTTPD.HTTPSession;
 import me.totalfreedom.totalfreedommod.httpd.NanoHTTPD.Method;
 import me.totalfreedom.totalfreedommod.httpd.NanoHTTPD.Response;
 import me.totalfreedom.totalfreedommod.util.FLog;
-import net.pravian.aero.component.PluginComponent;
 
-public abstract class HTTPDModule extends PluginComponent<TotalFreedomMod>
+public abstract class HTTPDModule extends FreedomService
 {
 
     protected final String uri;
@@ -21,9 +20,9 @@ public abstract class HTTPDModule extends PluginComponent<TotalFreedomMod>
     protected final Socket socket;
     protected final HTTPSession session;
 
-    public HTTPDModule(TotalFreedomMod plugin, HTTPSession session)
+    public HTTPDModule(HTTPSession session)
     {
-        super(plugin);
+        super();
         this.uri = session.getUri();
         this.method = session.getMethod();
         this.headers = session.getHeaders();
