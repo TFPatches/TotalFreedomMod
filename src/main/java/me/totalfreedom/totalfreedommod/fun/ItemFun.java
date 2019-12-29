@@ -32,18 +32,18 @@ public class ItemFun extends FreedomService
 
     private final Random random = new Random();
 
-    public ItemFun(TotalFreedomMod plugin)
+    public ItemFun()
     {
-        super(plugin);
+        super();
     }
 
     @Override
-    protected void onStart()
+    public void start()
     {
     }
 
     @Override
-    protected void onStop()
+    public void stop()
     {
     }
 

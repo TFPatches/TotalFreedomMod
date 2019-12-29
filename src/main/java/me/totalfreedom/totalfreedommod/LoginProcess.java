@@ -32,18 +32,18 @@ public class LoginProcess extends FreedomService
     @Setter
     private static boolean lockdownEnabled = false;
 
-    public LoginProcess(TotalFreedomMod plugin)
+    public LoginProcess()
     {
-        super(plugin);
+        super();
     }
 
     @Override
-    protected void onStart()
+    public void start()
     {
     }
 
     @Override
-    protected void onStop()
+    public void stop()
     {
     }
 

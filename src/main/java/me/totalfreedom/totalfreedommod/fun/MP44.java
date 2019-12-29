@@ -9,18 +9,18 @@ import org.bukkit.event.player.PlayerQuitEvent;
 public class MP44 extends FreedomService
 {
 
-    public MP44(TotalFreedomMod plugin)
+    public MP44()
     {
-        super(plugin);
+        super();
     }
 
     @Override
-    protected void onStart()
+    public void start()
     {
     }
 
     @Override
-    protected void onStop()
+    public void stop()
     {
     }
 

@@ -9,18 +9,18 @@ import org.bukkit.event.player.PlayerCommandPreprocessEvent;
 public class CommandSpy extends FreedomService
 {
 
-    public CommandSpy(TotalFreedomMod plugin)
+    public CommandSpy()
     {
-        super(plugin);
+        super();
     }
 
     @Override
-    protected void onStart()
+    public void start()
     {
     }
 
     @Override
-    protected void onStop()
+    public void stop()
     {
     }
 

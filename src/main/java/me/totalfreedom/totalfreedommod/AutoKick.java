@@ -15,13 +15,13 @@ public class AutoKick extends FreedomService
     private long autoKickTicks;
     private double autoKickThreshold;
 
-    public AutoKick(TotalFreedomMod plugin)
+    public AutoKick()
     {
-        super(plugin);
+        super();
     }
 
     @Override
-    protected void onStart()
+    public void start()
     {
         autoKickTicks = (long)ConfigEntry.AUTOKICK_TIME.getInteger() * 1000L;
         autoKickThreshold = ConfigEntry.AUTOKICK_THRESHOLD.getDouble();
@@ -43,7 +43,7 @@ public class AutoKick extends FreedomService
     }
 
     @Override
-    protected void onStop()
+    public void stop()
     {
         FUtil.cancel(kickTask);
         kickTask = null;

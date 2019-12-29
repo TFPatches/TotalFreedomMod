@@ -22,18 +22,18 @@ import org.bukkit.SoundCategory;
 public class ChatManager extends FreedomService
 {
 
-    public ChatManager(TotalFreedomMod plugin)
+    public ChatManager()
     {
-        super(plugin);
+        super();
     }
 
     @Override
-    protected void onStart()
+    public void start()
     {
     }
 
     @Override
-    protected void onStop()
+    public void stop()
     {
     }
 

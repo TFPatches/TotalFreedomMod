@@ -27,21 +27,19 @@ public class Jumppads extends FreedomService
     private double strength = 1 + 0.1F;
     public HashMap<Player, JumpPadMode> players = new HashMap<>();
 
-    public Jumppads(TotalFreedomMod plugin)
+    public Jumppads()
     {
-        super(plugin);
+        super();
     }
 
     @Override
-    public void onStart()
+    public void start()
     {
-
     }
 
     @Override
-    public void onStop()
+    public void stop()
     {
-
     }
 
     @EventHandler

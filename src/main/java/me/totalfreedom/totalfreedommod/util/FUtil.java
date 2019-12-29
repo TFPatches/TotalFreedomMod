@@ -488,4 +488,9 @@ public class FUtil
             }
         }
     }
+
+    public static String getIP(Player player)
+    {
+        return player.getAddress().getAddress().getHostAddress().trim();
+    }
 }

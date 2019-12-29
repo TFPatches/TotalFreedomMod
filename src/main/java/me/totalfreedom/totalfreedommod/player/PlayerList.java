@@ -6,10 +6,9 @@ import java.util.Collection;
 import java.util.Map;
 import lombok.Getter;
 import me.totalfreedom.totalfreedommod.FreedomService;
-import me.totalfreedom.totalfreedommod.TotalFreedomMod;
+import me.totalfreedom.totalfreedommod.config.YamlConfig;
 import me.totalfreedom.totalfreedommod.util.FLog;
 import me.totalfreedom.totalfreedommod.util.FUtil;
-import net.pravian.aero.config.YamlConfig;
 import net.pravian.aero.util.Ips;
 import org.bukkit.Bukkit;
 import org.bukkit.OfflinePlayer;
@@ -30,15 +29,15 @@ public class PlayerList extends FreedomService
     @Getter
     private final File configFolder;
 
-    public PlayerList(TotalFreedomMod plugin)
+    public PlayerList()
     {
-        super(plugin);
+        super();
 
         this.configFolder = new File(plugin.getDataFolder(), "players");
     }
 
     @Override
-    protected void onStart()
+    public void start()
     {
         playerMap.clear();
         dataMap.clear();
@@ -51,7 +50,7 @@ public class PlayerList extends FreedomService
     }
 
     @Override
-    protected void onStop()
+    public void stop()
     {
         save();
     }
@@ -215,7 +214,7 @@ public class PlayerList extends FreedomService
 
     protected YamlConfig getConfig(PlayerData data)
     {
-        final YamlConfig config = new YamlConfig(plugin, getConfigFile(data.getUsername().toLowerCase()), false);
+        final YamlConfig config = new YamlConfig(plugin, data.getUsername().toLowerCase());
         config.load();
         return config;
     }

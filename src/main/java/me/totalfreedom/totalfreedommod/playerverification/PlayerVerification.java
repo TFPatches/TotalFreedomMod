@@ -6,10 +6,9 @@ import java.io.IOException;
 import java.util.Map;
 import lombok.Getter;
 import me.totalfreedom.totalfreedommod.FreedomService;
-import me.totalfreedom.totalfreedommod.TotalFreedomMod;
+import me.totalfreedom.totalfreedommod.config.YamlConfig;
 import me.totalfreedom.totalfreedommod.util.FLog;
-import net.pravian.aero.config.YamlConfig;
-import net.pravian.aero.util.Ips;
+import me.totalfreedom.totalfreedommod.util.FUtil;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -24,21 +23,21 @@ public class PlayerVerification extends FreedomService
     @Getter
     private final File configFolder;
 
-    public PlayerVerification(TotalFreedomMod plugin)
+    public PlayerVerification()
     {
-        super(plugin);
+        super();
 
         this.configFolder = new File(plugin.getDataFolder(), "playerverification");
     }
 
     @Override
-    protected void onStart()
+    public void start()
     {
         dataMap.clear();
     }
 
     @Override
-    protected void onStop()
+    public void stop()
     {
         save();
     }
@@ -48,7 +47,7 @@ public class PlayerVerification extends FreedomService
         VPlayer vPlayer = getVerificationPlayer(player);
         return !plugin.al.isAdmin(player)
                 && (vPlayer.getEnabled())
-                && !vPlayer.getIps().contains(Ips.getIp(player));
+                && !vPlayer.getIps().contains(FUtil.getIP(player));
     }
 
     public void verifyPlayer(Player player)
@@ -59,7 +58,7 @@ public class PlayerVerification extends FreedomService
         }
 
         VPlayer vPlayer = getVerificationPlayer(player);
-        vPlayer.addIp(Ips.getIp(player));
+        vPlayer.addIp(FUtil.getIP(player));
         dataMap.put(player.getName(), vPlayer);
         YamlConfig config = getConfig(vPlayer);
         vPlayer.saveTo(config);
@@ -114,7 +113,7 @@ public class PlayerVerification extends FreedomService
 
             // Create new player
             vPlayer = new VPlayer(player);
-            vPlayer.addIp(Ips.getIp(player));
+            vPlayer.addIp(FUtil.getIP(player));
 
             // Store player
             dataMap.put(player.getName(), vPlayer);
@@ -175,7 +174,7 @@ public class PlayerVerification extends FreedomService
 
     protected YamlConfig getConfig(VPlayer player)
     {
-        final YamlConfig config = new YamlConfig(plugin, getConfigFile(player.getName().toLowerCase()), false);
+        final YamlConfig config = new YamlConfig(plugin, player.getName().toLowerCase());
         config.load();
 
         // Convert discordEnabled to enabled, and remove forumEnabled.

@@ -16,18 +16,18 @@ import org.bukkit.inventory.ItemStack;
 public class BlockBlocker extends FreedomService
 {
 
-    public BlockBlocker(TotalFreedomMod plugin)
+    public BlockBlocker()
     {
-        super(plugin);
+        super();
     }
 
     @Override
-    protected void onStart()
+    public void start()
     {
     }
 
     @Override
-    protected void onStop()
+    public void stop()
     {
     }
 

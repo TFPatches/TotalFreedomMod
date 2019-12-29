@@ -6,14 +6,11 @@ import java.util.Collection;
 import java.util.Map;
 import lombok.Getter;
 import me.totalfreedom.totalfreedommod.FreedomService;
-import me.totalfreedom.totalfreedommod.TotalFreedomMod;
 import me.totalfreedom.totalfreedommod.config.ConfigEntry;
+import me.totalfreedom.totalfreedommod.config.YamlConfig;
 import me.totalfreedom.totalfreedommod.util.FLog;
 import me.totalfreedom.totalfreedommod.util.FUtil;
-import net.pravian.aero.config.YamlConfig;
-import net.pravian.aero.util.Ips;
 import org.bukkit.Bukkit;
-import org.bukkit.ChatColor;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -27,21 +24,21 @@ public class Shop extends FreedomService
     @Getter
     private final File configFolder;
 
-    public Shop(TotalFreedomMod plugin)
+    public Shop()
     {
-        super(plugin);
+        super();
 
         this.configFolder = new File(plugin.getDataFolder(), "shopdata");
     }
 
     @Override
-    protected void onStart()
+    public void start()
     {
         dataMap.clear();
     }
 
     @Override
-    protected void onStop()
+    public void stop()
     {
         for (ShopData sd : dataMap.values())
         {
@@ -60,7 +57,7 @@ public class Shop extends FreedomService
     {
         if (player.isOnline())
         {
-            return Ips.getIp(player.getPlayer());
+            return FUtil.getIP(player.getPlayer());
         }
 
         final ShopData entry = getData(player.getName());
@@ -77,7 +74,7 @@ public class Shop extends FreedomService
     public ShopData getData(Player player)
     {
         // Check already loaded
-        ShopData data = dataMap.get(Ips.getIp(player));
+        ShopData data = dataMap.get(FUtil.getIP(player));
         if (data != null)
         {
             return data;
@@ -94,7 +91,7 @@ public class Shop extends FreedomService
             // Create new player
             final long unix = FUtil.getUnixTime();
             data = new ShopData(player);
-            data.addIp(Ips.getIp(player));
+            data.addIp(FUtil.getIP(player));
             
             // Set defaults
             data.setCoins(0);
@@ -139,7 +136,7 @@ public class Shop extends FreedomService
         {
             for (Player onlinePlayer : Bukkit.getOnlinePlayers())
             {
-                if (Ips.getIp(onlinePlayer).equals(ip))
+                if (FUtil.getIP(onlinePlayer).equals(ip))
                 {
                     dataMap.put(ip, data);
                     return data;
@@ -153,7 +150,7 @@ public class Shop extends FreedomService
     @EventHandler(priority = EventPriority.MONITOR, ignoreCancelled = true)
     public void onPlayerQuit(PlayerQuitEvent event)
     {
-        final String ip = Ips.getIp(event.getPlayer());
+        final String ip = FUtil.getIP(event.getPlayer());
         dataMap.remove(ip);
     }
 
@@ -169,7 +166,7 @@ public class Shop extends FreedomService
 
     protected YamlConfig getConfig(ShopData data)
     {
-        final YamlConfig config = new YamlConfig(plugin, getConfigFile(data.getUsername().toLowerCase()), false);
+        final YamlConfig config = new YamlConfig(plugin, data.getUsername().toLowerCase());
         config.load();
         return config;
     }

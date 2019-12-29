@@ -20,13 +20,13 @@ public class AntiSpam extends FreedomService
     //
     public BukkitTask cycleTask = null;
 
-    public AntiSpam(TotalFreedomMod plugin)
+    public AntiSpam()
     {
-        super(plugin);
+        super();
     }
 
     @Override
-    protected void onStart()
+    public void start()
     {
         new BukkitRunnable()
         {
@@ -40,7 +40,7 @@ public class AntiSpam extends FreedomService
     }
 
     @Override
-    protected void onStop()
+    public void stop()
     {
         FUtil.cancel(cycleTask);
     }

@@ -28,7 +28,7 @@ import net.dv8tion.jda.api.entities.TextChannel;
 import net.dv8tion.jda.api.entities.SelfUser;
 import net.dv8tion.jda.api.events.ReadyEvent;
 import net.dv8tion.jda.api.hooks.ListenerAdapter;
-import net.pravian.aero.util.StringUtils;
+import org.apache.commons.lang.StringUtils;
 import org.apache.commons.lang.WordUtils;
 import org.bukkit.GameRule;
 import org.bukkit.entity.Player;
@@ -46,9 +46,9 @@ public class Discord extends FreedomService
     public static JDA bot = null;
     public Boolean enabled = false;
 
-    public Discord(TotalFreedomMod plugin)
+    public Discord()
     {
-        super(plugin);
+        super();
     }
 
     public void startBot()
@@ -143,7 +143,7 @@ public class Discord extends FreedomService
     }
 
     @Override
-    protected void onStart()
+    public void start()
     {
         startBot();
     }
@@ -192,7 +192,7 @@ public class Discord extends FreedomService
     }
 
     @Override
-    protected void onStop()
+    public void stop()
     {
         if (bot != null)
         {

@@ -3,7 +3,6 @@ package me.totalfreedom.totalfreedommod.masterbuilder;
 import java.util.Arrays;
 import java.util.List;
 import me.totalfreedom.totalfreedommod.FreedomService;
-import me.totalfreedom.totalfreedommod.TotalFreedomMod;
 import me.totalfreedom.totalfreedommod.util.FUtil;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
@@ -22,18 +21,18 @@ public class MasterBuilderWorldRestrictions extends FreedomService
     public final List<String> BLOCKED_WORLDEDIT_COMMANDS = Arrays.asList(
             "green", "fixlava", "fixwater", "br", "brush", "tool", "mat", "range", "cs", "up", "fill", "setblock", "tree", "replacenear");
 
-    public MasterBuilderWorldRestrictions(TotalFreedomMod plugin)
+    public MasterBuilderWorldRestrictions()
     {
-        super(plugin);
+        super();
     }
 
     @Override
-    protected void onStart()
+    public void start()
     {
     }
 
     @Override
-    protected void onStop()
+    public void stop()
     {
     }
 

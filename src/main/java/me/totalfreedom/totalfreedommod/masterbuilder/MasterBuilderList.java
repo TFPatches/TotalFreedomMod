@@ -8,10 +8,9 @@ import java.util.Set;
 import lombok.Getter;
 import me.totalfreedom.totalfreedommod.FreedomService;
 import me.totalfreedom.totalfreedommod.TotalFreedomMod;
+import me.totalfreedom.totalfreedommod.config.YamlConfig;
 import me.totalfreedom.totalfreedommod.util.FLog;
 import me.totalfreedom.totalfreedommod.util.FUtil;
-import net.pravian.aero.config.YamlConfig;
-import net.pravian.aero.util.Ips;
 import org.bukkit.command.CommandSender;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.entity.Player;
@@ -29,15 +28,15 @@ public class MasterBuilderList extends FreedomService
     //
     private final YamlConfig config;
 
-    public MasterBuilderList(TotalFreedomMod plugin)
+    public MasterBuilderList()
     {
-        super(plugin);
+        super();
 
-        this.config = new YamlConfig(plugin, CONFIG_FILENAME, true);
+        this.config = new YamlConfig(plugin, CONFIG_FILENAME);
     }
 
     @Override
-    protected void onStart()
+    public void start()
     {
         load();
 
@@ -52,7 +51,7 @@ public class MasterBuilderList extends FreedomService
     }
 
     @Override
-    protected void onStop()
+    public void stop()
     {
         save();
     }
@@ -137,7 +136,7 @@ public class MasterBuilderList extends FreedomService
 
     public MasterBuilder getMasterBuilder(Player player)
     {
-        String ip = Ips.getIp(player);
+        String ip = FUtil.getIP(player);
         MasterBuilder masterBuilder = getEntryByName(player.getName());
 
         // By name

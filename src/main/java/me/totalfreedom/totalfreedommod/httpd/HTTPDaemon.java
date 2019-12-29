@@ -39,13 +39,13 @@ public class HTTPDaemon extends FreedomService
     private HTTPD httpd;
     public Map<String, ModuleExecutable> modules = new HashMap<>();
 
-    public HTTPDaemon(TotalFreedomMod plugin)
+    public HTTPDaemon()
     {
-        super(plugin);
+        super();
     }
 
     @Override
-    public void onStart()
+    public void start()
     {
         if (!ConfigEntry.HTTPD_ENABLED.getBoolean())
         {
@@ -90,7 +90,7 @@ public class HTTPDaemon extends FreedomService
     }
 
     @Override
-    public void onStop()
+    public void stop()
     {
         if (!ConfigEntry.HTTPD_ENABLED.getBoolean())
         {

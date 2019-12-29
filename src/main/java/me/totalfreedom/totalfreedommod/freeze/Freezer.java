@@ -16,19 +16,19 @@ public class Freezer extends FreedomService
     @Getter
     private boolean globalFreeze = false;
 
-    public Freezer(TotalFreedomMod plugin)
+    public Freezer()
     {
-        super(plugin);
+        super();
     }
 
     @Override
-    protected void onStart()
+    public void start()
     {
         globalFreeze = false;
     }
 
     @Override
-    protected void onStop()
+    public void stop()
     {
     }
 

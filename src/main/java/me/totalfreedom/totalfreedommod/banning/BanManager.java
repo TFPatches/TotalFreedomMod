@@ -12,11 +12,10 @@ import java.util.Set;
 import me.totalfreedom.totalfreedommod.FreedomService;
 import me.totalfreedom.totalfreedommod.TotalFreedomMod;
 import me.totalfreedom.totalfreedommod.config.ConfigEntry;
+import me.totalfreedom.totalfreedommod.config.YamlConfig;
 import me.totalfreedom.totalfreedommod.player.PlayerData;
 import me.totalfreedom.totalfreedommod.util.FLog;
 import me.totalfreedom.totalfreedommod.util.FUtil;
-import net.pravian.aero.config.YamlConfig;
-import net.pravian.aero.util.Ips;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
@@ -35,14 +34,14 @@ public class BanManager extends FreedomService
     //
     private final YamlConfig config;
 
-    public BanManager(TotalFreedomMod plugin)
+    public BanManager()
     {
-        super(plugin);
-        this.config = new YamlConfig(plugin, "bans.yml");
+        super();
+        this.config = new YamlConfig(plugin, CONFIG_FILENAME);
     }
 
     @Override
-    protected void onStart()
+    public void start()
     {
         config.load();
 
@@ -79,7 +78,7 @@ public class BanManager extends FreedomService
     }
 
     @Override
-    protected void onStop()
+    public void stop()
     {
         saveAll();
         logger.info("Saved " + bans.size() + " player bans");
@@ -138,7 +137,7 @@ public class BanManager extends FreedomService
                     continue;
                 }
 
-                if (Ips.fuzzyIpMatch(ip, loopIp, 4))
+                if (Ips.fuzzyIpMatch(ip, loopIp, 4)) // todo what in hell does this do?
                 {
                     return loopBan;
                 }
@@ -235,7 +234,7 @@ public class BanManager extends FreedomService
     public void onPlayerLogin(PlayerLoginEvent event)
     {
         final String username = event.getPlayer().getName();
-        final String ip = Ips.getIp(event);
+        final String ip = FUtil.getIP(event);
 
         // Regular ban
         Ban ban = getByUsername(username);

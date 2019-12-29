@@ -6,10 +6,9 @@ import lombok.Getter;
 import me.totalfreedom.totalfreedommod.FreedomService;
 import me.totalfreedom.totalfreedommod.TotalFreedomMod;
 import me.totalfreedom.totalfreedommod.config.ConfigEntry;
+import me.totalfreedom.totalfreedommod.config.YamlConfig;
 import me.totalfreedom.totalfreedommod.util.FLog;
 import me.totalfreedom.totalfreedommod.util.FUtil;
-import net.pravian.aero.config.YamlConfig;
-import net.pravian.aero.util.Ips;
 import org.bukkit.ChatColor;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
@@ -25,18 +24,18 @@ public class PermbanList extends FreedomService
     @Getter
     private final Set<String> permbannedIps = Sets.newHashSet();
 
-    public PermbanList(TotalFreedomMod plugin)
+    public PermbanList()
     {
-        super(plugin);
+        super();
     }
 
     @Override
-    protected void onStart()
+    public void start()
     {
         permbannedNames.clear();
         permbannedIps.clear();
 
-        final YamlConfig config = new YamlConfig(plugin, CONFIG_FILENAME, true);
+        final YamlConfig config = new YamlConfig(plugin, CONFIG_FILENAME);
         config.load();
 
         for (String name : config.getKeys(false))
@@ -49,7 +48,7 @@ public class PermbanList extends FreedomService
     }
 
     @Override
-    protected void onStop()
+    public void stop()
     {
     }
 
@@ -57,7 +56,7 @@ public class PermbanList extends FreedomService
     public void onPlayerLogin(PlayerLoginEvent event)
     {
         final String username = event.getPlayer().getName();
-        final String ip = Ips.getIp(event);
+        final String ip = FUtil.getIP(event.getPlayer());
 
         // Permbanned IPs
         for (String testIp : getPermbannedIps())

@@ -20,18 +20,18 @@ import org.bukkit.inventory.ItemStack;
 public class SignBlocker extends FreedomService
 {
 
-    public SignBlocker(TotalFreedomMod plugin)
+    public SignBlocker()
     {
-        super(plugin);
+        super();
     }
 
     @Override
-    protected void onStart()
+    public void start()
     {
     }
 
     @Override
-    protected void onStop()
+    public void stop()
     {
     }
 

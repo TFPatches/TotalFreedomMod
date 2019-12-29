@@ -47,18 +47,18 @@ import org.bukkit.inventory.meta.BlockStateMeta;
 public class EventBlocker extends FreedomService
 {
 
-    public EventBlocker(TotalFreedomMod plugin)
+    public EventBlocker()
     {
-        super(plugin);
+        super();
     }
 
     @Override
-    protected void onStart()
+    public void start()
     {
     }
 
     @Override
-    protected void onStop()
+    public void stop()
     {
     }
 

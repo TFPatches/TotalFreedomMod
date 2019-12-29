@@ -32,13 +32,13 @@ public class ProtectArea extends FreedomService
     //
     private final Map<String, SerializableProtectedRegion> areas = Maps.newHashMap();
 
-    public ProtectArea(TotalFreedomMod plugin)
+    public ProtectArea()
     {
-        super(plugin);
+        super();
     }
 
     @Override
-    protected void onStart()
+    public void start()
     {
         if (!ConfigEntry.PROTECTAREA_ENABLED.getBoolean())
         {
@@ -68,7 +68,7 @@ public class ProtectArea extends FreedomService
     }
 
     @Override
-    protected void onStop()
+    public void stop()
     {
         save();
     }

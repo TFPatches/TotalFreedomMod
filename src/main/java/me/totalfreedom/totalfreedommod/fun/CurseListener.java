@@ -16,18 +16,18 @@ public class CurseListener extends FreedomService
 
     public HashMap<Player, Player> cursedPlayers = new HashMap<Player, Player>();
 
-    public CurseListener(TotalFreedomMod plugin)
+    public CurseListener()
     {
-        super(plugin);
+        super();
     }
 
     @Override
-    protected void onStart()
+    public void start()
     {
     }
 
     @Override
-    protected void onStop()
+    public void stop()
     {
     }
 

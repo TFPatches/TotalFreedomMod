@@ -12,18 +12,18 @@ import org.bukkit.inventory.ItemStack;
 public class MobStacker extends FreedomService
 {
 
-    public MobStacker(TotalFreedomMod plugin)
+    public MobStacker()
     {
-        super(plugin);
+        super();
     }
 
     @Override
-    protected void onStart()
+    public void start()
     {
     }
 
     @Override
-    protected void onStop()
+    public void stop()
     {
     }
 

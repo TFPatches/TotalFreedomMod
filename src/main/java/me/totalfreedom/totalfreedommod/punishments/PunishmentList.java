@@ -6,8 +6,8 @@ import java.util.List;
 import java.util.Set;
 import me.totalfreedom.totalfreedommod.FreedomService;
 import me.totalfreedom.totalfreedommod.TotalFreedomMod;
+import me.totalfreedom.totalfreedommod.config.YamlConfig;
 import me.totalfreedom.totalfreedommod.util.FLog;
-import net.pravian.aero.config.YamlConfig;
 
 public class PunishmentList extends FreedomService
 {
@@ -18,14 +18,14 @@ public class PunishmentList extends FreedomService
     //
     private final YamlConfig config;
 
-    public PunishmentList(TotalFreedomMod plugin)
+    public PunishmentList()
     {
-        super(plugin);
+        super();
         this.config = new YamlConfig(plugin, CONFIG_FILENAME);
     }
 
     @Override
-    protected void onStart()
+    public void start()
     {
         config.load();
 
@@ -54,7 +54,7 @@ public class PunishmentList extends FreedomService
     }
 
     @Override
-    protected void onStop()
+    public void stop()
     {
         saveAll();
         logger.info("Saved " + punishments.size() + " player bans");

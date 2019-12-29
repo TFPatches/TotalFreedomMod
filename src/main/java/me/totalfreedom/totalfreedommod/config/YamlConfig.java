@@ -47,4 +47,12 @@ public class YamlConfig extends YamlConfiguration
             e.printStackTrace();
         }
     }
+
+    public void clear()
+    {
+        for (String key : super.getKeys(false))
+        {
+            super.set(key, null);
+        }
+    }
 }

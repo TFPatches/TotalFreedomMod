@@ -14,18 +14,18 @@ import org.bukkit.event.entity.EntityDamageByEntityEvent;
 public class PVPBlocker extends FreedomService
 {
 
-    public PVPBlocker(TotalFreedomMod plugin)
+    public PVPBlocker()
     {
-        super(plugin);
+        super();
     }
 
     @Override
-    protected void onStart()
+    public void start()
     {
     }
 
     @Override
-    protected void onStop()
+    public void stop()
     {
     }
 

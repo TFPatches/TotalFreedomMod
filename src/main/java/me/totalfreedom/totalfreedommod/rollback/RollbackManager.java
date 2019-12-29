@@ -31,18 +31,18 @@ public class RollbackManager extends FreedomService
     private static final Map<String, List<RollbackEntry>> history = Maps.newHashMap();
     private static final List<String> removeHistory = Lists.newArrayList();
 
-    public RollbackManager(TotalFreedomMod plugin)
+    public RollbackManager()
     {
-        super(plugin);
+        super();
     }
 
     @Override
-    protected void onStart()
+    public void start()
     {
     }
 
     @Override
-    protected void onStop()
+    public void stop()
     {
     }
 

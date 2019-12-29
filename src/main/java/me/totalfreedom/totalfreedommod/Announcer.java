@@ -21,13 +21,13 @@ public class Announcer extends FreedomService
     private String prefix;
     private BukkitTask announcer;
 
-    public Announcer(TotalFreedomMod plugin)
+    public Announcer()
     {
-        super(plugin);
+        super();
     }
 
     @Override
-    protected void onStart()
+    public void start()
     {
         enabled = ConfigEntry.ANNOUNCER_ENABLED.getBoolean();
         interval = ConfigEntry.ANNOUNCER_INTERVAL.getInteger() * 20L;
@@ -64,7 +64,7 @@ public class Announcer extends FreedomService
     }
 
     @Override
-    protected void onStop()
+    public void stop()
     {
         if (announcer == null)
         {

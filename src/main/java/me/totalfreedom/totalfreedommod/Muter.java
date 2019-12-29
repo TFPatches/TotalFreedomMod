@@ -23,18 +23,18 @@ public class Muter extends FreedomService
     public static final List<String> MUTE_COMMANDS = Arrays.asList(StringUtils.split("say,me,msg,tell,reply,mail", ","));
     public final List<String> MUTED_PLAYERS = new ArrayList();
 
-    public Muter(TotalFreedomMod plugin)
+    public Muter()
     {
-        super(plugin);
+        super();
     }
 
     @Override
-    protected void onStart()
+    public void start()
     {
     }
 
     @Override
-    protected void onStop()
+    public void stop()
     {
     }
 

@@ -126,13 +126,6 @@
         </dependency>
 
         <dependency>
-            <groupId>com.github.Pravian</groupId>
-            <artifactId>Aero</artifactId>
-            <version>5f82926</version>
-            <scope>provided</scope>
-        </dependency>
-
-        <dependency>
             <groupId>com.github.TotalFreedom</groupId>
             <artifactId>BukkitTelnet</artifactId>
             <version>4.5-pre1</version>

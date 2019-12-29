@@ -20,18 +20,18 @@ public class Trailer extends FreedomService
     private final Random random = new Random();
     private final Set<String> trailPlayers = new HashSet<>(); // player name
 
-    public Trailer(TotalFreedomMod plugin)
+    public Trailer()
     {
-        super(plugin);
+        super();
     }
 
     @Override
-    protected void onStart()
+    public void start()
     {
     }
 
     @Override
-    protected void onStop()
+    public void stop()
     {
     }
 
