@@ -157,23 +157,22 @@ public abstract class FreedomCommand
                     return true;
                 }
 
-                boolean run = cmd.run(sender, playerSender, this, label, args, sender instanceof ConsoleCommandSender);
-                CommandPermissions perms = cmd.perms;
-                if (perms.cooldown() > 0 && !plugin.al.isAdmin(sender))
-                {
-                    commandCooldown.put(sender, this);
-                    timer.schedule(new TimerTask()
-                    {
-                        @Override
-                        public void run()
-                        {
-                            commandCooldown.remove(sender);
-                        }
-                    }, perms.cooldown() * 1000);
-                }
-
                 try
                 {
+                    boolean run = cmd.run(sender, playerSender, this, label, args, sender instanceof ConsoleCommandSender);
+                    CommandPermissions perms = cmd.perms;
+                    if (perms.cooldown() > 0 && !plugin.al.isAdmin(sender))
+                    {
+                        commandCooldown.put(sender, this);
+                        timer.schedule(new TimerTask()
+                        {
+                            @Override
+                            public void run()
+                            {
+                                commandCooldown.remove(sender);
+                            }
+                        }, perms.cooldown() * 1000);
+                    }
                     return run;
                 }
                 catch (CommandFailException ex)

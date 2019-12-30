@@ -202,12 +202,12 @@ public class TotalFreedomMod extends JavaPlugin
     @Override
     public void onDisable()
     {
-        plugin = null;
-
         // Stop services
         stop();
 
         getServer().getScheduler().cancelTasks(plugin);
+        
+        plugin = null;
 
         FLog.info("Plugin disabled");
     }
