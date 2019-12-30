@@ -19,7 +19,19 @@ public class YamlConfig extends YamlConfiguration
         if (!file.exists())
         {
             options().copyDefaults(true);
-            plugin.saveResource(name, false);
+            save();
+        }
+        load();
+    }
+
+    public YamlConfig(TotalFreedomMod plugin, File file)
+    {
+        this.plugin = plugin;
+        this.file = file;
+        if (!file.exists())
+        {
+            options().copyDefaults(true);
+            save();
         }
         load();
     }

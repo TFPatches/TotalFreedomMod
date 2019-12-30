@@ -213,7 +213,7 @@ public class PlayerList extends FreedomService
 
     protected YamlConfig getConfig(PlayerData data)
     {
-        final YamlConfig config = new YamlConfig(plugin, data.getUsername().toLowerCase());
+        final YamlConfig config = new YamlConfig(plugin, getConfigFile(data.getUsername().toLowerCase()));
         config.load();
         return config;
     }

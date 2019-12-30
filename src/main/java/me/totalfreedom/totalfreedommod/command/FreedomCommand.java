@@ -59,6 +59,7 @@ public abstract class FreedomCommand
 
     // Command Variables
     private CommandSender sender;
+    private Player playerSender;
     private Command command;
     private String label;
     private String[] args;
@@ -131,6 +132,7 @@ public abstract class FreedomCommand
                 cmd.command = this;
                 cmd.label = label;
                 cmd.args = args;
+                cmd.playerSender = sender instanceof Player ? (Player) sender : null;
 
                 if (perms.source() == SourceType.ONLY_IN_GAME && sender instanceof ConsoleCommandSender)
                 {
@@ -155,7 +157,7 @@ public abstract class FreedomCommand
                     return true;
                 }
 
-                boolean run = cmd.run(sender, (Player) sender, this, label, args, sender instanceof ConsoleCommandSender);
+                boolean run = cmd.run(sender, playerSender, this, label, args, sender instanceof ConsoleCommandSender);
                 CommandPermissions perms = cmd.perms;
                 if (perms.cooldown() > 0 && !plugin.al.isAdmin(sender))
                 {

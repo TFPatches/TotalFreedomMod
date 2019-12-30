@@ -53,7 +53,7 @@ public abstract class ModuleExecutable
         final Constructor<? extends HTTPDModule> cons;
         try
         {
-            cons = clazz.getConstructor(TotalFreedomMod.class, NanoHTTPD.HTTPSession.class);
+            cons = clazz.getConstructor(NanoHTTPD.HTTPSession.class);
         }
         catch (Exception ex)
         {

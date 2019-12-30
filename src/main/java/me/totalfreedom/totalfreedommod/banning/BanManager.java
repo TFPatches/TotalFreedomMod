@@ -234,7 +234,7 @@ public class BanManager extends FreedomService
     public void onPlayerLogin(PlayerLoginEvent event)
     {
         final String username = event.getPlayer().getName();
-        final String ip = FUtil.getIP(event.getPlayer());
+        final String ip = event.getAddress().getHostAddress().trim();
 
         // Regular ban
         Ban ban = getByUsername(username);

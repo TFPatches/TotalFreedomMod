@@ -336,6 +336,76 @@ public class TotalFreedomMod extends JavaPlugin
         wel = new WorldEditListener();
         wgb = new WorldGuardBridge();
         amp = new AMP();
+
+        // Start services
+        si.start();
+        sf.start();
+        wm.start();
+        lv.start();
+        al.start();
+        acl.start();
+        rm.start();
+        cl.start();
+        cb.start();
+        eb.start();
+        bb.start();
+        mb.start();
+        ib.start();
+        pb.start();
+        lp.start();
+        nu.start();
+        as.start();
+        mbl.start();
+        mbwr.start();
+        //hwr.start();
+        pl.start();
+        sh.start();
+        an.start();
+        cm.start();
+        dc.start();
+        pul.start();
+        bm.start();
+        pm.start();
+        pa.start();
+        gr.start();
+        snp.start();
+
+        rb.start();
+        cs.start();
+        ca.start();
+        fm.start();
+        or.start();
+        mu.start();
+        ebl.start();
+        pbl.start();
+        fo.start();
+        ak.start();
+        ae.start();
+        mo.start();
+
+
+        mv.start();
+        sp.start();
+        pv.start();
+
+        cul.start();
+        it.start();
+        lm.start();
+        ms.start();
+        mp.start();
+        jp.start();
+        tr.start();
+
+        hd.start();
+
+        // Start bridges
+        btb.start();
+        cpb.start();
+        esb.start();
+        ldb.start();
+        web.start();
+        wel.start();
+        wgb.start();
     }
 
     public void stop()

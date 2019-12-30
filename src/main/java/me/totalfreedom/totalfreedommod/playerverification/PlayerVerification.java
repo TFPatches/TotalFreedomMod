@@ -174,7 +174,7 @@ public class PlayerVerification extends FreedomService
 
     protected YamlConfig getConfig(VPlayer player)
     {
-        final YamlConfig config = new YamlConfig(plugin, player.getName().toLowerCase());
+        final YamlConfig config = new YamlConfig(plugin, getConfigFile(player.getName().toLowerCase()));
         config.load();
 
         // Convert discordEnabled to enabled, and remove forumEnabled.

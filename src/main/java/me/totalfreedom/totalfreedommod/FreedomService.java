@@ -14,7 +14,6 @@ public abstract class FreedomService implements Listener
     public FreedomService()
     {
         server.getPluginManager().registerEvents(this, plugin);
-        start();
     }
 
     public abstract void start();
