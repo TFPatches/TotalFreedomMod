@@ -149,9 +149,11 @@ public class BlockBlocker extends FreedomService
                 {
                     skull.setOwner(skull.getOwner().substring(0, 16));
                     SkullMeta meta = (SkullMeta) event.getItemInHand().getItemMeta();
-                    assert meta != null;
-                    meta.setOwner(meta.getOwner().substring(0, 16));
-                    event.getItemInHand().setItemMeta(meta);
+                    if (meta != null)
+                    {
+                        meta.setOwner(meta.getOwner().substring(0, 16));
+                        event.getItemInHand().setItemMeta(meta);
+                    }
                 }
                 break;
             }
