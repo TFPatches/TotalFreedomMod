@@ -87,7 +87,7 @@ public class Command_doom extends FreedomCommand
         player.chat("Oh shit! Looks like I've been doomed!");
         
         // Play sound for player
-        player.playSound(player.getLocation(), BLOCK_END_PORTAL_SPAWN, 100.0f, 1);
+        player.playSound(player.getLocation(), Sound.BLOCK_END_PORTAL_SPAWN, 100.0f, 1);
         
         // Ignite player
         player.setFireTicks(10000);
@@ -96,7 +96,7 @@ public class Command_doom extends FreedomCommand
         player.getWorld().createExplosion(player.getLocation(), 0F, false);
         
         // Send player to the void
-        player.teleport(new Location(0, -20, 0))
+        player.teleport(new Location(0, -20, 0));
         
         // Shoot the player further into the void
         player.setVelocity(player.getVelocity().clone().add(new Vector(0, -20, 0)));
