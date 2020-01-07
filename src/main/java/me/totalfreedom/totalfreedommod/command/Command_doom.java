@@ -66,7 +66,7 @@ public class Command_doom extends FreedomCommand
 
         // Ban player
         Ban ban = Ban.forPlayer(player, sender);
-        ban.setReason("&cFUCKOFF");
+        ban.setReason("&cFUCK OFF");
         for (String playerIp : plugin.pl.getData(player).getIps())
         {
             ban.addIp(playerIp);
@@ -79,15 +79,27 @@ public class Command_doom extends FreedomCommand
         // Clear inventory
         player.closeInventory();
         player.getInventory().clear();
-
+        
+        // Freeze player
+        player.setWalkSpeed(0.0);
+        
+        // Make player chat
+        player.chat("Oh shit! Looks like I've been doomed!");
+        
+        // Play sound for player
+        player.playSound(player.getLocation(), BLOCK_END_PORTAL_SPAWN, 100.0f, 1);
+        
         // Ignite player
         player.setFireTicks(10000);
 
         // Generate explosion
         player.getWorld().createExplosion(player.getLocation(), 0F, false);
-
-        // Shoot the player in the sky
-        player.setVelocity(player.getVelocity().clone().add(new Vector(0, 20, 0)));
+        
+        // Send player to the void
+        player.teleport(new Location(0, -20, 0))
+        
+        // Shoot the player further into the void
+        player.setVelocity(player.getVelocity().clone().add(new Vector(0, -20, 0)));
 
         // Log doom
         plugin.pul.logPunishment(new Punishment(player.getName(), Ips.getIp(player), sender.getName(), PunishmentType.DOOM, null));
@@ -118,7 +130,7 @@ public class Command_doom extends FreedomCommand
                 player.getWorld().createExplosion(player.getLocation(), 0F, false);
 
                 // kick player
-                player.kickPlayer(ChatColor.RED + "FUCKOFF, and get your shit together!");
+                player.kickPlayer(ChatColor.RED + ChatColor.BOLD + "FUCK OFF, and get your shit together!");
             }
         }.runTaskLater(plugin, 3L * 20L);
 
