@@ -44,9 +44,9 @@ public class AntiNuke extends FreedomService
         {
             FUtil.bcastMsg(player.getName() + " is breaking blocks too fast!", ChatColor.RED);
             plugin.ae.autoEject(player, "You are breaking blocks too fast. Nukers are not permitted on this server.");
-
+            
             fPlayer.resetBlockDestroyCount();
-
+            plugin.cpb.rollback(player.getName());
             event.setCancelled(true);
             return;
         }
@@ -69,7 +69,7 @@ public class AntiNuke extends FreedomService
             plugin.ae.autoEject(player, "You are placing blocks too fast.");
 
             fPlayer.resetBlockPlaceCount();
-
+            plugin.cpb.rollback(player.getName());
             event.setCancelled(true);
         }
     }
