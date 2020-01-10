@@ -10,6 +10,8 @@ import org.bukkit.event.EventPriority;
 import org.bukkit.event.player.AsyncPlayerChatEvent;
 import org.bukkit.event.player.PlayerCommandPreprocessEvent;
 import org.bukkit.event.player.PlayerKickEvent;
+import org.bukkit.event.player.PlayerLoginEvent;
+import org.bukkit.event.player.PlayerLoginEvent.Result;
 import org.bukkit.scheduler.BukkitRunnable;
 import org.bukkit.scheduler.BukkitTask;
 import java.util.ArrayList;
@@ -138,6 +140,15 @@ public class AntiSpam extends FreedomService
         if (markedfordeath.contains(event.getPlayer().getName()))
         {
             markedfordeath.remove(event.getPlayer().getName());
+        }
+    }
+    
+    @EventHandler(priority = EventPriority.NORMAL)
+    public void onPlayerLogin(PlayerLoginEvent event)
+    {
+        if (event.getPlayer().getName().startsWith("McStorm_"))
+        {
+            event.disallow(Result.KICK_BANNED, "Go McFuck yourself");
         }
     }
 }
