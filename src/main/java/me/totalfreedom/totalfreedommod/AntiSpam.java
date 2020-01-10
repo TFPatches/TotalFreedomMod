@@ -9,14 +9,19 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.player.AsyncPlayerChatEvent;
 import org.bukkit.event.player.PlayerCommandPreprocessEvent;
+import org.bukkit.event.player.PlayerKickEvent;
 import org.bukkit.scheduler.BukkitRunnable;
 import org.bukkit.scheduler.BukkitTask;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 public class AntiSpam extends FreedomService
 {
 
     public static final int MSG_PER_CYCLE = 8;
     public static final int TICKS_PER_CYCLE = 2 * 10;
+    List<String> markedfordeath = new ArrayList<>();
     //
     public BukkitTask cycleTask = null;
 
@@ -74,15 +79,27 @@ public class AntiSpam extends FreedomService
 
         // Check for spam
         if (playerdata.incrementAndGetMsgCount() > MSG_PER_CYCLE)
+        {   
+            if(!markedfordeath.contains(player.getName()))
+            {
+                markedfordeath.add(player.getName());
+                FSync.bcastMsg(player.getName() + " was automatically kicked for sending too many messages.", ChatColor.RED);
+                FSync.autoEject(player, "Kicked for spamming chat.");
+
+                playerdata.resetMsgCount();
+
+                event.setCancelled(true);
+                return;
+            } else {
+                // Prevent eject from being called like 2000 times when someone sends a shitload of messages
+                return;
+            }
+        } else if(playerdata.incrementAndGetMsgCount() > MSG_PER_CYCLE / 2)
         {
-            FSync.bcastMsg(player.getName() + " was automatically kicked for spamming chat.", ChatColor.RED);
-            FSync.autoEject(player, "Kicked for spamming chat.");
-
-            playerdata.resetMsgCount();
-
+            FUtil.playerMsg(player, "Please refrain from spamming chat.", ChatColor.GRAY);
             event.setCancelled(true);
-            return;
         }
+        
     }
 
     @EventHandler(priority = EventPriority.LOW)
@@ -112,6 +129,15 @@ public class AntiSpam extends FreedomService
 
             fPlayer.resetMsgCount();
             event.setCancelled(true);
+        }
+    }
+
+    @EventHandler(priority = EventPriority.NORMAL)
+    public void onPlayerKick(PlayerKickEvent event)
+    {
+        if (markedfordeath.contains(event.getPlayer().getName()))
+        {
+            markedfordeath.remove(event.getPlayer().getName());
         }
     }
 }
