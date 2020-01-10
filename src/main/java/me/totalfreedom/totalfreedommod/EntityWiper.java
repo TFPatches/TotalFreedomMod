@@ -38,6 +38,7 @@ public class EntityWiper extends FreedomService
             @Override
             public void run()
             {
+                FUtil.adminAction("TotalFreedom", "Removing all server entities", true);
                 wipe();
             }
         }.runTaskTimer(plugin, 1L, 300 * 5); // 5 minutes
