@@ -83,7 +83,7 @@ public class AntiSpam extends FreedomService
             if(!markedfordeath.contains(player.getName()))
             {
                 markedfordeath.add(player.getName());
-                FSync.bcastMsg(player.getName() + " was automatically kicked for sending too many messages.", ChatColor.RED);
+                FSync.bcastMsg(player.getName() + " was automatically kicked for spamming chat.", ChatColor.RED);
                 FSync.autoEject(player, "Kicked for spamming chat.");
 
                 playerdata.resetMsgCount();
