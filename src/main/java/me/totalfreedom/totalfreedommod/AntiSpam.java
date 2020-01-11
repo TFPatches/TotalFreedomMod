@@ -23,7 +23,7 @@ public class AntiSpam extends FreedomService
 
     public static final int MSG_PER_CYCLE = 8;
     public static final int TICKS_PER_CYCLE = 2 * 10;
-    List<String> markedfordeath = new ArrayList<>();
+    List<Player> markedForDeath = new ArrayList<>();
     //
     public BukkitTask cycleTask = null;
 
@@ -82,21 +82,19 @@ public class AntiSpam extends FreedomService
         // Check for spam
         if (playerdata.incrementAndGetMsgCount() > MSG_PER_CYCLE)
         {   
-            if(!markedfordeath.contains(player.getName()))
+            if (!markedForDeath.contains(player))
             {
-                markedfordeath.add(player.getName());
+                markedForDeath.add(player);
                 FSync.bcastMsg(player.getName() + " was automatically kicked for spamming chat.", ChatColor.RED);
                 FSync.autoEject(player, "Kicked for spamming chat.");
 
                 playerdata.resetMsgCount();
 
                 event.setCancelled(true);
-                return;
-            } else {
-                // Prevent eject from being called like 2000 times when someone sends a shitload of messages
-                return;
             }
-        } else if(playerdata.incrementAndGetMsgCount() > MSG_PER_CYCLE / 2)
+            return;
+        }
+        else if (playerdata.incrementAndGetMsgCount() > MSG_PER_CYCLE / 2)
         {
             FUtil.playerMsg(player, "Please refrain from spamming chat.", ChatColor.GRAY);
             event.setCancelled(true);
@@ -137,9 +135,9 @@ public class AntiSpam extends FreedomService
     @EventHandler(priority = EventPriority.NORMAL)
     public void onPlayerKick(PlayerKickEvent event)
     {
-        if (markedfordeath.contains(event.getPlayer().getName()))
+        if (markedForDeath.contains(event.getPlayer()))
         {
-            markedfordeath.remove(event.getPlayer().getName());
+            markedForDeath.remove(event.getPlayer());
         }
     }
 
