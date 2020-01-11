@@ -142,13 +142,5 @@ public class AntiSpam extends FreedomService
             markedfordeath.remove(event.getPlayer().getName());
         }
     }
-    
-    @EventHandler(priority = EventPriority.NORMAL)
-    public void onPlayerLogin(PlayerLoginEvent event)
-    {
-        if (event.getPlayer().getName().startsWith("McStorm_"))
-        {
-            event.disallow(Result.KICK_BANNED, "Go McFuck yourself");
-        }
-    }
+
 }
