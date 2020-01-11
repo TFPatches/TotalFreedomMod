@@ -130,6 +130,7 @@ public class Command_lockup extends FreedomCommand
                 if (player.isOnline())
                 {   
                     playerdata.setInvSee(true);
+                    lockinv.clear();
                     lockinv.setItem(4, makeItem(Material.REDSTONE_BLOCK, ChatColor.RED + sender.getName() + ChatColor.GOLD + " placed you in lockup."));
                     player.openInventory(lockinv);
                 }
