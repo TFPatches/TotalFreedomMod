@@ -12,10 +12,15 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.ItemStack;
-
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import org.bukkit.scheduler.BukkitRunnable;
+import org.bukkit.scheduler.BukkitTask;
 public class InteractBlocker extends FreedomService
 {
-
+    public static final int CYCLE = 2 * 5;
+    List<String> ratelimit = new ArrayList<>();
     public InteractBlocker(TotalFreedomMod plugin)
     {
         super(plugin);
@@ -24,11 +29,25 @@ public class InteractBlocker extends FreedomService
     @Override
     protected void onStart()
     {
+        new BukkitRunnable()
+        {
+
+            @Override
+            public void run()
+            {
+                wipe();
+            }
+        }.runTaskTimer(plugin, CYCLE, CYCLE);
     }
 
     @Override
     protected void onStop()
     {
+    }
+
+    private void wipe()
+    {
+        ratelimit.removeAll(ratelimit);
     }
 
     @EventHandler(priority = EventPriority.HIGH)
@@ -67,6 +86,29 @@ public class InteractBlocker extends FreedomService
         }
     }
 
+    @EventHandler(priority = EventPriority.HIGH)
+    public void onJukeBoxInteract(PlayerInteractEvent event)
+    {
+        if (event.getClickedBlock() != null)
+        {
+            if (event.getClickedBlock().getType().equals(Material.JUKEBOX))
+            {
+
+                if (ratelimit.contains(event.getPlayer().getName()))
+                {
+                    event.getPlayer().sendMessage(ChatColor.GRAY + "You're doing that too much, try again later.");
+                    event.setCancelled(true);
+                }
+
+                if (!ratelimit.contains(event.getPlayer().getName()))
+                {
+                    ratelimit.add(event.getPlayer().getName());
+                    event.setCancelled(false);
+                }
+            }
+        }
+    }
+
     private void handleRightClick(PlayerInteractEvent event)
     {
         final Player player = event.getPlayer();
@@ -77,6 +119,7 @@ public class InteractBlocker extends FreedomService
             {
                 event.setCancelled(true);
                 event.getPlayer().closeInventory();
+                player.sendMessage(ChatColor.GRAY + "Structure blocks are currently disabled.");
             }
         }
 
@@ -154,5 +197,6 @@ public class InteractBlocker extends FreedomService
                 break;
             }
         }
+        
     }
 }
