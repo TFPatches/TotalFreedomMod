@@ -53,7 +53,6 @@ public class Command_lockup extends FreedomCommand
                     {
                         startLockup(player);
                     }
-                    msg("Locked up all non-admins.");
                 }
                 msg("Locked up all non-admins.");
             }
