@@ -23,15 +23,15 @@ public class Command_entitycap extends FreedomCommand
         {
             FUtil.adminAction(sender.getName(), "Resetting the entity limit" , true); 
             plugin.ew.setEntityCap(400); 
-            msg("Successfully reset the entity cap.");
+            msg("Successfully reset the entity limit.");
             return true;
         }
 
         if (StringUtils.isNumeric(args[0]))
         {
-            FUtil.adminAction(sender.getName(), "Setting entity limit to " + Integer.parseInt(args[0]), true);
+            FUtil.adminAction(sender.getName(), "Setting the entity limit to " + Integer.parseInt(args[0]), true);
             int removed = plugin.ew.setEntityCap(Integer.parseInt(args[0]));
-            msg("Successfully set the entity cap.");
+            msg("Successfully set the entity limit.");
         } else
         {
             return false;
