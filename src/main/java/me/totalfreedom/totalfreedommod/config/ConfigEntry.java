@@ -142,6 +142,7 @@ public enum ConfigEntry
     VOTING_INFO(List.class, "votinginfo"), 
     MASTER_BUILDER_INFO(List.class, "masterbuilderinfo"),
     AUTO_ENTITY_WIPE(Boolean.class, "auto_wipe"),
+    TOGGLE_CHAT(Boolean.class, "toggle_chat"),
     ENTITY_LIMIT(Integer.class, "entity.limit"),
     //
     AMP_ENABLED(Boolean.class, "amp.enabled"),
