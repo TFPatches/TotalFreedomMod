@@ -6,13 +6,10 @@ import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
 import org.bukkit.scheduler.BukkitRunnable;
 import org.bukkit.scheduler.BukkitTask;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import me.totalfreedom.totalfreedommod.config.ConfigEntry;
 
 public class EntityWiper extends FreedomService
 {   
-    List<Integer> entitycap = new ArrayList<Integer>();
     private BukkitTask wiper;
 
     public EntityWiper(TotalFreedomMod plugin)
@@ -23,7 +20,6 @@ public class EntityWiper extends FreedomService
     @Override
     protected void onStart()
     {   
-        entitycap.add(400);
         wiper = new BukkitRunnable()
         {
             @Override
@@ -31,7 +27,7 @@ public class EntityWiper extends FreedomService
             {
                 for (World world : Bukkit.getWorlds())
                 {
-                    if (world.getEntities().size() > entitycap.get(0))
+                    if (world.getEntities().size() > ConfigEntry.ENTITY_LIMIT.getInteger())
                     {
                         wipe(world);
                     }
@@ -82,8 +78,7 @@ public class EntityWiper extends FreedomService
 
     public int setEntityCap(int integer)
     {
-        entitycap.removeAll(entitycap);
-        entitycap.add(integer);
+        ConfigEntry.ENTITY_LIMIT.setInteger(integer);
         return integer;
     }
 }
