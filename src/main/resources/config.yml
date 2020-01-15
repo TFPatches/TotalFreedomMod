@@ -304,9 +304,6 @@ flatlands:
 # Admin-Only Mode
 admin_only_mode: false
 
-# Toggle Chat
-toggle_chat: true
-
 # Protected Areas - Protect areas so that only admins can directly modify blocks in those areas. WorldEdit and other such plugins might bypass this.
 protectarea:
   enabled: true
@@ -461,3 +458,6 @@ amp:
   username: username
   password: password
   url: url
+
+entity:
+  limit: 400
