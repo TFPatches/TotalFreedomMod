@@ -1,17 +1,18 @@
 package me.totalfreedom.totalfreedommod;
 
-import java.util.Arrays;
-import java.util.List;
-import me.totalfreedom.totalfreedommod.util.Groups;
 import org.bukkit.Bukkit;
 import org.bukkit.World;
 import org.bukkit.entity.Entity;
-import org.bukkit.entity.EntityType;
+import org.bukkit.entity.Player;
 import org.bukkit.scheduler.BukkitRunnable;
 import org.bukkit.scheduler.BukkitTask;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 public class EntityWiper extends FreedomService
-{
+{   
+    List<Integer> entitycap = new ArrayList<Integer>();
     private BukkitTask wiper;
 
     public EntityWiper(TotalFreedomMod plugin)
@@ -19,27 +20,24 @@ public class EntityWiper extends FreedomService
         super(plugin);
     }
 
-    public List<EntityType> BLACKLIST = Arrays.asList(
-            EntityType.ARMOR_STAND,
-            EntityType.PAINTING,
-            EntityType.BOAT,
-            EntityType.PLAYER,
-            EntityType.LEASH_HITCH,
-            EntityType.ITEM_FRAME
-    );
-
     @Override
     protected void onStart()
-    {
-        // Continuous Entity Wiper
+    {   
+        entitycap.add(400);
         wiper = new BukkitRunnable()
         {
             @Override
             public void run()
             {
-                wipe();
+                for (World world : Bukkit.getWorlds())
+                {
+                    if (world.getEntities().size() > entitycap.get(0))
+                    {
+                        wipe(world);
+                    }
+                }
             }
-        }.runTaskTimer(plugin, 1L, 300 * 5); // 5 minutes
+        }.runTaskTimer(plugin, 0, 5);
     }
 
     @Override
@@ -58,7 +56,7 @@ public class EntityWiper extends FreedomService
         {
             for (Entity entity : world.getEntities())
             {
-                if (!BLACKLIST.contains(entity.getType()) && !Groups.MOB_TYPES.contains(entity.getType()))
+                if (!(entity instanceof Player))
                 {
                     entity.remove();
                     removed++;
@@ -66,5 +64,26 @@ public class EntityWiper extends FreedomService
             }
         }
         return removed;
+    }
+
+    public int wipe(World world)
+    {
+        int removed = 0;
+        for (Entity entity : world.getEntities())
+        {
+            if (!(entity instanceof Player))
+            {
+                entity.remove();
+                removed++;
+            }
+        }
+        return removed;
+    }
+
+    public int setEntityCap(int integer)
+    {
+        entitycap.removeAll(entitycap);
+        entitycap.add(integer);
+        return integer;
     }
 }
