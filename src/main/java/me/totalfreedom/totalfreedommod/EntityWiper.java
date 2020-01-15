@@ -4,13 +4,13 @@ import org.bukkit.Bukkit;
 import org.bukkit.World;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
-import org.bukkit.scheduler.BukkitRunnable;
-import org.bukkit.scheduler.BukkitTask;
+import org.bukkit.event.EventHandler;
+import org.bukkit.event.EventPriority;
+import org.bukkit.event.entity.EntitySpawnEvent;
 import me.totalfreedom.totalfreedommod.config.ConfigEntry;
 
 public class EntityWiper extends FreedomService
 {   
-    private BukkitTask wiper;
 
     public EntityWiper(TotalFreedomMod plugin)
     {
@@ -20,27 +20,23 @@ public class EntityWiper extends FreedomService
     @Override
     protected void onStart()
     {   
-        wiper = new BukkitRunnable()
+    }
+
+    @EventHandler(priority = EventPriority.HIGH)
+    public void onEntitySpawn(EntitySpawnEvent event)
+    {
+        for (World world : Bukkit.getWorlds())
         {
-            @Override
-            public void run()
+            if (world.getEntities().size() > ConfigEntry.ENTITY_LIMIT.getInteger())
             {
-                for (World world : Bukkit.getWorlds())
-                {
-                    if (world.getEntities().size() > ConfigEntry.ENTITY_LIMIT.getInteger())
-                    {
-                        wipe(world);
-                    }
-                }
+                wipe(world);
             }
-        }.runTaskTimer(plugin, 0, 5);
+        }
     }
 
     @Override
     protected void onStop()
     {
-        wiper.cancel();
-        wiper = null;
     }
 
     // Methods for wiping
