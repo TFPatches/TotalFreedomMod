@@ -29,6 +29,7 @@ public class EntityWiper extends FreedomService
         {
             if (world.getEntities().size() > ConfigEntry.ENTITY_LIMIT.getInteger())
             {
+                event.setCancelled(true);
                 wipe(world);
             }
         }
