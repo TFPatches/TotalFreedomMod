@@ -37,7 +37,7 @@ public class EntityWiper extends FreedomService
             @Override
             public void run()
             {
-                wipe();
+                wipe(true);
             }
         }.runTaskTimer(plugin, 1L, 300 * 5); // 5 minutes
     }
@@ -51,14 +51,17 @@ public class EntityWiper extends FreedomService
 
     // Methods for wiping
 
-    public int wipe()
+    public int wipe(boolean isScheduled)
     {
         int removed = 0;
         for (World world : Bukkit.getWorlds())
         {
             for (Entity entity : world.getEntities())
             {
-                if (!BLACKLIST.contains(entity.getType()) && !Groups.MOB_TYPES.contains(entity.getType()))
+                EntityType type = entity.getType();
+                if (!BLACKLIST.contains(type) && !Groups.MOB_TYPES.contains(type)
+                        // Don't kill bees on scheduled wipes (#171) #SaveTheBees
+                        && !(isScheduled && type == EntityType.BEE))
                 {
                     entity.remove();
                     removed++;
