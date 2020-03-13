@@ -54,7 +54,7 @@ public class Command_tag extends FreedomCommand
                 for (final Player player : server.getOnlinePlayers())
                 {
                     final FPlayer playerdata = plugin.pl.getPlayer(player);
-                    if (playerdata.getTag() != null)
+                    if (playerdata.getTag() != null || !Command_vanish.VANISHED.contains(player) && !plugin.al.isAdmin(sender))
                     {
                         msg(player.getName() + ": " + playerdata.getTag());
                     }
