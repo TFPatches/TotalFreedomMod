@@ -26,7 +26,6 @@ import org.bukkit.plugin.ServicePriority;
 
 public class AdminList extends FreedomService
 {
-
     public static final String CONFIG_FILENAME = "admins.yml";
 
     @Getter

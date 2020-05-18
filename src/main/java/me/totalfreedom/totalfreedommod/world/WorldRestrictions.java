@@ -61,7 +61,7 @@ public class WorldRestrictions extends FreedomService
     {
         if (!plugin.mbl.isMasterBuilder(player) && !FUtil.canManageMasterBuilders(player.getName()))
         {
-            if (player.getWorld().equals(plugin.wm.masterBuilderWorld.getWorld()) || player.getWorld().equals(plugin.wm.hubworld.getWorld()))
+            if (player.getWorld().equals(plugin.wm.masterBuilderWorld.getWorld()))
             {
                 return true;
             }
