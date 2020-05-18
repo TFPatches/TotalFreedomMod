@@ -17,7 +17,6 @@ public class Command_manageshop extends FreedomCommand
     @Override
     public boolean run(final CommandSender sender, final Player playerSender, Command cmd, String commandLabel, String[] args, boolean senderIsConsole)
     {
-
         if (!FUtil.isExecutive(sender.getName()))
         {
             return noPerms();
@@ -205,5 +204,4 @@ public class Command_manageshop extends FreedomCommand
         }
         return false;
     }
-
 }

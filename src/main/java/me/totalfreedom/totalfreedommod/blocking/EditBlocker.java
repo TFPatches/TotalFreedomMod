@@ -12,7 +12,6 @@ import org.bukkit.event.block.BlockPlaceEvent;
 
 public class EditBlocker extends FreedomService
 {
-
     public EditBlocker(TotalFreedomMod plugin)
     {
         super(plugin);
