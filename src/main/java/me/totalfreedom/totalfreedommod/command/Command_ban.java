@@ -112,7 +112,7 @@ public class Command_ban extends FreedomCommand
         }
 
         // Checks if CoreProtect is loaded and installed, and skips the rollback and uses CoreProtect directly
-        if (!cancelRollback)
+        if (!cancelRollback && !plugin.al.isAdmin(player))
         {
             plugin.cpb.rollback(username);
         }
