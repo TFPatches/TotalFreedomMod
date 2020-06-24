@@ -95,7 +95,6 @@ public class Command_glist extends FreedomCommand
                 for (String ip : ips)
                 {
                     playerBan.addIp(ip);
-                    playerBan.addIp(FUtil.getFuzzyIp(ip));
                 }
                 FUtil.adminAction(sender.getName(), "Banning " + username, true);
                 playerMsg(sender, ChatColor.GRAY + username + " has been banned and IP is: " + StringUtils.join(ips, ", "));
