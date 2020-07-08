@@ -66,7 +66,9 @@ public class PermissionManager extends FreedomService
         seniorAdminPermissions.addAll(telnetAdminPermissions);
         permissions.put(Rank.SENIOR_ADMIN, seniorAdminPermissions);
 
-        FLog.info("Loaded " + permissions.values().size() + " permission nodes");
+        int count = PermissionEntry.OPERATORS.getEntry().size() + PermissionEntry.MASTER_BUILDERS.getEntry().size() + PermissionEntry.SUPER_ADMINS.getEntry().size() + PermissionEntry.TELNET_ADMINS.getEntry().size() + PermissionEntry.SENIOR_ADMINS.getEntry().size();
+
+        FLog.info("Loaded " + count + " permission nodes");
     }
 
     public void setPermissions(Player player)
