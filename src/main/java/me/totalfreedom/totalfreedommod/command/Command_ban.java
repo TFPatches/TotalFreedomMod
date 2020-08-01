@@ -78,9 +78,7 @@ public class Command_ban extends FreedomCommand
         }
         else
         {
-            final PlayerData entry = plugin.pl.getData(player);
             username = player.getName();
-            //ips.addAll(entry.getIps());/
             ips.add(FUtil.getIp(player));
 
             // Deop
@@ -122,7 +120,7 @@ public class Command_ban extends FreedomCommand
         }
 
         // Ban player
-        Ban ban = Ban.forPlayerName(username, sender, null, reason);
+        Ban ban = Ban.forPlayerName(username, sender, FUtil.parseDateOffset("24h"), reason);
         for (String ip : ips)
         {
             ban.addIp(ip);
