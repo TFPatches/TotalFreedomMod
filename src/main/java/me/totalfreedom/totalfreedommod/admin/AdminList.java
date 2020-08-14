@@ -330,7 +330,7 @@ public class AdminList extends FreedomService
         }
         catch (SQLException e)
         {
-            FLog.severe("Failed to save admin: " + e.getMessage());
+            FLog.severe("Failed to save admin: " + e);
         }
     }
 

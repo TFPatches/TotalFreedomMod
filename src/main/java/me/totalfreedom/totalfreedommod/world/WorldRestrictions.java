@@ -10,6 +10,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import me.totalfreedom.totalfreedommod.FreedomService;
+import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.World;
 import org.bukkit.entity.Player;
@@ -60,12 +61,7 @@ public class WorldRestrictions extends FreedomService
             }
         }
 
-        if (!plugin.al.isAdmin(player) && player.getWorld().equals(plugin.wm.adminworld.getWorld()))
-        {
-            return true;
-        }
-
-        return false;
+        return !plugin.al.isAdmin(player) && player.getWorld().equals(plugin.wm.adminworld.getWorld());
     }
 
     @EventHandler(priority = EventPriority.NORMAL)
@@ -130,11 +126,11 @@ public class WorldRestrictions extends FreedomService
     public void onCommandPreprocess(PlayerCommandPreprocessEvent event)
     {
         final Player player = event.getPlayer();
+        String command = event.getMessage().split("\\s+")[0].substring(1, event.getMessage().split("\\s+")[0].length()).toLowerCase();
         if (doRestrict(player))
         {
             /* This is a very poor way of blocking WorldEdit commands, all the methods I know of
                for obtaining a list of a plugin's commands are returning null for world edit. */
-            String command = event.getMessage().split("\\s+")[0].substring(1, event.getMessage().split("\\s+")[0].length()).toLowerCase();
 
             String allowed = player.getWorld().equals(plugin.wm.adminworld.getWorld()) ? "Admins" : "Master Builders";
 
@@ -147,6 +143,17 @@ public class WorldRestrictions extends FreedomService
             if (command.equals("coreprotect") || command.equals("core") || command.equals("co"))
             {
                 player.sendMessage(ChatColor.RED + "Only " + allowed + " are allowed to use CoreProtect here.");
+                event.setCancelled(true);
+            }
+        }
+        if (player.getWorld().equals(Bukkit.getWorld("plotworld")))
+        {
+            if (command.startsWith("bigtree")
+                    || command.startsWith("ebigtree")
+                    || command.startsWith("largetree")
+                    || command.startsWith("elargetree"))
+            {
+                player.sendMessage(ChatColor.RED + "The bigtree command is disabled in the plotworld.");
                 event.setCancelled(true);
             }
         }

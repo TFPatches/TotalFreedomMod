@@ -84,7 +84,7 @@ public class SQLite extends FreedomService
             {
                 try
                 {
-                    connection.createStatement().execute("CREATE TABLE `admins` (`username` VARCHAR NOT NULL, `ips` VARCHAR NOT NULL, `rank` VARCHAR NOT NULL, `active` BOOLEAN NOT NULL, `last_login` LONG NOT NULL, `login_message` VARCHAR, `command_spy` BOOLEAN NOT NULL, `potion_spy` BOOLEAN NOT NULL, `ac_format` VARCHAR, `old_tags` BOOLEAN NOT NULL, `log_stick` BOOLEAN NOT NULL, `display_discord` BOOLEAN NOT NULL,);");
+                    connection.createStatement().execute("CREATE TABLE `admins` (`username` VARCHAR NOT NULL, `ips` VARCHAR NOT NULL, `rank` VARCHAR NOT NULL, `active` BOOLEAN NOT NULL, `last_login` LONG NOT NULL, `login_message` VARCHAR, `command_spy` BOOLEAN NOT NULL, `potion_spy` BOOLEAN NOT NULL, `ac_format` VARCHAR, `old_tags` BOOLEAN NOT NULL, `log_stick` BOOLEAN NOT NULL);");
                 }
                 catch (SQLException e)
                 {
@@ -95,7 +95,7 @@ public class SQLite extends FreedomService
             {
                 try
                 {
-                    connection.createStatement().execute("CREATE TABLE `players` (`username` VARCHAR NOT NULL, `ips` VARCHAR NOT NULL, `notes` VARCHAR, `tag` VARCHAR, `discord_id` VARCHAR, `backup_codes` VARCHAR, `donator` BOOLEAN NOT NULL, `master_builder` BOOLEAN NOT NULL,`verification` BOOLEAN NOT NULL, `ride_mode` VARCHAR NOT NULL, `coins` INT NOT NULL, `items` VARCHAR, `total_votes` INT NOT NULL);");
+                    connection.createStatement().execute("CREATE TABLE `players` (`username` VARCHAR NOT NULL, `ips` VARCHAR NOT NULL, `notes` VARCHAR, `tag` VARCHAR, `discord_id` VARCHAR, `backup_codes` VARCHAR, `donator` BOOLEAN NOT NULL, `master_builder` BOOLEAN NOT NULL,`verification` BOOLEAN NOT NULL, `ride_mode` VARCHAR NOT NULL, `coins` INT NOT NULL, `items` VARCHAR, `total_votes` INT NOT NULL, `display_discord` BOOLEAN_NOT_NULL);");
                 }
                 catch (SQLException e)
                 {
