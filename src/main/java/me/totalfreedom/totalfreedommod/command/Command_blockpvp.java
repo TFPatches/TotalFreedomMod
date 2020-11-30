@@ -11,7 +11,7 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
 @CommandPermissions(level = Rank.ADMIN, source = SourceType.BOTH)
-@CommandParameters(description = "Toggle PVP mode for everyone or a certain player.", usage = "/<command> [[-s] <player> [reason] | list | purge | all]", aliases = "pvpblock,pvpmode")
+@CommandParameters(description = "Toggle PVP mode for everyone or a certain player.", usage = "/<command> [[-s] <player> [reason] | list | purge | -a]", aliases = "pvpblock,pvpmode")
 public class Command_blockpvp extends FreedomCommand
 {
 
@@ -62,7 +62,7 @@ public class Command_blockpvp extends FreedomCommand
             return true;
         }
 
-        if (args[0].equals("all"))
+        if (args[0].equals("-a"))
         {
             FUtil.staffAction(sender.getName(), "Disabling PVP for all non-staff", true);
             int counter = 0;
