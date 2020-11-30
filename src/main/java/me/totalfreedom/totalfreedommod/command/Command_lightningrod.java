@@ -8,7 +8,7 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
 @CommandPermissions(level = Rank.OP, source = SourceType.ONLY_IN_GAME)
-@CommandParameters(description = "Obtain a lightning rod", usage = "/<command>")
+@CommandParameters(description = "Obtain a lightning rod.", usage = "/<command>")
 public class Command_lightningrod extends FreedomCommand
 {
 
@@ -18,7 +18,7 @@ public class Command_lightningrod extends FreedomCommand
         if (plugin.pl.getData(playerSender).hasItem(ShopItem.LIGHTNING_ROD))
         {
             playerSender.getInventory().addItem(plugin.sh.getLightningRod());
-            msg("You have been given a Lightning Rod", ChatColor.GREEN);
+            msg("You have been given a Lightning Rod.", ChatColor.GREEN);
         }
         else
         {
