@@ -11,8 +11,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.util.Vector;
 
 @CommandPermissions(level = Rank.ADMIN, source = SourceType.BOTH)
-@CommandParameters(description = "POW!!! Right in the kisser! One of these days Alice, straight to the Moon - Sends the specified player into orbit.",
-        usage = "/<command> <target> [<<power> | stop>]")
+@CommandParameters(description = "Sends the specified player into orbit.", usage = "/<command> <player> [<power> | stop]")
 public class Command_orbit extends FreedomCommand
 {
 
