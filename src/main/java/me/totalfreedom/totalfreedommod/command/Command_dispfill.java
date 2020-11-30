@@ -16,7 +16,7 @@ import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 
 @CommandPermissions(level = Rank.OP, source = SourceType.ONLY_IN_GAME)
-@CommandParameters(description = "Fill nearby dispensers with a set of items of your choice.", usage = "/<command> <radius> <comma,separated,items>")
+@CommandParameters(description = "Fill nearby dispensers with a set of items of your choice, seperated by commas.", usage = "/<command> <radius> <item, item, item ...>")
 public class Command_dispfill extends FreedomCommand
 {
 
