@@ -10,7 +10,7 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
 @CommandPermissions(level = Rank.OP, source = SourceType.BOTH, cooldown = 5)
-@CommandParameters(description = "OP a player", usage = "/<command> <partialname>")
+@CommandParameters(description = "OP a player.", usage = "/<command> <player> [-q]")
 public class Command_op extends FreedomCommand
 {
 
@@ -25,7 +25,7 @@ public class Command_op extends FreedomCommand
         boolean silent = false;
         if (args.length == 2)
         {
-            silent = args[1].equalsIgnoreCase("-s");
+            silent = args[1].equalsIgnoreCase("-q");
         }
 
         final String targetName = args[0].toLowerCase();
