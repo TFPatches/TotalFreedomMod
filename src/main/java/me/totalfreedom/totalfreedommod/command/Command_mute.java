@@ -17,7 +17,7 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
 @CommandPermissions(level = Rank.ADMIN, source = SourceType.BOTH)
-@CommandParameters(description = "Mutes a player with brute force.", usage = "/<command> <[-s | -q] <player> [reason] | list | purge | all>", aliases = "stfu")
+@CommandParameters(description = "Mutes a player with brute force.", usage = "/<command> <[-s | -q] <player> [reason] | list | purge | -a>", aliases = "stfu")
 public class Command_mute extends FreedomCommand
 {
 
@@ -71,9 +71,9 @@ public class Command_mute extends FreedomCommand
             return true;
         }
 
-        if (args[0].equals("all"))
+        if (args[0].equals("-a"))
         {
-            FUtil.staffAction(sender.getName(), "Muting all non-staff", true);
+            FUtil.staffAction(sender.getName(), "Muting all non-staff.", true);
 
             FPlayer playerdata;
             int counter = 0;
@@ -136,7 +136,7 @@ public class Command_mute extends FreedomCommand
             }
             if (quiet)
             {
-                msg("Muted " + player.getName() + " quietly");
+                msg("Muted " + player.getName() + " quietly.");
                 return true;
             }
 
