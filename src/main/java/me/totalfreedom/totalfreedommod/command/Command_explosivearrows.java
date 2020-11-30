@@ -7,7 +7,7 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
 @CommandPermissions(level = Rank.ADMIN, source = SourceType.ONLY_IN_GAME)
-@CommandParameters(description = "Make arrows explode", usage = "/<command>", aliases = "ea")
+@CommandParameters(description = "Make arrows explode.", usage = "/<command>", aliases = "ea")
 public class Command_explosivearrows extends FreedomCommand
 {
 
@@ -18,12 +18,12 @@ public class Command_explosivearrows extends FreedomCommand
         if (onList)
         {
             plugin.it.explosivePlayers.remove(playerSender);
-            msg("You no longer have explosive arrows", ChatColor.RED);
+            msg("You no longer have explosive arrows.", ChatColor.RED);
         }
         else
         {
             plugin.it.explosivePlayers.add(playerSender);
-            msg("You now have explosive arrows", ChatColor.GREEN);
+            msg("You now have explosive arrows.", ChatColor.GREEN);
         }
 
         return true;
