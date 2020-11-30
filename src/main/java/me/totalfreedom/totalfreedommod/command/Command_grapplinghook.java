@@ -8,7 +8,7 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
 @CommandPermissions(level = Rank.OP, source = SourceType.ONLY_IN_GAME)
-@CommandParameters(description = "Obtain a grappling hook", usage = "/<command>")
+@CommandParameters(description = "Obtain a grappling hook.", usage = "/<command>")
 public class Command_grapplinghook extends FreedomCommand
 {
 
@@ -18,7 +18,7 @@ public class Command_grapplinghook extends FreedomCommand
         if (plugin.pl.getData(playerSender).hasItem(ShopItem.GRAPPLING_HOOK))
         {
             playerSender.getInventory().addItem(plugin.sh.getGrapplingHook());
-            msg("You have been given a Grappling Hook", ChatColor.GREEN);
+            msg("You have been given a Grappling Hook.", ChatColor.GREEN);
         }
         else
         {
