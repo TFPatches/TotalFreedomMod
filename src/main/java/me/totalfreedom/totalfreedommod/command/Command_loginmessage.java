@@ -10,7 +10,7 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
 @CommandPermissions(level = Rank.OP, source = SourceType.ONLY_IN_GAME)
-@CommandParameters(description = "Change your login message", usage = "/<command> [message]")
+@CommandParameters(description = "Change your login message.", usage = "/<command> <message>")
 public class Command_loginmessage extends FreedomCommand
 {
     @Override
@@ -33,7 +33,7 @@ public class Command_loginmessage extends FreedomCommand
         String message = StringUtils.join(args, " ");
         if (!message.contains("%rank%") && !message.contains("%coloredrank%"))
         {
-            msg("Your login message must contain your rank. Use either %rank% or %coloredrank% to specify where you want the rank", ChatColor.RED);
+            msg("Your login message must contain your rank. Use either %rank% or %coloredrank% to specify where you want the rank.", ChatColor.RED);
             return true;
         }
         int length = message.replace("%name%", "").replace("%rank%", "").replace("%coloredrank%", "").replace("%art%", "").length();
