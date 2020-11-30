@@ -7,7 +7,7 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
 @CommandPermissions(level = Rank.ADMIN, source = SourceType.BOTH, blockHostConsole = true)
-@CommandParameters(description = "Send a chat message as someone else.", usage = "/<command> <fromname> <outmessage>")
+@CommandParameters(description = "Send a chat message as someone else.", usage = "/<command> <player> <message>")
 public class Command_gsay extends FreedomCommand
 {
     @Override
