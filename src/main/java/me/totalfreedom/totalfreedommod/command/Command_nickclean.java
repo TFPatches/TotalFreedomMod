@@ -53,12 +53,12 @@ public class Command_nickclean extends FreedomCommand
                 return true;
             }
 
-            FUtil.staffAction(sender.getName(), "Cleaning " + player.getName() + "'s nickname", false);
+            FUtil.staffAction(sender.getName(), "Cleaning " + player.getName() + "'s nickname.", false);
             cleanNickname(player);
             return true;
         }
 
-        FUtil.staffAction(sender.getName(), "Cleaning all nicknames", false);
+        FUtil.staffAction(sender.getName(), "Cleaning all nicknames.", false);
         for (final Player player : server.getOnlinePlayers())
         {
             cleanNickname(player);
