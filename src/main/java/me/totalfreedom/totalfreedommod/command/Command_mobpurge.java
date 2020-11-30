@@ -46,7 +46,7 @@ public class Command_mobpurge extends FreedomCommand
             mobName = FUtil.formatName(type.name());
         }
 
-        FUtil.staffAction(sender.getName(), "Purging all " + (type != null ? mobName + "s" : "mobs"), true);
+        FUtil.staffAction(sender.getName(), "Purging all " + (type != null ? mobName + "s" : "mobs") + ".", true);
         int count = plugin.ew.purgeMobs(type);
         msg(count + " " + (type != null ? mobName : "mob") + FUtil.showS(count) + " removed.");
         return true;

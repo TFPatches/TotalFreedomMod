@@ -7,7 +7,7 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
 @CommandPermissions(level = Rank.ADMIN, source = SourceType.BOTH)
-@CommandParameters(description = "Quickly change your own gamemode to spectator, or define someone's username to change theirs.", usage = "/<command> <[partialname]>", aliases = "gmsp")
+@CommandParameters(description = "Quickly change your own gamemode to spectator, or set another player's gamemode to spectator.", usage = "/<command> [player]", aliases = "gmsp")
 public class Command_spectator extends FreedomCommand
 {
 
@@ -35,8 +35,8 @@ public class Command_spectator extends FreedomCommand
             return true;
         }
 
-        msg("Setting " + player.getName() + " to game mode spectator");
-        msg(player, sender.getName() + " set your game mode to spectator");
+        msg("Setting " + player.getName() + " to game mode spectator.");
+        msg(player, sender.getName() + " set your game mode to spectator.");
         player.setGameMode(GameMode.SPECTATOR);
 
         return true;

@@ -377,7 +377,7 @@ public class StaffList extends FreedomService
 
             if (verbose)
             {
-                FUtil.staffAction("TotalFreedomMod", "Deactivating staff member " + staffMember.getName() + ", inactive for " + lastLoginHours + " hours", true);
+                FUtil.staffAction("TotalFreedomMod", "Deactivating staff member " + staffMember.getName() + ", inactive for " + lastLoginHours + " hours.", true);
             }
 
             staffMember.setActive(false);

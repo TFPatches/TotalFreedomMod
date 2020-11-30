@@ -8,7 +8,7 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
 @CommandPermissions(level = Rank.OP, source = SourceType.ONLY_IN_GAME)
-@CommandParameters(description = "Obtain a stacking potato", usage = "/<command>")
+@CommandParameters(description = "Obtain a stacking potato.", usage = "/<command>")
 public class Command_stackingpotato extends FreedomCommand
 {
 
@@ -18,7 +18,7 @@ public class Command_stackingpotato extends FreedomCommand
         if (plugin.pl.getData(playerSender).hasItem(ShopItem.STACKING_POTATO))
         {
             playerSender.getInventory().addItem(plugin.sh.getStackingPotato());
-            msg("You have been given a Stacking Potato", ChatColor.GREEN);
+            msg("You have been given a Stacking Potato.", ChatColor.GREEN);
         }
         else
         {

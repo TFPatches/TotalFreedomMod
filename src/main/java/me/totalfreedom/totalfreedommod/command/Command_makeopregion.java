@@ -63,13 +63,13 @@ public class Command_makeopregion extends FreedomCommand
         }
         catch (IncompleteRegionException e)
         {
-            msg("Please make a WorldEdit selection", ChatColor.RED);
+            msg("Please make a WorldEdit selection.", ChatColor.RED);
             return true;
         }
 
         if (selection == null)
         {
-            msg("Please make a WorldEdit selection", ChatColor.RED);
+            msg("Please make a WorldEdit selection.", ChatColor.RED);
             return true;
         }
 
@@ -90,7 +90,7 @@ public class Command_makeopregion extends FreedomCommand
 
         regionManager.addRegion(region);
 
-        msg("Successfully created the region '" + name + "' for " + player.getName(), ChatColor.GREEN);
+        msg("Successfully created the region '" + name + "' for " + player.getName() + ".", ChatColor.GREEN);
 
         return true;
     }

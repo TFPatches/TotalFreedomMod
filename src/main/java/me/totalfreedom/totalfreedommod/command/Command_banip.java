@@ -32,13 +32,13 @@ public class Command_banip extends FreedomCommand
 
         if (!FUtil.isValidIPv4(ip))
         {
-            msg(ip + " is not a valid IP address", ChatColor.RED);
+            msg(ip + " is not a valid IP address.", ChatColor.RED);
             return true;
         }
 
         if (plugin.bm.getByIp(ip) != null)
         {
-            msg("The IP " + ip + " is already banned", ChatColor.RED);
+            msg("The IP " + ip + " is already banned.", ChatColor.RED);
             return true;
         }
 
@@ -75,6 +75,10 @@ public class Command_banip extends FreedomCommand
                 String message = ChatColor.RED + sender.getName() + " - Banned " + (plugin.sl.isStaff(player) ? "the IP " + ip : "an IP");
                 player.sendMessage(message);
             }
+            else
+            {
+                msg("Banned the ip " + ip + " quietly.");
+            }            
         }
 
         return true;

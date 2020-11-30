@@ -39,7 +39,7 @@ public class Command_manuallyverify extends FreedomCommand
             return true;
         }
 
-        FUtil.staffAction(sender.getName(), "Manually verifying player " + player.getName(), false);
+        FUtil.staffAction(sender.getName(), "Manually verifying player " + player.getName() + ".", false);
         player.setOp(true);
         player.sendMessage(YOU_ARE_OP);
 

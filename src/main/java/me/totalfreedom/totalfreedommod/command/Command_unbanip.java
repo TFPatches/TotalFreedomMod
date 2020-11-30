@@ -27,7 +27,7 @@ public class Command_unbanip extends FreedomCommand
 
         if (!FUtil.isValidIPv4(ip))
         {
-            msg(ip + " is not a valid IP address", ChatColor.RED);
+            msg(ip + " is not a valid IP address.", ChatColor.RED);
             return true;
         }
 
@@ -35,7 +35,7 @@ public class Command_unbanip extends FreedomCommand
 
         if (ban == null)
         {
-            msg("The ip " + ip + " is not banned", ChatColor.RED);
+            msg("The ip " + ip + " is not banned.", ChatColor.RED);
             return true;
         }
 
@@ -54,9 +54,12 @@ public class Command_unbanip extends FreedomCommand
 
         if (!silent)
         {
-            FUtil.staffAction(sender.getName(), "Unbanned the ip " + ip, true);
+            FUtil.staffAction(sender.getName(), "Unbanned the ip " + ip + ".", true);
         }
-
+        else
+        {
+            msg("Quietly unbanned the ip " + ip + ".");
+        }
         return true;
     }
 }

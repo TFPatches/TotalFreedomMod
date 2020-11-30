@@ -13,7 +13,7 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
 @CommandPermissions(level = Rank.OP, source = SourceType.BOTH)
-@CommandParameters(description = "Manage the whitelist.", usage = "/<command> <on | off | list | count | add <player> | remove <player> | addall | purge>")
+@CommandParameters(description = "Allows you to view or manage the whitelist.", usage = "/<command> <on | off | list | count | add <player> | remove <player> | -a | purge>")
 public class Command_whitelist extends FreedomCommand
 {
     @Override
@@ -68,7 +68,7 @@ public class Command_whitelist extends FreedomCommand
         // on
         if (args[0].equalsIgnoreCase("on"))
         {
-            FUtil.staffAction(sender.getName(), "Turning the whitelist on", true);
+            FUtil.staffAction(sender.getName(), "Turning the whitelist on.", true);
             server.setWhitelist(true);
             return true;
         }
@@ -76,7 +76,7 @@ public class Command_whitelist extends FreedomCommand
         // off
         if (args[0].equalsIgnoreCase("off"))
         {
-            FUtil.staffAction(sender.getName(), "Turning the whitelist off", true);
+            FUtil.staffAction(sender.getName(), "Turning the whitelist off.", true);
             server.setWhitelist(false);
             return true;
         }
@@ -98,7 +98,7 @@ public class Command_whitelist extends FreedomCommand
                 player = DepreciationAggregator.getOfflinePlayer(server, search_name);
             }
 
-            FUtil.staffAction(sender.getName(), "Adding " + player.getName() + " to the whitelist", false);
+            FUtil.staffAction(sender.getName(), "Adding " + player.getName() + " to the whitelist.", false);
             player.setWhitelisted(true);
             return true;
         }
@@ -122,21 +122,21 @@ public class Command_whitelist extends FreedomCommand
 
             if (player.isWhitelisted())
             {
-                FUtil.staffAction(sender.getName(), "Removing " + player.getName() + " from the whitelist", false);
+                FUtil.staffAction(sender.getName(), "Removing " + player.getName() + " from the whitelist.", false);
                 player.setWhitelisted(false);
                 return true;
             }
             else
             {
-                msg("That player is not whitelisted");
+                msg("That player is not whitelisted.");
                 return true;
             }
         }
 
         // addall
-        if (args[0].equalsIgnoreCase("addall"))
+        if (args[0].equalsIgnoreCase("-a"))
         {
-            FUtil.staffAction(sender.getName(), "Adding all online players to the whitelist", false);
+            FUtil.staffAction(sender.getName(), "Adding all online players to the whitelist.", false);
             int counter = 0;
             for (Player player : server.getOnlinePlayers())
             {
@@ -158,7 +158,7 @@ public class Command_whitelist extends FreedomCommand
         // purge
         if (args[0].equalsIgnoreCase("purge"))
         {
-            FUtil.staffAction(sender.getName(), "Removing all players from the whitelist", false);
+            FUtil.staffAction(sender.getName(), "Removing all players from the whitelist.", false);
             msg("Removed " + plugin.si.purgeWhitelist() + " players from the whitelist.");
             return true;
         }
@@ -174,7 +174,7 @@ public class Command_whitelist extends FreedomCommand
             arguments.addAll(Arrays.asList("list", "count"));
             if (plugin.sl.isStaff(sender))
             {
-                arguments.addAll(Arrays.asList("on", "off", "add", "remove", "addall"));
+                arguments.addAll(Arrays.asList("on", "off", "add", "remove", "-a"));
                 if (!(sender instanceof Player))
                 {
                     arguments.add("purge");

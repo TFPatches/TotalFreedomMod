@@ -8,7 +8,7 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
 @CommandPermissions(level = Rank.OP, source = SourceType.ONLY_IN_GAME)
-@CommandParameters(description = "Open the shop GUI", usage = "/<command>", aliases = "sh")
+@CommandParameters(description = "Opens the shop GUI.", usage = "/<command>", aliases = "sh")
 public class Command_shop extends FreedomCommand
 {
 

@@ -15,7 +15,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 
 @CommandPermissions(level = Rank.OP, source = SourceType.ONLY_IN_GAME)
-@CommandParameters(description = "Enchant items.", usage = "/<command> <list | addall | reset | add <name> [level] | remove <name>>")
+@CommandParameters(description = "Enchant held items.", usage = "/<command> <list | addall | reset | add <name> [level] | remove <name>>")
 public class Command_enchant extends FreedomCommand
 {
 
@@ -31,7 +31,7 @@ public class Command_enchant extends FreedomCommand
 
         if (item == null || item.getType() == Material.AIR)
         {
-            msg("You have to hold an item to enchant it");
+            msg("You have to hold an item to enchant it.");
             return true;
         }
 
@@ -132,7 +132,7 @@ public class Command_enchant extends FreedomCommand
                     }
                     catch (NumberFormatException ex)
                     {
-                        msg("\"" + args[2] + "\" is not a valid number", ChatColor.RED);
+                        msg("\"" + args[2] + "\" is not a valid number.", ChatColor.RED);
                         return true;
                     }
                 }
@@ -145,13 +145,13 @@ public class Command_enchant extends FreedomCommand
                     item.addUnsafeEnchantment(ench, level);
                 }
 
-                msg("Added enchantment: " + ench.getName());
+                msg("Added enchantment: " + ench.getName() + ".");
             }
             else if (args[0].equals("remove"))
             {
                 item.removeEnchantment(ench);
 
-                msg("Removed enchantment: " + ench.getName());
+                msg("Removed enchantment: " + ench.getName() + ".");
             }
         }
 

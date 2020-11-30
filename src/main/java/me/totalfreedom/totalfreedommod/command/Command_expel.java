@@ -82,7 +82,7 @@ public class Command_expel extends FreedomCommand
         }
         else
         {
-            msg("Pushed " + pushedPlayers.size() + " players: " + StringUtils.join(pushedPlayers, ", "));
+            msg("Pushed " + pushedPlayers.size() + " players: " + StringUtils.join(pushedPlayers, ", ") + ".");
         }
 
         return true;

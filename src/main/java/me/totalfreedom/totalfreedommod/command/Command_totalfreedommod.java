@@ -13,7 +13,7 @@ import org.bukkit.entity.Player;
  * See https://github.com/TotalFreedom/License - This file may not be edited or removed.
  */
 @CommandPermissions(level = Rank.NON_OP, source = SourceType.BOTH)
-@CommandParameters(description = "Shows information about TotalFreedomMod or reloads it", usage = "/<command> [reload]", aliases = "tfm")
+@CommandParameters(description = "Shows information about TotalFreedomMod or reloads it.", usage = "/<command> [reload]", aliases = "tfm")
 public class Command_totalfreedommod extends FreedomCommand
 {
 

@@ -45,7 +45,7 @@ public class Command_tagrainbow extends FreedomCommand
 
         plugin.pl.getPlayer(playerSender).setTag(FUtil.rainbowify(tag));
 
-        msg("Set tag to " + tag);
+        msg("Set tag to \"" + tag + ChatColor.GRAY + "\".");
 
         return true;
     }

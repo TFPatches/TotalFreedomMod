@@ -39,7 +39,7 @@ public class Command_loginmessage extends FreedomCommand
         int length = message.replace("%name%", "").replace("%rank%", "").replace("%coloredrank%", "").replace("%art%", "").length();
         if (length > 100)
         {
-            msg("Your login message cannot be more than 100 characters (excluding your rank and your name)", ChatColor.RED);
+            msg("Your login message cannot be more than 100 characters (excluding your rank and your name).", ChatColor.RED);
             return true;
         }
         PlayerData data = getData(playerSender);

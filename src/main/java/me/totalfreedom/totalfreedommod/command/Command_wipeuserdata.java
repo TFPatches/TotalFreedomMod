@@ -10,7 +10,7 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
 @CommandPermissions(level = Rank.SENIOR_ADMIN, source = SourceType.ONLY_CONSOLE, blockHostConsole = true)
-@CommandParameters(description = "Removes all essentials playerdata", usage = "/<command>")
+@CommandParameters(description = "Removes all essentials playerdata.", usage = "/<command>")
 public class Command_wipeuserdata extends FreedomCommand
 {
 
@@ -23,7 +23,7 @@ public class Command_wipeuserdata extends FreedomCommand
             return true;
         }
 
-        FUtil.staffAction(sender.getName(), "Wiping Essentials and worlds playerdata", true);
+        FUtil.staffAction(sender.getName(), "Wiping Essentials and worlds playerdata.", true);
 
         for (World w : Bukkit.getWorlds())
         {

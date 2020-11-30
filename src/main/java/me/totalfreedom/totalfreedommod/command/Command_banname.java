@@ -31,7 +31,7 @@ public class Command_banname extends FreedomCommand
 
         if (plugin.bm.getByUsername(name) != null)
         {
-            msg("The name " + name + " is already banned", ChatColor.RED);
+            msg("The name " + name + " is already banned.", ChatColor.RED);
             return true;
         }
 
@@ -55,9 +55,13 @@ public class Command_banname extends FreedomCommand
 
         if (!silent)
         {
-            FUtil.staffAction(sender.getName(), "Banned the name " + name, true);
+            FUtil.staffAction(sender.getName(), "Banned the name " + name + ".", true);
         }
-
+        else
+        {
+            msg("Banned the name " + name + " quietly.");
+        }
+                    
         Player player = getPlayer(name);
         if (player != null)
         {

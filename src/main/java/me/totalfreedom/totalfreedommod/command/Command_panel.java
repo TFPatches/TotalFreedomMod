@@ -14,7 +14,7 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
 @CommandPermissions(level = Rank.SENIOR_ADMIN, source = SourceType.ONLY_IN_GAME)
-@CommandParameters(description = "Manage your Pterodactyl panel account", usage = "/<command> <create | delete>")
+@CommandParameters(description = "Manage your Pterodactyl panel account.", usage = "/<command> <create | delete>")
 public class Command_panel extends FreedomCommand
 {
 

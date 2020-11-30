@@ -23,7 +23,7 @@ public class Command_wipewarps extends FreedomCommand
 
         Essentials essentials = plugin.esb.getEssentialsPlugin();
         File warps = new File(essentials.getDataFolder(), "warps");
-        FUtil.staffAction(sender.getName(), "Wiping Essentials warps", true);
+        FUtil.staffAction(sender.getName(), "Wiping Essentials warps.", true);
         FUtil.deleteFolder(warps);
         warps.mkdir();
         essentials.reload();

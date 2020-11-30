@@ -90,8 +90,8 @@ public class Command_mbconfig extends FreedomCommand
                 }
                 data.removeIp(args[1]);
                 plugin.sql.addPlayer(data);
-                msg("Removed IP " + args[1]);
-                msg("Current IPs: " + StringUtils.join(data.getIps(), ", "));
+                msg("Removed IP " + args[1] + ".");
+                msg("Current IPs: " + StringUtils.join(data.getIps(), ", ") + ".");
                 return true;
             }
             case "add":
@@ -167,7 +167,7 @@ public class Command_mbconfig extends FreedomCommand
 
                 if (data == null || !data.isMasterBuilder())
                 {
-                    msg("Master Builder not found: " + args[1]);
+                    msg("Master Builder not found: " + args[1] + ".");
                     return true;
                 }
 

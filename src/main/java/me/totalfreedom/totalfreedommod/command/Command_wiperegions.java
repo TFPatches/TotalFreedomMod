@@ -32,7 +32,7 @@ public class Command_wiperegions extends FreedomCommand
         World world = server.getWorld(args[0]);
         if (world == null)
         {
-            msg("There is no world named \"" + args[0] + "\"", ChatColor.RED);
+            msg("There is no world named \"" + args[0] + "\".", ChatColor.RED);
             return true;
         }
 
@@ -40,13 +40,13 @@ public class Command_wiperegions extends FreedomCommand
 
         if (regionsWiped != 0)
         {
-            FUtil.staffAction(sender.getName(), "Wiped all regions in " + world.getName(), true);
-            msg("Wiped " + regionsWiped + " regions in " + world.getName());
+            FUtil.staffAction(sender.getName(), "Wiped all regions in " + world.getName() + ".", true);
+            msg("Wiped " + regionsWiped + " regions in " + world.getName() + ".");
             return true;
         }
         else
         {
-            msg(ChatColor.RED + "No regions were found in \"" + world.getName() + "\"");
+            msg(ChatColor.RED + "No regions were found in \"" + world.getName() + "\".");
             return true;
         }
     }

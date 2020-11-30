@@ -52,7 +52,7 @@ public class Command_colorme extends FreedomCommand
 
         plugin.esb.setNickname(sender.getName(), newNick);
 
-        msg("Your nickname is now: " + newNick);
+        msg("Your nickname is now: " + newNick + ".");
 
         return true;
     }

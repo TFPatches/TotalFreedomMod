@@ -13,9 +13,7 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
 @CommandPermissions(level = Rank.OP, source = SourceType.BOTH)
-@CommandParameters(description = "Allows for staff to configure time, and weather of the StaffWorld, and allows for staff and ops to go to the StaffWorld.",
-        usage = "/<command> [time <morning | noon | evening | night> | weather <off | rain | storm>]",
-        aliases = "sw")
+@CommandParameters(description = "Sends you to the staff world and allows staff to change world parameters.", usage = "/<command> <time [morning | noon | evening | night] | weather [off | rain | storm]>", aliases = "sw")
 public class Command_staffworld extends FreedomCommand
 {
 
@@ -77,7 +75,7 @@ public class Command_staffworld extends FreedomCommand
                     }
                     else
                     {
-                        msg("Going to the StaffWorld.");
+                        msg("Going to the staff world.");
                         plugin.wm.staffworld.sendToWorld(playerSender);
                     }
                     break;
@@ -92,11 +90,11 @@ public class Command_staffworld extends FreedomCommand
                         if (timeOfDay != null)
                         {
                             plugin.wm.staffworld.setTimeOfDay(timeOfDay);
-                            msg("StaffWorld time set to: " + timeOfDay.name());
+                            msg("Staff world time set to: " + timeOfDay.name() + ".");
                         }
                         else
                         {
-                            msg("Invalid time of day. Can be: sunrise, noon, sunset, midnight");
+                            msg("Invalid time of day. Can be: sunrise, noon, sunset, or midnight.");
                         }
                     }
                     else
@@ -116,11 +114,11 @@ public class Command_staffworld extends FreedomCommand
                         if (weatherMode != null)
                         {
                             plugin.wm.staffworld.setWeatherMode(weatherMode);
-                            msg("StaffWorld weather set to: " + weatherMode.name());
+                            msg("Staff world weather set to: " + weatherMode.name() + ".");
                         }
                         else
                         {
-                            msg("Invalid weather mode. Can be: off, rain, storm");
+                            msg("Invalid weather mode. Can be: off, rain, or storm.");
                         }
                     }
                     else

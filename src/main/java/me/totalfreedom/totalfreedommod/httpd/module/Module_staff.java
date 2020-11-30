@@ -17,7 +17,7 @@ public class Module_staff extends HTTPDModule
     {
 
         return new NanoHTTPD.Response(NanoHTTPD.Response.Status.NOT_FOUND, NanoHTTPD.MIME_PLAINTEXT,
-                "Error 404: Not Found - i have to re-work this");
+                "Error 404: Not Found - i have to re-work this.");
         /*File adminFile = new File(plugin.getDataFolder(), Admin.CONFIG_FILENAME);
         if (adminFile.exists())
         {

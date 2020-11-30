@@ -11,7 +11,7 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
 @CommandPermissions(level = Rank.ADMIN, source = SourceType.BOTH)
-@CommandParameters(description = "Denies joining of operators and only allows staff members to join.", usage = "/<command> [on | off]")
+@CommandParameters(description = "Toggles joining of operators and allowing only staff members to join.", usage = "/<command> [on | off]")
 public class Command_staffmode extends FreedomCommand
 {
 

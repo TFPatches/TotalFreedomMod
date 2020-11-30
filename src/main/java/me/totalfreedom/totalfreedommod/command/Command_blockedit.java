@@ -105,9 +105,9 @@ public class Command_blockedit extends FreedomCommand
         final FPlayer pd = plugin.pl.getPlayer(player2);
         if (pd.isEditBlocked())
         {
-            FUtil.staffAction(sender.getName(), "Unblocking block modification abilities for " + player2.getName(), true);
+            FUtil.staffAction(sender.getName(), "Unblocking block modification abilities for " + player2.getName() + ".", true);
             pd.setEditBlocked(false);
-            msg("Unblocking block modification abilities for " + player2.getName());
+            msg("Unblocking block modification abilities for " + player2.getName() + ".");
             msg(player2, "Your block modification abilities have been restored.", ChatColor.RED);
         }
         else
@@ -118,7 +118,7 @@ public class Command_blockedit extends FreedomCommand
                 return true;
             }
 
-            FUtil.staffAction(sender.getName(), "Blocking block modification abilities for " + player2.getName(), true);
+            FUtil.staffAction(sender.getName(), "Blocking block modification abilities for " + player2.getName() + ".", true);
             pd.setEditBlocked(true);
 
             if (smite)

@@ -59,7 +59,11 @@ public class Command_lockup extends FreedomCommand
 
                 if (!silent)
                 {
-                    FUtil.staffAction(sender.getName(), "Locking up " + player.getName(), true);
+                    FUtil.staffAction(sender.getName(), "Locking up " + player.getName() + ".", true);
+                }
+                else
+                {
+                    msg("Locking up " + player.getName() + " quietly.");
                 }
                 startLockup(player);
                 msg("Locked up " + player.getName() + ".");

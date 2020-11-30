@@ -35,7 +35,7 @@ public class Command_massmurder extends FreedomCommand
             }
         }
 
-        msg("Mass murdered a school of " + count);
+        msg("Mass murdered a school of " + count + ".");
 
         return true;
     }

@@ -48,7 +48,7 @@ public class Command_explode extends FreedomCommand
                     player.getWorld().createExplosion(player.getLocation(), 4L);
                 }
                 player.setHealth(0.0);
-                msg("Exploded " + player.getName());
+                msg("Exploded " + player.getName() + ".");
             }
         }.runTaskLater(plugin, 40);
 

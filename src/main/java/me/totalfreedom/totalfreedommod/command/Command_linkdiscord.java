@@ -55,7 +55,7 @@ public class Command_linkdiscord extends FreedomCommand
             Discord.LINK_CODES.put(code, data);
         }
         msg("Your linking code is " + ChatColor.AQUA + code, ChatColor.GREEN);
-        msg("Take this code and DM the server bot (" + plugin.dc.formatBotTag() + ") the code (do not put anything else in the message, only the code.)");
+        msg("Take this code and DM the server bot (" + plugin.dc.formatBotTag() + ") the code (do not put anything else in the message, only the code).");
         return true;
     }
 }

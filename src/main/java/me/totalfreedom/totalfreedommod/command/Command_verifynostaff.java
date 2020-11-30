@@ -66,7 +66,7 @@ public class Command_verifynostaff extends FreedomCommand
                 fPlayer.getFreezeData().setFrozen(false);
                 player.sendMessage(ChatColor.GRAY + "You have been unfrozen.");
             }
-            msg("Verified " + player.getName() + " but didn't give them staff permissions", ChatColor.GREEN);
+            msg("Verified " + player.getName() + " but didn't give them staff permissions.", ChatColor.GREEN);
         }
         else
         {

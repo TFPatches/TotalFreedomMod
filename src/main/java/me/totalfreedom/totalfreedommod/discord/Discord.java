@@ -129,10 +129,11 @@ public class Discord extends FreedomService
             }
         }
         sentMessages.clear();
-        messageChatChannel("**Message queue cleared**");
+        messageChatChannel("**Message queue cleared.**");
     }
 
     // Do no ask why this is here. I spent two hours trying to make a simple thing work
+    // ok
     public class StartEvent
     {
         private final JDA api;
@@ -144,7 +145,7 @@ public class Discord extends FreedomService
 
         public void start()
         {
-            messageChatChannel("**Server has started**");
+            messageChatChannel("**Server has started!**");
         }
     }
 
@@ -300,7 +301,7 @@ public class Discord extends FreedomService
     {
         if (!plugin.sl.isVanished(event.getPlayer().getName()))
         {
-            messageChatChannel("**" + deformat(event.getPlayer().getName()) + " joined the server" + "**");
+            messageChatChannel("**" + deformat(event.getPlayer().getName()) + " joined the server." + "**");
         }
     }
 
@@ -309,7 +310,7 @@ public class Discord extends FreedomService
     {
         if (!plugin.sl.isVanished(event.getPlayer().getName()))
         {
-            messageChatChannel("**" + deformat(event.getPlayer().getName()) + " left the server" + "**");
+            messageChatChannel("**" + deformat(event.getPlayer().getName()) + " left the server." + "**");
         }
     }
 
@@ -376,7 +377,7 @@ public class Discord extends FreedomService
     {
         if (bot != null)
         {
-            messageChatChannel("**Server has stopped**");
+            messageChatChannel("**Server has stopped.**");
         }
         FLog.info("Discord verification bot has successfully shutdown.");
     }

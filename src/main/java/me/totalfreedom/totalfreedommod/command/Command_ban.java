@@ -104,10 +104,7 @@ public class Command_ban extends FreedomCommand
                     }
                 }
             }
-            else
-            {
-                msg("Banned " + player.getName() + " quietly.");
-            }
+
             // Kill player
             player.setHealth(0.0);
         }
@@ -153,10 +150,13 @@ public class Command_ban extends FreedomCommand
             {
                 bcast.append(" - Reason: ").append(ChatColor.YELLOW).append(reason);
             }
-            msg(sender, ChatColor.GRAY + username + " has been banned and IP is: " + StringUtils.join(ips, ", "));
+            msg(sender, ChatColor.GRAY + username + " has been banned and IP is: " + StringUtils.join(ips, ", ") + ".");
             FUtil.staffAction(sender.getName(), String.format(bcast.toString()), true);
         }
-
+        else
+        {
+            msg("Banned " + player.getName() + " quietly.");
+        }
         // Kick player and handle others on IP
         if (player != null)
         {

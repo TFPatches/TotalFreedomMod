@@ -49,7 +49,7 @@ public class Command_op extends FreedomCommand
         {
             if (!silent)
             {
-                FUtil.staffAction(sender.getName(), "Opping " + StringUtils.join(matchedPlayerNames, ", "), false);
+                FUtil.staffAction(sender.getName(), "Opping " + StringUtils.join(matchedPlayerNames, ", ") + ".", false);
             }
         }
         else

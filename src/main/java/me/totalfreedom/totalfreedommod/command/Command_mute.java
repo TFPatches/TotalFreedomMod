@@ -140,15 +140,15 @@ public class Command_mute extends FreedomCommand
                 return true;
             }
 
-            FUtil.staffAction(sender.getName(), "Muting " + player.getName(), true);
+            FUtil.staffAction(sender.getName(), "Muting " + player.getName() + ".", true);
 
             if (smite)
             {
                 Command_smite.smite(sender, player, reason);
             }
 
-            msg(player, "You have been muted by " + ChatColor.YELLOW + sender.getName(), ChatColor.RED);
-            msg("Muted " + player.getName());
+            msg(player, "You have been muted by " + ChatColor.YELLOW + sender.getName() + ".", ChatColor.RED);
+            msg("Muted " + player.getName() + ".");
 
             plugin.pul.logPunishment(new Punishment(player.getName(), FUtil.getIp(player), sender.getName(), PunishmentType.MUTE, reason));
         }

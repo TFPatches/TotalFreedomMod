@@ -20,7 +20,7 @@ public class Command_disguisetoggle extends FreedomCommand
             return true;
         }
 
-        FUtil.staffAction(sender.getName(), (plugin.ldb.isDisguisesEnabled() ? "Disabling" : "Enabling") + " disguises", false);
+        FUtil.staffAction(sender.getName(), (plugin.ldb.isDisguisesEnabled() ? "Disabling" : "Enabling") + " disguises.", false);
 
         if (plugin.ldb.isDisguisesEnabled())
         {

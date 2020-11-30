@@ -20,7 +20,7 @@ public class Command_denick extends FreedomCommand
             return true;
         }
 
-        FUtil.staffAction(sender.getName(), "Removing all nicknames", false);
+        FUtil.staffAction(sender.getName(), "Removing all nicknames.", false);
 
         for (Player player : server.getOnlinePlayers())
         {

@@ -16,7 +16,7 @@ public class Module_bans extends HTTPDModule
     public NanoHTTPD.Response getResponse()
     {
         return new NanoHTTPD.Response(NanoHTTPD.Response.Status.NOT_FOUND, NanoHTTPD.MIME_PLAINTEXT,
-                "Error 404: Not Found - i have to re-work this");
+                "Error 404: Not Found - i have to re-work this.");
         /*File banFile = new File(plugin.getDataFolder(), BanManager.CONFIG_FILENAME);
         if (banFile.exists())
         {

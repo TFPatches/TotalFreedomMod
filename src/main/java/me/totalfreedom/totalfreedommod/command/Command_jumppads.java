@@ -70,7 +70,7 @@ public class Command_jumppads extends FreedomCommand
                         msg("Your jumppads are already set to normal mode.");
                         return true;
                     }
-                    msg("Set Jumppads mode to: Normal", ChatColor.GRAY);
+                    msg("Set Jumppads mode to: Normal.", ChatColor.GRAY);
                     plugin.jp.players.put(playerSender, Jumppads.JumpPadMode.MADGEEK);
                 }
                 else
@@ -80,7 +80,7 @@ public class Command_jumppads extends FreedomCommand
                         msg("Your jumppads are already set to normal and sideways mode.");
                         return true;
                     }
-                    msg("Set Jumppads mode to: Normal and Sideways", ChatColor.GRAY);
+                    msg("Set Jumppads mode to: Normal and Sideways.", ChatColor.GRAY);
                     plugin.jp.players.put(playerSender, Jumppads.JumpPadMode.NORMAL_AND_SIDEWAYS);
                 }
             }

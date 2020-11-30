@@ -69,6 +69,7 @@ public class Command_setlever extends FreedomCommand
             lever.setPowered(leverOn);
             state.setData(lever);
             state.update();
+            msg("Successfully changed the state of the lever.")
         }
         else
         {

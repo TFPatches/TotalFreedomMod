@@ -84,7 +84,7 @@ public class Command_nickgradient extends FreedomCommand
 
         plugin.esb.setNickname(sender.getName(), outputNick);
 
-        msg("Your nickname is now: '" + outputNick + ChatColor.GRAY + "'" + from + to);
+        msg("Your nickname is now: '" + outputNick + ChatColor.GRAY + "'" + from + to + ".");
 
         return true;
     }

@@ -32,7 +32,7 @@ public class Command_whohas extends FreedomCommand
 
         if (material == null)
         {
-            msg("Invalid item: " + materialName, ChatColor.RED);
+            msg("Invalid item: " + materialName + ".", ChatColor.RED);
             return true;
         }
 
@@ -59,7 +59,7 @@ public class Command_whohas extends FreedomCommand
 
         if (players.isEmpty())
         {
-            msg("There are no players with that item");
+            msg("There are no players with that item.");
         }
         else
         {

@@ -39,7 +39,7 @@ public class Command_orbit extends FreedomCommand
         {
             if (args[1].equals("stop"))
             {
-                msg("Stopped orbiting " + player.getName());
+                msg("Stopped orbiting " + player.getName() + ".");
                 playerdata.stopOrbiting();
                 return true;
             }
@@ -59,7 +59,7 @@ public class Command_orbit extends FreedomCommand
         playerdata.startOrbiting(strength);
 
         player.setVelocity(new Vector(0, strength, 0));
-        FUtil.staffAction(sender.getName(), "Orbiting " + player.getName(), false);
+        FUtil.staffAction(sender.getName(), "Orbiting " + player.getName() + ".", false);
 
         return true;
     }

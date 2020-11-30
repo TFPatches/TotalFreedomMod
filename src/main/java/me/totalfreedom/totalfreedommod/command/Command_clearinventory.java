@@ -33,7 +33,7 @@ public class Command_clearinventory extends FreedomCommand
             {
                 if (args[0].equals("-a"))
                 {
-                    FUtil.staffAction(sender.getName(), "Clearing everyone's inventory", true);
+                    FUtil.staffAction(sender.getName(), "Clearing everyone's inventory.", true);
                     for (Player player : server.getOnlinePlayers())
                     {
                         player.getInventory().clear();

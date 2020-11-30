@@ -9,7 +9,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.permissions.PermissionAttachmentInfo;
 
 @CommandPermissions(level = Rank.NON_OP, source = SourceType.BOTH)
-@CommandParameters(description = "Check your permissions", usage = "/<command> [prefix | reload]")
+@CommandParameters(description = "Check your permissions.", usage = "/<command> [prefix | reload]")
 public class Command_permissions extends FreedomCommand
 {
     @Override
@@ -20,7 +20,7 @@ public class Command_permissions extends FreedomCommand
             plugin.permissions.load();
             plugin.pem.loadPermissionNodes();
             plugin.pem.updatePlayers();
-            msg("Reloaded permissions");
+            msg("Reloaded permissions.");
         }
         else
         {

@@ -38,11 +38,11 @@ public class Command_linkreddit extends FreedomCommand
 
             try
             {
-                plugin.rd.sendModMessage(username, "Link Code", "Please run the following in-game to link your Reddit account: /linkreddit code " + code);
+                plugin.rd.sendModMessage(username, "Link Code", "Please run the following in-game to link your Reddit account: /linkreddit code " + code + ".");
             }
             catch (ApiException e)
             {
-                msg("Could not find a Reddit account by the name of " + args[0], ChatColor.RED);
+                msg("Could not find a Reddit account by the name of " + args[0] + ".", ChatColor.RED);
                 return true;
             }
 
@@ -55,7 +55,7 @@ public class Command_linkreddit extends FreedomCommand
 
         if (username == null)
         {
-            msg(code + " is not a valid code", ChatColor.RED);
+            msg(code + " is not a valid code.", ChatColor.RED);
             return true;
         }
 

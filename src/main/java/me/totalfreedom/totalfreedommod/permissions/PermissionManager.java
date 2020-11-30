@@ -60,7 +60,7 @@ public class PermissionManager extends FreedomService
 
         int count = PermissionEntry.OPERATORS.getEntry().size() + PermissionEntry.MASTER_BUILDERS.getEntry().size() + PermissionEntry.ADMINS.getEntry().size() + PermissionEntry.SENIOR_ADMINS.getEntry().size();
 
-        FLog.info("Loaded " + count + " permission nodes");
+        FLog.info("Loaded " + count + " permission nodes.");
     }
 
     public void setPermissions(Player player)

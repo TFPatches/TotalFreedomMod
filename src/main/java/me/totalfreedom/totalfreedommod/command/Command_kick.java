@@ -69,7 +69,7 @@ public class Command_kick extends FreedomCommand
             }
             else
             {
-                FUtil.staffAction(sender.getName(), "Kicking " + player.getName(), true);
+                FUtil.staffAction(sender.getName(), "Kicking " + player.getName() + ".", true);
             }
         }
         else

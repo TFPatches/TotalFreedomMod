@@ -17,11 +17,11 @@ public class Command_wipecoreprotectdata extends FreedomCommand
     {
         if (!plugin.cpb.isEnabled())
         {
-            msg("CoreProtect is not enabled on this server");
+            msg("CoreProtect is not enabled on this server.");
             return true;
         }
 
-        FUtil.staffAction(sender.getName(), "Wiping CoreProtect data for the flatlands", true);
+        FUtil.staffAction(sender.getName(), "Wiping CoreProtect data for the flatlands.", true);
 
         new BukkitRunnable()
         {

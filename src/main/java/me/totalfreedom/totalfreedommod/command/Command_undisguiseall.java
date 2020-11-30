@@ -7,7 +7,7 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
 @CommandPermissions(level = Rank.ADMIN, source = SourceType.BOTH)
-@CommandParameters(description = "Undisguise all online players on the server", usage = "/<command> [-a]", aliases = "uall")
+@CommandParameters(description = "Undisguise all online players on the server. -a also targets admins.", usage = "/<command> [-a]", aliases = "uall")
 public class Command_undisguiseall extends FreedomCommand
 {
     @Override
@@ -26,7 +26,7 @@ public class Command_undisguiseall extends FreedomCommand
             admins = true;
         }
 
-        FUtil.staffAction(sender.getName(), "Undisguising all " + (admins ? "players" : "non-staff"), true);
+        FUtil.staffAction(sender.getName(), "Undisguising all " + (admins ? "players" : "non-staff") + ".", true);
 
         plugin.ldb.undisguiseAll(admins);
 

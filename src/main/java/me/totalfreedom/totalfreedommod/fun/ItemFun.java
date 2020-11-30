@@ -115,7 +115,7 @@ public class ItemFun extends FreedomService
                     return;
                 }
                 player.addPassenger(entity);
-                player.sendMessage("Stacked " + entity.getName());
+                player.sendMessage("Stacked " + entity.getName() + ".");
             }
         }
 

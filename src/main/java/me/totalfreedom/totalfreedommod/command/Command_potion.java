@@ -15,10 +15,7 @@ import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 
 @CommandPermissions(level = Rank.OP, source = SourceType.BOTH)
-@CommandParameters(
-        description = "Manipulate your potion effects. Duration is measured in server ticks (~20 ticks per second).",
-        usage = "/<command> <list | clearall | clear [target name] | add <type> <duration> <amplifier> [target name]>",
-        aliases="effect")
+@CommandParameters(description = "Manipulate your potion effects. Duration is measured in ticks.", usage = "/<command> <list | clearall | clear [player] | add <type> <duration> <amplifier> [player]>", aliases="effect")
 public class Command_potion extends FreedomCommand
 {
 
@@ -48,7 +45,7 @@ public class Command_potion extends FreedomCommand
                         return true;
                     }
 
-                    FUtil.staffAction(sender.getName(), "Cleared all potion effects from all players", true);
+                    FUtil.staffAction(sender.getName(), "Cleared all potion effects from all players.", true);
                     for (Player target : server.getOnlinePlayers())
                     {
                         for (PotionEffect potion_effect : target.getActivePotionEffects())

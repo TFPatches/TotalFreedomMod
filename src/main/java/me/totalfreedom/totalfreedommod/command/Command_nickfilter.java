@@ -47,7 +47,7 @@ public class Command_nickfilter extends FreedomCommand
 
                         if (player == null || !plugin.sl.isVanished(player.getName()) && !plugin.sl.isStaff(sender))
                         {
-                            sender.sendMessage(ChatColor.GRAY + "Can't find player by nickname: " + displayName);
+                            sender.sendMessage(ChatColor.GRAY + "Can't find player by nickname: " + displayName + ".");
                             return true;
                         }
                     }

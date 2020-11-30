@@ -8,7 +8,7 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
 @CommandPermissions(level = Rank.OP, source = SourceType.ONLY_IN_GAME)
-@CommandParameters(description = "Obtain a rideable ender pearl", usage = "/<command>")
+@CommandParameters(description = "Obtain a rideable ender pearl.", usage = "/<command>")
 public class Command_rideablepearl extends FreedomCommand
 {
 
@@ -18,7 +18,7 @@ public class Command_rideablepearl extends FreedomCommand
         if (plugin.pl.getData(playerSender).hasItem(ShopItem.RIDEABLE_PEARL))
         {
             playerSender.getInventory().addItem(plugin.sh.getRideablePearl());
-            msg("You have been given a Rideable Ender Pearl", ChatColor.GREEN);
+            msg("You have been given a Rideable Ender Pearl.", ChatColor.GREEN);
         }
         else
         {

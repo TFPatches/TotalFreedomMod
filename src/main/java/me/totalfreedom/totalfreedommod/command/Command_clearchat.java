@@ -24,7 +24,7 @@ public class Command_clearchat extends FreedomCommand
                 }
             }
         }
-        FUtil.staffAction(sender.getName(), "Cleared chat", true);
+        FUtil.staffAction(sender.getName(), "Cleared chat.", true);
         return true;
     }
 }

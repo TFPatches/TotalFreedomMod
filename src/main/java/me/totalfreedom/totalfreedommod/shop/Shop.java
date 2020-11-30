@@ -127,7 +127,7 @@ public class Shop extends FreedomService
             return;
         }
 
-        FUtil.bcastMsg(prefix + ChatColor.RED + "No one reacted fast enough", false);
+        FUtil.bcastMsg(prefix + ChatColor.RED + "No one reacted fast enough.", false);
         startReactionTimer();
     }
 
@@ -169,7 +169,7 @@ public class Shop extends FreedomService
         // Coins
         ItemStack coins = new ItemStack(Material.GOLD_NUGGET);
         ItemMeta meta = coins.getItemMeta();
-        meta.setDisplayName(FUtil.colorize("&c&lYou have &e&l" + playerData.getCoins() + "&c&l coins"));
+        meta.setDisplayName(FUtil.colorize("&c&lYou have &e&l" + playerData.getCoins() + "&c&l coins!"));
         coins.setItemMeta(meta);
         gui.setItem(35, coins);
         return gui;
@@ -240,7 +240,7 @@ public class Shop extends FreedomService
         ItemStack itemStack = new ItemStack(Material.FISHING_ROD);
         ItemMeta itemMeta = itemStack.getItemMeta();
         itemMeta.setDisplayName(ChatColor.YELLOW + "Grappling Hook");
-        itemMeta.setLore(Arrays.asList(ChatColor.GREEN + "be spider-man but ghetto"));
+        itemMeta.setLore(Arrays.asList(ChatColor.GREEN + "Be spider-man but ghetto!"));
         itemStack.setItemMeta(itemMeta);
         return itemStack;
     }
@@ -250,7 +250,7 @@ public class Shop extends FreedomService
         ItemStack itemStack = new ItemStack(Material.FIRE_CHARGE);
         ItemMeta itemMeta = itemStack.getItemMeta();
         itemMeta.setDisplayName(ChatColor.RED + "Fire Ball");
-        itemMeta.setLore(Arrays.asList(ChatColor.GOLD + "Yeet this at people"));
+        itemMeta.setLore(Arrays.asList(ChatColor.GOLD + "Yeet this at people!"));
         itemStack.setItemMeta(itemMeta);
         return itemStack;
     }
@@ -281,7 +281,7 @@ public class Shop extends FreedomService
         ItemStack itemStack = new ItemStack(Material.TROPICAL_FISH);
         ItemMeta itemMeta = itemStack.getItemMeta();
         itemMeta.setDisplayName(ChatColor.GOLD + "Clown Fish");
-        itemMeta.setLore(Arrays.asList(ChatColor.AQUA + ":clown:"));
+        itemMeta.setLore(Arrays.asList(ChatColor.AQUA + "Clown down."));
         itemStack.setItemMeta(itemMeta);
         return itemStack;
     }
@@ -396,7 +396,7 @@ public class Shop extends FreedomService
         {
             data.setLoginMessage(null);
             plugin.pl.save(data);
-            player.sendMessage(ChatColor.GREEN + "Removed your login message");
+            player.sendMessage(ChatColor.GREEN + "Removed your login message.");
         }
         else
         {

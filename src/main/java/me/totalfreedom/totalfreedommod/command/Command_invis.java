@@ -61,7 +61,7 @@ public class Command_invis extends FreedomCommand
         }
         
         if (clear)
-            msg("Cleared " + clears + " players");
+            msg("Cleared " + clears + " players.");
         else
             msg("Invisible players (" + players.size() + "): " + StringUtils.join(players, ", "));
             

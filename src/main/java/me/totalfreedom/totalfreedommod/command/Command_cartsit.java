@@ -32,7 +32,7 @@ public class Command_cartsit extends FreedomCommand
         {
             if (targetPlayer == null)
             {
-                sender.sendMessage("When used from the console, you must define a target player: /cartsit <player>");
+                sender.sendMessage("When used from the console, you must define a target player: /cartsit <player>.");
                 return true;
             }
         }

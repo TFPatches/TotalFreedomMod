@@ -27,7 +27,7 @@ public class WorldRestrictions extends FreedomService
 {
 
     private final List<String> BLOCKED_WORLDEDIT_COMMANDS = Arrays.asList(
-            "green", "fixlava", "fixwater", "br", "brush", "tool", "mat", "range", "cs", "up", "fill", "setblock", "tree", "replacenear", "bigtree");
+            "green", "fixlava", "fixwater", "br", "brush", "tool", "mat", "range", "cs", "up", "fill", "setblock", "tree", "replacenear", "bigtree", "set");
 
     private final List<String> BLOCKED_ESSENTIALS_COMMANDS = Arrays.asList(
             "bigtree", "ebigtree", "largetree", "elargetree");

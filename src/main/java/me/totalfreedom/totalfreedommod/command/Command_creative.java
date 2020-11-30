@@ -8,7 +8,7 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
 @CommandPermissions(level = Rank.OP, source = SourceType.BOTH)
-@CommandParameters(description = "Quickly change your own gamemode to creative, define someone's username to change theirs, or change everyone's gamemode on the server.", usage = "/<command> <player | -a>", aliases = "gmc")
+@CommandParameters(description = "Quickly change your own gamemode to creative, or set another player's gamemode to creative.", usage = "/<command> <player | -a>", aliases = "gmc")
 public class Command_creative extends FreedomCommand
 {
 
@@ -37,7 +37,7 @@ public class Command_creative extends FreedomCommand
                 targetPlayer.setGameMode(GameMode.CREATIVE);
             }
 
-            FUtil.staffAction(sender.getName(), "Changing everyone's gamemode to creative", false);
+            FUtil.staffAction(sender.getName(), "Changing everyone's gamemode to creative.", false);
             msg("Your gamemode has been set to creative.");
             return true;
         }
@@ -50,8 +50,8 @@ public class Command_creative extends FreedomCommand
             return true;
         }
 
-        msg("Setting " + player.getName() + " to game mode creative");
-        msg(player, sender.getName() + " set your game mode to creative");
+        msg("Setting " + player.getName() + " to game mode creative.");
+        msg(player, sender.getName() + " set your game mode to creative.");
         player.setGameMode(GameMode.CREATIVE);
 
         return true;

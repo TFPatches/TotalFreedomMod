@@ -30,7 +30,7 @@ public class Command_cage extends FreedomCommand
         String skullName = null;
         if ("purge".equals(args[0]))
         {
-            FUtil.staffAction(sender.getName(), "Uncaging all players", true);
+            FUtil.staffAction(sender.getName(), "Uncaging all players.", true);
             for (Player player : server.getOnlinePlayers())
             {
                 final FPlayer fPlayer = plugin.pl.getPlayer(player);
@@ -101,11 +101,11 @@ public class Command_cage extends FreedomCommand
 
         if (outerMaterial == Material.PLAYER_HEAD)
         {
-            FUtil.staffAction(sender.getName(), "Caging " + player.getName() + " in " + skullName, true);
+            FUtil.staffAction(sender.getName(), "Caging " + player.getName() + " in " + skullName + ".", true);
         }
         else
         {
-            FUtil.staffAction(sender.getName(), "Caging " + player.getName(), true);
+            FUtil.staffAction(sender.getName(), "Caging " + player.getName() + ".", true);
         }
         return true;
     }

@@ -133,8 +133,8 @@ public class Command_myadmin extends FreedomCommand
 
                 plugin.pl.syncIps(target);
 
-                msg("Removed IP " + args[1]);
-                msg("Current IPs: " + StringUtils.join(target.getIps(), ", "));
+                msg("Removed IP " + args[1] + ".");
+                msg("Current IPs: " + StringUtils.join(target.getIps(), ", ") + ".");
                 return true;
             }
 

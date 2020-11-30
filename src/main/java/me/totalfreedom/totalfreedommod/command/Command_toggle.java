@@ -12,7 +12,7 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
 @CommandPermissions(level = Rank.ADMIN, source = SourceType.BOTH)
-@CommandParameters(description = "Toggles TotalFreedomMod settings", usage = "/<command> [option] [value] [value]")
+@CommandParameters(description = "Toggles global TotalFreedomMod settings.", usage = "/<command> [option] [value] [value]")
 public class Command_toggle extends FreedomCommand
 {
 
@@ -111,7 +111,7 @@ public class Command_toggle extends FreedomCommand
             {
                 boolean active = !plugin.lp.isLockdownEnabled();
                 plugin.lp.setLockdownEnabled(active);
-                FUtil.staffAction(sender.getName(), (active ? "A" : "De-a") + "ctivating server lockdown", true);
+                FUtil.staffAction(sender.getName(), (active ? "A" : "De-a") + "ctivating server lockdown.", true);
                 break;
             }
 

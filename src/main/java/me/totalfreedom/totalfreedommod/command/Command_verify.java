@@ -10,7 +10,7 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
 @CommandPermissions(level = Rank.IMPOSTOR, source = SourceType.BOTH)
-@CommandParameters(description = "Sends a verification code to the player, or the player can input the sent code. Staff can manually verify a player impostor.", usage = "/<command> <code | <playername>>")
+@CommandParameters(description = "Allows for players to verify themselves.", usage = "/<command> <code | <player>>")
 public class Command_verify extends FreedomCommand
 {
 
@@ -19,13 +19,13 @@ public class Command_verify extends FreedomCommand
     {
         if (!plugin.dc.enabled)
         {
-            msg("The Discord verification system is currently disabled", ChatColor.RED);
+            msg("The Discord verification system is currently disabled.", ChatColor.RED);
             return true;
         }
 
         if (senderIsConsole)
         {
-            msg("/manuallyverify <playername>", ChatColor.WHITE);
+            msg("I think you are looking for /manuallyverify <player>.", ChatColor.WHITE);
             return true;
         }
 
@@ -50,7 +50,7 @@ public class Command_verify extends FreedomCommand
             String code = plugin.dc.generateCode(10);
             plugin.dc.addVerificationCode(code, playerData);
             plugin.dc.getUser(discordId).openPrivateChannel().complete().sendMessage("A user with the IP `" + FUtil.getIp(playerSender) + "` has sent a verification request. Please run the following in-game command: `/verify " + code + "`").complete();
-            msg("A verification code has been sent to your account, please copy the code and run /verify <code>", ChatColor.GREEN);
+            msg("A verification code has been sent to your account, please copy the code and run /verify <code>.", ChatColor.GREEN);
             return true;
         }
 
@@ -64,7 +64,7 @@ public class Command_verify extends FreedomCommand
             {
                 if (!playerData.getBackupCodes().contains(plugin.dc.getMD5(code)))
                 {
-                    msg("You have entered an invalid verification code", ChatColor.RED);
+                    msg("You have entered an invalid verification code.", ChatColor.RED);
                     return true;
                 }
                 else

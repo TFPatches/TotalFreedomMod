@@ -14,11 +14,11 @@ import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.PluginManager;
 
 @CommandPermissions(level = Rank.ADMIN, source = SourceType.BOTH)
-@CommandParameters(description = "Enable, disable, or reload a specified plugin, as well as list all plugins on the server.", usage = "/<command> <<enable | disable | reload> <pluginname>> | list>", aliases = "plc")
+@CommandParameters(description = "Manage server plugins.", usage = "/<command> <<enable | disable | reload> <pluginname>> | list>", aliases = "plc")
 public class Command_plugincontrol extends FreedomCommand
 {
-
-    private final List<String> UNTOUCHABLE_PLUGINS = Arrays.asList(plugin.getName(), "BukkitTelnet");
+    // Added WorldEdit to this list because if it gets reloaded or disabled from plc the entire server just fucking dies. Blame fionn if something goes wrong with this
+    private final List<String> UNTOUCHABLE_PLUGINS = Arrays.asList(plugin.getName(), "BukkitTelnet", "WorldEdit");
 
     @Override
     public boolean run(CommandSender sender, Player playerSender, Command cmd, String commandLabel, String[] args, boolean senderIsConsole)
@@ -67,7 +67,7 @@ public class Command_plugincontrol extends FreedomCommand
 
             if (!pm.isPluginEnabled(target))
             {
-                msg("Error enabling plugin " + target.getName());
+                msg("Error enabling plugin " + target.getName() + ".");
                 return true;
             }
 
@@ -92,7 +92,7 @@ public class Command_plugincontrol extends FreedomCommand
 
             if (UNTOUCHABLE_PLUGINS.contains(target.getName()))
             {
-                msg("You cannot disable " + target.getName());
+                msg("You cannot disable " + target.getName() + ".");
                 return true;
             }
 
@@ -100,7 +100,7 @@ public class Command_plugincontrol extends FreedomCommand
 
             if (pm.isPluginEnabled(target))
             {
-                msg("Error disabling plugin " + target.getName());
+                msg("Error disabling plugin " + target.getName() + ".");
                 return true;
             }
 
@@ -119,7 +119,7 @@ public class Command_plugincontrol extends FreedomCommand
 
             if (UNTOUCHABLE_PLUGINS.contains(target.getName()))
             {
-                msg("You cannot reload " + target.getName());
+                msg("You cannot reload " + target.getName() + ".");
                 return true;
             }
 

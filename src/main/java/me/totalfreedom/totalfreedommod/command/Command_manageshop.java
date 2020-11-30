@@ -50,11 +50,11 @@ public class Command_manageshop extends FreedomCommand
                             }
                             playerData.setCoins(playerData.getCoins() + amount);
                             plugin.pl.save(playerData);
-                            msg("Successfully added " + amount + " coins to " + args[3] + ". Their new balance is " + playerData.getCoins(), ChatColor.GREEN);
+                            msg("Successfully added " + amount + " coins to " + args[3] + ". Their new balance is " + playerData.getCoins() + ".", ChatColor.GREEN);
                             Player player = getPlayer(args[3]);
                             if (player != null)
                             {
-                                player.sendMessage(ChatColor.GREEN + sender.getName() + " gave you " + amount + " coins. Your new balance is " + playerData.getCoins());
+                                player.sendMessage(ChatColor.GREEN + sender.getName() + " gave you " + amount + " coins. Your new balance is " + playerData.getCoins() + ".");
                             }
                             return true;
                         }
@@ -65,7 +65,7 @@ public class Command_manageshop extends FreedomCommand
                                 PlayerData playerData = plugin.pl.getData(player);
                                 playerData.setCoins(playerData.getCoins() + amount);
                                 plugin.pl.save(playerData);
-                                player.sendMessage(ChatColor.GREEN + sender.getName() + " gave you " + amount + " coins. Your new balance is " + playerData.getCoins());
+                                player.sendMessage(ChatColor.GREEN + sender.getName() + " gave you " + amount + " coins. Your new balance is " + playerData.getCoins() + ".");
                             }
                             msg("Successfully added " + amount + " coins to all online players.", ChatColor.GREEN);
                             return true;
@@ -73,7 +73,7 @@ public class Command_manageshop extends FreedomCommand
                     }
                     catch (NumberFormatException ex)
                     {
-                        msg("Invalid number: " + args[2], ChatColor.RED);
+                        msg("Invalid number: " + args[2] + ".", ChatColor.RED);
                         return true;
                     }
                 case "remove":
@@ -94,11 +94,11 @@ public class Command_manageshop extends FreedomCommand
                                 playerData.setCoins(0);
                             }
                             plugin.pl.save(playerData);
-                            msg("Successfully removed " + amount + " coins from " + args[3] + ". Their new balance is " + playerData.getCoins(), ChatColor.GREEN);
+                            msg("Successfully removed " + amount + " coins from " + args[3] + ". Their new balance is " + playerData.getCoins() + ".", ChatColor.GREEN);
                             Player player = getPlayer(args[3]);
                             if (player != null)
                             {
-                                player.sendMessage(ChatColor.RED + sender.getName() + " took " + amount + " coins from you. Your new balance is " + playerData.getCoins());
+                                player.sendMessage(ChatColor.RED + sender.getName() + " took " + amount + " coins from you. Your new balance is " + playerData.getCoins() + ".");
                             }
                             return true;
                         }
@@ -113,7 +113,7 @@ public class Command_manageshop extends FreedomCommand
                                     playerData.setCoins(0);
                                 }
                                 plugin.pl.save(playerData);
-                                player.sendMessage(ChatColor.RED + sender.getName() + " took " + amount + " coins from you. Your new balance is " + playerData.getCoins());
+                                player.sendMessage(ChatColor.RED + sender.getName() + " took " + amount + " coins from you. Your new balance is " + playerData.getCoins() + ".");
                             }
                             msg("Successfully took " + amount + " coins from all online players.", ChatColor.GREEN);
                             return true;
@@ -121,7 +121,7 @@ public class Command_manageshop extends FreedomCommand
                     }
                     catch (NumberFormatException ex)
                     {
-                        msg("Invalid number: " + args[2], ChatColor.RED);
+                        msg("Invalid number: " + args[2] + ".", ChatColor.RED);
                         return true;
                     }
                 case "set":
@@ -136,17 +136,17 @@ public class Command_manageshop extends FreedomCommand
                         }
                         playerData.setCoins(amount);
                         plugin.pl.save(playerData);
-                        msg("Successfully set " + args[3] + "'s coins to " + amount, ChatColor.GREEN);
+                        msg("Successfully set " + args[3] + "'s coins to " + amount + ".", ChatColor.GREEN);
                         Player player = getPlayer(args[3]);
                         if (player != null)
                         {
-                            player.sendMessage(ChatColor.GREEN + sender.getName() + " set your coin balance to " + amount);
+                            player.sendMessage(ChatColor.GREEN + sender.getName() + " set your coin balance to " + amount + ".");
                         }
                         return true;
                     }
                     catch (NumberFormatException ex)
                     {
-                        msg("Invalid number: " + args[2], ChatColor.RED);
+                        msg("Invalid number: " + args[2] + ".", ChatColor.RED);
                         return true;
                     }
             }
@@ -181,11 +181,11 @@ public class Command_manageshop extends FreedomCommand
                 }
                 playerData.giveItem(item);
                 plugin.pl.save(playerData);
-                msg("Successfully gave the " + item.getName() + " to " + args[3], ChatColor.GREEN);
+                msg("Successfully gave the " + item.getName() + " to " + args[3] + ".", ChatColor.GREEN);
                 Player player = getPlayer(args[3]);
                 if (player != null)
                 {
-                    player.sendMessage(ChatColor.GREEN + sender.getName() + " gave the " + item.getName() + " to you");
+                    player.sendMessage(ChatColor.GREEN + sender.getName() + " gave the " + item.getName() + " to you!");
                 }
                 return true;
             }
@@ -206,11 +206,11 @@ public class Command_manageshop extends FreedomCommand
                 }
                 playerData.removeItem(item);
                 plugin.pl.save(playerData);
-                msg("Successfully took the " + item.getName() + " from " + args[3], ChatColor.GREEN);
+                msg("Successfully took the " + item.getName() + " from " + args[3] + ".", ChatColor.GREEN);
                 Player player = getPlayer(args[3]);
                 if (player != null)
                 {
-                    player.sendMessage(ChatColor.RED + sender.getName() + " took the " + item.getName() + " from you");
+                    player.sendMessage(ChatColor.RED + sender.getName() + " took the " + item.getName() + " from you.");
                 }
                 return true;
             }

@@ -10,7 +10,7 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
 @CommandPermissions(level = Rank.ADMIN, source = SourceType.BOTH)
-@CommandParameters(description = "Unmutes a player", usage = "/<command> [-q] <player>")
+@CommandParameters(description = "Unmutes a player.", usage = "/<command> [-q] <player>")
 public class Command_unmute extends FreedomCommand
 {
 
@@ -49,12 +49,12 @@ public class Command_unmute extends FreedomCommand
 
             if (quiet)
             {
-                msg("Unmuted " + player.getName() + " quietly");
+                msg("Unmuted " + player.getName() + " quietly.");
                 return true;
             }
 
-            FUtil.staffAction(sender.getName(), "Unmuting " + player.getName(), true);
-            msg("Unmuted " + player.getName());
+            FUtil.staffAction(sender.getName(), "Unmuting " + player.getName() + ".", true);
+            msg("Unmuted " + player.getName() + ".");
             msg(player, "You have been unmuted.", ChatColor.RED);
         }
         else

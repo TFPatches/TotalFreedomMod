@@ -18,14 +18,14 @@ public class Command_blockredstone extends FreedomCommand
         if (ConfigEntry.ALLOW_REDSTONE.getBoolean())
         {
             ConfigEntry.ALLOW_REDSTONE.setBoolean(false);
-            FUtil.staffAction(sender.getName(), "Blocking all redstone", true);
+            FUtil.staffAction(sender.getName(), "Blocking all redstone.", true);
             new BukkitRunnable()
             {
                 public void run()
                 {
                     if (!ConfigEntry.ALLOW_REDSTONE.getBoolean())
                     {
-                        FUtil.staffAction("TotalFreedom", "Unblocking all redstone", false);
+                        FUtil.staffAction("TotalFreedom", "Unblocking all redstone.", false);
                         ConfigEntry.ALLOW_REDSTONE.setBoolean(true);
                     }
                 }
@@ -34,7 +34,7 @@ public class Command_blockredstone extends FreedomCommand
         else
         {
             ConfigEntry.ALLOW_REDSTONE.setBoolean(true);
-            FUtil.staffAction(sender.getName(), "Unblocking all redstone", true);
+            FUtil.staffAction(sender.getName(), "Unblocking all redstone.", true);
         }
         return true;
     }

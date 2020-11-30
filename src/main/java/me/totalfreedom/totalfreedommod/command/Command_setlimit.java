@@ -23,7 +23,7 @@ public class Command_setlimit extends FreedomCommand
             }
             catch (NumberFormatException ex)
             {
-                msg("Invalid number: " + args[0], ChatColor.RED);
+                msg("Invalid number: " + args[0] + ".", ChatColor.RED);
                 return true;
             }
         }

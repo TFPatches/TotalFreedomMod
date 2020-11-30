@@ -47,13 +47,13 @@ public class Command_spawnmob extends FreedomCommand
 
         if (type == null)
         {
-            msg("Unknown entity type: " + args[0], ChatColor.RED);
+            msg("Unknown entity type: " + args[0] + ".", ChatColor.RED);
             return true;
         }
 
         if (!type.isSpawnable() || !type.isAlive())
         {
-            msg("Can not spawn entity type: " + type.name().toLowerCase());
+            msg("Can not spawn entity type: " + type.name().toLowerCase() + ".");
             return true;
         }
 
@@ -66,7 +66,7 @@ public class Command_spawnmob extends FreedomCommand
             }
             catch (NumberFormatException nfex)
             {
-                msg("Invalid amount: " + args[1], ChatColor.RED);
+                msg("Invalid amount: " + args[1] + ".", ChatColor.RED);
                 return true;
             }
         }

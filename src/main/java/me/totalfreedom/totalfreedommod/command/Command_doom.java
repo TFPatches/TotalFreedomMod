@@ -18,7 +18,7 @@ import org.bukkit.scheduler.BukkitRunnable;
 import org.bukkit.util.Vector;
 
 @CommandPermissions(level = Rank.SENIOR_ADMIN, source = SourceType.ONLY_CONSOLE, blockHostConsole = true)
-@CommandParameters(description = "Sends the specified player to their doom.", usage = "/<command> <playername> [reason]")
+@CommandParameters(description = "Sends the specified player to their doom.", usage = "/<command> <player> [reason]")
 public class Command_doom extends FreedomCommand
 {
 
@@ -38,7 +38,7 @@ public class Command_doom extends FreedomCommand
             return true;
         }
 
-        FUtil.staffAction(sender.getName(), "Casting oblivion over " + player.getName(), true);
+        FUtil.staffAction(sender.getName(), "Casting oblivion over " + player.getName() + "...", true);
         FUtil.bcastMsg(player.getName() + " will be completely obliviated!", ChatColor.RED);
 
         final String ip = player.getAddress().getAddress().getHostAddress().trim();
@@ -47,7 +47,7 @@ public class Command_doom extends FreedomCommand
         StaffMember staffMember = getStaffMember(player);
         if (staffMember != null)
         {
-            FUtil.staffAction(sender.getName(), "Removing " + player.getName() + " from the staff list", true);
+            FUtil.staffAction(sender.getName(), "Removing " + player.getName() + " from the staff list.", true);
             staffMember.setActive(false);
             plugin.sl.save(staffMember);
             plugin.sl.updateTables();
@@ -120,8 +120,8 @@ public class Command_doom extends FreedomCommand
             public void run()
             {
                 // message
-                FUtil.staffAction(sender.getName(), "Banning " + player.getName(), true);
-                msg(sender, player.getName() + " has been banned and IP is: " + ip);
+                FUtil.staffAction(sender.getName(), "Banning " + player.getName() + ".", true);
+                msg(sender, player.getName() + " has been banned and IP is: " + ip + ".");
 
                 // generate explosion
                 player.getWorld().createExplosion(player.getLocation(), 0F, false);;

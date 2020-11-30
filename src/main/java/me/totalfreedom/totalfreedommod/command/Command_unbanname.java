@@ -29,7 +29,7 @@ public class Command_unbanname extends FreedomCommand
 
         if (ban == null)
         {
-            msg("The name " + name + " is not banned", ChatColor.RED);
+            msg("The name " + name + " is not banned.", ChatColor.RED);
             return true;
         }
 
@@ -48,9 +48,12 @@ public class Command_unbanname extends FreedomCommand
 
         if (!silent)
         {
-            FUtil.staffAction(sender.getName(), "Unbanned the name " + name, true);
+            FUtil.staffAction(sender.getName(), "Unbanned the name " + name + ".", true);
         }
-
+        else
+        {
+            msg("Quietly unbanned the name " + name + ".");
+        }
         return true;
     }
 }

@@ -22,7 +22,7 @@ public class Command_wipepunishments extends FreedomCommand
 
         if (args[0].equalsIgnoreCase("-a"))
         {
-            FUtil.staffAction(sender.getName(), "Wiping the punishment history", true);
+            FUtil.staffAction(sender.getName(), "Wiping the punishment history of all players.", true);
 
             msg("Wiped " + plugin.pul.clear() + " punishments.");
         }
@@ -30,7 +30,7 @@ public class Command_wipepunishments extends FreedomCommand
         {
             String username = args[0];
 
-            FUtil.staffAction(sender.getName(), "Wiping the punishment history for " + username, true);
+            FUtil.staffAction(sender.getName(), "Wiping the punishment history for " + username + ".", true);
 
             msg("Wiped " + plugin.pul.clear(username) + " punishments for " + username + ".");
         }

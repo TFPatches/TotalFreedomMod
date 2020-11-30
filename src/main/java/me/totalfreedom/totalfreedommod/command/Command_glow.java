@@ -8,7 +8,7 @@ import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 
 @CommandPermissions(level = Rank.OP, source = SourceType.ONLY_IN_GAME)
-@CommandParameters(description = "Toggles the glowing outline effect because y'all lazy as fuck.", usage = "/<command>")
+@CommandParameters(description = "Toggles a glowing outline which is the same color as your rank.", usage = "/<command>")
 public class Command_glow extends FreedomCommand
 {
 

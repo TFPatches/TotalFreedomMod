@@ -56,7 +56,7 @@ public class Command_wildcard extends FreedomCommand
         {
             if (blockedCommand.equals(args[0].toLowerCase()) || aliases.contains(blockedCommand))
             {
-                msg("Did you really think that was going to work?", ChatColor.RED);
+                msg("This command is not allowed to be used with wildcard.", ChatColor.RED);
                 return true;
             }
         }
@@ -72,7 +72,7 @@ public class Command_wildcard extends FreedomCommand
         for (Player player : server.getOnlinePlayers())
         {
             String runCommand = baseCommand.replaceAll("\\x3f", player.getName());
-            msg("Running Command: " + runCommand);
+            msg("Running Command: " + runCommand + ".");
             server.dispatchCommand(sender, runCommand);
         }
 

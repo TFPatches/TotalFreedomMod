@@ -7,7 +7,7 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
 @CommandPermissions(level = Rank.SENIOR_ADMIN, source = SourceType.BOTH)
-@CommandParameters(description = "Forcefully start a reaction", usage = "/<command>")
+@CommandParameters(description = "Allows developers to forcefully start a reaction.", usage = "/<command>")
 public class Command_reactionbar extends FreedomCommand
 {
 

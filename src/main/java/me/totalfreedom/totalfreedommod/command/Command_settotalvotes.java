@@ -9,7 +9,7 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
 @CommandPermissions(level = Rank.SENIOR_ADMIN, source = SourceType.ONLY_CONSOLE)
-@CommandParameters(description = "Set a player's total votes", usage = "/<command> <player> <votes>")
+@CommandParameters(description = "Set a player's total votes, Mainly for debuging.", usage = "/<command> <player> <votes>")
 public class Command_settotalvotes extends FreedomCommand
 {
 
@@ -34,7 +34,7 @@ public class Command_settotalvotes extends FreedomCommand
         }
         catch (NumberFormatException e)
         {
-            msg("Invalid number: " +  args[0]);
+            msg("Invalid number: " +  args[0] + ".");
             return true;
         }
 
@@ -46,7 +46,7 @@ public class Command_settotalvotes extends FreedomCommand
             return true;
         }
 
-        msg("Set " + args[1] + "'s votes to " + args[0]);
+        msg("Set " + args[1] + "'s votes to " + args[0] + ".");
 
         playerData.setTotalVotes(votes);
         plugin.pl.save(playerData);
@@ -55,7 +55,7 @@ public class Command_settotalvotes extends FreedomCommand
 
         if (player != null)
         {
-            player.sendMessage(ChatColor.GREEN + sender.getName() + " has set your total votes to " + votes);
+            player.sendMessage(ChatColor.GREEN + sender.getName() + " has set your total votes to " + votes + ".");
         }
 
         return true;

@@ -49,14 +49,14 @@ public class Command_premium extends FreedomCommand
                     try
                     {
                         if (urlConnection.getResponseCode() == 200)
-                            message = ChatColor.GREEN + "Yes";
+                            message = ChatColor.GREEN + "Yes.";
                         else
-                            message = ChatColor.RED + "No";                            
+                            message = ChatColor.RED + "No.";                            
                         FSync.playerMsg(sender, "Player " + name + " is premium: " + message);
                     }
                     catch (IOException e)
                     {
-                       FSync.playerMsg(sender, ChatColor.RED + "There was an error on trying to connect to the API server");
+                       FSync.playerMsg(sender, ChatColor.RED + "There was an error on trying to connect to the API server.");
                     }
                     
                 }

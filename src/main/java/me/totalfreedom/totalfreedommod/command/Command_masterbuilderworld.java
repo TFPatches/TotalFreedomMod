@@ -91,7 +91,7 @@ public class Command_masterbuilderworld extends FreedomCommand
                         if (timeOfDay != null)
                         {
                             plugin.wm.masterBuilderWorld.setTimeOfDay(timeOfDay);
-                            msg("Master Builder world time set to: " + timeOfDay.name());
+                            msg("Master Builder world time set to: " + timeOfDay.name() + ".");
                         }
                         else
                         {
@@ -115,7 +115,7 @@ public class Command_masterbuilderworld extends FreedomCommand
                         if (weatherMode != null)
                         {
                             plugin.wm.masterBuilderWorld.setWeatherMode(weatherMode);
-                            msg("Master Builder world weather set to: " + weatherMode.name());
+                            msg("Master Builder world weather set to: " + weatherMode.name() + ".");
                         }
                         else
                         {

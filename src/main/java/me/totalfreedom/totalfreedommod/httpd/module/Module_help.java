@@ -23,7 +23,7 @@ import static org.apache.commons.lang3.StringEscapeUtils.escapeHtml4;
 
 public class Module_help extends HTTPDModule
 {
-
+    //this doesn't work at all, could someone try reworking this
     public Module_help(TotalFreedomMod plugin, NanoHTTPD.HTTPSession session)
     {
         super(plugin, session);

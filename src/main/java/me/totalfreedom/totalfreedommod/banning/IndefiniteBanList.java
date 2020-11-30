@@ -64,7 +64,7 @@ public class IndefiniteBanList extends FreedomService
 
         updateCount();
 
-        FLog.info("Loaded " + nameBanCount + " indefinite name bans, " + uuidBanCount + " UUID bans, and " + ipBanCount + " ip bans");
+        FLog.info("Loaded " + nameBanCount + " indefinite name bans, " + uuidBanCount + " UUID bans, and " + ipBanCount + " ip bans.");
     }
 
     @Override

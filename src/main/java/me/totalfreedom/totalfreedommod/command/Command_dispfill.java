@@ -50,7 +50,7 @@ public class Command_dispfill extends FreedomCommand
                 }
                 else
                 {
-                    sender.sendMessage("Skipping invalid item: " + searchItem);
+                    sender.sendMessage("Skipping invalid item: " + searchItem + ".");
                 }
             }
 
@@ -70,7 +70,7 @@ public class Command_dispfill extends FreedomCommand
                         {
                             if (targetBlock.getType().equals(Material.DISPENSER))
                             {
-                                sender.sendMessage("Filling dispenser @ " + FUtil.formatLocation(targetBlock.getLocation()));
+                                sender.sendMessage("Filling dispenser @ " + FUtil.formatLocation(targetBlock.getLocation()) + ".");
                                 setDispenserContents(targetBlock, itemsArray);
                                 affected++;
                             }

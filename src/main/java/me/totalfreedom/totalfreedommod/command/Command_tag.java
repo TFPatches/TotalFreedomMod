@@ -15,7 +15,7 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
 @CommandPermissions(level = Rank.OP, source = SourceType.BOTH)
-@CommandParameters(description = "Allows you to set your own prefix.", usage = "/<command> [-s[ave]] <set <tag..> | list | gradient <hex> <hex> <tag..> | off | clear <player> | clearall>")
+@CommandParameters(description = "Allows you to set your own prefix.", usage = "/<command> [-s] <set <tag..> | list | gradient <hex> <hex> <tag..> | off | clear <player> | clearall>")
 public class Command_tag extends FreedomCommand
 {
 
@@ -33,7 +33,7 @@ public class Command_tag extends FreedomCommand
             return false;
         }
 
-        if (args[0].equals("-s") || args[0].equals("-save"))
+        if (args[0].equals("-s"))
         {
             save = true;
             args = ArrayUtils.remove(args, 0);
@@ -69,7 +69,7 @@ public class Command_tag extends FreedomCommand
                     return true;
                 }
 
-                FUtil.staffAction(sender.getName(), "Removing all tags", false);
+                FUtil.staffAction(sender.getName(), "Removing all tags.", false);
 
                 int count = 0;
                 for (final Player player : server.getOnlinePlayers())
@@ -183,7 +183,7 @@ public class Command_tag extends FreedomCommand
                 {
                     save(playerSender, strippedTag);
                 }
-                msg("Tag set to '" + outputTag + ChatColor.GRAY + "'." + (save ? " (Saved)" : ""));
+                msg("Tag set to \"" + outputTag + ChatColor.GRAY + "\"." + (save ? " (Saved)" : ""));
 
                 return true;
             }
@@ -260,7 +260,7 @@ public class Command_tag extends FreedomCommand
                 {
                     save(playerSender, tag);
                 }
-                msg("Tag set to '" + outputTag + ChatColor.GRAY + "'." + (save ? " (Saved)" : "") + from + to);
+                msg("Tag set to \"" + outputTag + ChatColor.GRAY + "\"." + (save ? " (Saved)" : "") + from + to);
 
                 return true;
             }

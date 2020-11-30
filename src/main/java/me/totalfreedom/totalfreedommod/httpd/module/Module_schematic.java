@@ -246,7 +246,7 @@ public class Module_schematic extends HTTPDModule
                 throw new SchematicTransferException("Schematic is not a valid schematic.");
             }
 
-            FLog.info(remoteAddress + " uploaded schematic: " + targetFile.getName());
+            FLog.info(remoteAddress + " uploaded schematic: " + targetFile.getName() + ".");
 
         }
         catch (IOException ex)
@@ -262,13 +262,13 @@ public class Module_schematic extends HTTPDModule
     {
         if (schematicName == null || !SCHEMATIC_FILENAME_LC.matcher((schematicName = schematicName.trim()).toLowerCase()).find())
         {
-            throw new SchematicTransferException("Invalid schematic name requested: " + schematicName);
+            throw new SchematicTransferException("Invalid schematic name requested: \"" + schematicName + "\".");
         }
 
         final File targetFile = new File(SCHEMATIC_FOLDER.getPath(), schematicName);
         if (!targetFile.exists())
         {
-            throw new SchematicTransferException("Schematic not found: " + schematicName);
+            throw new SchematicTransferException("Schematic not found: \"" + schematicName + "\".");
         }
 
         Response response = HTTPDaemon.serveFileBasic(targetFile);

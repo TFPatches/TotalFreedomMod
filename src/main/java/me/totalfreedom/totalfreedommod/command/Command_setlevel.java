@@ -42,7 +42,7 @@ public class Command_setlevel extends FreedomCommand
 
         playerSender.setLevel(new_level);
 
-        msg("Your XP level is now set to " + ChatColor.GOLD + Integer.toString(new_level));
+        msg("Your XP level is now set to " + ChatColor.GOLD + Integer.toString(new_level) + ".");
 
         return true;
     }

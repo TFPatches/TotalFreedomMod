@@ -9,7 +9,7 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
 @CommandPermissions(level = Rank.ADMIN, source = SourceType.BOTH)
-@CommandParameters(description = "Uncage a player", usage = "/<command> <name>")
+@CommandParameters(description = "Uncage a player.", usage = "/<command> <player>")
 public class Command_uncage extends FreedomCommand
 {
 
@@ -32,7 +32,7 @@ public class Command_uncage extends FreedomCommand
         final FPlayer fPlayer = plugin.pl.getPlayer(player);
         if (fPlayer.getCageData().isCaged())
         {
-            FUtil.staffAction(sender.getName(), "Uncaging " + player.getName(), true);
+            FUtil.staffAction(sender.getName(), "Uncaging " + player.getName() + ".", true);
             fPlayer.getCageData().setCaged(false);
         }
         else

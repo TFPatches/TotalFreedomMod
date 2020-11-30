@@ -50,7 +50,7 @@ public class Command_ro extends FreedomCommand
 
                 if (fromMaterial == null || fromMaterial == Material.AIR || !fromMaterial.isBlock())
                 {
-                    msg("Invalid material: " + materialName, ChatColor.RED);
+                    msg("Invalid material: " + materialName + ".", ChatColor.RED);
                     return true;
                 }
 
@@ -67,7 +67,7 @@ public class Command_ro extends FreedomCommand
             }
             catch (NumberFormatException ex)
             {
-                msg("Invalid radius: " + args[1], ChatColor.RED);
+                msg("Invalid radius: " + args[1] + ".", ChatColor.RED);
                 return true;
             }
         }
@@ -123,7 +123,7 @@ public class Command_ro extends FreedomCommand
         {
             if (targetPlayer.getWorld() != staffWorld)
             {
-                FUtil.staffAction(sender.getName(), "Removing all " + names + " within " + radius + " blocks of " + targetPlayer.getName(), false);
+                FUtil.staffAction(sender.getName(), "Removing all " + names + " within " + radius + " blocks of " + targetPlayer.getName() + "!", false);
                 for (Material material : materials)
                 {
                     affected += replaceBlocks(targetPlayer.getLocation(), material, Material.AIR, radius);

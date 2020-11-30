@@ -64,7 +64,7 @@ public class FreezeData
             {
                 if (!plugin().sl.isStaffImpostor(player) && plugin().pl.isPlayerImpostor(player))
                 {
-                    FUtil.staffAction("TotalFreedom", "Unfreezing " + player.getName(), false);
+                    FUtil.staffAction("TotalFreedom", "Unfreezing " + player.getName() + ".", false);
                     setFrozen(false);
                 }
             }

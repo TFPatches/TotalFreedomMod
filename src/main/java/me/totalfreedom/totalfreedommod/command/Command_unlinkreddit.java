@@ -8,7 +8,7 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
 @CommandPermissions(level = Rank.OP, source = SourceType.ONLY_IN_GAME)
-@CommandParameters(description = "Unlink your reddit account", usage = "/<command>")
+@CommandParameters(description = "Unlink your reddit account.", usage = "/<command> [player]")
 public class Command_unlinkreddit extends FreedomCommand
 {
 
@@ -20,7 +20,21 @@ public class Command_unlinkreddit extends FreedomCommand
             msg("The reddit system is currently disabled.", ChatColor.RED);
             return true;
         }
+        // someone check this for me
+        if (args.length != 0 && plugin.sl.isStaff(playerSender))
+        {
+            PlayerData playerData = plugin.pl.getData(args[0]);
+            if (playerData == null)
+            {
+                msg(PLAYER_NOT_FOUND);
+                return true;
+            }
 
+            playerData.setRedditUsername(null);
+            msg("Unlinked " + args[0] + "'s reddit account.", ChatColor.GREEN);
+            return true;
+        }
+        
         PlayerData data = getData(playerSender);
 
         if (data.getRedditUsername() == null)

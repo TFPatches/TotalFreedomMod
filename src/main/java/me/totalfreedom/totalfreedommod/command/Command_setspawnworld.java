@@ -18,7 +18,7 @@ public class Command_setspawnworld extends FreedomCommand
         Location pos = playerSender.getLocation();
         playerSender.getWorld().setSpawnLocation(pos.getBlockX(), pos.getBlockY(), pos.getBlockZ());
 
-        msg("Spawn location for this world set to: " + FUtil.formatLocation(playerSender.getWorld().getSpawnLocation()));
+        msg("Spawn location for this world set to: " + FUtil.formatLocation(playerSender.getWorld().getSpawnLocation()) + ".");
 
         return true;
     }

@@ -85,7 +85,7 @@ public class Command_notes extends FreedomCommand
             }
             catch (NumberFormatException e)
             {
-                msg("Invalid number: " + args[2], ChatColor.RED);
+                msg("Invalid number: " + args[2] + ".", ChatColor.RED);
                 return true;
             }
             id--;

@@ -48,7 +48,7 @@ public class Command_deop extends FreedomCommand
         {
             if (!silent)
             {
-                FUtil.staffAction(sender.getName(), "De-opping " + StringUtils.join(matchedPlayerNames, ", "), false);
+                FUtil.staffAction(sender.getName(), "De-opping " + StringUtils.join(matchedPlayerNames, ", ") + ".", false);
             }
         }
         else

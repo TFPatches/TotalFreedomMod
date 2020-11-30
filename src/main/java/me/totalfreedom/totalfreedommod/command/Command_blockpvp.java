@@ -106,9 +106,9 @@ public class Command_blockpvp extends FreedomCommand
         final FPlayer pd = plugin.pl.getPlayer(p);
         if (pd.isPvpBlocked())
         {
-            FUtil.staffAction(sender.getName(), "Enabling PVP for " + p.getName(), true);
+            FUtil.staffAction(sender.getName(), "Enabling PVP for " + p.getName() + ".", true);
             pd.setPvpBlocked(false);
-            msg("Enabling PVP  for  " + p.getName());
+            msg("Enabling PVP  for  " + p.getName() + ".");
             msg(p, "Your PVP have been enabled.", ChatColor.GREEN);
         }
         else
@@ -119,7 +119,7 @@ public class Command_blockpvp extends FreedomCommand
                 return true;
             }
 
-            FUtil.staffAction(sender.getName(), "Disabling PVP for " + p.getName(), true);
+            FUtil.staffAction(sender.getName(), "Disabling PVP for " + p.getName() + ".", true);
             pd.setPvpBlocked(true);
             if (smite)
             {
@@ -127,7 +127,7 @@ public class Command_blockpvp extends FreedomCommand
             }
 
             msg(p, "Your PVP has been disabled.", ChatColor.RED);
-            msg("Disabled PVP for " + p.getName());
+            msg("Disabled PVP for " + p.getName() + ".");
         }
         return true;
     }

@@ -102,7 +102,7 @@ public class Command_tban extends FreedomCommand
                 }
                 else
                 {
-                    FUtil.staffAction(sender.getName(), "Tempbanning " + player.getName() + " for 5 minutes", true);
+                    FUtil.staffAction(sender.getName(), "Tempbanning " + player.getName() + " for 5 minutes.", true);
                 }
             }
         }

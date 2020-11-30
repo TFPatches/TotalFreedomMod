@@ -10,7 +10,7 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
 @CommandPermissions(level = Rank.OP, source = SourceType.ONLY_IN_GAME)
-@CommandParameters(description = "Give yourself a prefix with random colors", usage = "/<command> <tag>", aliases = "tn")
+@CommandParameters(description = "Give yourself a prefix with random colors.", usage = "/<command> <tag>", aliases = "tn")
 public class Command_tagnyan extends FreedomCommand
 {
 
@@ -56,7 +56,7 @@ public class Command_tagnyan extends FreedomCommand
         final FPlayer data = plugin.pl.getPlayer(playerSender);
         data.setTag(tagStr);
 
-        msg("Set tag to " + tag);
+        msg("Set tag to \"" + tag + ChatColor.GRAY + "\".");
 
         return true;
     }

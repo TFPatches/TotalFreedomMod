@@ -8,7 +8,7 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
 @CommandPermissions(level = Rank.OP, source = SourceType.BOTH)
-@CommandParameters(description = "Quickly change your own gamemode to survival, or define someone's username to change theirs.", usage = "/<command> <[partialname] | -a>", aliases = "gms")
+@CommandParameters(description = "Quickly change your own gamemode to survival, or set another player's gamemode to survival.", usage = "/<command> <[player] | -a>", aliases = "gms")
 public class Command_survival extends FreedomCommand
 {
 
@@ -37,7 +37,7 @@ public class Command_survival extends FreedomCommand
                 targetPlayer.setGameMode(GameMode.SURVIVAL);
             }
 
-            FUtil.staffAction(sender.getName(), "Changing everyone's gamemode to survival", false);
+            FUtil.staffAction(sender.getName(), "Changing everyone's gamemode to survival.", false);
             msg("Your gamemode has been set to survival.");
             return true;
         }

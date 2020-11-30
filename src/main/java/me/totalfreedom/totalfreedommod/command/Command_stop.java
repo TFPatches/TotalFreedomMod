@@ -40,7 +40,7 @@ public class Command_stop extends FreedomCommand
         }
 
 
-        msg("Warning: You're about to stop the server. Type /stop again to confirm you want to do this.");
+        msg("Warning: You're about to stop the server. Type \"/stop\" again to confirm you want to do this.");
 
         STOP_CONFIRM.put(sender, reason);
         new BukkitRunnable()

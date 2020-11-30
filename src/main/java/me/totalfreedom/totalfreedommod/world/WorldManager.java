@@ -136,12 +136,12 @@ public class WorldManager extends FreedomService
         {
             if (world.getName().equalsIgnoreCase(targetWorld))
             {
-                playerMsg(player, "Going to world: " + targetWorld, ChatColor.GRAY);
+                playerMsg(player, "Going to world \"" + targetWorld + "\".", ChatColor.GRAY);
                 PaperLib.teleportAsync(player, world.getSpawnLocation());
                 return;
             }
         }
 
-        playerMsg(player, "World " + targetWorld + " not found.", ChatColor.GRAY);
+        playerMsg(player, "World \"" + targetWorld + "\" not found.", ChatColor.GRAY);
     }
 }

@@ -15,7 +15,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.scheduler.BukkitRunnable;
 
 @CommandPermissions(level = Rank.ADMIN, source = SourceType.ONLY_IN_GAME)
-@CommandParameters(description = "Vanish/unvanish yourself.", usage = "/<command> [-s[ilent]]", aliases = "v")
+@CommandParameters(description = "Vanish/unvanish yourself.", usage = "/<command> [-q]", aliases = "v")
 public class Command_vanish extends FreedomCommand
 {
 
@@ -27,7 +27,7 @@ public class Command_vanish extends FreedomCommand
         boolean silent = false;
         if (args.length > 0)
         {
-            if (args[0].equalsIgnoreCase("-s") || args[0].equalsIgnoreCase("-silent"))
+            if (args[0].equalsIgnoreCase("-q"))
             {
                 silent = true;
             }
@@ -44,7 +44,7 @@ public class Command_vanish extends FreedomCommand
                 msg("You have unvanished.", ChatColor.GOLD);
                 FUtil.bcastMsg(plugin.rm.craftLoginMessage(playerSender, null));
                 FUtil.bcastMsg(playerSender.getName() + " joined the game.", ChatColor.YELLOW);
-                plugin.dc.messageChatChannel("**" + playerSender.getName() + " joined the server" + "**");
+                plugin.dc.messageChatChannel("**" + playerSender.getName() + " joined the server." + "**");
             }
 
             PlayerData playerData = plugin.pl.getData(playerSender);
@@ -90,7 +90,7 @@ public class Command_vanish extends FreedomCommand
             {
                 msg ("You have vanished.", ChatColor.GOLD);
                 FUtil.bcastMsg(playerSender.getName() + " left the game.", ChatColor.YELLOW);
-                plugin.dc.messageChatChannel("**" + playerSender.getName() + " left the server" + "**");
+                plugin.dc.messageChatChannel("**" + playerSender.getName() + " left the server." + "**");
             }
 
             FLog.info(playerSender.getName() + " is now vanished.");

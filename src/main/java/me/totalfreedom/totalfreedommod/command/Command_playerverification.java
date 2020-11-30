@@ -13,7 +13,7 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
 @CommandPermissions(level = Rank.OP, source = SourceType.ONLY_IN_GAME)
-@CommandParameters(description = "Manage your verification", usage = "/<command> <enable | disable | clearips | clearip <ip> | status | genbackupcodes>", aliases = "playerverify,pv")
+@CommandParameters(description = "Manage your verification.", usage = "/<command> <enable | disable | clearips | clearip <ip> | status | genbackupcodes>", aliases = "playerverify,pv")
 public class Command_playerverification extends FreedomCommand
 {
     @Override
@@ -51,7 +51,7 @@ public class Command_playerverification extends FreedomCommand
                     return false;
                 }
                 target.removeIp(args[1]);
-                msg("Removed" + args[1] + " from your list of IPs");
+                msg("Removed" + args[1] + " from your list of IPs.");
                 plugin.pl.save(target);
                 plugin.pl.syncIps(target);
                 return true;
@@ -102,8 +102,8 @@ public class Command_playerverification extends FreedomCommand
             case "status":
                 boolean enabled = target.hasVerification();
                 boolean specified = target.getDiscordID() != null;
-                msg(ChatColor.GRAY + "Discord Verification Enabled: " + (enabled ? ChatColor.GREEN + "true" : ChatColor.RED + "false"));
-                msg(ChatColor.GRAY + "Discord ID: " + (specified ? ChatColor.GREEN + target.getDiscordID() : ChatColor.RED + "not set"));
+                msg(ChatColor.GRAY + "Discord Verification Enabled: " + (enabled ? ChatColor.GREEN + "true" : ChatColor.RED + "false") + ".");
+                msg(ChatColor.GRAY + "Discord ID: " + (specified ? ChatColor.GREEN + target.getDiscordID() : ChatColor.RED + "not set") + ".");
                 msg(ChatColor.GRAY + "Backup Codes: " + data.getBackupCodes().size() + "/" + "10");
                 return true;
 
@@ -127,7 +127,7 @@ public class Command_playerverification extends FreedomCommand
                 }
                 else
                 {
-                    msg("Failed to generate backup codes, please contact a developer (preferably Seth)", ChatColor.RED);
+                    msg("Failed to generate backup codes, please contact a developer.", ChatColor.RED);
                 }
                 return true;
 
