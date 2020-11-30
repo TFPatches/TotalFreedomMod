@@ -13,9 +13,7 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
 @CommandPermissions(level = Rank.OP, source = SourceType.BOTH)
-@CommandParameters(description = "Allows for master builders to configure the time, the weather of the MasterBuilder, and allows for players to go to the MasterBuilderWorld.",
-        usage = "/<command> [time <morning | noon | evening | night> | weather <off | rain | storm>]",
-        aliases = "mbw,mbworld")
+@CommandParameters(description = "Sends you to the Master Builder world and allows MBs to change world parameters.", usage = "/<command> <time [morning | noon | evening | night] | weather [off | rain | storm]>", aliases = "mbw,mbworld")
 public class Command_masterbuilderworld extends FreedomCommand
 {
 
@@ -77,7 +75,7 @@ public class Command_masterbuilderworld extends FreedomCommand
                     }
                     else
                     {
-                        msg("Going to the Master Builder world");
+                        msg("Going to the Master Builder world.");
                         plugin.wm.masterBuilderWorld.sendToWorld(playerSender);
                     }
 
@@ -93,11 +91,11 @@ public class Command_masterbuilderworld extends FreedomCommand
                         if (timeOfDay != null)
                         {
                             plugin.wm.masterBuilderWorld.setTimeOfDay(timeOfDay);
-                            msg("MasterBuilder world time set to: " + timeOfDay.name());
+                            msg("Master Builder world time set to: " + timeOfDay.name());
                         }
                         else
                         {
-                            msg("Invalid time of day. Can be: sunrise, noon, sunset, midnight");
+                            msg("Invalid time of day. Can be: sunrise, noon, sunset, or midnight.");
                         }
                     }
                     else
@@ -117,11 +115,11 @@ public class Command_masterbuilderworld extends FreedomCommand
                         if (weatherMode != null)
                         {
                             plugin.wm.masterBuilderWorld.setWeatherMode(weatherMode);
-                            msg("MasterBuilder world weather set to: " + weatherMode.name());
+                            msg("Master Builder world weather set to: " + weatherMode.name());
                         }
                         else
                         {
-                            msg("Invalid weather mode. Can be: off, rain, storm");
+                            msg("Invalid weather mode. Can be: off, rain, or storm.");
                         }
                     }
                     else
@@ -176,6 +174,7 @@ public class Command_masterbuilderworld extends FreedomCommand
     }
 
     // TODO: Redo this properly
+    // ^^^
     private void assertCommandPerms(CommandSender sender, Player playerSender) throws PermissionDeniedException
     {
         if (!(sender instanceof Player) || playerSender == null || !plugin.sl.isAdmin(playerSender))
