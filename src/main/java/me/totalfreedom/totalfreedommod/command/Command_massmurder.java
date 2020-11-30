@@ -7,7 +7,7 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
 @CommandPermissions(level = Rank.SENIOR_ADMIN, source = SourceType.BOTH)
-@CommandParameters(description = "seth's personal command", usage = "/<command> <players>", aliases = "genocide")
+@CommandParameters(description = "It's like forcekill, but with even more force - Allows you to kill multiple players at once.", usage = "/<command> <players>", aliases = "genocide")
 public class Command_massmurder extends FreedomCommand
 {
 
