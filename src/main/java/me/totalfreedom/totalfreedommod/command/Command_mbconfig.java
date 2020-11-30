@@ -13,7 +13,7 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
 @CommandPermissions(level = Rank.OP, source = SourceType.BOTH)
-@CommandParameters(description = "List, add, or remove master builders. Master builders can also clear their own IPs.", usage = "/<command> <list | clearip <ip> | clearips | <<add | remove> <username>>>")
+@CommandParameters(description = "List, add, or remove master builders. Master builders can also clear their own IPs.", usage = "/<command> <list | clearip <ip> | clearips | <add | remove> <username>>")
 public class Command_mbconfig extends FreedomCommand
 {
     @Override
@@ -57,8 +57,8 @@ public class Command_mbconfig extends FreedomCommand
                 data.addIp(FUtil.getIp(playerSender));
                 plugin.sql.addPlayer(data);
                 msg(counter + " IPs removed.");
-                msg(data.getIps().get(0) + " is now your only IP address");
-                FUtil.staffAction(sender.getName(), "Clearing my IPs", true);
+                msg(data.getIps().get(0) + " is now your only IP address.");
+                FUtil.staffAction(sender.getName(), "Clearing my IPs.", true);
                 return true;
             }
             case "clearip":
@@ -118,7 +118,7 @@ public class Command_mbconfig extends FreedomCommand
 
                 if (data.isMasterBuilder() && plugin.pl.isPlayerImpostor(player))
                 {
-                    FUtil.staffAction(sender.getName(), "Re-adding " + data.getName() + " to the Master Builder list", true);
+                    FUtil.staffAction(sender.getName(), "Re-adding " + data.getName() + " to the Master Builder list.", true);
 
                     if (plugin.pl.getPlayer(player).getFreezeData().isFrozen())
                     {
@@ -134,7 +134,7 @@ public class Command_mbconfig extends FreedomCommand
                 }
                 else if (!data.isMasterBuilder())
                 {
-                    FUtil.staffAction(sender.getName(), "Adding " + data.getName() + " to the Master Builder list", true);
+                    FUtil.staffAction(sender.getName(), "Adding " + data.getName() + " to the Master Builder list.", true);
                     data.setMasterBuilder(true);
                     data.setVerification(true);
                     plugin.pl.save(data);
@@ -171,7 +171,7 @@ public class Command_mbconfig extends FreedomCommand
                     return true;
                 }
 
-                FUtil.staffAction(sender.getName(), "Removing " + data.getName() + " from the Master Builder list", true);
+                FUtil.staffAction(sender.getName(), "Removing " + data.getName() + " from the Master Builder list.", true);
                 data.setMasterBuilder(false);
                 if (data.getDiscordID() == null)
                 {
