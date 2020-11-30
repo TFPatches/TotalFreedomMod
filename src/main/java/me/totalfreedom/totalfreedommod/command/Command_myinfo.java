@@ -6,7 +6,7 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
 @CommandPermissions(level = Rank.OP, source = SourceType.ONLY_IN_GAME)
-@CommandParameters(description = "Check your personal data", usage = "/<command>")
+@CommandParameters(description = "Check your personal data.", usage = "/<command>")
 public class Command_myinfo extends FreedomCommand
 {
     @Override
