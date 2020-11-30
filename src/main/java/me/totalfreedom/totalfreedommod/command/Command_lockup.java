@@ -10,7 +10,7 @@ import org.bukkit.scheduler.BukkitRunnable;
 import org.bukkit.scheduler.BukkitTask;
 
 @CommandPermissions(level = Rank.SENIOR_ADMIN, source = SourceType.BOTH, blockHostConsole = true)
-@CommandParameters(description = "This is evil, and I never should have wrote it - blocks specified player's input.", usage = "/<command> <all | purge | <<partialname> on | off> [-q]>")
+@CommandParameters(description = "This is evil, and I never should have wrote it - blocks specified player's input.", usage = "/<command> <-a | purge | <player> on | off> [-q]>")
 public class Command_lockup extends FreedomCommand
 {
 
@@ -20,9 +20,9 @@ public class Command_lockup extends FreedomCommand
         Boolean silent = (args[args.length - 1].equalsIgnoreCase("-q"));
         if (args.length == 1)
         {
-            if (args[0].equalsIgnoreCase("all"))
+            if (args[0].equalsIgnoreCase("-a"))
             {
-                FUtil.staffAction(sender.getName(), "Locking up all players", true);
+                FUtil.staffAction(sender.getName(), "Locking up all players.", true);
 
                 for (Player player : server.getOnlinePlayers())
                 {
@@ -32,7 +32,7 @@ public class Command_lockup extends FreedomCommand
             }
             else if (args[0].equalsIgnoreCase("purge"))
             {
-                FUtil.staffAction(sender.getName(), "Unlocking all players", true);
+                FUtil.staffAction(sender.getName(), "Unlocking all players.", true);
                 for (Player player : server.getOnlinePlayers())
                 {
                     cancelLockup(player);
