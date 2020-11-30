@@ -14,7 +14,7 @@ public class Command_massmurder extends FreedomCommand
     @Override
     public boolean run(CommandSender sender, Player playerSender, Command cmd, String commandLabel, String[] args, boolean senderIsConsole)
     {
-        if (!ConfigEntry.SERVER_OWNERS.getStringList().contains(playerSender.getName()))
+        if (!FUtil.isExecutive(sender.getName()))
         {
             return noPerms();
         }
