@@ -8,7 +8,7 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
 @CommandPermissions(level = Rank.OP, source = SourceType.ONLY_IN_GAME)
-@CommandParameters(description = "Obtain a clown fish", usage = "/<command>")
+@CommandParameters(description = "Obtain a clown fish.", usage = "/<command>")
 public class Command_clownfish extends FreedomCommand
 {
 
@@ -18,7 +18,7 @@ public class Command_clownfish extends FreedomCommand
         if (plugin.pl.getData(playerSender).hasItem(ShopItem.CLOWN_FISH))
         {
             playerSender.getInventory().addItem(plugin.sh.getClownFish());
-            msg("You have been given a Clown Fish", ChatColor.GREEN);
+            msg("You have been given a Clown Fish.", ChatColor.GREEN);
         }
         else
         {
