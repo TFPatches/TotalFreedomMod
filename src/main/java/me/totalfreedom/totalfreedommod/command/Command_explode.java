@@ -45,6 +45,7 @@ public class Command_explode extends FreedomCommand
                 for (int i = 0; i < 4; i++)
                 {
                     player.getWorld().strikeLightning(player.getLocation());
+                    //these explotions bypass explotion toggles, this should be fixed
                     player.getWorld().createExplosion(player.getLocation(), 4L);
                 }
                 player.setHealth(0.0);
