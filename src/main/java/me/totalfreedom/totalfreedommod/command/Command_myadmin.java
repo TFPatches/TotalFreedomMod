@@ -17,7 +17,7 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
 @CommandPermissions(level = Rank.ADMIN, source = SourceType.ONLY_IN_GAME)
-@CommandParameters(description = "Manage your admin entry.", usage = "/<command> [-o <admin name>] <clearips | clearip <ip> | setscformat <format> | clearscformat> | syncroles>")
+@CommandParameters(description = "Manage your admin entry. Seniors can also manage the entries of other admins.", usage = "/<command> [-o <admin name>] <clearips | clearip <ip> | setscformat <format> | clearscformat> | syncroles>")
 public class Command_myadmin extends FreedomCommand
 {
     @Override
@@ -47,7 +47,7 @@ public class Command_myadmin extends FreedomCommand
             target = getStaffMember(targetPlayer);
             if (target == null)
             {
-                msg("That player is not a staff member", ChatColor.RED);
+                msg("That player is not a staff member.", ChatColor.RED);
                 return true;
             }
 
@@ -72,11 +72,11 @@ public class Command_myadmin extends FreedomCommand
 
                 if (init == null)
                 {
-                    FUtil.staffAction(sender.getName(), "Clearing my IPs", true);
+                    FUtil.staffAction(sender.getName(), "Clearing my IPs.", true);
                 }
                 else
                 {
-                    FUtil.staffAction(sender.getName(), "Clearing " + target.getName() + "'s IPs", true);
+                    FUtil.staffAction(sender.getName(), "Clearing " + target.getName() + "'s IPs.", true);
                 }
 
                 int counter = target.getIps().size() - 1;
@@ -88,7 +88,7 @@ public class Command_myadmin extends FreedomCommand
                 plugin.pl.syncIps(target);
 
                 msg(counter + " IPs removed.");
-                msg(targetPlayer, target.getIps().get(0) + " is now your only IP address");
+                msg(targetPlayer, target.getIps().get(0) + " is now your only IP address.");
                 return true;
             }
 
@@ -125,7 +125,7 @@ public class Command_myadmin extends FreedomCommand
                     return true;
                 }
 
-                FUtil.staffAction(sender.getName(), "Removing an IP" + (init == null ? "" : " from " + targetPlayer.getName() + "'s IPs"), true);
+                FUtil.staffAction(sender.getName(), "Removing an IP" + (init == null ? "" : " from " + targetPlayer.getName() + "'s IPs."), true);
 
                 target.removeIp(args[1]);
                 plugin.sl.save(target);
