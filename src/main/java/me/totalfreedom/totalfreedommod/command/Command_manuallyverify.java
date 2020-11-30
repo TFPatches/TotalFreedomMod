@@ -8,7 +8,7 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
 @CommandPermissions(level = Rank.ADMIN, source = SourceType.BOTH)
-@CommandParameters(description = "Manually verify someone", usage = "/<command> <playername>", aliases="mv")
+@CommandParameters(description = "Manually verify someone.", usage = "/<command> <player>", aliases="mv")
 public class Command_manuallyverify extends FreedomCommand
 {
     @Override
@@ -17,7 +17,7 @@ public class Command_manuallyverify extends FreedomCommand
 
         if (!plugin.dc.enabled)
         {
-            msg("The Discord verification system is currently disabled", ChatColor.RED);
+            msg("The Discord verification system is currently disabled.", ChatColor.RED);
             return true;
         }
 
