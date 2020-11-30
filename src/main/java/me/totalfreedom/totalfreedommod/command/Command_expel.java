@@ -15,12 +15,11 @@ import org.bukkit.util.Vector;
 @CommandParameters(description = "Push people away from you.", usage = "/<command> [radius] [strength]")
 public class Command_expel extends FreedomCommand
 {
+
     @Override
     public boolean run(CommandSender sender, Player playerSender, Command cmd, String commandLabel, String[] args, boolean senderIsConsole)
     {
         double radius = 20.0;
-        // strength value doesn't work past 5, if a strenght value over 5 is set, it will not move the player at all.
-        // this should be fixed or it should be changed so that if the value is over 5 then it will just get set to 5
         double strength = 5.0;
 
         if (args.length >= 1)
