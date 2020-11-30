@@ -10,7 +10,7 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
 @CommandPermissions(level = Rank.ADMIN, source = SourceType.BOTH)
-@CommandParameters(description = "Deop a player", usage = "/<command> <partialname>")
+@CommandParameters(description = "Deop a player.", usage = "/<command> <player> [-q]")
 public class Command_deop extends FreedomCommand
 {
     @Override
@@ -24,7 +24,7 @@ public class Command_deop extends FreedomCommand
         boolean silent = false;
         if (args.length == 2)
         {
-            silent = args[1].equalsIgnoreCase("-s");
+            silent = args[1].equalsIgnoreCase("-q");
         }
 
         final String targetName = args[0].toLowerCase();
