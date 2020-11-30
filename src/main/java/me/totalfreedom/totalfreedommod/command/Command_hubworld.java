@@ -13,12 +13,10 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
 @CommandPermissions(level = Rank.OP, source = SourceType.BOTH)
-@CommandParameters(description = "HubWorld management stuff",
-        usage = "/<command> [time <morning | noon | evening | night> | weather <off | rain | storm>]",
-        aliases = "hw,hub")
+@CommandParameters(description = "Go to the hub.", usage = "/<command> <time [morning | noon | evening | night] | weather [off | rain | storm]>", aliases = "hw,hub")
 public class Command_hubworld extends FreedomCommand
 {
-
+// this will need to be redone when actual hub is added
     private enum CommandMode
     {
         TELEPORT, TIME, WEATHER
@@ -77,7 +75,7 @@ public class Command_hubworld extends FreedomCommand
                     }
                     else
                     {
-                        msg("Going to the hub world");
+                        msg("Going to the hub world.");
                         plugin.wm.hubworld.sendToWorld(playerSender);
                     }
 
@@ -97,7 +95,7 @@ public class Command_hubworld extends FreedomCommand
                         }
                         else
                         {
-                            msg("Invalid time of day. Can be: sunrise, noon, sunset, midnight");
+                            msg("Invalid time of day. Can be: sunrise, noon, sunset, or midnight.");
                         }
                     }
                     else
@@ -121,7 +119,7 @@ public class Command_hubworld extends FreedomCommand
                         }
                         else
                         {
-                            msg("Invalid weather mode. Can be: off, rain, storm");
+                            msg("Invalid weather mode. Can be: off, rain, or storm.");
                         }
                     }
                     else
