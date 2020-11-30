@@ -10,7 +10,7 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
 @CommandPermissions(level = Rank.OP, source = SourceType.BOTH)
-@CommandParameters(description = "Shows the amount of coins you have or another player has", usage = "/<command> [playername]")
+@CommandParameters(description = "Shows the amount of coins you have or another player has.", usage = "/<command> <player>")
 public class Command_coins extends FreedomCommand
 {
     @Override
@@ -39,7 +39,7 @@ public class Command_coins extends FreedomCommand
         {
             if (senderIsConsole)
             {
-                msg(prefix + ChatColor.RED + "You are not a player, use /coins <playername>");
+                msg(prefix + ChatColor.RED + "You are not a player, use /coins <player>.");
                 return true;
             }
             else
