@@ -9,7 +9,7 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
 @CommandPermissions(level = Rank.OP, source = SourceType.BOTH)
-@CommandParameters(description = "Clear your inventory.", usage = "/<command> [player]", aliases = "ci,clear")
+@CommandParameters(description = "Clear your inventory.", usage = "/<command> <player | -a>", aliases = "ci,clear")
 public class Command_clearinventory extends FreedomCommand
 {
 
