@@ -8,7 +8,7 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
 @CommandPermissions(level = Rank.OP, source = SourceType.BOTH)
-@CommandParameters(description = "Manage operators", usage = "/<command> <count | purge>")
+@CommandParameters(description = "Manage operators.", usage = "/<command> <count | purge>")
 public class Command_ops extends FreedomCommand
 {
 
@@ -48,7 +48,7 @@ public class Command_ops extends FreedomCommand
                 return true;
             }
 
-            FUtil.staffAction(sender.getName(), "Purging all operators", true);
+            FUtil.staffAction(sender.getName(), "Purging all operators.", true);
 
             for (OfflinePlayer player : server.getOperators())
             {
