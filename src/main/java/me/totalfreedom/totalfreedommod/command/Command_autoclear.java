@@ -6,7 +6,7 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
 @CommandPermissions(level = Rank.ADMIN, source = SourceType.BOTH)
-@CommandParameters(description = "Toggle whether or not a player has their inventory automatically cleared when they join", usage = "/<command> <player>")
+@CommandParameters(description = "Toggle whether or not a player has their inventory automatically cleared when they join.", usage = "/<command> <player>")
 public class Command_autoclear extends FreedomCommand
 {
 
