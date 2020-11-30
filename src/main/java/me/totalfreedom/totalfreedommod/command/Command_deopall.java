@@ -14,7 +14,7 @@ public class Command_deopall extends FreedomCommand
     @Override
     public boolean run(CommandSender sender, Player playerSender, Command cmd, String commandLabel, String[] args, boolean senderIsConsole)
     {
-        FUtil.staffAction(sender.getName(), "De-opping all players on the server", true);
+        FUtil.staffAction(sender.getName(), "De-opping all players on the server.", true);
 
         for (Player player : server.getOnlinePlayers())
         {
