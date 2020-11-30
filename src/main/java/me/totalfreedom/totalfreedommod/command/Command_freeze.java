@@ -9,7 +9,7 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
 @CommandPermissions(level = Rank.ADMIN, source = SourceType.BOTH)
-@CommandParameters(description = "Freeze/Unfreeze a specified player, or all non-staff on the server.", usage = "/<command> [target | purge]", aliases = "fr")
+@CommandParameters(description = "Freeze/Unfreeze a specified player, or all non-staff on the server.", usage = "/<command> <player | purge>", aliases = "fr")
 public class Command_freeze extends FreedomCommand
 {
 
@@ -23,12 +23,12 @@ public class Command_freeze extends FreedomCommand
 
             if (!gFreeze)
             {
-                FUtil.staffAction(sender.getName(), "Disabling global player freeze", false);
+                FUtil.staffAction(sender.getName(), "Disabling global player freeze.", false);
                 msg("Players are now free to move.");
                 return true;
             }
 
-            FUtil.staffAction(sender.getName(), "Enabling global player freeze", false);
+            FUtil.staffAction(sender.getName(), "Enabling global player freeze.", false);
             for (Player player : server.getOnlinePlayers())
             {
                 if (!isStaff(player))
@@ -43,7 +43,7 @@ public class Command_freeze extends FreedomCommand
 
         if (args[0].equals("purge"))
         {
-            FUtil.staffAction(sender.getName(), "Unfreezing all players", false);
+            FUtil.staffAction(sender.getName(), "Unfreezing all players.", false);
             for (Player player : server.getOnlinePlayers())
             {
                 if (!isStaff(player))
