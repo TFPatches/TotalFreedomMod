@@ -14,7 +14,7 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
 @CommandPermissions(level = Rank.ADMIN, source = SourceType.BOTH)
-@CommandParameters(description = "Manage notes for a player", usage = "/<command> <name> <list | add <note> | remove <id> | clear>")
+@CommandParameters(description = "Manage and view notes for a player.", usage = "/<command> <name> <list | add <note> | remove <id> | clear>")
 public class Command_notes extends FreedomCommand
 {
 
