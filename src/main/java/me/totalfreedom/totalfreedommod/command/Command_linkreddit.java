@@ -8,7 +8,7 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
 @CommandPermissions(level = Rank.OP, source = SourceType.ONLY_IN_GAME)
-@CommandParameters(description = "Link your reddit account", usage = "/<command> <username | code <code>>")
+@CommandParameters(description = "Link your reddit account.", usage = "/<command> <username | code [code]>")
 public class Command_linkreddit extends FreedomCommand
 {
 
