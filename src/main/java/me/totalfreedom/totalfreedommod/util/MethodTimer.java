@@ -1,5 +1,7 @@
 package me.totalfreedom.totalfreedommod.util;
 
+import java.time.Instant;
+
 public class MethodTimer
 {
 
@@ -12,12 +14,12 @@ public class MethodTimer
 
     public void start()
     {
-        this.lastStart = System.currentTimeMillis();
+        this.lastStart = Instant.now().getEpochSecond();
     }
 
     public void update()
     {
-        this.total += (System.currentTimeMillis() - this.lastStart);
+        this.total += (Instant.now().getEpochSecond() - this.lastStart);
     }
 
     public long getTotal()

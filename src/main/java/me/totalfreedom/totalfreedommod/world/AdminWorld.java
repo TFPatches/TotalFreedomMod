@@ -1,5 +1,6 @@
 package me.totalfreedom.totalfreedommod.world;
 
+import java.time.Instant;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
@@ -92,7 +93,7 @@ public final class AdminWorld extends CustomWorld
 
         Long lastTP = teleportCooldown.get(player);
 
-        long currentTimeMillis = System.currentTimeMillis();
+        long currentTimeMillis = Instant.now().getEpochSecond();
         if (lastTP == null || lastTP + TP_COOLDOWN_TIME <= currentTimeMillis)
         {
             teleportCooldown.put(player, currentTimeMillis);

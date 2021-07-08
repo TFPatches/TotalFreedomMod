@@ -1,6 +1,7 @@
 package me.totalfreedom.totalfreedommod.command;
 
 import java.text.DecimalFormat;
+import java.time.Instant;
 import java.util.concurrent.atomic.AtomicInteger;
 import me.totalfreedom.totalfreedommod.TotalFreedomMod;
 import me.totalfreedom.totalfreedommod.rank.Rank;
@@ -85,7 +86,7 @@ public class Command_health extends FreedomCommand
 
         public void startTicking()
         {
-            startTime = System.currentTimeMillis();
+            startTime = Instant.now().getEpochSecond();
             ticks.set(0);
 
             task = new BukkitRunnable()
@@ -101,7 +102,7 @@ public class Command_health extends FreedomCommand
         public double stopTicking()
         {
             task.cancel();
-            long elapsed = System.currentTimeMillis() - startTime;
+            long elapsed = Instant.now().getEpochSecond() - startTime;
             int tickCount = ticks.get();
 
             return (double)tickCount / ((double)elapsed / 1000.0);

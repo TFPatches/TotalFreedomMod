@@ -39,3 +39,7 @@ manifest.mf
 ehthumbs.db
 Thumbs.db
 .idea/inspectionProfiles/Project_Default.xml
+.idea/compiler.xml
+.idea/encodings.xml
+.idea/misc.xml
+.idea/vcs.xml

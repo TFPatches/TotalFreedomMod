@@ -3,6 +3,7 @@ package me.totalfreedom.totalfreedommod.bridge;
 import java.io.File;
 import java.sql.*;
 import java.text.DecimalFormat;
+import java.time.Instant;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashMap;
@@ -41,7 +42,7 @@ public class CoreProtectBridge extends FreedomService
 
     public static Long getSecondsLeft(long prevTime, int timeAdd)
     {
-        return prevTime / 1000L + timeAdd - System.currentTimeMillis() / 1000L;
+        return prevTime / 1000L + timeAdd - Instant.now().getEpochSecond() / 1000L;
     }
 
     // Unix timestamp converter taken from Functions class in CoreProtect, not my code
@@ -344,7 +345,7 @@ public class CoreProtectBridge extends FreedomService
                                 st += "§m";
                             }
 
-                            int time = (int)(System.currentTimeMillis() / 1000L);
+                            int time = (int)(Instant.now().getEpochSecond() / 1000L);
 
                             paged.add(ChatColor.GRAY + getTimeAgo(result.getTime(), time) + ChatColor.WHITE + " - " + net.md_5.bungee.api.ChatColor.of("#30ade4") +
                                     st + result.getPlayer() + ChatColor.WHITE + st + s + net.md_5.bungee.api.ChatColor.of("#30ade4") + st + bl.getMaterial().toString().toLowerCase());
@@ -435,7 +436,7 @@ public class CoreProtectBridge extends FreedomService
                                     st += "§m";
                                 }
 
-                                int time = (int)(System.currentTimeMillis() / 1000L);
+                                int time = (int)(Instant.now().getEpochSecond() / 1000L);
 
                                 paged.add(ChatColor.GRAY + getTimeAgo(result.getTime(), time) + ChatColor.WHITE + " - " + net.md_5.bungee.api.ChatColor.of("#30ade4") +
                                         st + result.getPlayer() + ChatColor.WHITE + st + s + net.md_5.bungee.api.ChatColor.of("#30ade4") + st + bl.getMaterial().toString().toLowerCase());

@@ -722,6 +722,7 @@ public class FUtil
     }
 
     // convert the current time
+    // Why is this needed??? It's not even used.
     public static int getTimeInTicks(int tz)
     {
         if (timeZoneOutOfBounds(tz))
